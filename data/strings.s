@@ -4769,6 +4769,16 @@ gText_SendingWonderCard:: @ 841EAE7
 gText_SendingWonderNews:: @ 841EB01
 	.string "Sending your WONDER NEWS item…$"
 
+gOtherText_ExpShareOn::
+	.string "Turned on the Exp. Share.\p"
+	.string "Party will now gain a portion\n"
+	.string "of the Experience Points.{PAUSE_UNTIL_PRESS}$"
+
+gOtherText_ExpShareOff::
+	.string "Turned off the Exp. Share.\p"
+	.string "Party will no longer gain a portion\n"
+	.string "of any Experience Points.{PAUSE_UNTIL_PRESS}$"
+
 gText_WonderCardSentTo:: @ 841EB20
 	.string "Your WONDER CARD has been sent\n"
 	.string "to {STR_VAR_1}.$"

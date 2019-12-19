@@ -589,6 +589,8 @@ extern const u8 gText_CommunicationCompleted[];
 extern const u8 gText_HaventReceivedGiftOkayToDiscard[];
 extern const u8 gText_SendingWonderCard[];
 extern const u8 gText_SendingWonderNews[];
+extern const u8 gOtherText_ExpShareOn[];
+extern const u8 gOtherText_ExpShareOff[];
 
 // Dodrio Berry Picking
 extern const u8 gText_BerryPickingRecords[];

@@ -255,6 +255,35 @@ static void sub_80A1208(void)
     ReadMail(&mail, CB2_BagMenuFromStartMenu, 0);
 }
 
+void ItemUseOutOfBattle_ExpShare(u8 taskId)
+{
+	if (!gSaveBlock2Ptr->expShare)
+	{
+		PlaySE(SE_EXPMAX);
+		if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+		{
+			DisplayItemMessageOnField(taskId, 2, gOtherText_ExpShareOn, sub_80A112C);
+		}
+		else
+		{
+			DisplayItemMessageInBag(taskId, 2, gOtherText_ExpShareOn, sub_810A1F8);
+		}
+	}
+	else
+	{
+		PlaySE(SE_PC_OFF);
+		if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+		{
+			DisplayItemMessageOnField(taskId, 2, gOtherText_ExpShareOff, sub_80A112C);
+		}
+		else
+		{
+			DisplayItemMessageInBag(taskId, 2, gOtherText_ExpShareOff, sub_810A1F8);
+		}
+	}
+	gSaveBlock2Ptr->expShare = !gSaveBlock2Ptr->expShare;
+}
+
 void FieldUseFunc_MachBike(u8 taskId)
 {
     s16 x, y;
