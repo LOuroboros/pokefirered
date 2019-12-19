@@ -3171,7 +3171,7 @@ static void atk23_getexp(void)
                     PlayBGM(MUS_WIN_YASEI);
                     ++gBattleStruct->wildVictorySong;
                 }
-                if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES2) != SPECIES_EGG))
+                if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && !GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG))
                 {
                     if (gBattleStruct->sentInPokes & 1)
                         gBattleMoveDamage = *exp;
