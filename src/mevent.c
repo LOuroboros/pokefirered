@@ -750,6 +750,12 @@ bool32 sub_8144254(const u16 * data)
     return FALSE;
 }
 
+#if defined(FIRERED)
+#define MEVENT_HEADER_VERSION_CODE 1
+#elif defined(LEAFGREEN)
+#define MEVENT_HEADER_VERSION_CODE 2
+#endif
+
 void BuildMEventClientHeader(struct MEventClientHeaderStruct * data)
 {
     s32 i;
@@ -759,7 +765,7 @@ void BuildMEventClientHeader(struct MEventClientHeaderStruct * data)
     data->unk_04 = 1;
     data->unk_08 = 1;
     data->unk_0C = 1;
-    data->unk_10 = 1;
+    data->unk_10 = MEVENT_HEADER_VERSION_CODE;
 
     // Check whether a card already exists
     if (ValidateReceivedWonderCard())
@@ -852,7 +858,7 @@ u16 sub_81444B0(const struct MEventClientHeaderStruct * a0, u32 command)
         case 4:
             return a0->unk_44;
         default:
-             AGB_ASSERT_EX(0, "C:/WORK/POKeFRLG/src/pm_lgfr_ose/source/mevent.c", 825);
+             AGB_ASSERT_EX(0, ABSPATH("mevent.c"), 825);
             return 0;
     }
 }
@@ -881,7 +887,7 @@ void sub_814451C(u32 command)
         }
         if (dest == NULL)
         {
-             AGB_ASSERT_EX(0, "C:/WORK/POKeFRLG/src/pm_lgfr_ose/source/mevent.c", 868);
+             AGB_ASSERT_EX(0, ABSPATH("mevent.c"), 868);
         }
         else if (++(*dest) > 999)
         {
@@ -939,7 +945,7 @@ u16 sub_81445C0(u32 command)
             break;
         }
     }
-    AGB_ASSERT_EX(0, "C:/WORK/POKeFRLG/src/pm_lgfr_ose/source/mevent.c", 913);
+    AGB_ASSERT_EX(0, ABSPATH("mevent.c"), 913);
     return 0;
 }
 
@@ -977,7 +983,7 @@ void sub_8144714(u32 a0, u32 a1)
                 sub_8144824(1, a1, gSaveBlock1Ptr->mysteryEventBuffers.unk_344[0], 5);
                 break;
             default:
-                 AGB_ASSERT_EX(0, "C:/WORK/POKeFRLG/src/pm_lgfr_ose/source/mevent.c", 988);
+                 AGB_ASSERT_EX(0, ABSPATH("mevent.c"), 988);
         }
     }
 }
