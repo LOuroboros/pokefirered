@@ -600,6 +600,7 @@ static void Task_EvolutionScene(u8 taskId)
 
     // Automatically cancel if the Pokemon would evolve into a species you have not
     // yet unlocked, such as Crobat.
+	/*
     if (!IsNationalPokedexEnabled()
         && gTasks[taskId].tState == 8
         && gTasks[taskId].tPostEvoSpecies > SPECIES_MEW)
@@ -610,6 +611,7 @@ static void Task_EvolutionScene(u8 taskId)
         DestroyMovingBackgroundTasks();
         return;
     }
+	*/
 
     // check if B Button was held, so the evolution gets stopped
     if (gMain.heldKeys == B_BUTTON
