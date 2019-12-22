@@ -14628,6 +14628,30 @@ gFile_graphics_items_icon_palettes_leaf_stone_palette:: @ 8E8A100
 	.incbin "graphics/items/icon_palettes/leaf_stone.gbapal.lz"
 
 	.align 2
+gFile_graphics_items_icons_shiny_stone_sheet::
+	.incbin "graphics/items/icons/shiny_stone.4bpp.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_shiny_stone_palette::
+	.incbin "graphics/items/icon_palettes/shiny_stone.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icons_dusk_stone_sheet::
+	.incbin "graphics/items/icons/dusk_stone.4bpp.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_dusk_stone_palette::
+	.incbin "graphics/items/icon_palettes/dusk_stone.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icons_dawn_stone_sheet::
+	.incbin "graphics/items/icons/dawn_stone.4bpp.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_dawn_stone_palette::
+	.incbin "graphics/items/icon_palettes/dawn_stone.gbapal.lz"
+
+	.align 2
 gFile_graphics_items_icons_tiny_mushroom_sheet:: @ 8E8A128
 	.incbin "graphics/items/icons/tiny_mushroom.4bpp.lz"
 
