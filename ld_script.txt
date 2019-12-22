@@ -186,7 +186,7 @@ SECTIONS {
         src/fldeff_rocksmash.o(.text);
         src/fldeff_dig.o(.text);
         asm/fldeff_flash.o(.text);
-        asm/post_battle_event_funcs.o(.text);
+        src/post_battle_event_funcs.o(.text);
         src/prof_pc.o(.text);
         src/hof_pc.o(.text);
         src/field_specials.o(.text);
@@ -227,6 +227,7 @@ SECTIONS {
         src/map_preview_screen.o(.text);
         asm/link_rfu_2.o(.text);
         asm/link_rfu.o(.text);
+        asm/easy_chat_2.o(.text);
         src/pokedex_screen.o(.text);
         asm/pokedex_screen.o(.text);
         src/list_menu.o(.text);
@@ -316,6 +317,8 @@ SECTIONS {
         src/agb_flash_1m.o(.text);
         src/agb_flash_mx.o(.text);
         src/agb_flash_le.o(.text);
+        asm/librfu_stwi.o(.text);
+        asm/librfu_intr.o(.text);
         asm/librfu.o(.text);
         src/isagbprn.o(.text);
         asm/libagbsyscall.o(.text);
@@ -373,7 +376,7 @@ SECTIONS {
     } =0
 
     .rodata :
-    ALIGN(4)
+    SUBALIGN(4)
     {
         src/main.o(.rodata);
         src/bg.o(.rodata);
@@ -548,7 +551,6 @@ SECTIONS {
         src/mevent_scripts.o(.rodata);
         src/menews_jisan.o(.rodata);
         src/menews_jisan.o(.rodata.str1.4);
-        . = ALIGN(4);
         src/seagallop.o(.rodata);
         data/pokemon_jump.o(.rodata);
         data/berry_crush.o(.rodata);
@@ -930,7 +932,7 @@ SECTIONS {
     }
 
     lib_rodata :
-    ALIGN(4)
+    SUBALIGN(4)
     {
         src/agb_flash.o(.rodata);
         src/agb_flash_1m.o(.rodata);
