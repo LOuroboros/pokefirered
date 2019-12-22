@@ -1633,17 +1633,17 @@
       "secondaryId": 0
     },
     {
-      "english": "????????",
-      "itemId": "ITEM_NONE",
-      "price": 0,
+      "english": "ICE STONE",
+      "itemId": "ITEM_ICE_STONE",
+      "price": 2100,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
-      "description_english": "?????",
+      "description_english": "A peculiar stone that makes certain\\nspecies of POKéMON evolve.\\nIt has a unique snowflake pattern.",
       "importance": 0,
       "exitsBagOnUse": 0,
       "pocket": "POCKET_ITEMS",
-      "type": 4,
-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "type": 1,
+      "fieldUseFunc": "FieldUseFunc_EvoItem",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0

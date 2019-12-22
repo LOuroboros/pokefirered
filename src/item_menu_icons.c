@@ -269,7 +269,7 @@ static const void *const gUnknown_83D4294[][2] = {
     {gFile_graphics_items_icons_shiny_stone_sheet, gFile_graphics_items_icon_palettes_shiny_stone_palette},
     {gFile_graphics_items_icons_dusk_stone_sheet, gFile_graphics_items_icon_palettes_dusk_stone_palette},
     {gFile_graphics_items_icons_dawn_stone_sheet, gFile_graphics_items_icon_palettes_dawn_stone_palette},
-    {gFile_graphics_items_icons_question_mark_sheet, gFile_graphics_items_icon_palettes_question_mark_palette},
+    {gFile_graphics_items_icons_ice_stone_sheet, gFile_graphics_items_icon_palettes_ice_stone_palette},
     {gFile_graphics_items_icons_tiny_mushroom_sheet, gFile_graphics_items_icon_palettes_mushroom_palette},
     {gFile_graphics_items_icons_big_mushroom_sheet, gFile_graphics_items_icon_palettes_mushroom_palette},
     {gFile_graphics_items_icons_question_mark_sheet, gFile_graphics_items_icon_palettes_question_mark_palette},

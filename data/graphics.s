@@ -14652,6 +14652,14 @@ gFile_graphics_items_icon_palettes_dawn_stone_palette::
 	.incbin "graphics/items/icon_palettes/dawn_stone.gbapal.lz"
 
 	.align 2
+gFile_graphics_items_icons_ice_stone_sheet::
+	.incbin "graphics/items/icons/ice_stone.4bpp.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_ice_stone_palette::
+	.incbin "graphics/items/icon_palettes/ice_stone.gbapal.lz"
+
+	.align 2
 gFile_graphics_items_icons_tiny_mushroom_sheet:: @ 8E8A128
 	.incbin "graphics/items/icons/tiny_mushroom.4bpp.lz"
 
