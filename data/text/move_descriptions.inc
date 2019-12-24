@@ -1060,3 +1060,342 @@ gMoveDescription_DoomDesire:: @ 848865A
 gMoveDescription_PsychoBoost:: @ 84886A1
 	.string "An intense attack\nthat also sharply\nreduces the user's\nSP. ATK stat.$"
 
+gMoveDescription_Roost::
+	.string "Placeholder text.$"
+
+gMoveDescription_Gravity::
+	.string "Placeholder text.$"
+
+gMoveDescription_MiracleEye::
+	.string "Placeholder text.$"
+
+gMoveDescription_WakeUpSlap::
+	.string "Placeholder text.$"
+
+gMoveDescription_HammerArm::
+	.string "Placeholder text.$"
+
+gMoveDescription_GyroBall::
+	.string "Placeholder text.$"
+
+gMoveDescription_HealingWish::
+	.string "Placeholder text.$"
+
+gMoveDescription_Brine::
+	.string "Placeholder text.$"
+
+gMoveDescription_NaturalGift::
+	.string "Placeholder text.$"
+
+gMoveDescription_Feint::
+	.string "Placeholder text.$"
+
+gMoveDescription_Pluck::
+	.string "Placeholder text.$"
+
+gMoveDescription_Tailwind::
+	.string "Placeholder text.$"
+
+gMoveDescription_Acupressure::
+	.string "Placeholder text.$"
+
+gMoveDescription_MetalBurst::
+	.string "Placeholder text.$"
+
+gMoveDescription_UTurn::
+	.string "Placeholder text.$"
+
+gMoveDescription_CloseCombat::
+	.string "Placeholder text.$"
+
+gMoveDescription_Payback::
+	.string "Placeholder text.$"
+
+gMoveDescription_Assurance::
+	.string "Placeholder text.$"
+
+gMoveDescription_Embargo::
+	.string "Placeholder text.$"
+
+gMoveDescription_Fling::
+	.string "Placeholder text.$"
+
+gMoveDescription_PsychoShift::
+	.string "Placeholder text.$"
+
+gMoveDescription_TrumpCard::
+	.string "Placeholder text.$"
+
+gMoveDescription_HealBlock::
+	.string "Placeholder text.$"
+
+gMoveDescription_WringOut::
+	.string "Placeholder text.$"
+
+gMoveDescription_PowerTrick::
+	.string "Placeholder text.$"
+
+gMoveDescription_GastroAcid::
+	.string "Placeholder text.$"
+
+gMoveDescription_LuckyChant::
+	.string "Placeholder text.$"
+
+gMoveDescription_MeFirst::
+	.string "Placeholder text.$"
+
+gMoveDescription_Copycat::
+	.string "Placeholder text.$"
+
+gMoveDescription_PowerSwap::
+	.string "Placeholder text.$"
+
+gMoveDescription_GuardSwap::
+	.string "Placeholder text.$"
+
+gMoveDescription_Punishment::
+	.string "Placeholder text.$"
+
+gMoveDescription_LastResort::
+	.string "Placeholder text.$"
+
+gMoveDescription_WorrySeed::
+	.string "Placeholder text.$"
+
+gMoveDescription_SuckerPunch::
+	.string "Placeholder text.$"
+
+gMoveDescription_ToxicSpikes::
+	.string "Placeholder text.$"
+
+gMoveDescription_HeartSwap::
+	.string "Placeholder text.$"
+
+gMoveDescription_AquaRing::
+	.string "Placeholder text.$"
+
+gMoveDescription_MagnetRise::
+	.string "Placeholder text.$"
+
+gMoveDescription_FlareBlitz::
+	.string "Placeholder text.$"
+
+gMoveDescription_ForcePalm::
+	.string "Placeholder text.$"
+
+gMoveDescription_AuraSphere::
+	.string "Placeholder text.$"
+
+gMoveDescription_RockPolish::
+	.string "Placeholder text.$"
+
+gMoveDescription_PoisonJab::
+	.string "Placeholder text.$"
+
+gMoveDescription_DarkPulse::
+	.string "Placeholder text.$"
+
+gMoveDescription_NightSlash::
+	.string "Placeholder text.$"
+
+gMoveDescription_AquaTail::
+	.string "Placeholder text.$"
+
+gMoveDescription_SeedBomb::
+	.string "Placeholder text.$"
+
+gMoveDescription_AirSlash::
+	.string "Placeholder text.$"
+
+gMoveDescription_XScissor::
+	.string "Placeholder text.$"
+
+gMoveDescription_BugBuzz::
+	.string "Placeholder text.$"
+
+gMoveDescription_DragonPulse::
+	.string "Placeholder text.$"
+
+gMoveDescription_DragonRush::
+	.string "Placeholder text.$"
+
+gMoveDescription_PowerGem::
+	.string "Placeholder text.$"
+
+gMoveDescription_DrainPunch::
+	.string "Placeholder text.$"
+
+gMoveDescription_VacuumWave::
+	.string "Placeholder text.$"
+
+gMoveDescription_FocusBlast::
+	.string "Placeholder text.$"
+
+gMoveDescription_EnergyBall::
+	.string "Placeholder text.$"
+
+gMoveDescription_BraveBird::
+	.string "Placeholder text.$"
+
+gMoveDescription_EarthPower::
+	.string "Placeholder text.$"
+
+gMoveDescription_Switcheroo::
+	.string "Placeholder text.$"
+
+gMoveDescription_GigaImpact::
+	.string "Placeholder text.$"
+
+gMoveDescription_NastyPlot::
+	.string "Placeholder text.$"
+
+gMoveDescription_BulletPunch::
+	.string "Placeholder text.$"
+
+gMoveDescription_Avalanche::
+	.string "Placeholder text.$"
+
+gMoveDescription_IceShard::
+	.string "Placeholder text.$"
+
+gMoveDescription_ShadowClaw::
+	.string "Placeholder text.$"
+
+gMoveDescription_ThunderFang::
+	.string "Placeholder text.$"
+
+gMoveDescription_IceFang::
+	.string "Placeholder text.$"
+
+gMoveDescription_FireFang::
+	.string "Placeholder text.$"
+
+gMoveDescription_ShadowSneak::
+	.string "Placeholder text.$"
+
+gMoveDescription_MudBomb::
+	.string "Placeholder text.$"
+
+gMoveDescription_PsychoCut::
+	.string "Placeholder text.$"
+
+gMoveDescription_ZenHeadbutt::
+	.string "Placeholder text.$"
+
+gMoveDescription_MirrorShot::
+	.string "Placeholder text.$"
+
+gMoveDescription_FlashCannon::
+	.string "Placeholder text.$"
+
+gMoveDescription_RockClimb::
+	.string "Placeholder text.$"
+
+gMoveDescription_Defog::
+	.string "Placeholder text.$"
+
+gMoveDescription_TrickRoom::
+	.string "Placeholder text.$"
+
+gMoveDescription_DracoMeteor::
+	.string "Placeholder text.$"
+
+gMoveDescription_Discharge::
+	.string "Placeholder text.$"
+
+gMoveDescription_LavaPlume::
+	.string "Placeholder text.$"
+
+gMoveDescription_LeafStorm::
+	.string "Placeholder text.$"
+
+gMoveDescription_PowerWhip::
+	.string "Placeholder text.$"
+
+gMoveDescription_RockWrecker::
+	.string "Placeholder text.$"
+
+gMoveDescription_CrossPoison::
+	.string "Placeholder text.$"
+
+gMoveDescription_GunkShot::
+	.string "Placeholder text.$"
+
+gMoveDescription_IronHead::
+	.string "Placeholder text.$"
+
+gMoveDescription_MagnetBomb::
+	.string "Placeholder text.$"
+
+gMoveDescription_StoneEdge::
+	.string "Placeholder text.$"
+
+gMoveDescription_Captivate::
+	.string "Placeholder text.$"
+
+gMoveDescription_StealthRock::
+	.string "Placeholder text.$"
+
+gMoveDescription_GrassKnot::
+	.string "Placeholder text.$"
+
+gMoveDescription_Chatter::
+	.string "Placeholder text.$"
+
+gMoveDescription_Judgment::
+	.string "Placeholder text.$"
+
+gMoveDescription_BugBite::
+	.string "Placeholder text.$"
+
+gMoveDescription_ChargeBeam::
+	.string "Placeholder text.$"
+
+gMoveDescription_WoodHammer::
+	.string "Placeholder text.$"
+
+gMoveDescription_AquaJet::
+	.string "Placeholder text.$"
+
+gMoveDescription_AttackOrder::
+	.string "Placeholder text.$"
+
+gMoveDescription_DefendOrder::
+	.string "Placeholder text.$"
+
+gMoveDescription_HealOrder::
+	.string "Placeholder text.$"
+
+gMoveDescription_HeadSmash::
+	.string "Placeholder text.$"
+
+gMoveDescription_DoubleHit::
+	.string "Placeholder text.$"
+
+gMoveDescription_RoarOfTime::
+	.string "Placeholder text.$"
+
+gMoveDescription_SpacialRend::
+	.string "Placeholder text.$"
+
+gMoveDescription_LunarDance::
+	.string "Placeholder text.$"
+
+gMoveDescription_CrushGrip::
+	.string "Placeholder text.$"
+
+gMoveDescription_MagmaStorm::
+	.string "Placeholder text.$"
+
+gMoveDescription_DarkVoid::
+	.string "Placeholder text.$"
+
+gMoveDescription_SeedFlare::
+	.string "Placeholder text.$"
+
+gMoveDescription_OminousWind::
+	.string "Placeholder text.$"
+
+gMoveDescription_ShadowForce::
+	.string "Placeholder text.$"
+
