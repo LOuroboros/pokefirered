@@ -53,8 +53,8 @@
 #define ITEM_BLUE_SHARD 49
 #define ITEM_YELLOW_SHARD 50
 #define ITEM_GREEN_SHARD 51
-#define ITEM_034 52
-#define ITEM_035 53
+#define ITEM_SUN_SHARD 52 // Inspired by Pokémon Colosseum and Pokémon XD: Gale of Darkness
+#define ITEM_MOON_SHARD 53 // Inspired by Pokémon Colosseum and Pokémon XD: Gale of Darkness
 #define ITEM_036 54
 #define ITEM_037 55
 #define ITEM_038 56

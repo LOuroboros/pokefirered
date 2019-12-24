@@ -14452,6 +14452,22 @@ gFile_graphics_items_icon_palettes_green_shard_palette:: @ 8E88FF4
 	.incbin "graphics/items/icon_palettes/green_shard.gbapal.lz"
 
 	.align 2
+gFile_graphics_items_icons_sun_shard_sheet::
+	.incbin "graphics/items/icons/sun_shard.4bpp.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_sun_shard_palette::
+	.incbin "graphics/items/icon_palettes/sun_shard.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icons_moon_shard_sheet::
+	.incbin "graphics/items/icons/moon_shard.4bpp.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_moon_shard_palette::
+	.incbin "graphics/items/icon_palettes/moon_shard.gbapal.lz"
+
+	.align 2
 gFile_graphics_items_icons_hp_up_sheet:: @ 8E8900C
 	.incbin "graphics/items/icons/hp_up.4bpp.lz"
 

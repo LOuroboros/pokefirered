@@ -508,6 +508,7 @@ enum
 #define EVO_SPECIFIC_MON_IN_PARTY             0x001C // Pokémon levels up with a specified Pokémon in party
 #define EVO_LEVEL_SPECIFIC_MON_TYPE_IN_PARTY  0x001D // Pokémon reaches the specified level with a specified Pokémon in party
 #define EVO_HELD_ITEM_LV42                    0x001E // Pokémon reaches the specified level, holds specified item
+#define EVO_HELD_ITEM                         0x001F // Pokémon levels up while it's holding the specified item
 
 struct Evolution
 {
