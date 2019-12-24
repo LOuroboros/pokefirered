@@ -842,8 +842,8 @@
       "importance": 0,
       "exitsBagOnUse": 0,
       "pocket": "POCKET_ITEMS",
-      "type": 1,
-      "fieldUseFunc": "FieldUseFunc_EvoItem",
+      "type": 4,
+      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
@@ -858,8 +858,8 @@
       "importance": 0,
       "exitsBagOnUse": 0,
       "pocket": "POCKET_ITEMS",
-      "type": 1,
-      "fieldUseFunc": "FieldUseFunc_EvoItem",
+      "type": 4,
+      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
