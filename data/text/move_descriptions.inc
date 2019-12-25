@@ -1061,40 +1061,40 @@ gMoveDescription_PsychoBoost:: @ 84886A1
 	.string "An intense attack\nthat also sharply\nreduces the user's\nSP. ATK stat.$"
 
 gMoveDescription_Roost::
-	.string "Placeholder text.$"
+	.string "The user lands and\nrests its body. It\nrestores half of\ntheir max HP.$"
 
 gMoveDescription_Gravity::
-	.string "Placeholder text.$"
+	.string "Boosts gravity for\nfive turns halting\nlevitation and\nflying based moves.$"
 
 gMoveDescription_MiracleEye::
-	.string "Placeholder text.$"
+	.string "Lets the user hit\nGHOST type foes\nand evasive ones\nwith a move.$"
 
 gMoveDescription_WakeUpSlap::
-	.string "Placeholder text.$"
+	.string "This move damages\nsleeping foes the\nhardest. Though it\nalso wakes them up.$"
 
 gMoveDescription_HammerArm::
-	.string "Placeholder text.$"
+	.string "The user hits with\ntheir strong fist.\nIt lowers their\nSPEED, however.$"
 
 gMoveDescription_GyroBall::
-	.string "Placeholder text.$"
+	.string "Hits the foe with\na very fast spin.\nIt damages faster\nfoes the hardest.$"
 
 gMoveDescription_HealingWish::
-	.string "Placeholder text.$"
+	.string "The user faints to\nheal up a member\nof the party that\nwill fight instead.$"
 
 gMoveDescription_Brine::
-	.string "Placeholder text.$"
+	.string "If the foe's HP is\nhalf or less, this\nmove hits with two\ntimes the power.$"
 
 gMoveDescription_NaturalGift::
-	.string "Placeholder text.$"
+	.string "This move's type\nand power depends\non the berry held\nby the USER.$"
 
 gMoveDescription_Feint::
-	.string "Placeholder text.$"
+	.string "A move that hits a\nfoe using PROTECT\nor DETECT lifting\ntheir effect.$"
 
 gMoveDescription_Pluck::
-	.string "Placeholder text.$"
+	.string "Hits with the peck\nand snatches the\nfoe's held berry\nin the process.$"
 
 gMoveDescription_Tailwind::
-	.string "Placeholder text.$"
+	.string "Whips up a heavy\nwhirlwind that ups\nthe SPEED of the\nparty for 3 turns.$"
 
 gMoveDescription_Acupressure::
 	.string "Placeholder text.$"
