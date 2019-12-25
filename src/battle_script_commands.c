@@ -317,6 +317,7 @@ static void atkF4_subattackerhpbydmg(void);
 static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
+static void atkF8_setroost(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -568,6 +569,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF5_removeattackerstatus1,
     atkF6_finishaction,
     atkF7_finishturn,
+    atkF8_setroost,
 };
 
 struct StatFractions
@@ -9824,4 +9826,36 @@ static void atkF7_finishturn(void)
 {
     gCurrentActionFuncId = B_ACTION_FINISHED;
     gCurrentTurnActionNumber = gBattlersCount;
+}
+static void atkF8_setroost(void)
+{
+    gBattleResources->flags->flags[gBattlerAttacker] |= RESOURCE_FLAG_ROOST;
+
+    // Pure flying type.
+    if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
+    {
+        gBattleStruct->roostTypes[gBattlerAttacker][0] = TYPE_FLYING;
+        gBattleStruct->roostTypes[gBattlerAttacker][1] = TYPE_FLYING;
+        gBattleStruct->roostTypes[gBattlerAttacker][2] = TYPE_FLYING;
+        SET_BATTLER_TYPE(gBattlerAttacker, TYPE_MYSTERY);
+    }
+    // Dual Type with Flying Type.
+    else if ((gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 != TYPE_FLYING)
+           ||(gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type1 != TYPE_FLYING))
+    {
+        gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
+        gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
+        if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING)
+            gBattleMons[gBattlerAttacker].type1 = TYPE_MYSTERY;
+        if (gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
+            gBattleMons[gBattlerAttacker].type2 = TYPE_MYSTERY;
+    }
+    // Non-flying type.
+    else if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_FLYING))
+    {
+        gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
+        gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
+    }
+
+    gBattlescriptCurrInstr++;
 }

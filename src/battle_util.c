@@ -681,6 +681,7 @@ enum
     ENDTURN_TAUNT,
     ENDTURN_YAWN,
     ENDTURN_ITEMS2,
+	ENDTURN_ROOST,
     ENDTURN_BATTLER_COUNT
 };
 
@@ -991,6 +992,15 @@ u8 DoBattlerEndTurnEffects(void)
                     }
                 }
                 ++gBattleStruct->turnEffectsTracker;
+                break;
+            case ENDTURN_ROOST: // Return Mystery type.
+                if (gBattleResources->flags->flags[gActiveBattler] & RESOURCE_FLAG_ROOST)
+                {
+                    gBattleResources->flags->flags[gActiveBattler] &= ~(RESOURCE_FLAG_ROOST);
+                    gBattleMons[gActiveBattler].type1 = gBattleStruct->roostTypes[gActiveBattler][0];
+                    gBattleMons[gActiveBattler].type2 = gBattleStruct->roostTypes[gActiveBattler][1];
+                }
+                gBattleStruct->turnEffectsTracker++;
                 break;
             case ENDTURN_BATTLER_COUNT:  // done
                 gBattleStruct->turnEffectsTracker = 0;
