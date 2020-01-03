@@ -3955,7 +3955,7 @@ BattleScript_MotorDriveActivates::
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_PKMNRAISEDSPEED
 	waitmessage 0x40
-    goto BattleScript_MoveEnd
+	goto BattleScript_MoveEnd
 
 BattleScript_TraceActivates::
 	pause 0x20
