@@ -2332,6 +2332,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     u8 defenderHoldEffectParam;
     u8 attackerHoldEffect;
     u8 attackerHoldEffectParam;
+    u8 attackersGender;
+    u8 defendersGender;
 
     if (!powerOverride)
         gBattleMovePower = gBattleMoves[move].power;
@@ -2452,6 +2454,17 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gBattleMovePower = (150 * gBattleMovePower) / 100;
     if (gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION)
         defense /= 2;
+
+    // Rivalry
+    attackersGender = GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality);
+    defendersGender = GetGenderFromSpeciesAndPersonality(defender->species, defender->personality);
+	if (attacker->ability == ABILITY_RIVALRY && defendersGender != MON_GENDERLESS)
+	{
+		if (attackersGender == defendersGender)
+			gBattleMovePower = (125 * gBattleMovePower) / 100;
+		else
+			gBattleMovePower = (75 * gBattleMovePower) / 100;
+	}
 
     if (IS_TYPE_PHYSICAL(gBattleMoves[move]))
     {

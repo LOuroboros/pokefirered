@@ -83,7 +83,7 @@
 // Gen. 4 Abilities
 #define ABILITY_TANGLED_FEET 78
 #define ABILITY_MOTOR_DRIVE 79
-#define ABILITY_RIVALRY 80 // To Do
+#define ABILITY_RIVALRY 80
 #define ABILITY_STEADFAST 81 // To Do
 #define ABILITY_SNOW_CLOAK 82 // To Do
 #define ABILITY_GLUTTONY 83 // To Do
