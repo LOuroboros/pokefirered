@@ -81,7 +81,7 @@
 #define ABILITY_AIR_LOCK 77
 
 // Gen. 4 Abilities
-#define ABILITY_TANGLED_FEET 78 // To Do
+#define ABILITY_TANGLED_FEET 78
 #define ABILITY_MOTOR_DRIVE 79 // To Do
 #define ABILITY_RIVALRY 80 // To Do
 #define ABILITY_STEADFAST 81 // To Do
