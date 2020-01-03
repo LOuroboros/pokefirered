@@ -79,7 +79,7 @@ static const u8 sAirLockDescription[] = _("Negates weather effects.");
 
 // Gen. 4 Abilities
 static const u8 sTangledFeetDescription[] = _("Ups evasion when confused.");
-static const u8 sMotorDriveDescription[] = _("This is a placeholder."); // To Do
+static const u8 sMotorDriveDescription[] = _("Ups SPEED if hit by electricity.");
 static const u8 sRivalryDescription[] = _("This is a placeholder."); // To Do
 static const u8 sSteadfastDescription[] = _("This is a placeholder."); // To Do
 static const u8 sSnowCloakDescription[] = _("This is a placeholder."); // To Do
@@ -208,7 +208,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_AIR_LOCK] = sAirLockDescription,
 // Gen. 4 Abilities
     [ABILITY_TANGLED_FEET] = sTangledFeetDescription,
-    [ABILITY_MOTOR_DRIVE]  = sMotorDriveDescription, // To Do
+    [ABILITY_MOTOR_DRIVE]  = sMotorDriveDescription,
     [ABILITY_RIVALRY]      = sRivalryDescription, // To Do
     [ABILITY_STEADFAST]    = sSteadfastDescription, // To Do
     [ABILITY_SNOW_CLOAK]   = sSnowCloakDescription, // To Do

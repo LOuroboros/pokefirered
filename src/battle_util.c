@@ -1896,6 +1896,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                         }
                     }
                     break;
+                case ABILITY_MOTOR_DRIVE:
+                    if (moveType == TYPE_ELECTRIC && gBattleMons[gBattlerTarget].statStages[STAT_SPEED] < 0xC && gBattleMoves[moveArg].power != 0)
+                    {
+                        ++gBattleMons[gBattlerTarget].statStages[STAT_SPEED];
+                        gBattleScripting.animArg1 = 0x11;
+                        gBattleScripting.animArg2 = 0;
+                        gBattlescriptCurrInstr = BattleScript_MotorDriveActivates;
+                        effect = 2;
+                    }
+                    break;
                 }
                 if (effect == 1)
                 {
