@@ -3388,6 +3388,8 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         speedBattler1 /= 4;
     if (holdEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * holdEffectParam) / 100)
         speedBattler1 = UINT_MAX;
+    if (gBattleMons[battler1].ability == ABILITY_STEADFAST && gBattleMons[battler1].statStages[STAT_SPEED] < 0xC && gProtectStructs[battler1].flinchImmobility)
+        ++gBattleMons[battler1].statStages[STAT_SPEED];
     // check second battlerId's speed
     speedBattler2 = (gBattleMons[battler2].speed * speedMultiplierBattler2)
                     * (gStatStageRatios[gBattleMons[battler2].statStages[STAT_SPEED]][0])
@@ -3413,6 +3415,8 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         speedBattler2 /= 4;
     if (holdEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * holdEffectParam) / 100)
         speedBattler2 = UINT_MAX;
+    if (gBattleMons[battler2].ability == ABILITY_STEADFAST && gBattleMons[battler2].statStages[STAT_SPEED] < 0xC && gProtectStructs[battler2].flinchImmobility)
+        ++gBattleMons[battler2].statStages[STAT_SPEED];
     if (ignoreChosenMoves)
     {
         moveBattler1 = MOVE_NONE;
