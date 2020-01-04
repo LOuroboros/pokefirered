@@ -1119,6 +1119,8 @@ static void atk01_accuracycheck(void)
             calc = (calc * 80) / 100; // 1.2 hustle loss
         else if (gBattleMons[gBattlerTarget].ability == ABILITY_TANGLED_FEET && gBattleMons[gBattlerTarget].status2 & STATUS2_CONFUSION)
             calc = (calc * 50) / 100; // 0.5 tangled feet loss
+        else if (WEATHER_HAS_EFFECT && gBattleMons[gBattlerTarget].ability == ABILITY_SNOW_CLOAK && gBattleWeather & WEATHER_HAIL_ANY)
+            calc = (calc * 80) / 100; // 1.2 snow cloak loss
 
         if (gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY)
         {
@@ -4853,7 +4855,8 @@ static void atk52_switchineffects(void)
     if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED)
      && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
      && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING)
-     && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE)
+     && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE
+     && gBattleMons[gActiveBattler].ability != ABILITY_MAGIC_GUARD)
     {
         u8 spikesDmg;
 
@@ -7382,6 +7385,7 @@ static void atk96_weatherdamage(void)
              && gBattleMons[gBattlerAttacker].type2 != TYPE_STEEL
              && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND
              && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_MAGIC_GUARD
              && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)
              && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
             {
@@ -7398,7 +7402,10 @@ static void atk96_weatherdamage(void)
         {
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)
              && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)
-             && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
+             && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_ICE_BODY
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_SNOW_CLOAK
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_MAGIC_GUARD)
             {
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
                 if (gBattleMoveDamage == 0)

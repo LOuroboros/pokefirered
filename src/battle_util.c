@@ -733,7 +733,8 @@ u8 DoBattlerEndTurnEffects(void)
             case ENDTURN_LEECH_SEED:  // leech seed
                 if ((gStatuses3[gActiveBattler] & STATUS3_LEECHSEED)
                  && gBattleMons[gStatuses3[gActiveBattler] & STATUS3_LEECHSEED_BATTLER].hp != 0
-                 && gBattleMons[gActiveBattler].hp != 0)
+                 && gBattleMons[gActiveBattler].hp != 0
+                 && gBattleMons[gActiveBattler].ability != ABILITY_MAGIC_GUARD)
                 {
                     gBattlerTarget = gStatuses3[gActiveBattler] & STATUS3_LEECHSEED_BATTLER; // Notice gBattlerTarget is actually the HP receiver.
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
@@ -750,7 +751,8 @@ u8 DoBattlerEndTurnEffects(void)
                 if ((gBattleMons[gActiveBattler].status1 & STATUS1_POISON)
                  && gBattleMons[gActiveBattler].hp != 0)
                 {
-                    if (gBattleMons[gActiveBattler].ability != ABILITY_POISON_HEAL)
+                    if (gBattleMons[gActiveBattler].ability != ABILITY_POISON_HEAL
+                     && gBattleMons[gActiveBattler].ability != ABILITY_MAGIC_GUARD)
                     {
                         gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                         if (gBattleMoveDamage == 0)
@@ -775,7 +777,8 @@ u8 DoBattlerEndTurnEffects(void)
                 if ((gBattleMons[gActiveBattler].status1 & STATUS1_TOXIC_POISON)
                  && gBattleMons[gActiveBattler].hp != 0)
                 {
-                    if (gBattleMons[gActiveBattler].ability != ABILITY_POISON_HEAL)
+                    if (gBattleMons[gActiveBattler].ability != ABILITY_POISON_HEAL
+                     && gBattleMons[gActiveBattler].ability != ABILITY_MAGIC_GUARD)
                     {
                         gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
                         if (gBattleMoveDamage == 0)
@@ -803,7 +806,9 @@ u8 DoBattlerEndTurnEffects(void)
                 ++gBattleStruct->turnEffectsTracker;
                 break;
             case ENDTURN_BURN:  // burn
-                if ((gBattleMons[gActiveBattler].status1 & STATUS1_BURN) && gBattleMons[gActiveBattler].hp != 0)
+                if ((gBattleMons[gActiveBattler].status1 & STATUS1_BURN)
+                 && gBattleMons[gActiveBattler].hp != 0
+                 && gBattleMons[gActiveBattler].ability != ABILITY_MAGIC_GUARD)
                 {
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -814,7 +819,9 @@ u8 DoBattlerEndTurnEffects(void)
                 ++gBattleStruct->turnEffectsTracker;
                 break;
             case ENDTURN_NIGHTMARES:  // spooky nightmares
-                if ((gBattleMons[gActiveBattler].status2 & STATUS2_NIGHTMARE) && gBattleMons[gActiveBattler].hp != 0)
+                if ((gBattleMons[gActiveBattler].status2 & STATUS2_NIGHTMARE)
+                 && gBattleMons[gActiveBattler].hp != 0
+                 && gBattleMons[gActiveBattler].ability != ABILITY_MAGIC_GUARD)
                 {
                     // R/S does not perform this sleep check, which causes the nightmare effect to
                     // persist even after the affected Pokemon has been awakened by Shed Skin.
@@ -834,7 +841,9 @@ u8 DoBattlerEndTurnEffects(void)
                 ++gBattleStruct->turnEffectsTracker;
                 break;
             case ENDTURN_CURSE:  // curse
-                if ((gBattleMons[gActiveBattler].status2 & STATUS2_CURSED) && gBattleMons[gActiveBattler].hp != 0)
+                if ((gBattleMons[gActiveBattler].status2 & STATUS2_CURSED)
+                 && gBattleMons[gActiveBattler].hp != 0
+                 && gBattleMons[gActiveBattler].ability != ABILITY_MAGIC_GUARD)
                 {
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 4;
                     if (gBattleMoveDamage == 0)
@@ -845,7 +854,8 @@ u8 DoBattlerEndTurnEffects(void)
                 ++gBattleStruct->turnEffectsTracker;
                 break;
             case ENDTURN_WRAP:  // wrap
-                if ((gBattleMons[gActiveBattler].status2 & STATUS2_WRAPPED) && gBattleMons[gActiveBattler].hp != 0)
+                if ((gBattleMons[gActiveBattler].status2 & STATUS2_WRAPPED)
+                 && gBattleMons[gActiveBattler].hp != 0)
                 {
                     gBattleMons[gActiveBattler].status2 -= 0x2000;
                     if (gBattleMons[gActiveBattler].status2 & STATUS2_WRAPPED)  // damaged by wrap
@@ -857,6 +867,11 @@ u8 DoBattlerEndTurnEffects(void)
                         gBattleTextBuff1[2] = *(gBattleStruct->wrappedMove + gActiveBattler * 2 + 0);
                         gBattleTextBuff1[3] = *(gBattleStruct->wrappedMove + gActiveBattler * 2 + 1);
                         gBattleTextBuff1[4] = EOS;
+                        if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD)
+                        {
+                            ++gBattleStruct->turnEffectsTracker;
+                            break;
+                        }
                         gBattlescriptCurrInstr = BattleScript_WrapTurnDmg;
                         gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
                         if (gBattleMoveDamage == 0)
@@ -1785,6 +1800,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                      && gBattleMons[battler].maxHP > gBattleMons[battler].hp)
                     {
                         gLastUsedAbility = ABILITY_RAIN_DISH; // why
+                        BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
+                        gBattleMoveDamage = gBattleMons[battler].maxHP / 16;
+                        if (gBattleMoveDamage == 0)
+                            gBattleMoveDamage = 1;
+                        gBattleMoveDamage *= -1;
+                        ++effect;
+                    }
+                    break;
+                case ABILITY_ICE_BODY:
+                    if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY)
+                     && gBattleMons[battler].maxHP > gBattleMons[battler].hp)
+                    {
+                        gLastUsedAbility = ABILITY_ICE_BODY; // why
                         BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
                         gBattleMoveDamage = gBattleMons[battler].maxHP / 16;
                         if (gBattleMoveDamage == 0)
