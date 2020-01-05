@@ -14505,130 +14505,34 @@ gText_DifferentGameFile:: @ 81C566A
 	.string "and overwrite the other save file?$"
 
 gOtherText_NewName:: @ 81C574F
-	.string "NEW NAME$"
+	.string "New Name$"
 
-gNameChoice_Green:: @ 81C5758
-	.string "GREEN$"
+gNameChoice_Red::
+	.string "Red$"
 
-gNameChoice_Red:: @ 81C575E
-	.string "RED$"
+gNameChoice_Ash::
+	.string "Ash$"
 
-gNameChoice_Leaf:: @ 81C5762
-	.string "LEAF$"
+gNameChoice_Fire::
+	.string "Fire$"
 
-gNameChoice_Fire:: @ 81C5767
-	.string "FIRE$"
+gNameChoice_Leaf::
+	.string "Leaf$"
 
-gNameChoice_Gary:: @ 81C576C
-	.string "GARY$"
+gNameChoice_Blue::
+	.string "Blue$"
 
-gNameChoice_Kaz:: @ 81C5771
-	.string "KAZ$"
+gNameChoice_Green::
+	.string "Green$"
 
-gNameChoice_Toru:: @ 81C5775
-	.string "TORU$"
+gNameChoice_Gary::
+	.string "Gary$"
 
-gNameChoice_Ash:: @ 81C577A
-	.string "ASH$"
+gNameChoice_Satoshi::
+	.string "Satoshi$"
 
-gNameChoice_Kene:: @ 81C577E
-	.string "KENE$"
-
-gNameChoice_Geki:: @ 81C5783
-	.string "GEKI$"
-
-gNameChoice_Jak:: @ 81C5788
-	.string "JAK$"
-
-gNameChoice_Janne:: @ 81C578C
-	.string "JANNE$"
-
-gNameChoice_Jonn:: @ 81C5792
-	.string "JONN$"
-
-gNameChoice_Kamon:: @ 81C5797
-	.string "KAMON$"
-
-gNameChoice_Karl:: @ 81C579D
-	.string "KARL$"
-
-gNameChoice_Taylor:: @ 81C57A2
-	.string "TAYLOR$"
-
-gNameChoice_Oscar:: @ 81C57A9
-	.string "OSCAR$"
-
-gNameChoice_Hiro:: @ 81C57AF
-	.string "HIRO$"
-
-gNameChoice_Max:: @ 81C57B4
-	.string "MAX$"
-
-gNameChoice_Jon:: @ 81C57B8
-	.string "JON$"
-
-gNameChoice_Ralph:: @ 81C57BC
-	.string "RALPH$"
-
-gNameChoice_Kay:: @ 81C57C2
-	.string "KAY$"
-
-gNameChoice_Tosh:: @ 81C57C6
-	.string "TOSH$"
-
-gNameChoice_Roak:: @ 81C57CB
-	.string "ROAK$"
-
-gNameChoice_Omi:: @ 81C57D0
-	.string "OMI$"
-
-gNameChoice_Jodi:: @ 81C57D4
-	.string "JODI$"
-
-gNameChoice_Amanda:: @ 81C57D9
-	.string "AMANDA$"
-
-gNameChoice_Hillary:: @ 81C57E0
-	.string "HILLARY$"
-
-gNameChoice_Makey:: @ 81C57E8
-	.string "MAKEY$"
-
-gNameChoice_Michi:: @ 81C57EE
-	.string "MICHI$"
-
-gNameChoice_Paula:: @ 81C57F4
-	.string "PAULA$"
-
-gNameChoice_June:: @ 81C57FA
-	.string "JUNE$"
-
-gNameChoice_Cassie:: @ 81C57FF
-	.string "CASSIE$"
-
-gNameChoice_Rey:: @ 81C5806
-	.string "REY$"
-
-gNameChoice_Seda:: @ 81C580A
-	.string "SEDA$"
-
-gNameChoice_Kiko:: @ 81C580F
-	.string "KIKO$"
-
-gNameChoice_Mina:: @ 81C5814
-	.string "MINA$"
-
-gNameChoice_Norie:: @ 81C5819
-	.string "NORIE$"
-
-gNameChoice_Sai:: @ 81C581F
-	.string "SAI$"
-
-gNameChoice_Momo:: @ 81C5823
-	.string "MOMO$"
-
-gNameChoice_Suzi:: @ 81C5828
-	.string "SUZI$"
+gNameChoice_Shigeru::
+	.string "Shigeru$"
 
 gNewGame_HelpDocs1:: @ 81C582D
 	.string "The various buttons will be explained in\n"
