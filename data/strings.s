@@ -1693,52 +1693,52 @@ gText_Wireless:: @ 0x8417DA0
 	.string "Wireless$"
 
 gText_ItemsPocket:: @ 0x8417DA9
-	.string "ITEMS POCKET$"
+	.string "Items Pocket$"
 
 gText_KeyItemsPocket:: @ 0x8417DB6
-	.string "KEY ITEMS POCKET$"
+	.string "Key Items Pocket$"
 
 gText_PokeBallsPocket:: @ 0x8417DC7
-	.string "POKé BALLS POCKET$"
+	.string "Poké Balls Pocket$"
 
 gText_TmCase:: @ 0x8417DD9
-	.string "TM CASE$"
+	.string "TM Case$"
 
 gText_BerryPouch_2:: @ 0x8417DE1
-	.string "BERRY POUCH$"
+	.string "Berry Pouch$"
 
 gText_Other:: @ 8417DED
-	.string "OTHER$"
+	.string "Other$"
 
 gText_OneIsland:: @ 0x8417DF3
-	.string "ONE ISLAND$"
+	.string "One Island$"
 
 gText_TwoIsland:: @ 0x8417DFE
-	.string "TWO ISLAND$"
+	.string "Two Island$"
 
 gText_ThreeIsland:: @ 0x8417E09
-	.string "THREE ISLAND$"
+	.string "Three Island$"
 
 gText_FourIsland:: @ 0x8417E16
-	.string "FOUR ISLAND$"
+	.string "Four Island$"
 
 gText_FiveIsland:: @ 0x8417E22
-	.string "FIVE ISLAND$"
+	.string "Five Island$"
 
 gText_SixIsland:: @ 0x8417E2E
-	.string "SIX ISLAND$"
+	.string "Six Island$"
 
 gText_SevenIsland:: @ 0x8417E39
-	.string "SEVEN ISLAND$"
+	.string "Seven Island$"
 
 gText_Vermilion:: @ 0x8417E46
-	.string "VERMILION$"
+	.string "Vermilion$"
 
 gText_Colosseum_2:: @ 0x8417E50
-	.string "COLOSSEUM$"
+	.string "Colosseum$"
 
 gText_BerryCrush:: @ 0x8417E5A
-	.string "BERRY CRUSH$"
+	.string "Berry Crush$"
 
 gText_Dummy_8417E66:: @ 0x8417E66
 	.string "$"
@@ -1759,34 +1759,34 @@ gText_DodrioBerryPicking:: @ 0x8417E7F
 	.string "DODRIO BERRY-PICKING$"
 
 gText_2Tinymushrooms:: @ 0x8417E94
-	.string "2 TINYMUSHROOMS$"
+	.string "2 TinyMushrooms$"
 
 gText_1BigMushroom:: @ 0x8417EA4
-	.string "1 BIG MUSHROOM$"
+	.string "1 Big Mushroom$"
 
 gText_SeviiIslands:: @ 0x8417EB3
-	.string "SEVII ISLANDS$"
+	.string "Sevii Islands$"
 
 gText_NavelRock:: @ 0x8417EC1
-	.string "NAVEL ROCK$"
+	.string "Navel Rock$"
 
 gText_BirthIsland:: @ 0x8417ECC
-	.string "BIRTH ISLAND$"
+	.string "Birth Island$"
 
 gText_MiracleSeed_1000Coins:: @ 0x8417ED9
-	.string "MIRACLE SEED{CLEAR_TO 0x50}{SMALL}1,000 COINS$"
+	.string "Miracle Seed{CLEAR_TO 0x50}{SMALL}1,000 COINS$"
 
 gText_Charcoal_1000Coins:: @ 0x8417EF7
-	.string "CHARCOAL{CLEAR_TO 0x50}{SMALL}1,000 COINS$"
+	.string "Charcoal{CLEAR_TO 0x50}{SMALL}1,000 COINS$"
 
 gText_MysticWater_1000Coins:: @ 0x8417F11
-	.string "MYSTIC WATER{CLEAR_TO 0x50}{SMALL}1,000 COINS$"
+	.string "Mystic Water{CLEAR_TO 0x50}{SMALL}1,000 COINS$"
 
 gText_YellowFlute_1600Coins:: @ 0x8417F2F
-	.string "YELLOW FLUTE{CLEAR_TO 0x50}{SMALL}1,600 COINS$"
+	.string "Yellow Flute{CLEAR_TO 0x50}{SMALL}1,600 COINS$"
 
 gText_SmokeBall_800Coins:: @ 0x8417F4D
-	.string "SMOKE BALL{CLEAR_TO 0x5A}{SMALL}800 COINS$"
+	.string "Smoke Ball{CLEAR_TO 0x5A}{SMALL}800 COINS$"
 
 gText_Dummy_8417F67:: @ 0x8417F67
 	.string "$"
@@ -2582,7 +2582,7 @@ gUnknown_841901C:: @ 841901C
 gUnknown_841908E:: @ 841908E
 	@ Pokémon Mansion
 	.string "A decrepit, burned-down mansion\n"
-	.string "on CINNABAR ISLAND.\n"
+	.string "on CINNABAR Island.\n"
 	.string "It got its name because a famous\n"
 	.string "POKéMON researcher lived there.$"
 
@@ -2638,14 +2638,14 @@ gUnknown_84193D5:: @ 84193D5
 gUnknown_8419444:: @ 8419444
 	@ Berry Forest
 	.string "A forest on a small islet off the\n"
-	.string "coast of THREE ISLAND. BERRIES\n"
+	.string "coast of THREE Island. BERRIES\n"
 	.string "grow wildly in profusion, quickly\n"
 	.string "replenishing those that fall off.$"
 
 gUnknown_84194C9:: @ 84194C9
 	@ Icefall Cave
 	.string "A cave which is covered by water\n"
-	.string "and ice on FOUR ISLAND.\n"
+	.string "and ice on FOUR Island.\n"
 	.string "It seems like the end of the cave\n"
 	.string "is connected to the ocean.$"
 

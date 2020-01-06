@@ -12,8 +12,8 @@ gUnknown_8183347:: @ 8183347
     .string "Poké Balls for catching Pokémon.$"
 
 gUnknown_8183387:: @ 8183387
-    .string "{PLAYER} put the potion away in\n"
-    .string "the bag's Items pocket.$"
+    .string "{PLAYER} put the Potion away in\n"
+    .string "the Bag's Items Pocket.$"
 
 gUnknown_81833B9:: @ 81833B9
     .string "See those ledges along the road?\p"

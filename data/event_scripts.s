@@ -12271,21 +12271,21 @@ gUnknown_81C0EAC:: @ 81C0EAC
 
 gUnknown_81C0ECB:: @ 81C0ECB
 	.string "All your item needs fulfilled!\n"
-	.string "POKéMON MART$"
+	.string "Pokémon Mart$"
 
 gUnknown_81C0EF7:: @ 81C0EF7
-	.string "Heal Your POKéMON!\n"
-	.string "POKéMON CENTER$"
+	.string "Heal Your Pokémon!\n"
+	.string "Pokémon Center$"
 
 gUnknown_81C0F19:: @ 81C0F19
-	.string "INDIGO PLATEAU\p"
-	.string "The ultimate goal of TRAINERS!\n"
-	.string "POKéMON LEAGUE HQ$"
+	.string "Indigo Plateau\p"
+	.string "The ultimate goal of trainers!\n"
+	.string "Pokémon League HQ$"
 
 gUnknown_81C0F59:: @ 81C0F59
-	.string "INDIGO PLATEAU\p"
-	.string "The highest POKéMON authority!\n"
-	.string "POKéMON LEAGUE HQ$"
+	.string "Indigo Plateau\p"
+	.string "The highest Pokémon authority!\n"
+	.string "Pokémon League HQ$"
 
 gUnknown_81C0F99:: @ 81C0F99
 	.string "It should be packed with all kinds\n"
@@ -12296,7 +12296,7 @@ gUnknown_81C0FD8:: @ 81C0FD8
 	.string "It's filled with diagrams and text.$"
 
 gUnknown_81C101B:: @ 81C101B
-	.string "It's a pretty picture of a POKéMON.\n"
+	.string "It's a pretty picture of a Pokémon.\n"
 	.string "It looks like it's feeling good.$"
 
 gUnknown_81C1060:: @ 81C1060
@@ -12325,7 +12325,7 @@ gUnknown_81C116E:: @ 81C116E
 	.string "There's nothing here!$"
 
 gUnknown_81C1194:: @ 81C1194
-	.string "It's a cup with a POKéMON mark\n"
+	.string "It's a cup with a Pokémon mark\n"
 	.string "on it.$"
 
 gUnknown_81C11BA:: @ 81C11BA
@@ -12357,7 +12357,7 @@ gUnknown_81C12D6:: @ 81C12D6
 	.string "here…$"
 
 gUnknown_81C1300:: @ 81C1300
-	.string "There's a POKéMON on TV!\n"
+	.string "There's a Pokémon on TV!\n"
 	.string "It looks like it's having fun.$"
 
 EventScript_1C1338:: @ 81C1338

@@ -3,9 +3,9 @@ Text_18CF4D:: @ 818CF4D
     .string "not a bad thing.\p"
     .string "But it's also not bad to aim for\n"
     .string "the top with a partner.\p"
-    .string "Even BRUNO…\n"
+    .string "Even Bruno…\n"
     .string "He trained with a fellow by the\l"
-    .string "name of BRAWLY before.$"
+    .string "name of Brawly before.$"
 
 Text_18CFFB:: @ 818CFFB
     .string "Do you know anything about this\n"
@@ -16,13 +16,13 @@ Text_18D02A:: @ 818D02A
     .string "You didn't have to be so rough.$"
 
 Text_18D061:: @ 818D061
-    .string "The TANOBY RUINS date back at\n"
+    .string "The Tanoby Ruins date back at\n"
     .string "least 1,500 years.\p"
     .string "But it's a baffling mystery as to\n"
     .string "why it was built in the first place.$"
 
 Text_18D0D9:: @ 818D0D9
-    .string "A mystic POKéMON is said to sleep\n"
+    .string "A mystic Pokémon is said to sleep\n"
     .string "inside here.$"
 
 Text_18D108:: @ 818D108
@@ -32,10 +32,10 @@ Text_18D125:: @ 818D125
     .string "I hear there are other ruins like\n"
     .string "the one here.\p"
     .string "Might they be the resting places\n"
-    .string "of other mystic POKéMON?$"
+    .string "of other mystic Pokémon?$"
 
 Text_18D18F:: @ 818D18F
-    .string "CLIFFORD is teaching me how to\n"
+    .string "Clifford is teaching me how to\n"
     .string "paint.$"
 
 Text_18D1B5:: @ 818D1B5
@@ -45,7 +45,7 @@ Text_18D1B5:: @ 818D1B5
 Text_18D1E3:: @ 818D1E3
     .string "I said that I wanted to paint an\n"
     .string "old building.\p"
-    .string "So CLIFFORD brought me here.$"
+    .string "So Clifford brought me here.$"
 
 Text_18D22F:: @ 818D22F
     .string "Today, in addition to our lesson,\n"
@@ -55,32 +55,32 @@ Text_18D26D:: @ 818D26D
     .string "My, how extraordinary.$"
 
 Text_18D284:: @ 818D284
-    .string "Ah, so you are studying POKéMON\n"
+    .string "Ah, so you are studying Pokémon\n"
     .string "on your own…\p"
     .string "Yes, you certainly are quite the\n"
     .string "extraordinary person, indeed.$"
 
 gUnknown_818D2F0:: @ 818D2F0
-    .string "MOM: …Right.\n"
+    .string "Mom: …Right.\n"
     .string "All boys leave home someday.\l"
     .string "It said so on TV.\p"
     .string "Oh, yes. Prof. Oak, next door, was\n"
     .string "looking for you.$"
 
 gUnknown_818D360:: @ 818D360
-    .string "MOM: …Right.\n"
+    .string "Mom: …Right.\n"
     .string "All girls dream of traveling.\l"
     .string "It said so on TV.\p"
-    .string "Oh, yes. PROF. OAK, next door, was\n"
+    .string "Oh, yes. Prof. Oak, next door, was\n"
     .string "looking for you.$"
 
 gUnknown_818D3D1:: @ 818D3D1
-    .string "MOM: {PLAYER}!\n"
+    .string "Mom: {PLAYER}!\n"
     .string "You should take a quick rest.$"
 
 gUnknown_818D3F8:: @ 818D3F8
-    .string "MOM: Oh, good! You and your\n"
-    .string "POKéMON are looking great.\l"
+    .string "Mom: Oh, good! You and your\n"
+    .string "Pokémon are looking great.\l"
     .string "Take care now!$"
 
 gUnknown_818D43E:: @ 818D43E

@@ -1507,10 +1507,10 @@ gUnknown_81B1CEC:: @ 81B1CEC
 gUnknown_81B1D0B:: @ 81B1D0B
 	.string "Look, look!\p"
 	.string "I copied what it said on one of\n"
-	.string "those TRAINER TIPS signs!$"
+	.string "those Trainer Tips signs!$"
 
 gUnknown_81B1D51:: @ 81B1D51
-	.string "TRAINER TIPS!\p"
+	.string "Trainer Tips!\p"
 	.string "Press START to open the MENU!$"
 
 gUnknown_81B1D7D:: @ 81B1D7D
