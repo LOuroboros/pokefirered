@@ -64,7 +64,7 @@ gUnknown_818D2F0:: @ 818D2F0
     .string "MOM: …Right.\n"
     .string "All boys leave home someday.\l"
     .string "It said so on TV.\p"
-    .string "Oh, yes. PROF. OAK, next door, was\n"
+    .string "Oh, yes. Prof. Oak, next door, was\n"
     .string "looking for you.$"
 
 gUnknown_818D360:: @ 818D360

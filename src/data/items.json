@@ -2865,7 +2865,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BRIGHTPOWDER",
+      "english": "BrightPowder",
       "itemId": "ITEM_BRIGHT_POWDER",
       "price": 10,
       "holdEffect": "HOLD_EFFECT_EVASION_UP",
@@ -2881,7 +2881,7 @@
       "secondaryId": 0
     },
     {
-      "english": "WHITE HERB",
+      "english": "White Herb",
       "itemId": "ITEM_WHITE_HERB",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_RESTORE_STATS",
@@ -2897,7 +2897,7 @@
       "secondaryId": 0
     },
     {
-      "english": "MACHO BRACE",
+      "english": "Macho Brace",
       "itemId": "ITEM_MACHO_BRACE",
       "price": 3000,
       "holdEffect": "HOLD_EFFECT_MACHO_BRACE",
@@ -2913,7 +2913,7 @@
       "secondaryId": 0
     },
     {
-      "english": "EXP. SHARE",
+      "english": "Exp. Share",
       "itemId": "ITEM_EXP_SHARE",
       "price": 3000,
       "holdEffect": "HOLD_EFFECT_EXP_SHARE",
@@ -2929,7 +2929,7 @@
       "secondaryId": 0
     },
     {
-      "english": "QUICK CLAW",
+      "english": "Quick Claw",
       "itemId": "ITEM_QUICK_CLAW",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_QUICK_CLAW",
@@ -2945,7 +2945,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SOOTHE BELL",
+      "english": "Soothe Bell",
       "itemId": "ITEM_SOOTHE_BELL",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_HAPPINESS_UP",
@@ -2961,7 +2961,7 @@
       "secondaryId": 0
     },
     {
-      "english": "MENTAL HERB",
+      "english": "Mental Herb",
       "itemId": "ITEM_MENTAL_HERB",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_CURE_ATTRACT",
@@ -2977,7 +2977,7 @@
       "secondaryId": 0
     },
     {
-      "english": "CHOICE BAND",
+      "english": "Choice Band",
       "itemId": "ITEM_CHOICE_BAND",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_CHOICE_BAND",
@@ -2993,7 +2993,7 @@
       "secondaryId": 0
     },
     {
-      "english": "KING'S ROCK",
+      "english": "King's Rock",
       "itemId": "ITEM_KINGS_ROCK",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_FLINCH",
@@ -3009,7 +3009,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SILVERPOWDER",
+      "english": "SilverPowder",
       "itemId": "ITEM_SILVER_POWDER",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_BUG_POWER",
@@ -3025,7 +3025,7 @@
       "secondaryId": 0
     },
     {
-      "english": "AMULET COIN",
+      "english": "Amulet Coin",
       "itemId": "ITEM_AMULET_COIN",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_DOUBLE_PRIZE",
@@ -3041,7 +3041,7 @@
       "secondaryId": 0
     },
     {
-      "english": "CLEANSE TAG",
+      "english": "Cleanse Tag",
       "itemId": "ITEM_CLEANSE_TAG",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_REPEL",
@@ -3057,7 +3057,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SOUL DEW",
+      "english": "Soul Dew",
       "itemId": "ITEM_SOUL_DEW",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_SOUL_DEW",
@@ -3073,7 +3073,7 @@
       "secondaryId": 0
     },
     {
-      "english": "DEEPSEATOOTH",
+      "english": "DeepSeaTooth",
       "itemId": "ITEM_DEEP_SEA_TOOTH",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_DEEP_SEA_TOOTH",
@@ -3089,7 +3089,7 @@
       "secondaryId": 0
     },
     {
-      "english": "DEEPSEASCALE",
+      "english": "DeepSeaScale",
       "itemId": "ITEM_DEEP_SEA_SCALE",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_DEEP_SEA_SCALE",
@@ -3105,7 +3105,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SMOKE BALL",
+      "english": "Smoke Ball",
       "itemId": "ITEM_SMOKE_BALL",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_CAN_ALWAYS_RUN",
@@ -3121,7 +3121,7 @@
       "secondaryId": 0
     },
     {
-      "english": "EVERSTONE",
+      "english": "Everstone",
       "itemId": "ITEM_EVERSTONE",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_PREVENT_EVOLVE",
@@ -3137,7 +3137,7 @@
       "secondaryId": 0
     },
     {
-      "english": "FOCUS BAND",
+      "english": "Focus Band",
       "itemId": "ITEM_FOCUS_BAND",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_FOCUS_BAND",
@@ -3153,7 +3153,7 @@
       "secondaryId": 0
     },
     {
-      "english": "LUCKY EGG",
+      "english": "Lucky Egg",
       "itemId": "ITEM_LUCKY_EGG",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_LUCKY_EGG",
@@ -3169,7 +3169,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SCOPE LENS",
+      "english": "Scope Lens",
       "itemId": "ITEM_SCOPE_LENS",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_SCOPE_LENS",
@@ -3185,7 +3185,7 @@
       "secondaryId": 0
     },
     {
-      "english": "METAL COAT",
+      "english": "Metal Coat",
       "itemId": "ITEM_METAL_COAT",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_STEEL_POWER",
@@ -3201,7 +3201,7 @@
       "secondaryId": 0
     },
     {
-      "english": "LEFTOVERS",
+      "english": "Leftovers",
       "itemId": "ITEM_LEFTOVERS",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_LEFTOVERS",
@@ -3217,7 +3217,7 @@
       "secondaryId": 0
     },
     {
-      "english": "DRAGON SCALE",
+      "english": "Dragon Scale",
       "itemId": "ITEM_DRAGON_SCALE",
       "price": 2100,
       "holdEffect": "HOLD_EFFECT_DRAGON_SCALE",
@@ -3233,7 +3233,7 @@
       "secondaryId": 0
     },
     {
-      "english": "LIGHT BALL",
+      "english": "Light Ball",
       "itemId": "ITEM_LIGHT_BALL",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_LIGHT_BALL",
@@ -3249,7 +3249,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SOFT SAND",
+      "english": "Soft Sand",
       "itemId": "ITEM_SOFT_SAND",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_GROUND_POWER",
@@ -3265,7 +3265,7 @@
       "secondaryId": 0
     },
     {
-      "english": "HARD STONE",
+      "english": "Hard Stone",
       "itemId": "ITEM_HARD_STONE",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_ROCK_POWER",
@@ -3281,7 +3281,7 @@
       "secondaryId": 0
     },
     {
-      "english": "MIRACLE SEED",
+      "english": "Miracle Seed",
       "itemId": "ITEM_MIRACLE_SEED",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_GRASS_POWER",
@@ -3297,7 +3297,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BLACKGLASSES",
+      "english": "BlackGlasses",
       "itemId": "ITEM_BLACK_GLASSES",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_DARK_POWER",
@@ -3313,7 +3313,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BLACK BELT",
+      "english": "Black Belt",
       "itemId": "ITEM_BLACK_BELT",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_FIGHTING_POWER",
@@ -3329,7 +3329,7 @@
       "secondaryId": 0
     },
     {
-      "english": "MAGNET",
+      "english": "Magnet",
       "itemId": "ITEM_MAGNET",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_ELECTRIC_POWER",
@@ -3345,7 +3345,7 @@
       "secondaryId": 0
     },
     {
-      "english": "MYSTIC WATER",
+      "english": "Mystic Water",
       "itemId": "ITEM_MYSTIC_WATER",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_WATER_POWER",
@@ -3361,7 +3361,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SHARP BEAK",
+      "english": "Sharp Beak",
       "itemId": "ITEM_SHARP_BEAK",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_FLYING_POWER",
@@ -3377,7 +3377,7 @@
       "secondaryId": 0
     },
     {
-      "english": "POISON BARB",
+      "english": "Poison Barb",
       "itemId": "ITEM_POISON_BARB",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_POISON_POWER",
@@ -3393,7 +3393,7 @@
       "secondaryId": 0
     },
     {
-      "english": "NEVERMELTICE",
+      "english": "NeverMeltIce",
       "itemId": "ITEM_NEVER_MELT_ICE",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_ICE_POWER",
@@ -3409,7 +3409,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SPELL TAG",
+      "english": "Spell Tag",
       "itemId": "ITEM_SPELL_TAG",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_GHOST_POWER",
@@ -3425,7 +3425,7 @@
       "secondaryId": 0
     },
     {
-      "english": "TWISTEDSPOON",
+      "english": "TwistedSpoon",
       "itemId": "ITEM_TWISTED_SPOON",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_PSYCHIC_POWER",
@@ -3441,7 +3441,7 @@
       "secondaryId": 0
     },
     {
-      "english": "CHARCOAL",
+      "english": "Charcoal",
       "itemId": "ITEM_CHARCOAL",
       "price": 9800,
       "holdEffect": "HOLD_EFFECT_FIRE_POWER",
@@ -3457,7 +3457,7 @@
       "secondaryId": 0
     },
     {
-      "english": "DRAGON FANG",
+      "english": "Dragon Fang",
       "itemId": "ITEM_DRAGON_FANG",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_DRAGON_POWER",
@@ -3473,7 +3473,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SILK SCARF",
+      "english": "Silk Scarf",
       "itemId": "ITEM_SILK_SCARF",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_NORMAL_POWER",
@@ -3489,7 +3489,7 @@
       "secondaryId": 0
     },
     {
-      "english": "UP-GRADE",
+      "english": "Up-Grade",
       "itemId": "ITEM_UP_GRADE",
       "price": 2100,
       "holdEffect": "HOLD_EFFECT_UP_GRADE",
@@ -3505,7 +3505,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SHELL BELL",
+      "english": "Shell Bell",
       "itemId": "ITEM_SHELL_BELL",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_SHELL_BELL",
@@ -3521,7 +3521,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SEA INCENSE",
+      "english": "Sea Incense",
       "itemId": "ITEM_SEA_INCENSE",
       "price": 9600,
       "holdEffect": "HOLD_EFFECT_WATER_POWER",
@@ -3537,7 +3537,7 @@
       "secondaryId": 0
     },
     {
-      "english": "LAX INCENSE",
+      "english": "Lax Incense",
       "itemId": "ITEM_LAX_INCENSE",
       "price": 9600,
       "holdEffect": "HOLD_EFFECT_EVASION_UP",
@@ -3553,7 +3553,7 @@
       "secondaryId": 0
     },
     {
-      "english": "LUCKY PUNCH",
+      "english": "Lucky Punch",
       "itemId": "ITEM_LUCKY_PUNCH",
       "price": 10,
       "holdEffect": "HOLD_EFFECT_LUCKY_PUNCH",
@@ -3569,7 +3569,7 @@
       "secondaryId": 0
     },
     {
-      "english": "METAL POWDER",
+      "english": "Metal Powder",
       "itemId": "ITEM_METAL_POWDER",
       "price": 10,
       "holdEffect": "HOLD_EFFECT_METAL_POWDER",
@@ -3585,7 +3585,7 @@
       "secondaryId": 0
     },
     {
-      "english": "THICK CLUB",
+      "english": "Thick Club",
       "itemId": "ITEM_THICK_CLUB",
       "price": 500,
       "holdEffect": "HOLD_EFFECT_THICK_CLUB",
@@ -3601,7 +3601,7 @@
       "secondaryId": 0
     },
     {
-      "english": "STICK",
+      "english": "Stick",
       "itemId": "ITEM_STICK",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_STICK",
@@ -4065,7 +4065,7 @@
       "secondaryId": 0
     },
     {
-      "english": "RED SCARF",
+      "english": "Red Scarf",
       "itemId": "ITEM_RED_SCARF",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4081,7 +4081,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BLUE SCARF",
+      "english": "Blue Scarf",
       "itemId": "ITEM_BLUE_SCARF",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4097,7 +4097,7 @@
       "secondaryId": 0
     },
     {
-      "english": "PINK SCARF",
+      "english": "Pink Scarf",
       "itemId": "ITEM_PINK_SCARF",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4113,7 +4113,7 @@
       "secondaryId": 0
     },
     {
-      "english": "GREEN SCARF",
+      "english": "Green Scarf",
       "itemId": "ITEM_GREEN_SCARF",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4129,7 +4129,7 @@
       "secondaryId": 0
     },
     {
-      "english": "YELLOW SCARF",
+      "english": "Yellow Scarf",
       "itemId": "ITEM_YELLOW_SCARF",
       "price": 100,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4145,7 +4145,7 @@
       "secondaryId": 0
     },
     {
-      "english": "MACH BIKE",
+      "english": "Mach Bike",
       "itemId": "ITEM_MACH_BIKE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4161,7 +4161,7 @@
       "secondaryId": 0
     },
     {
-      "english": "COIN CASE",
+      "english": "Coin Case",
       "itemId": "ITEM_COIN_CASE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4177,7 +4177,7 @@
       "secondaryId": 0
     },
     {
-      "english": "ITEMFINDER",
+      "english": "Itemfinder",
       "itemId": "ITEM_ITEMFINDER",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4193,7 +4193,7 @@
       "secondaryId": 0
     },
     {
-      "english": "OLD ROD",
+      "english": "Old Rod",
       "itemId": "ITEM_OLD_ROD",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4209,7 +4209,7 @@
       "secondaryId": 0
     },
     {
-      "english": "GOOD ROD",
+      "english": "Good Rod",
       "itemId": "ITEM_GOOD_ROD",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4225,7 +4225,7 @@
       "secondaryId": 1
     },
     {
-      "english": "SUPER ROD",
+      "english": "Super Rod",
       "itemId": "ITEM_SUPER_ROD",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4241,7 +4241,7 @@
       "secondaryId": 2
     },
     {
-      "english": "S.S. TICKET",
+      "english": "S.S. Ticket",
       "itemId": "ITEM_SS_TICKET",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4257,7 +4257,7 @@
       "secondaryId": 0
     },
     {
-      "english": "CONTEST PASS",
+      "english": "Contest Pass",
       "itemId": "ITEM_CONTEST_PASS",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4289,7 +4289,7 @@
       "secondaryId": 0
     },
     {
-      "english": "WAILMER PAIL",
+      "english": "Wailmer Pail",
       "itemId": "ITEM_WAILMER_PAIL",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4305,7 +4305,7 @@
       "secondaryId": 0
     },
     {
-      "english": "DEVON GOODS",
+      "english": "Devon Goods",
       "itemId": "ITEM_DEVON_GOODS",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4321,7 +4321,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SOOT SACK",
+      "english": "Soot Sack",
       "itemId": "ITEM_SOOT_SACK",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4337,7 +4337,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BASEMENT KEY",
+      "english": "Basement Key",
       "itemId": "ITEM_BASEMENT_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4353,7 +4353,7 @@
       "secondaryId": 0
     },
     {
-      "english": "ACRO BIKE",
+      "english": "Acro Bike",
       "itemId": "ITEM_ACRO_BIKE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4369,7 +4369,7 @@
       "secondaryId": 1
     },
     {
-      "english": "{POKEBLOCK} CASE",
+      "english": "{POKEBLOCK} Case",
       "itemId": "ITEM_POKEBLOCK_CASE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4385,7 +4385,7 @@
       "secondaryId": 0
     },
     {
-      "english": "LETTER",
+      "english": "Letter",
       "itemId": "ITEM_LETTER",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4401,7 +4401,7 @@
       "secondaryId": 0
     },
     {
-      "english": "EON TICKET",
+      "english": "Eon Ticket",
       "itemId": "ITEM_EON_TICKET",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4417,7 +4417,7 @@
       "secondaryId": 1
     },
     {
-      "english": "RED ORB",
+      "english": "Red Orb",
       "itemId": "ITEM_RED_ORB",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4433,7 +4433,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BLUE ORB",
+      "english": "Blue Orb",
       "itemId": "ITEM_BLUE_ORB",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4449,7 +4449,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SCANNER",
+      "english": "Scanner",
       "itemId": "ITEM_SCANNER",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4465,7 +4465,7 @@
       "secondaryId": 0
     },
     {
-      "english": "GO-GOGGLES",
+      "english": "Go-Goggles",
       "itemId": "ITEM_GO_GOGGLES",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4481,7 +4481,7 @@
       "secondaryId": 0
     },
     {
-      "english": "METEORITE",
+      "english": "Meteorite",
       "itemId": "ITEM_METEORITE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4497,7 +4497,7 @@
       "secondaryId": 0
     },
     {
-      "english": "RM. 1 KEY",
+      "english": "Rm. 1 Key",
       "itemId": "ITEM_ROOM_1_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4513,7 +4513,7 @@
       "secondaryId": 0
     },
     {
-      "english": "RM. 2 KEY",
+      "english": "Rm. 2 Key",
       "itemId": "ITEM_ROOM_2_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4529,7 +4529,7 @@
       "secondaryId": 0
     },
     {
-      "english": "RM. 4 KEY",
+      "english": "Rm. 4 Key",
       "itemId": "ITEM_ROOM_4_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4545,7 +4545,7 @@
       "secondaryId": 0
     },
     {
-      "english": "RM. 6 KEY",
+      "english": "Rm. 6 Key",
       "itemId": "ITEM_ROOM_6_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4561,7 +4561,7 @@
       "secondaryId": 0
     },
     {
-      "english": "STORAGE KEY",
+      "english": "Storage Key",
       "itemId": "ITEM_STORAGE_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4577,7 +4577,7 @@
       "secondaryId": 0
     },
     {
-      "english": "ROOT FOSSIL",
+      "english": "Root Fossil",
       "itemId": "ITEM_ROOT_FOSSIL",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4593,7 +4593,7 @@
       "secondaryId": 0
     },
     {
-      "english": "CLAW FOSSIL",
+      "english": "Claw Fossil",
       "itemId": "ITEM_CLAW_FOSSIL",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4609,7 +4609,7 @@
       "secondaryId": 0
     },
     {
-      "english": "DEVON SCOPE",
+      "english": "Devon Scope",
       "itemId": "ITEM_DEVON_SCOPE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5643,7 +5643,7 @@
       "secondaryId": 0
     },
     {
-      "english": "OAK'S PARCEL",
+      "english": "Oak's Parcel",
       "itemId": "ITEM_OAKS_PARCEL",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5659,7 +5659,7 @@
       "secondaryId": 0
     },
     {
-      "english": "POK\u00e9 FLUTE",
+      "english": "Pok\u00e9 Flute",
       "itemId": "ITEM_POKE_FLUTE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5675,7 +5675,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SECRET KEY",
+      "english": "Secret Key",
       "itemId": "ITEM_SECRET_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5691,7 +5691,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BIKE VOUCHER",
+      "english": "Bike Voucher",
       "itemId": "ITEM_BIKE_VOUCHER",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5707,7 +5707,7 @@
       "secondaryId": 0
     },
     {
-      "english": "GOLD TEETH",
+      "english": "Gold Teeth",
       "itemId": "ITEM_GOLD_TEETH",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5723,7 +5723,7 @@
       "secondaryId": 0
     },
     {
-      "english": "OLD AMBER",
+      "english": "Old Amber",
       "itemId": "ITEM_OLD_AMBER",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5739,7 +5739,7 @@
       "secondaryId": 0
     },
     {
-      "english": "CARD KEY",
+      "english": "Card Key",
       "itemId": "ITEM_CARD_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5755,7 +5755,7 @@
       "secondaryId": 0
     },
     {
-      "english": "LIFT KEY",
+      "english": "Lift Key",
       "itemId": "ITEM_LIFT_KEY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5771,7 +5771,7 @@
       "secondaryId": 0
     },
     {
-      "english": "HELIX FOSSIL",
+      "english": "Helix Fossil",
       "itemId": "ITEM_HELIX_FOSSIL",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5787,7 +5787,7 @@
       "secondaryId": 0
     },
     {
-      "english": "DOME FOSSIL",
+      "english": "Dome Fossil",
       "itemId": "ITEM_DOME_FOSSIL",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5803,7 +5803,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SILPH SCOPE",
+      "english": "Silph Scope",
       "itemId": "ITEM_SILPH_SCOPE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5819,7 +5819,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BICYCLE",
+      "english": "Bicycle",
       "itemId": "ITEM_BICYCLE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5835,7 +5835,7 @@
       "secondaryId": 0
     },
     {
-      "english": "TOWN MAP",
+      "english": "Town Map",
       "itemId": "ITEM_TOWN_MAP",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5851,7 +5851,7 @@
       "secondaryId": 0
     },
     {
-      "english": "VS SEEKER",
+      "english": "VS Seeker",
       "itemId": "ITEM_VS_SEEKER",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5867,7 +5867,7 @@
       "secondaryId": 0
     },
     {
-      "english": "FAME CHECKER",
+      "english": "Fame Checker",
       "itemId": "ITEM_FAME_CHECKER",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5883,7 +5883,7 @@
       "secondaryId": 0
     },
     {
-      "english": "TM CASE",
+      "english": "TM Case",
       "itemId": "ITEM_TM_CASE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5899,7 +5899,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BERRY POUCH",
+      "english": "Berry Pouch",
       "itemId": "ITEM_BERRY_POUCH",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5915,7 +5915,7 @@
       "secondaryId": 0
     },
     {
-      "english": "TEACHY TV",
+      "english": "Teachy TV",
       "itemId": "ITEM_TEACHY_TV",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5931,7 +5931,7 @@
       "secondaryId": 0
     },
     {
-      "english": "TRI-PASS",
+      "english": "Tri-Pass",
       "itemId": "ITEM_TRI_PASS",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5947,7 +5947,7 @@
       "secondaryId": 0
     },
     {
-      "english": "RAINBOW PASS",
+      "english": "Rainbow Pass",
       "itemId": "ITEM_RAINBOW_PASS",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5963,7 +5963,7 @@
       "secondaryId": 0
     },
     {
-      "english": "TEA",
+      "english": "Tea",
       "itemId": "ITEM_TEA",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5979,7 +5979,7 @@
       "secondaryId": 0
     },
     {
-      "english": "MYSTICTICKET",
+      "english": "MysticTicket",
       "itemId": "ITEM_MYSTIC_TICKET",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -5995,7 +5995,7 @@
       "secondaryId": 0
     },
     {
-      "english": "AURORATICKET",
+      "english": "AuroraTicket",
       "itemId": "ITEM_AURORA_TICKET",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -6011,7 +6011,7 @@
       "secondaryId": 0
     },
     {
-      "english": "POWDER JAR",
+      "english": "Powder Jar",
       "itemId": "ITEM_POWDER_JAR",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -6027,7 +6027,7 @@
       "secondaryId": 0
     },
     {
-      "english": "RUBY",
+      "english": "Ruby",
       "itemId": "ITEM_RUBY",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -6043,7 +6043,7 @@
       "secondaryId": 0
     },
     {
-      "english": "SAPPHIRE",
+      "english": "Sapphire",
       "itemId": "ITEM_SAPPHIRE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",

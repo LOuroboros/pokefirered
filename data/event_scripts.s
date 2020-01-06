@@ -1003,7 +1003,7 @@ gStdScript_Message_WaitButton_AndRelease:: @ 81A501F
 
 gUnknown_81A5028:: @ 81A5028
 	.string "Would you like to mix records with\n"
-	.string "other TRAINERS?$"
+	.string "other trainers?$"
 
 Text_1A505B:: @ 81A505B
 	.string "We hope to see you again!$"
@@ -1018,25 +1018,25 @@ Text_1A50A7:: @ 81A50A7
 	.string "Accessed Someone's PC.$"
 
 Text_1A50BE:: @ 81A50BE
-	.string "POKéMON Storage System opened.$"
+	.string "Pokémon Storage System opened.$"
 
 Text_1A50DD:: @ 81A50DD
 	.string "Accessed {PLAYER}'s PC.$"
 
 Text_1A50EF:: @ 81A50EF
-	.string "Accessed BILL's PC.$"
+	.string "Accessed Bill's PC.$"
 
 Text_1A5103:: @ 81A5103
-	.string "Welcome to the POKéMON CABLE CLUB\n"
-	.string "TRADE CENTER.$"
+	.string "Welcome to the Pokémon Cable Club\n"
+	.string "Trade Center.$"
 
 Text_1A5133:: @ 81A5133
-	.string "Welcome to the POKéMON CABLE CLUB\n"
-	.string "COLOSSEUM.$"
+	.string "Welcome to the Pokémon Cable Club\n"
+	.string "Colosseum.$"
 
 Text_1A5160:: @ 81A5160
-	.string "Welcome to the POKéMON CABLE CLUB\n"
-	.string "TIME CAPSULE.$"
+	.string "Welcome to the Pokémon Cable Club\n"
+	.string "Time Capsule.$"
 
 gUnknown_81A5190:: @ 81A5190
 	.string "Please come again!$"
@@ -1053,7 +1053,7 @@ Text_1A51F6:: @ 81A51F6
 	.string "Obtained the {STR_VAR_2}!$"
 
 gUnknown_81A5207:: @ 81A5207
-	.string "The BAG is full…$"
+	.string "The bag is full…$"
 
 gUnknown_81A5218:: @ 81A5218
 	.string "{PLAYER} put the {STR_VAR_2}\n"
@@ -1064,19 +1064,19 @@ Text_1A5231:: @ 81A5231
 
 gUnknown_81A5242:: @ 81A5242
 	.string "Too bad!\n"
-	.string "The BAG is full…$"
+	.string "The bag is full…$"
 
 Text_1A525C:: @ 81A525C
 	.string "{PLAYER} found\n"
 	.string "{STR_VAR_1} {STR_VAR_2}!$"
 
 Text_1A526C:: @ 81A526C
-	.string "{PLAYER} put the COINS away in\n"
-	.string "the COIN CASE.$"
+	.string "{PLAYER} put the coins away in\n"
+	.string "the Coin Case.$"
 
 Text_1A5294:: @ 81A5294
 	.string "Too bad!\n"
-	.string "The COIN CASE is full…$"
+	.string "The Coin Case is full…$"
 
 Text_1A52B4:: @ 81A52B4
 	.string "Too bad!\n"
@@ -1132,12 +1132,12 @@ gText_PkmnFainted3:: @ 81A5476
 	.string "$"
 
 Text_1A5483:: @ 81A5483
-	.string "Welcome to our POKéMON CENTER!\p"
+	.string "Welcome to our Pokémon Center!\p"
 	.string "Would you like me to heal your\n"
-	.string "POKéMON back to perfect health?$"
+	.string "Pokémon back to perfect health?$"
 
 Text_1A54E1:: @ 81A54E1
-	.string "Okay, I'll take your POKéMON for a\n"
+	.string "Okay, I'll take your Pokémon for a\n"
 	.string "few seconds.$"
 
 Text_1A5511:: @ 81A5511
@@ -1145,19 +1145,19 @@ Text_1A5511:: @ 81A5511
 
 Text_1A552B:: @ 81A552B
 	.string "Thank you for waiting.\n"
-	.string "We've restored your POKéMON to\l"
+	.string "We've restored your Pokémon to\l"
 	.string "full health.$"
 
 Text_1A556E:: @ 81A556E
 	.string "The water is dyed a deep blue…\n"
-	.string "Would you like to SURF?$"
+	.string "Would you like to Surf?$"
 
 Text_1A55A5:: @ 81A55A5
-	.string "{STR_VAR_1} used SURF!$"
+	.string "{STR_VAR_1} used Surf!$"
 
 Text_1A55B3:: @ 81A55B3
 	.string "The current is much too fast!\n"
-	.string "SURF can't be used here…$"
+	.string "Surf can't be used here…$"
 
 Text_1A55EA:: @ 81A55EA
 	.string "どこか　とおくの　とびらが\n"
@@ -1169,7 +1169,7 @@ Text_1A5606:: @ 81A5606
 
 Text_1A561A:: @ 81A561A
 	.string "I'm terribly sorry.\n"
-	.string "The POKéMON WIRELESS CLUB is\l"
+	.string "The Pokémon Wireless Club is\l"
 	.string "undergoing adjustments now.$"
 
 Text_1A5667:: @ 81A5667
@@ -1195,7 +1195,7 @@ Text_1A5700:: @ 81A5700
 	.string "from deep in the ground.$"
 
 Text_1A572A:: @ 81A572A
-	.string "Only truly skilled TRAINERS are\n"
+	.string "Only truly skilled trainers are\n"
 	.string "allowed through.\p"
 	.string "You don't have the {STR_VAR_1}\n"
 	.string "yet!$"
@@ -1214,7 +1214,7 @@ Text_1A57C1:: @ 81A57C1
 	.string "You don't have the {STR_VAR_1}\n"
 	.string "yet.\p"
 	.string "You have to have it to get to\n"
-	.string "the POKéMON LEAGUE.$"
+	.string "the Pokémon League.$"
 
 Text_1A5839:: @ 81A5839
 	.string "You can pass here only if you have\n"
@@ -1226,13 +1226,13 @@ Text_1A5839:: @ 81A5839
 Text_1A58A7:: @ 81A58A7
 	.string "Let's see…\n"
 	.string "Uh-oh! You have caught only\l"
-	.string "{STR_VAR_3} kinds of POKéMON!\p"
+	.string "{STR_VAR_3} kinds of Pokémon!\p"
 	.string "You need {STR_VAR_1} kinds\n"
 	.string "if you want the {STR_VAR_2}.$"
 
 Text_1A5909:: @ 81A5909
 	.string "…Oh. I see.\p"
-	.string "When you get {STR_VAR_1} kinds of POKéMON,\n"
+	.string "When you get {STR_VAR_1} kinds of Pokémon,\n"
 	.string "come back for the {STR_VAR_2}.$"
 
 Text_1A594D:: @ 81A594D
@@ -1240,7 +1240,7 @@ Text_1A594D:: @ 81A594D
 	.string "room for the {STR_VAR_2}.$"
 
 gUnknown_81A597B:: @ 81A597B
-	.string "I'm looking for the POKéMON\n"
+	.string "I'm looking for the Pokémon\n"
 	.string "{STR_VAR_1}!\p"
 	.string "Wanna trade one for my\n"
 	.string "{STR_VAR_2}?$"
@@ -1302,23 +1302,23 @@ gUnknown_81A5B60:: @ 81A5B60
 
 Text_1A5B88:: @ 81A5B88
 	.string "Bingo!\n"
-	.string "The CARD KEY opened the door!$"
+	.string "The Card Key opened the door!$"
 
 Text_1A5BAD:: @ 81A5BAD
 	.string "No!\n"
-	.string "It needs a CARD KEY!$"
+	.string "It needs a Card Key!$"
 
 Text_1A5BC6:: @ 81A5BC6
-	.string "Accessed PROF. OAK's PC…\p"
-	.string "Accessed the POKéDEX Rating\n"
+	.string "Accessed Prof. Oak's PC…\p"
+	.string "Accessed the Pokédex Rating\n"
 	.string "System…$"
 
 Text_1A5C03:: @ 81A5C03
 	.string "Would you like to have your\n"
-	.string "POKéDEX rated?$"
+	.string "Pokédex rated?$"
 
 Text_1A5C2E:: @ 81A5C2E
-	.string "Closed link to PROF. OAK's PC.$"
+	.string "Closed link to Prof. Oak's PC.$"
 
 Text_1A5C4D:: @ 81A5C4D
 	.string "Someone's voice rang out,\n"
@@ -1414,30 +1414,30 @@ Text_1A5FDF:: @ 81A5FDF
 	.string "rest.$"
 
 Text_1A6046:: @ 81A6046
-	.string "MOM: Oh, good! You and your\n"
-	.string "POKéMON are looking great.\p"
-	.string "I just heard from PROF. OAK.\p"
-	.string "He said that POKéMON's energy is\n"
+	.string "Mom: Oh, good! You and your\n"
+	.string "Pokémon are looking great.\p"
+	.string "I just heard from Prof. Oak.\p"
+	.string "He said that Pokémon's energy is\n"
 	.string "measured in HP.\p"
-	.string "If your POKéMON lose their HP,\n"
+	.string "If your Pokémon lose their HP,\n"
 	.string "you can restore them at any\l"
-	.string "POKéMON CENTER.\p"
+	.string "Pokémon Center.\p"
 	.string "If you're going to travel far away,\n"
-	.string "the smart TRAINER stocks up on\l"
-	.string "POTIONS at the POKéMON MART.\p"
+	.string "the smart trainer stocks up on\l"
+	.string "Potions at the Pokémon Mart.\p"
 	.string "Make me proud, honey!\p"
 	.string "Take care!$"
 
 Text_1A6197:: @ 81A6197
 	.string "{PLAYER} is out of usable\n"
-	.string "POKéMON!\p"
+	.string "Pokémon!\p"
 	.string "{PLAYER} panicked and lost ¥{STR_VAR_1}…\p"
 	.string "… … … …\p"
 	.string "{PLAYER} whited out!$"
 
 Text_1A61E5:: @ 81A61E5
 	.string "{PLAYER} is out of usable\n"
-	.string "POKéMON!\p"
+	.string "Pokémon!\p"
 	.string "{PLAYER} whited out!$"
 
 Text_1A6211:: @ 81A6211
@@ -1458,17 +1458,17 @@ Text_1A62D3:: @ 81A62D3
 	.string "Oh, hello!\n"
 	.string "You know those words?\p"
 	.string "That means you must know about\n"
-	.string "the MYSTERY GIFT.\p"
+	.string "the Mystery Gift.\p"
 	.string "From now on, you should be\n"
-	.string "receiving MYSTERY GIFTS!$"
+	.string "receiving Mystery Gifts!$"
 
 Text_1A6359:: @ 81A6359
 	.string "Once you save your game, you can\n"
-	.string "access the MYSTERY GIFT.$"
+	.string "access the Mystery Gift.$"
 
 Text_1A6393:: @ 81A6393
 	.string "Thank you for accessing the\n"
-	.string "MYSTERY GIFT System.$"
+	.string "Mystery Gift System.$"
 
 Text_1A63C4:: @ 81A63C4
 	.string "The {STR_VAR_1} flew away!$"
@@ -1487,7 +1487,7 @@ Text_1A6407:: @ 81A6407
 
 Text_1A641B:: @ 81A641B
 	.string "All right!\n"
-	.string "All aboard SEAGALLOP HI-SPEED {STR_VAR_1}!$"
+	.string "All aboard Seagallop Hi-Speed {STR_VAR_1}!$"
 
 Text_1A6448:: @ 81A6448
 	.string "Gyaoo!$"
@@ -12240,7 +12240,7 @@ Text_1C0D8F:: @ 81C0D8F
 	.string "しりたいことって　たくさんあるなー$"
 
 gUnknown_81C0DB0:: @ 81C0DB0
-	.string "It's crammed full of POKéMON\n"
+	.string "It's crammed full of Pokémon\n"
 	.string "books.$"
 
 Text_1C0DD4:: @ 81C0DD4
@@ -12248,11 +12248,11 @@ Text_1C0DD4:: @ 81C0DD4
 	.string "ポケモンの　ほん　ばかりだ$"
 
 Text_1C0DF1:: @ 81C0DF1
-	.string "A TOWN MAP.$"
+	.string "A Town Map.$"
 
 gUnknown_81C0DFD:: @ 81C0DFD
 	.string "Wow!\n"
-	.string "Tons of POKéMON stuff!$"
+	.string "Tons of Pokémon stuff!$"
 
 gUnknown_81C0E19:: @ 81C0E19
 	.string "Dishes and plates are neatly\n"
@@ -14485,8 +14485,8 @@ gText_AlreadySaveFile_WouldLikeToOverwrite:: @ 81C55EA
 	.string "Is it okay to overwrite it?$"
 
 gText_SavingDontTurnOffThePower:: @ 81C5625
-	.string "SAVING…\n"
-	.string "DON'T TURN OFF THE POWER.$"
+	.string "Saving…\n"
+	.string "Don't turn off the power.$"
 
 gText_PlayerSavedTheGame:: @ 81C5647
 	.string "{PLAYER} saved the game.$"
@@ -14500,7 +14500,7 @@ gText_DifferentGameFile:: @ 81C566A
 	.string "is already saved.\p"
 	.string "If you save now, the other file's\n"
 	.string "adventure, including items and\l"
-	.string "POKéMON, will be entirely lost.\p"
+	.string "Pokémon, will be entirely lost.\p"
 	.string "Are you sure you want to save now\n"
 	.string "and overwrite the other save file?$"
 
@@ -14598,19 +14598,19 @@ gNewGameAdventureIntro3::
 
 gOakText_WelcomeToTheWorld:: @ 81C5C78
 	.string "Hello, there!\n"
-	.string "Glad to meet you!\pWelcome to the world of POKéMON!\pMy name is OAK.\pPeople affectionately refer to me\n"
-	.string "as the POKéMON PROFESSOR.\p$"
+	.string "Glad to meet you!\pWelcome to the world of Pokémon!\pMy name is Samuel Oak.\pPeople affectionately refer to me\n"
+	.string "as the Pokémon Professor.\p$"
 
 gOakText_WorldInhabited1:: @ 81C5D06
 	.string "This world…$"
 
 gOakText_WorldInhabited2:: @ 81C5D12
 	.string "…is inhabited far and wide by\n"
-	.string "creatures called POKéMON.\p$"
+	.string "creatures called Pokémon.\p$"
 
 gOakText_PetsBattlingStudy:: @ 81C5D4B
-	.string "For some people, POKéMON are pets.\n"
-	.string "Others use them for battling.\pAs for myself…\pI study POKéMON as a profession.\p$"
+	.string "For some people, Pokémon are pets.\n"
+	.string "Others use them for battling.\pAs for myself…\pI study Pokémon as a profession.\p$"
 
 gOakText_TellMeALittleAboutYourself:: @ 81C5DBD
 	.string "But first, tell me a little about\n"
@@ -14639,9 +14639,9 @@ gOakText_RememberRivalName:: @ 81C5EC5
 	.string "His name is {RIVAL}!\p$"
 
 gOakText_LegendAboutToUnfold:: @ 81C5EF4
-	.string "{PLAYER}!\pYour very own POKéMON legend is\n"
+	.string "{PLAYER}!\pYour very own Pokémon legend is\n"
 	.string "about to unfold!\pA world of dreams and adventures\n"
-	.string "with POKéMON awaits! Let's go!$"
+	.string "with Pokémon awaits! Let's go!$"
 
 @ pokedude data
 gUnknown_81C5F69::

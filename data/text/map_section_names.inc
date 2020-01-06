@@ -1,327 +1,327 @@
 gMapSecName_PalletTown::
-	.string "PALLET TOWN$"
+	.string "Pallet Town$"
 
 gMapSecName_ViridianCity::
-	.string "VIRIDIAN CITY$"
+	.string "Viridian City$"
 
 gMapSecName_PewterCity::
-	.string "PEWTER CITY$"
+	.string "Pewter City$"
 
 gMapSecName_CeruleanCity::
-	.string "CERULEAN CITY$"
+	.string "Cerulean City$"
 
 gMapSecName_LavenderTown::
-	.string "LAVENDER TOWN$"
+	.string "Lavender Town$"
 
 gMapSecName_VermilionCity::
-	.string "VERMILION CITY$"
+	.string "Vermilion City$"
 
 gMapSecName_CeladonCity::
-	.string "CELADON CITY$"
+	.string "Celadon City$"
 
 gMapSecName_FuchsiaCity::
-	.string "FUCHSIA CITY$"
+	.string "Fuchsia City$"
 
 gMapSecName_CinnabarIsland::
-	.string "CINNABAR ISLAND$"
+	.string "Cinnabar Island$"
 
 gMapSecName_IndigoPlateau::
-	.string "INDIGO PLATEAU$"
+	.string "Indigo Plateau$"
 
 gMapSecName_SaffronCity::
-	.string "SAFFRON CITY$"
+	.string "Saffron City$"
 
 gMapSecName_Route4::
-	.string "ROUTE 4$"
+	.string "Route 4$"
 
 gMapSecName_Route10::
-	.string "ROUTE 10$"
+	.string "Route 10$"
 
 gMapSecName_Route1::
-	.string "ROUTE 1$"
+	.string "Route 1$"
 
 gMapSecName_Route2::
-	.string "ROUTE 2$"
+	.string "Route 2$"
 
 gMapSecName_Route3::
-	.string "ROUTE 3$"
+	.string "Route 3$"
 
 gMapSecName_Route4_2::
-	.string "ROUTE 4$"
+	.string "Route 4$"
 
 gMapSecName_Route5::
-	.string "ROUTE 5$"
+	.string "Route 5$"
 
 gMapSecName_Route6::
-	.string "ROUTE 6$"
+	.string "Route 6$"
 
 gMapSecName_Route7::
-	.string "ROUTE 7$"
+	.string "Route 7$"
 
 gMapSecName_Route8::
-	.string "ROUTE 8$"
+	.string "Route 8$"
 
 gMapSecName_Route9::
-	.string "ROUTE 9$"
+	.string "Route 9$"
 
 gMapSecName_Route10_2::
-	.string "ROUTE 10$"
+	.string "Route 10$"
 
 gMapSecName_Route11::
-	.string "ROUTE 11$"
+	.string "Route 11$"
 
 gMapSecName_Route12::
-	.string "ROUTE 12$"
+	.string "Route 12$"
 
 gMapSecName_Route13::
-	.string "ROUTE 13$"
+	.string "Route 13$"
 
 gMapSecName_Route14::
-	.string "ROUTE 14$"
+	.string "Route 14$"
 
 gMapSecName_Route15::
-	.string "ROUTE 15$"
+	.string "Route 15$"
 
 gMapSecName_Route16::
-	.string "ROUTE 16$"
+	.string "Route 16$"
 
 gMapSecName_Route17::
-	.string "ROUTE 17$"
+	.string "Route 17$"
 
 gMapSecName_Route18::
-	.string "ROUTE 18$"
+	.string "Route 18$"
 
 gMapSecName_Route19::
-	.string "ROUTE 19$"
+	.string "Route 19$"
 
 gMapSecName_Route20::
-	.string "ROUTE 20$"
+	.string "Route 20$"
 
 gMapSecName_Route21::
-	.string "ROUTE 21$"
+	.string "Route 21$"
 
 gMapSecName_Route22::
-	.string "ROUTE 22$"
+	.string "Route 22$"
 
 gMapSecName_Route23::
-	.string "ROUTE 23$"
+	.string "Route 23$"
 
 gMapSecName_Route24::
-	.string "ROUTE 24$"
+	.string "Route 24$"
 
 gMapSecName_Route25::
-	.string "ROUTE 25$"
+	.string "Route 25$"
 
 gMapSecName_ViridianForest::
-	.string "VIRIDIAN FOREST$"
+	.string "Viridian Forest$"
 
 gMapSecName_MtMoon::
-	.string "MT. MOON$"
+	.string "Mt. Moon$"
 
 gMapSecName_SSAnne::
-	.string "S.S. ANNE$"
+	.string "S.S. Anne$"
 
 gMapSecName_UndergroundPath::
-	.string "UNDERGROUND PATH$"
+	.string "Underground Path$"
 
 gMapSecName_UndergroundPath_2::
-	.string "UNDERGROUND PATH$"
+	.string "Underground Path$"
 
 gMapSecName_DiglettsCave::
-	.string "DIGLETT'S CAVE$"
+	.string "Diglett's Cave$"
 
 gMapSecName_VictoryRoad::
-	.string "VICTORY ROAD$"
+	.string "Victory Road$"
 
 gMapSecName_RocketHideout::
-	.string "ROCKET HIDEOUT$"
+	.string "Rocket Hideout$"
 
 gMapSecName_SilphCo::
-	.string "SILPH CO.$"
+	.string "Silph Co.$"
 
 gMapSecName_PokemonMansion::
-	.string "POKéMON MANSION$"
+	.string "Pokémon Mansion$"
 
 gMapSecName_SafariZone::
-	.string "SAFARI ZONE$"
+	.string "Safari Zone$"
 
 gMapSecName_PokemonLeague::
-	.string "POKéMON LEAGUE$"
+	.string "Pokémon League$"
 
 gMapSecName_RockTunnel::
-	.string "ROCK TUNNEL$"
+	.string "Rock Tunnel$"
 
 gMapSecName_SeafoamIslands::
-	.string "SEAFOAM ISLANDS$"
+	.string "Seafoam Islands$"
 
 gMapSecName_PokemonTower::
-	.string "POKéMON TOWER$"
+	.string "Pokémon Tower$"
 
 gMapSecName_CeruleanCave::
-	.string "CERULEAN CAVE$"
+	.string "Cerulean Cave$"
 
 gMapSecName_PowerPlant::
-	.string "POWER PLANT$"
+	.string "Power Plant$"
 
 gMapSecName_OneIsland::
-	.string "ONE ISLAND$"
+	.string "One Island$"
 
 gMapSecName_TwoIsland::
-	.string "TWO ISLAND$"
+	.string "Two Island$"
 
 gMapSecName_ThreeIsland::
-	.string "THREE ISLAND$"
+	.string "Three Island$"
 
 gMapSecName_FourIsland::
-	.string "FOUR ISLAND$"
+	.string "Four Island$"
 
 gMapSecName_FiveIsland::
-	.string "FIVE ISLAND$"
-
-gMapSecName_SevenIsland::
-	.string "SEVEN ISLAND$"
+	.string "Five Island$"
 
 gMapSecName_SixIsland::
-	.string "SIX ISLAND$"
+	.string "Six Island$"
+
+gMapSecName_SevenIsland::
+	.string "Seven Island$"
 
 gMapSecName_KindleRoad::
-	.string "KINDLE ROAD$"
+	.string "Kindle Road$"
 
 gMapSecName_TreasureBeach::
-	.string "TREASURE BEACH$"
+	.string "Treasure Beach$"
 
 gMapSecName_CapeBrink::
-	.string "CAPE BRINK$"
+	.string "Cape Brink$"
 
 gMapSecName_BondBridge::
-	.string "BOND BRIDGE$"
+	.string "Bond Bridge$"
 
 gMapSecName_ThreeIslePort::
-	.string "THREE ISLE PORT$"
+	.string "Three Isle Port$"
 
 gMapSecName_SeviiIsle6::
-	.string "SEVII ISLE 6$"
+	.string "Sevii Isle 6$"
 
 gMapSecName_SeviiIsle7::
-	.string "SEVII ISLE 7$"
+	.string "Sevii Isle 7$"
 
 gMapSecName_SeviiIsle8::
-	.string "SEVII ISLE 8$"
+	.string "Sevii Isle 8$"
 
 gMapSecName_SeviiIsle9::
-	.string "SEVII ISLE 9$"
+	.string "Sevii Isle 9$"
 
 gMapSecName_ResortGorgeous::
-	.string "RESORT GORGEOUS$"
+	.string "Resort Gorgeous$"
 
 gMapSecName_WaterLabyrinth::
-	.string "WATER LABYRINTH$"
+	.string "Water Labyrinth$"
 
 gMapSecName_FiveIsleMeadow::
-	.string "FIVE ISLE MEADOW$"
+	.string "Five Isle Meadow$"
 
 gMapSecName_MemorialPillar::
-	.string "MEMORIAL PILLAR$"
+	.string "Memorial Pillar$"
 
 gMapSecName_OutcastIsland::
-	.string "OUTCAST ISLAND$"
+	.string "Outcast Island$"
 
 gMapSecName_GreenPath::
-	.string "GREEN PATH$"
+	.string "Green Path$"
 
 gMapSecName_WaterPath::
-	.string "WATER PATH$"
+	.string "Water Path$"
 
 gMapSecName_RuinValley::
-	.string "RUIN VALLEY$"
+	.string "Ruin Valley$"
 
 gMapSecName_TrainerTower::
-	.string "TRAINER TOWER$"
+	.string "Trainer Tower$"
 
 gMapSecName_CanyonEntrance::
-	.string "CANYON ENTRANCE$"
+	.string "Canyon Entrance$"
 
 gMapSecName_SevaultCanyon::
-	.string "SEVAULT CANYON$"
+	.string "Sevault Canyon$"
 
 gMapSecName_TanobyRuins::
-	.string "TANOBY RUINS$"
+	.string "Tanoby Ruins$"
 
 gMapSecName_SeviiIsle22::
-	.string "SEVII ISLE 22$"
+	.string "Sevii Isle 22$"
 
 gMapSecName_SeviiIsle23::
-	.string "SEVII ISLE 23$"
+	.string "Sevii Isle 23$"
 
 gMapSecName_SeviiIsle24::
-	.string "SEVII ISLE 24$"
+	.string "Sevii Isle 24$"
 
 gMapSecName_NavelRock::
-	.string "NAVEL ROCK$"
+	.string "Navel Rock$"
 
 gMapSecName_MtEmber::
-	.string "MT. EMBER$"
+	.string "Mt. Ember$"
 
 gMapSecName_BerryForest::
-	.string "BERRY FOREST$"
+	.string "Berry Forest$"
 
 gMapSecName_IcefallCave::
-	.string "ICEFALL CAVE$"
+	.string "Icefall Cave$"
 
 gMapSecName_RocketWarehouse::
-	.string "ROCKET WAREHOUSE$"
+	.string "Rocket Warehouse$"
 
 gMapSecName_TrainerTower_2::
-	.string "TRAINER TOWER$"
+	.string "Trainer Tower$"
 
 gMapSecName_DottedHole::
-	.string "DOTTED HOLE$"
+	.string "Dotted Hole$"
 
 gMapSecName_LostCave::
-	.string "LOST CAVE$"
+	.string "Lost Cave$"
 
 gMapSecName_PatternBush::
-	.string "PATTERN BUSH$"
+	.string "Pattern Bush$"
 
 gMapSecName_AlteringCave::
-	.string "ALTERING CAVE$"
+	.string "Altering Cave$"
 
 gMapSecName_TanobyChambers::
-	.string "TANOBY CHAMBERS$"
+	.string "Tanoby Chambers$"
 
 gMapSecName_ThreeIslePath::
-	.string "THREE ISLE PATH$"
+	.string "Three Isle Path$"
 
 gMapSecName_TanobyKey::
-	.string "TANOBY KEY$"
+	.string "Tanoby Key$"
 
 gMapSecName_BirthIsland::
-	.string "BIRTH ISLAND$"
+	.string "Birch Island$"
 
 gMapSecName_MoneanChamber::
-	.string "MONEAN CHAMBER$"
+	.string "Monean Chamber$"
 
 gMapSecName_LiptooChamber::
-	.string "LIPTOO CHAMBER$"
+	.string "Liptoo Chamber$"
 
 gMapSecName_WeepthChamber::
-	.string "WEEPTH CHAMBER$"
+	.string "Weepth Chamber$"
 
 gMapSecName_DilfordChamber::
-	.string "DILFORD CHAMBER$"
+	.string "Dilford Chamber$"
 
 gMapSecName_ScufibChamber::
-	.string "SCUFIB CHAMBER$"
+	.string "Scufib Chamber$"
 
 gMapSecName_RixyChamber::
-	.string "RIXY CHAMBER$"
+	.string "Rixy Chamber$"
 
 gMapSecName_ViapoisChamber::
-	.string "VIAPOIS CHAMBER$"
+	.string "Viapois Chamber$"
 
 gMapSecName_EmberSpa::
-	.string "EMBER SPA$"
+	.string "Ember Spa$"
 
 gMapSecName_CeladonDept::
-	.string "CELADON DEPT.$"
+	.string "Celadon Dept.$"
 

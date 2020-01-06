@@ -5,6 +5,6 @@ gUnknown_818D50B:: @ 818D50B
 
 gUnknown_818D53B:: @ 818D53B
     .string "It's a posted notice…\p"
-    .string "If you're confused, ask for HELP!\n"
+    .string "If you're confused, ask for Help!\n"
     .string "Press the L or R Button!$"
 
