@@ -235,6 +235,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDragonDance
 	.4byte BattleScript_EffectCamouflage
 	.4byte BattleScript_EffectRoost
+	.4byte BattleScript_EffectFlinchHitStatus
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -2818,6 +2819,33 @@ BattleScript_EffectRoost::
 	tryhealhalfhealth BattleScript_AlreadyAtFullHp, BS_TARGET
 	setroost
 	goto BattleScript_PresentHealTarget
+
+BattleScript_EffectFlinchHitStatus::
+	setmoveeffect MOVE_EFFECT_FLINCH
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustsetdamage
+	seteffectwithchance
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	trytoinduceastatus
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER
