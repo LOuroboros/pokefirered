@@ -2973,7 +2973,7 @@ gText_FrameType:: @ 8419E52
 	.string "Type$"
 
 gText_PickSwitchCancel:: @ 8419E57
-	.string "{DPAD_UPDOWN}Pick {DPAD_LEFTRIGHT}Switch {A_BUTTON}{B_BUTTON}Cancel$"
+	.string "{DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}CANCEL$"
 
 gUnknown_8419E72:: @ 0x8419E72
 	.string "RTCを リセットします\n"
