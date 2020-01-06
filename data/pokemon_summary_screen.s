@@ -191,79 +191,79 @@ gUnknown_8463C80:: @ 8463C80
 	.incbin "graphics/interface/pokesummary_unk_8463C80.bin.lz"
 
 gUnknown_8463DBC:: @ 8463DBC
-	.string "HARDY$"
+	.string "Hardy$"
 
 gUnknown_8463DC2:: @ 8463DC2
-	.string "LONELY$"
+	.string "Lonely$"
 
 gUnknown_8463DC9:: @ 8463DC9
-	.string "BRAVE$"
+	.string "Brave$"
 
 gUnknown_8463DCF:: @ 8463DCF
-	.string "ADAMANT$"
+	.string "Adamant$"
 
 gUnknown_8463DD7:: @ 8463DD7
-	.string "NAUGHTY$"
+	.string "Naughty$"
 
 gUnknown_8463DDF:: @ 8463DDF
-	.string "BOLD$"
+	.string "Bold$"
 
 gUnknown_8463DE4:: @ 8463DE4
-	.string "DOCILE$"
+	.string "Docile$"
 
 gUnknown_8463DEB:: @ 8463DEB
-	.string "RELAXED$"
+	.string "Relaxed$"
 
 gUnknown_8463DF3:: @ 8463DF3
-	.string "IMPISH$"
+	.string "Impish$"
 
 gUnknown_8463DFA:: @ 8463DFA
-	.string "LAX$"
+	.string "Lax$"
 
 gUnknown_8463DFE:: @ 8463DFE
-	.string "TIMID$"
+	.string "Timid$"
 
 gUnknown_8463E04:: @ 8463E04
-	.string "HASTY$"
+	.string "Hasty$"
 
 gUnknown_8463E0A:: @ 8463E0A
-	.string "SERIOUS$"
+	.string "Serious$"
 
 gUnknown_8463E12:: @ 8463E12
-	.string "JOLLY$"
+	.string "Jolly$"
 
 gUnknown_8463E18:: @ 8463E18
-	.string "NAIVE$"
+	.string "Naive$"
 
 gUnknown_8463E1E:: @ 8463E1E
-	.string "MODEST$"
+	.string "Modest$"
 
 gUnknown_8463E25:: @ 8463E25
-	.string "MILD$"
+	.string "Mild$"
 
 gUnknown_8463E2A:: @ 8463E2A
-	.string "QUIET$"
+	.string "Quiet$"
 
 gUnknown_8463E30:: @ 8463E30
-	.string "BASHFUL$"
+	.string "Bashful$"
 
 gUnknown_8463E38:: @ 8463E38
-	.string "RASH$"
+	.string "Rash$"
 
 gUnknown_8463E3D:: @ 8463E3D
-	.string "CALM$"
+	.string "Calm$"
 
 gUnknown_8463E42:: @ 8463E42
-	.string "GENTLE$"
+	.string "Gentle$"
 
 gUnknown_8463E49:: @ 8463E49
-	.string "SASSY$"
+	.string "Sassy$"
 
 gUnknown_8463E4F:: @ 8463E4F
-	.string "CAREFUL$"
+	.string "Careful$"
 
 gUnknown_8463E57:: @ 8463E57
-	.string "QUIRKY$"
+	.string "Quirky$"
 
 	.align 2
 gNatureNames:: @ 8463E60 dataptr

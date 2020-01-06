@@ -406,16 +406,16 @@ gUnknown_8416195::
 	.string "どこへ とびますか?$"
 
 gOtherText_Use::
-	.string "USE$"
+	.string "Use$"
 
 gOtherText_Toss::
-	.string "TOSS$"
+	.string "Toss$"
 
 gUnknown_84161A9::
-	.string "REGISTER$"
+	.string "Register$"
 
 gOtherText_Give::
-	.string "GIVE$"
+	.string "Give$"
 
 gUnknown_84161B7::
 	.string "けってい$"
@@ -436,28 +436,28 @@ gUnknown_84161CE::
 	.string "キャンセル$"
 
 gText_Item::
-	.string "ITEM$"
+	.string "Item$"
 
 gText_Mail::
-	.string "MAIL$"
+	.string "Mail$"
 
 gText_Take::
-	.string "TAKE$"
+	.string "Take$"
 
 gText_Store::
-	.string "STORE$"
+	.string "Store$"
 
 gUnknown_84161E9::
-	.string "CHECK$"
+	.string "Check$"
 
 gUnknown_84161EF:: @ 84161EF
-	.string "NONE$"
+	.string "None$"
 
 gUnknown_84161F4::
-	.string "OPEN$"
+	.string "Open$"
 
 gUnknown_84161F9::
-	.string "DESELECT$"
+	.string "Deselect$"
 
 gUnknown_8416202:: @ 8416202
 	.string "???$"
@@ -807,43 +807,43 @@ gText_PokedollarVar1:: @ 841697A
 	.string "¥{STR_VAR_1}$"
 
 gText_Shift:: @ 0x841697E
-	.string "SHIFT$"
+	.string "Shift$"
 
 gText_SendOut:: @ 0x8416984
-	.string "SEND OUT$"
+	.string "Send Out$"
 
 gText_Switch2:: @ 0x841698D
-	.string "SWITCH$"
+	.string "Switch$"
 
 gText_Summary5:: @ 0x8416994
-	.string "SUMMARY$"
+	.string "Summary$"
 
 gUnknown_841699C:: @ 0x841699C
 	.string "つかえるわざ$"
 
 gText_Enter:: @ 0x84169A3
-	.string "ENTER$"
+	.string "Enter$"
 
 gText_NoEntry:: @ 0x84169A9
-	.string "NO ENTRY$"
+	.string "No Entry$"
 
 gText_Take2:: @ 0x84169B2
-	.string "TAKE$"
+	.string "Take$"
 
 gText_Read2:: @ 0x84169B7
-	.string "READ$"
+	.string "Read$"
 
 gText_Trade4:: @ 0x84169BC
-	.string "TRADE$"
+	.string "Trade$"
 
 gText_HP3:: @ 84169C2
 	.string "HP$"
 
 gText_SpAtk3:: @ 84169C5
-	.string "SP. ATK$"
+	.string "Sp. Atk$"
 
 gText_SpDef3:: @ 84169CD
-	.string "SP. DEF$"
+	.string "Sp. Def$"
 
 gMenuText_Confirm:: @ 84169D5
 	.string "OK$"
@@ -859,7 +859,7 @@ gText_WontHaveEffect:: @ 84169DC
 
 gUnknown_84169F8:: @ 84169F8
 	.string "This can't be used on\n"
-	.string "that POKéMON.{PAUSE_UNTIL_PRESS}$"
+	.string "that Pokémon.{PAUSE_UNTIL_PRESS}$"
 
 gText_PkmnCantSwitchOut:: @ 8416A1E
 	.string "{STR_VAR_1} can't be switched\n"
@@ -879,21 +879,21 @@ gText_PkmnHasNoEnergy:: @ 8416A75
 
 gText_CantSwitchWithAlly:: @ 8416A98
 	.string "You can't switch {STR_VAR_1}'s\n"
-	.string "POKéMON with one of yours!{PAUSE_UNTIL_PRESS}$"
+	.string "Pokémon with one of yours!{PAUSE_UNTIL_PRESS}$"
 
 gText_EggCantBattle:: @ 8416ACB
 	.string "An EGG can't battle!{PAUSE_UNTIL_PRESS}$"
 
 gText_CantUseUntilNewBadge:: @ 8416AE2
 	.string "This can't be used until a new\n"
-	.string "BADGE is obtained.{PAUSE_UNTIL_PRESS}$"
+	.string "badge is obtained.{PAUSE_UNTIL_PRESS}$"
 
 gUnknown_8416B16:: @ 8416B16
-	.string "No more than three POKéMON\n"
+	.string "No more than three Pokémon\n"
 	.string "may enter.{PAUSE_UNTIL_PRESS}$"
 
 gUnknown_8416B3E:: @ 8416B3E
-	.string "No more than two POKéMON\n"
+	.string "No more than two Pokémon\n"
 	.string "may enter.{PAUSE_UNTIL_PRESS}$"
 
 gText_SendMailToPC:: @ 8416B64
@@ -1320,13 +1320,13 @@ gText_WithdrewQuantItem:: @ 84177C5
 	.string "{STR_VAR_1}(s).$"
 
 gOtherText_Read::
-	.string "READ$"
+	.string "Read$"
 
 gOtherText_MoveToBag::
-	.string "MOVE TO BAG$"
+	.string "Move to Bag$"
 
 gOtherText_Give2::
-	.string "GIVE$"
+	.string "Give$"
 
 gText_TheresNoMailHere:: @ 84177EE
 	.string "There's no mail here.{PAUSE_UNTIL_PRESS}$"
@@ -2806,25 +2806,25 @@ gUnknown_8419C13:: @ 8419C13
 	.string "Somewhere$"
 
 gUnknown_8419C1D:: @ 8419C1D
-	.string "POKéMON INFO$"
+	.string "Pokémon Info$"
 
 gUnknown_8419C2A:: @ 8419C2A
-	.string "POKéMON SKILLS$"
+	.string "Pokémon Skills$"
 
 gUnknown_8419C39:: @ 8419C39
-	.string "KNOWN MOVES$"
+	.string "Known Moves$"
 
 gUnknown_8419C45:: @ 8419C45
 	.string "No data$"
 
 gUnknown_8419C4D:: @ 8419C4D
-	.string "EXP. POINTS$"
+	.string "Exp. Points$"
 
 gUnknown_8419C59:: @ 8419C59
-	.string "NEXT LV.$"
+	.string "Next Lv.$"
 
 gUnknown_8419C62:: @ 8419C62
-	.string "{DPAD_RIGHT}Page {A_BUTTON}Cancel$"
+	.string "{DPAD_RIGHT}PAGE {A_BUTTON}CANCEL$"
 
 gUnknown_8419C72:: @ 8419C72
 	.string "{A_BUTTON}Cancel$"
@@ -4444,10 +4444,10 @@ gTradeText_PressBButtonToExit::
 	.string "Press the B Button to exit.$"
 
 gUnknown_841E10A::
-	.string "SUMMARY$"
+	.string "Summary$"
 
 gUnknown_841E112::
-	.string "TRADE$"
+	.string "Trade$"
 
 gUnknown_841E118::
 	.string "{COLOR RED}{HIGHLIGHT DARK_GREY}{SHADOW GREEN}Communication standby…\n"
