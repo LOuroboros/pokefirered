@@ -1262,13 +1262,13 @@ gMoveDescription_ShadowClaw::
 	.string "Placeholder text.$"
 
 gMoveDescription_ThunderFang::
-	.string "Placeholder text.$"
+	.string "Bites the foe with\nelectryifing fangs.\nIt may flinch or\nparalyze the foe.$"
 
 gMoveDescription_IceFang::
-	.string "Placeholder text.$"
+	.string "Bites the foe with\nfreezing fangs.\nIt may flinch or\nfreeze the foe.$"
 
 gMoveDescription_FireFang::
-	.string "Placeholder text.$"
+	.string "Bites the foe with\nburning fangs.\nIt may flinch or\nburn the foe.$"
 
 gMoveDescription_ShadowSneak::
 	.string "Placeholder text.$"
@@ -1367,7 +1367,7 @@ gMoveDescription_HealOrder::
 	.string "Placeholder text.$"
 
 gMoveDescription_HeadSmash::
-	.string "Placeholder text.$"
+	.string "Hits the foe using\na strong headbutt.\nIt hurts the user\nterribly too.$"
 
 gMoveDescription_DoubleHit::
 	.string "Placeholder text.$"
@@ -1398,4 +1398,3 @@ gMoveDescription_OminousWind::
 
 gMoveDescription_ShadowForce::
 	.string "Placeholder text.$"
-

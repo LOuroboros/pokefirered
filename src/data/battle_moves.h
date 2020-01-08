@@ -6399,7 +6399,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_HEAD_SMASH] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_RECOIL_50,
+        .effect = EFFECT_DOUBLE_EDGE,
         .power = 150,
         .type = TYPE_ROCK,
         .accuracy = 80,

@@ -2692,7 +2692,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 gBattlescriptCurrInstr = BattleScript_AtkDefDown;
                 break;
             case MOVE_EFFECT_RECOIL_33: // Double Edge
-                gBattleMoveDamage = gHpDealt / 3;
+				if (gCurrentMove == MOVE_HEAD_SMASH) // Since adding a new move_effect or reusing an unused one wouldn't work, I had to do this.
+					gBattleMoveDamage = gHpDealt / 2;
+				else
+					gBattleMoveDamage = gHpDealt / 3;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
