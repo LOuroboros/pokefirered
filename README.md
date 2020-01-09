@@ -1,3 +1,7 @@
+# About this branch
+
+A branch to host the code for a feature that I quickly added, inspired by [Ryuhouji's](https://github.com/Ryuhouji/Emerald-Enhanced/commit/bffddc383d889448772e460ab4e0fdc36c2531b0).
+
 # Pokémon FireRed and LeafGreen
 
 [![Build Status][travis-badge]][travis]

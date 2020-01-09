@@ -206,7 +206,8 @@ const u8 gUnknown_83FC0C6[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is hurt\nby SPI
 const u8 gUnknown_83FC0DC[] = _("{B_ATK_NAME_WITH_PREFIX} identified\n{B_DEF_NAME_WITH_PREFIX}!");
 const u8 gUnknown_83FC0EE[] = _("{B_ATK_NAME_WITH_PREFIX}'s PERISH count\nfell to {B_BUFF1}!");
 const u8 gUnknown_83FC10C[] = _("{B_ATK_NAME_WITH_PREFIX} braced\nitself!");
-const u8 gUnknown_83FC11E[] = _("{B_DEF_NAME_WITH_PREFIX} ENDURED\nthe hit!");
+const u8 gUnknown_83FC11E[] = _("{B_ATK_NAME_WITH_PREFIX} dealt {STR_VAR_3} damage!\nHowever, {B_DEF_NAME_WITH_PREFIX} endured the hit!");
+//const u8 gUnknown_83FC11E[] = _("{B_DEF_NAME_WITH_PREFIX} endured\nthe hit!");
 const u8 gUnknown_83FC132[] = _("MAGNITUDE {B_BUFF1}!");
 const u8 gUnknown_83FC140[] = _("{B_ATK_NAME_WITH_PREFIX} cut its own HP\nand maximized ATTACK!");
 const u8 gUnknown_83FC168[] = _("{B_ATK_NAME_WITH_PREFIX} copied\n{B_DEF_NAME_WITH_PREFIX}'s stat changes!");
@@ -312,13 +313,17 @@ const u8 gUnknown_83FCB8F[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1}\n{B_BUFF2}
 const u8 gUnknown_83FCB9A[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}\n{B_BUFF2}");
 const u8 gUnknown_83FCBA5[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats won't\ngo any higher!");
 const u8 gUnknown_83FCBC5[] = _("{B_DEF_NAME_WITH_PREFIX}'s stats won't\ngo any lower!");
-const u8 gUnknown_83FCBE4[] = _("A critical hit!");
-const u8 gUnknown_83FCBF4[] = _("It's a one-hit KO!");
+const u8 gUnknown_83FCBE4[] = _("{B_ATK_NAME_WITH_PREFIX} dealt {STR_VAR_3} points\nof damage!\lIt was a critical hit!");
+//const u8 gUnknown_83FCBE4[] = _("A critical hit!");
+const u8 gUnknown_83FCBF4[] = _("{B_ATK_NAME_WITH_PREFIX} executed {B_DEF_NAME_WITH_PREFIX}\nfor {STR_VAR_3} damage!");
+//const u8 gUnknown_83FCBF4[] = _("It's a one-hit KO!");
 const u8 gUnknown_83FCC07[] = _("{PAUSE 32}1, {PAUSE 15}2, and{PAUSE 15}… {PAUSE 15}… {PAUSE 15}… {PAUSE 15}{PLAY_SE SE_KON}Poof!\p");
 const u8 gUnknown_83FCC33[] = _("And…\p");
 const u8 gUnknown_83FCC39[] = _("HM moves can't be\nforgotten now.\p");
-const u8 gUnknown_83FCC5B[] = _("It's not very effective…");
-const u8 gUnknown_83FCC74[] = _("It's super effective!");
+const u8 gUnknown_83FCC5B[] = _("{B_ATK_NAME_WITH_PREFIX}'s move wasn't very effective,\nbut it still dealt {STR_VAR_3} damage!");
+//const u8 gUnknown_83FCC5B[] = _("It's not very effective…");
+const u8 gUnknown_83FCC74[] = _("{B_ATK_NAME_WITH_PREFIX} dealt {STR_VAR_3} points\nof damage!\lIt was a super effective hit!");
+//const u8 gUnknown_83FCC74[] = _("It's super effective!");
 static const u8 sText_GotAwaySafely[] = _("{PLAY_SE SE_NIGERU}Got away safely!\p");
 const u8 gUnknown_83FCCA0[] = _("{PLAY_SE SE_NIGERU}{B_ATK_NAME_WITH_PREFIX} fled\nusing its {B_LAST_ITEM}!\p");
 const u8 gUnknown_83FCCBB[] = _("{PLAY_SE SE_NIGERU}{B_ATK_NAME_WITH_PREFIX} fled\nusing {B_ATK_ABILITY}!\p");
@@ -515,6 +520,7 @@ const u8 gUnknown_83FDCD2[] = _("Oak: Keep your eyes on your\nPokémon's HP.\pIt
 const u8 gUnknown_83FDD23[] = _("Oak: No! There's no running away\nfrom a trainer Pokémon battle!\p");
 const u8 gUnknown_83FDD64[] = _("Oak: Hm! Excellent!\pIf you win, you earn prize money,\nand your Pokémon will grow!\pBattle other trainers and make\nyour Pokémon strong!\p");
 const u8 gUnknown_83FDDEB[] = _("Oak: Hm…\nHow disappointing…\pIf you win, you earn prize money,\nand your Pokémon grow.\pBut if you lose, {B_PLAYER_NAME}, you end\nup paying prize money…\pHowever, since you had no warning\nthis time, I'll pay for you.\pBut things won't be this way once\nyou step outside these doors.\pThat's why you must strengthen your\nPokémon by battling wild Pokémon.\p");
+static const u8 sText_DealtDamage[] = _("{B_ATK_NAME_WITH_PREFIX} dealt {STR_VAR_3} points\nof damage!");
 
 const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB219,
@@ -890,7 +896,8 @@ const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB21F,
     gUnknown_83FB232,
     gUnknown_83FB235,
-    gUnknown_83FB248
+    gUnknown_83FB248,
+	sText_DealtDamage
 };
 
 const u16 gMissStringIds[] = {

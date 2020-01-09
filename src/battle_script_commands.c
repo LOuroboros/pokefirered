@@ -1764,6 +1764,9 @@ static void atk0B_healthbarupdate(void)
 static void atk0C_datahpupdate(void)
 {
     u32 moveType;
+    u16 targetHealth = 0;
+    u16 currentDmg = 0;
+    targetHealth = (gBattleMons[gActiveBattler].hp);
 
     if (!gBattleControllerExecFlags)
     {
@@ -1868,6 +1871,10 @@ static void atk0C_datahpupdate(void)
                             gSpecialStatuses[gActiveBattler].specialBattlerId = gBattlerTarget;
                         }
                     }
+                    currentDmg = (gBattleMoveDamage - gHpDealt);
+                    ConvertIntToDecimalStringN(gStringVar3, gHpDealt, STR_CONV_MODE_LEFT_ALIGN, 5);
+                    ConvertIntToDecimalStringN(gStringVar2, currentDmg, STR_CONV_MODE_LEFT_ALIGN, 5);
+                    ConvertIntToDecimalStringN(gStringVar1, targetHealth, STR_CONV_MODE_LEFT_ALIGN, 3);
                 }
                 gHitMarker &= ~(HITMARKER_x100000);
                 BtlController_EmitSetMonData(0, REQUEST_HP_BATTLE, 0, 2, &gBattleMons[gActiveBattler].hp);
@@ -1961,10 +1968,12 @@ static void atk0F_resultmessage(void)
             switch (gMoveResultFlags & (u8)(~(MOVE_RESULT_MISSED)))
             {
             case MOVE_RESULT_SUPER_EFFECTIVE:
-                stringId = STRINGID_SUPEREFFECTIVE;
+                if (gCritMultiplier != 2)
+                    stringId = STRINGID_SUPEREFFECTIVE;
                 break;
             case MOVE_RESULT_NOT_VERY_EFFECTIVE:
-                stringId = STRINGID_NOTVERYEFFECTIVE;
+                if (gCritMultiplier != 2)
+                    stringId = STRINGID_NOTVERYEFFECTIVE;
                 break;
             case MOVE_RESULT_ONE_HIT_KO:
                 stringId = STRINGID_ONEHITKO;
@@ -2008,6 +2017,7 @@ static void atk0F_resultmessage(void)
                 }
                 else if (gMoveResultFlags & MOVE_RESULT_FOE_HUNG_ON)
                 {
+					// TODO: Learn how to call STRINGID_DEALTDAMAGE before the rest of this "else if".
                     gLastUsedItem = gBattleMons[gBattlerTarget].item;
                     gPotentialItemEffectBattler = gBattlerTarget;
                     gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
@@ -2021,7 +2031,13 @@ static void atk0F_resultmessage(void)
                 }
                 else
                 {
-                    gBattleCommunication[MSG_DISPLAY] = 0;
+                    if (gCritMultiplier != 2)
+                    {
+                        if (!gBattleMoveDamage == 0)
+                            stringId = STRINGID_DEALTDAMAGE;
+                        else
+                            stringId = STRINGID_PKMNAVOIDEDATTACK;
+                    }
                 }
             }
         }
