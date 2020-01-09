@@ -5517,7 +5517,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FLARE_BLITZ] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_RECOIL_33_STATUS,
+        .effect = EFFECT_DOUBLE_EDGE,
         .power = 120,
         .type = TYPE_FIRE,
         .accuracy = 100,

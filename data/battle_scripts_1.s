@@ -2575,8 +2575,49 @@ BattleScript_EffectSecretPower::
 	goto BattleScript_EffectHit
 
 BattleScript_EffectDoubleEdge::
+	jumpifmove MOVE_FLARE_BLITZ, BattleScript_HitRecoilStatus
+	jumpifmove MOVE_VOLT_TACKLE, BattleScript_HitRecoilStatus
 	setmoveeffect MOVE_EFFECT_RECOIL_33 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BattleScript_EffectHit
+
+BattleScript_HitRecoilStatus:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	setmoveeffect MOVE_EFFECT_RECOIL_33 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	seteffectwithchance
+	jumpifmove MOVE_FLARE_BLITZ, BattleScript_HitStatusBurn
+	jumpifmove MOVE_VOLT_TACKLE, BattleScript_HitStatusParalysis
+BattleScript_HitStatusBurn:
+	setmoveeffect MOVE_EFFECT_BURN
+	seteffectwithchance
+	tryfaintmon BS_TARGET, 0, NULL
+	setbyte sMOVEEND_STATE, 0
+	moveend 0, 0
+	end
+BattleScript_HitStatusParalysis:
+	setmoveeffect MOVE_EFFECT_PARALYSIS
+	seteffectwithchance
+	tryfaintmon BS_TARGET, 0, NULL
+	setbyte sMOVEEND_STATE, 0
+	moveend 0, 0
+	end
 
 BattleScript_EffectTeeterDance::
 	attackcanceler
