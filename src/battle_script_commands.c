@@ -318,7 +318,6 @@ static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
 static void atkF8_setroost(void);
-static void atkF9_trytoinduceastatus(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -571,7 +570,6 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF6_finishaction,
     atkF7_finishturn,
     atkF8_setroost,
-    atkF9_trytoinduceastatus,
 };
 
 struct StatFractions
@@ -9875,27 +9873,6 @@ static void atkF8_setroost(void)
     {
         gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
         gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
-    }
-
-    gBattlescriptCurrInstr++;
-}
-
-static void atkF9_trytoinduceastatus(void)
-{
-    switch (gCurrentMove)
-    {
-    case MOVE_THUNDER_FANG:
-        gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_PARALYSIS;
-        break;
-    case MOVE_ICE_FANG:
-        gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_FREEZE;
-        break;
-    case MOVE_FIRE_FANG:
-        gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_BURN;
-        break;
-    default:
-        gBattleCommunication[MOVE_EFFECT_BYTE] = 0;
-        break;
     }
 
     gBattlescriptCurrInstr++;

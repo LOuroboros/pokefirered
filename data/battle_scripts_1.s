@@ -2618,6 +2618,13 @@ BattleScript_HitStatusParalysis:
 	setbyte sMOVEEND_STATE, 0
 	moveend 0, 0
 	end
+BattleScript_HitStatusFreeze:
+	setmoveeffect MOVE_EFFECT_FREEZE
+	seteffectwithchance
+	tryfaintmon BS_TARGET, 0, NULL
+	setbyte sMOVEEND_STATE, 0
+	moveend 0, 0
+	end
 
 BattleScript_EffectTeeterDance::
 	attackcanceler
@@ -2862,7 +2869,6 @@ BattleScript_EffectRoost::
 	goto BattleScript_PresentHealTarget
 
 BattleScript_EffectFlinchHitStatus::
-	setmoveeffect MOVE_EFFECT_FLINCH
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
@@ -2883,10 +2889,11 @@ BattleScript_EffectFlinchHitStatus::
 	waitmessage 0x40
 	resultmessage
 	waitmessage 0x40
-	trytoinduceastatus
+	setmoveeffect MOVE_EFFECT_FLINCH
 	seteffectwithchance
-	tryfaintmon BS_TARGET, FALSE, NULL
-	goto BattleScript_MoveEnd
+	jumpifmove MOVE_THUNDER_FANG, BattleScript_HitStatusParalysis
+	jumpifmove MOVE_ICE_FANG, BattleScript_HitStatusFreeze
+	jumpifmove MOVE_FIRE_FANG, BattleScript_HitStatusBurn
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER
