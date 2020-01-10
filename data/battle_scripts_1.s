@@ -237,6 +237,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectRoost
 	.4byte BattleScript_EffectFlinchHitStatus
 	.4byte BattleScript_EffectWakeUpSlap
+	.4byte BattleScript_EffectHammerArm
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -2901,6 +2902,34 @@ BattleScript_EffectWakeUpSlap::
 	setmoveeffect MOVE_EFFECT_REMOVE_STATUS | MOVE_EFFECT_CERTAIN
 	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_MultiplyDmgBy2
 	goto BattleScript_EffectHit
+
+BattleScript_EffectHammerArm::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustsetdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	setstatchanger STAT_SPEED, 1, TRUE
+	statbuffchange STAT_CHANGE_BS_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_StatDownEnd
+	setbyte sSTAT_ANIM_PLAYED, 0
+	playstatchangeanimation BS_ATTACKER, BIT_SPEED, 0
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+	goto BattleScript_MoveEnd
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER
