@@ -1027,8 +1027,6 @@ BattleScript_EffectParalyze::
 	waitanimation
 	setmoveeffect MOVE_EFFECT_PARALYSIS
 	seteffectprimary
-	resultmessage
-	waitmessage 0x40
 	goto BattleScript_MoveEnd
 
 BattleScript_AlreadyParalyzed::
