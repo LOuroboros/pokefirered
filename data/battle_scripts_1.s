@@ -236,6 +236,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectCamouflage
 	.4byte BattleScript_EffectRoost
 	.4byte BattleScript_EffectFlinchHitStatus
+	.4byte BattleScript_EffectWakeUpSlap
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -2276,11 +2277,11 @@ BattleScript_EffectFocusPunch::
 
 BattleScript_EffectSmellingsalt::
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_EffectHit
-	setmoveeffect MOVE_EFFECT_REMOVE_PARALYSIS | MOVE_EFFECT_CERTAIN
-	jumpifstatus BS_TARGET, STATUS1_PARALYSIS, BattleScript_SmellingSaltBuff
+	setmoveeffect MOVE_EFFECT_REMOVE_STATUS | MOVE_EFFECT_CERTAIN
+	jumpifstatus BS_TARGET, STATUS1_PARALYSIS, BattleScript_MultiplyDmgBy2
 	goto BattleScript_EffectHit
 
-BattleScript_SmellingSaltBuff::
+BattleScript_MultiplyDmgBy2::
 	setbyte sDMG_MULTIPLIER, 2
 	goto BattleScript_EffectHit
 
@@ -2894,6 +2895,12 @@ BattleScript_EffectFlinchHitStatus::
 	jumpifmove MOVE_THUNDER_FANG, BattleScript_HitStatusParalysis
 	jumpifmove MOVE_ICE_FANG, BattleScript_HitStatusFreeze
 	jumpifmove MOVE_FIRE_FANG, BattleScript_HitStatusBurn
+
+BattleScript_EffectWakeUpSlap::
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_EffectHit
+	setmoveeffect MOVE_EFFECT_REMOVE_STATUS | MOVE_EFFECT_CERTAIN
+	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_MultiplyDmgBy2
+	goto BattleScript_EffectHit
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER
@@ -3898,6 +3905,12 @@ BattleScript_CurseTurnDmg::
 
 BattleScript_TargetPRLZHeal::
 	printstring STRINGID_PKMNHEALEDPARALYSIS
+	waitmessage 0x40
+	updatestatusicon BS_TARGET
+	return
+
+BattleScript_OpponentWokeUp::
+	printstring STRINGID_OPPONENTWOKEUP
 	waitmessage 0x40
 	updatestatusicon BS_TARGET
 	return

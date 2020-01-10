@@ -700,7 +700,7 @@ static const u8 *const sMoveEffectBS_Ptrs[] =
     [MOVE_EFFECT_NIGHTMARE] = BattleScript_MoveEffectSleep,
     [MOVE_EFFECT_ALL_STATS_UP] = BattleScript_MoveEffectSleep,
     [MOVE_EFFECT_RAPIDSPIN] = BattleScript_MoveEffectSleep,
-    [MOVE_EFFECT_REMOVE_PARALYSIS] = BattleScript_MoveEffectSleep,
+    [MOVE_EFFECT_REMOVE_STATUS] = BattleScript_MoveEffectSleep,
     [MOVE_EFFECT_ATK_DEF_DOWN] = BattleScript_MoveEffectSleep,
     [MOVE_EFFECT_RECOIL_33] = BattleScript_MoveEffectRecoil,
 };
@@ -2670,19 +2670,33 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_RapidSpinAway;
                 break;
-            case MOVE_EFFECT_REMOVE_PARALYSIS: // Smelling salts
-                if (!(gBattleMons[gBattlerTarget].status1 & STATUS1_PARALYSIS))
+            case MOVE_EFFECT_REMOVE_STATUS: // A repurposed MOVE_EFFECT originally created for SmellingSalt.
+                if (!(gBattleMons[gBattlerTarget].status1 & STATUS1_ANY)) // If the opponent isn't suffering a non-volatile status ailment, move on.
                 {
                     ++gBattlescriptCurrInstr;
                 }
-                else
+                else if (gBattleMons[gBattlerTarget].status1 & STATUS1_ANY) // Otherwise, if they're suffering one...
                 {
-                    gBattleMons[gBattlerTarget].status1 &= ~(STATUS1_PARALYSIS);
-                    gActiveBattler = gBattlerTarget;
-                    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
-                    gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
+                    if (gCurrentMove == MOVE_SMELLING_SALT && (gBattleMons[gBattlerTarget].status1 & STATUS1_PARALYSIS))
+                    {
+                        // Let Smelling Salt heal them if they're paralyzed.
+                        gBattleMons[gBattlerTarget].status1 &= ~(STATUS1_PARALYSIS);
+                        gActiveBattler = gBattlerTarget;
+                        BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
+                        MarkBattlerForControllerExec(gActiveBattler);
+                        BattleScriptPush(gBattlescriptCurrInstr + 1);
+                        gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
+                    }
+                    if (gCurrentMove == MOVE_WAKE_UP_SLAP && (gBattleMons[gBattlerTarget].status1 & STATUS1_SLEEP))
+                    {
+                        // Let Wake Up Slap awake them if they're asleep.
+                        gBattleMons[gBattlerTarget].status1 &= ~(STATUS1_SLEEP);
+                        gActiveBattler = gBattlerTarget;
+                        BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
+                        MarkBattlerForControllerExec(gActiveBattler);
+                        BattleScriptPush(gBattlescriptCurrInstr + 1);
+                        gBattlescriptCurrInstr = BattleScript_OpponentWokeUp;
+                    }
                 }
                 break;
             case MOVE_EFFECT_ATK_DEF_DOWN: // SuperPower
