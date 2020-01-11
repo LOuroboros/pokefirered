@@ -5069,7 +5069,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BRINE] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_BRINE,
+        .effect = EFFECT_BRINE,
         .power = 65,
         .type = TYPE_WATER,
         .accuracy = 100,

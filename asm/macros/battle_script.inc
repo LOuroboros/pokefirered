@@ -1088,7 +1088,7 @@
 	.4byte \param0
 	.endm
 
-	.macro doubledamagedealtifdamaged
+	.macro doubledamagedealt
 	.byte 0xd6
 	.endm
 

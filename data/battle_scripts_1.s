@@ -238,6 +238,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectFlinchHitStatus
 	.4byte BattleScript_EffectWakeUpSlap
 	.4byte BattleScript_EffectHammerArm
+	.4byte BattleScript_EffectBrine
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -2423,7 +2424,7 @@ BattleScript_EffectRecycle::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectRevenge::
-	doubledamagedealtifdamaged
+	doubledamagedealt
 	goto BattleScript_EffectHit
 
 BattleScript_EffectBrickBreak::
@@ -2930,6 +2931,10 @@ BattleScript_EffectHammerArm::
 	printfromtable gStatDownStringIds
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectBrine::
+	doubledamagedealt
+	goto BattleScript_EffectHit
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER
