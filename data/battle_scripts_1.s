@@ -239,6 +239,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectWakeUpSlap
 	.4byte BattleScript_EffectHammerArm
 	.4byte BattleScript_EffectBrine
+	.4byte BattleScript_EffectFeint
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -2934,6 +2935,10 @@ BattleScript_EffectHammerArm::
 
 BattleScript_EffectBrine::
 	doubledamagedealt
+	goto BattleScript_EffectHit
+
+BattleScript_EffectFeint::
+	bypassprotections BS_ATTACKER
 	goto BattleScript_EffectHit
 
 BattleScript_FaintAttacker::

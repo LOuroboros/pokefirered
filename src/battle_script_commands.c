@@ -6272,6 +6272,10 @@ static void atk76_various(void)
         if (!IsFanfareTaskInactive())
             return;
         break;
+    case VARIOUS_BYPASS_PROTECTIONS:
+        gProtectStructs[gBattlerTarget].protected = 0;
+        gDisableStructs[gBattlerTarget].protectUses = 0;
+        break;
     }
     gBattlescriptCurrInstr += 3;
 }

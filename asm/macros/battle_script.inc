@@ -1299,6 +1299,10 @@
 	various \battler, 12
 	.endm
 
+	.macro bypassprotections battler:req
+	various \battler, VARIOUS_BYPASS_PROTECTIONS
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

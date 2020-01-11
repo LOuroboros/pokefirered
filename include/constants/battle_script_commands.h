@@ -75,12 +75,13 @@
 #define VARIOUS_CASE_4                          4
 #define VARIOUS_RESET_INTIMIDATE_TRACE_BITS     5
 #define VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP    6
-#define VARIOUS_RESET_PLAYER_FAINTED_FLAG                          7
+#define VARIOUS_RESET_PLAYER_FAINTED_FLAG       7
 #define VARIOUS_CASE_8                          8
 #define VARIOUS_RETURN_OPPONENT_MON1            9
 #define VARIOUS_RETURN_OPPONENT_MON2            10
 #define VARIOUS_CHECK_POKEFLUTE                 11
 #define VARIOUS_WAIT_FANFARE                    12
+#define VARIOUS_BYPASS_PROTECTIONS              13
 
 // atk80, dmg manipulation
 #define ATK80_DMG_CHANGE_SIGN                               0
