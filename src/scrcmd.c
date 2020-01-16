@@ -27,14 +27,13 @@
 #include "data.h"
 #include "field_specials.h"
 #include "constants/items.h"
-#include "script_pokemon_util_80A0058.h"
+#include "script_pokemon_util.h"
 #include "pokemon_storage_system.h"
 #include "party_menu.h"
 #include "money.h"
 #include "coins.h"
 #include "battle_setup.h"
 #include "shop.h"
-#include "script_pokemon_80F8.h"
 #include "slot_machine.h"
 #include "field_effect.h"
 #include "fieldmap.h"
@@ -464,7 +463,7 @@ bool8 ScrCmd_random(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_giveitem(struct ScriptContext *ctx)
+bool8 ScrCmd_additem(struct ScriptContext *ctx)
 {
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
     u32 quantity = VarGet(ScriptReadHalfword(ctx));
@@ -474,7 +473,7 @@ bool8 ScrCmd_giveitem(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_takeitem(struct ScriptContext *ctx)
+bool8 ScrCmd_removeitem(struct ScriptContext *ctx)
 {
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
     u32 quantity = VarGet(ScriptReadHalfword(ctx));
@@ -509,7 +508,7 @@ bool8 ScrCmd_checkitemtype(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_givepcitem(struct ScriptContext *ctx)
+bool8 ScrCmd_addpcitem(struct ScriptContext *ctx)
 {
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
     u16 quantity = VarGet(ScriptReadHalfword(ctx));
@@ -1798,7 +1797,7 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_givemoney(struct ScriptContext *ctx)
+bool8 ScrCmd_addmoney(struct ScriptContext *ctx)
 {
     u32 amount = ScriptReadWord(ctx);
     u8 ignore = ScriptReadByte(ctx);
@@ -1808,7 +1807,7 @@ bool8 ScrCmd_givemoney(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_takemoney(struct ScriptContext *ctx)
+bool8 ScrCmd_removemoney(struct ScriptContext *ctx)
 {
     u32 amount = ScriptReadWord(ctx);
     u8 ignore = ScriptReadByte(ctx);
@@ -2203,22 +2202,22 @@ bool8 ScrCmd_checkcoins(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_givecoins(struct ScriptContext *ctx)
+bool8 ScrCmd_addcoins(struct ScriptContext *ctx)
 {
     u16 coins = VarGet(ScriptReadHalfword(ctx));
 
-    if (GiveCoins(coins) == TRUE)
+    if (AddCoins(coins) == TRUE)
         gSpecialVar_Result = 0;
     else
         gSpecialVar_Result = 1;
     return FALSE;
 }
 
-bool8 ScrCmd_takecoins(struct ScriptContext *ctx)
+bool8 ScrCmd_removecoins(struct ScriptContext *ctx)
 {
     u16 coins = VarGet(ScriptReadHalfword(ctx));
 
-    if (TakeCoins(coins) == TRUE)
+    if (RemoveCoins(coins) == TRUE)
         gSpecialVar_Result = 0;
     else
         gSpecialVar_Result = 1;

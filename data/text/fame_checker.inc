@@ -1373,14 +1373,14 @@ gFameCheckerFlavorTextOriginObjectName_Giovanni4:: @ 81B145F
 gFameCheckerFlavorTextOriginObjectName_Giovanni5:: @ 81B1463
 	.string "GIDEON$"
 
-gUnknown_81B146A:: @ 81B146A
+PokemonJournal_Text_SpecialFeatureBrock:: @ 81B146A
 	.string "POKéMON JOURNAL\p"
 	.string "Special Feature: PEWTER GYM\n"
 	.string "LEADER BROCK!\p"
 	.string "BROCK rarely laughs, but is said to\n"
 	.string "be unable to stop if he starts.$"
 
-gUnknown_81B14E8:: @ 81B14E8
+PokemonJournal_Text_SpecialFeatureMisty:: @ 81B14E8
 	.string "POKéMON JOURNAL\p"
 	.string "Special Feature: CERULEAN GYM\n"
 	.string "LEADER MISTY!\p"

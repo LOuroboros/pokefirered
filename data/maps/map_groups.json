@@ -45,11 +45,11 @@
     "gMapGroup42"
   ],
   "gMapGroup0": [
-    "UnknownMap_00_00",
-    "UnknownMap_00_01",
-    "UnknownMap_00_02",
-    "UnknownMap_00_03",
-    "UnknownMap_00_04"
+    "BattleColosseum_2P",
+    "TradeCenter",
+    "RecordCenter",
+    "BattleColosseum_4P",
+    "UnionRoom"
   ],
   "gMapGroup1": [
     "ViridianForest",

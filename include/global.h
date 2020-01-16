@@ -296,8 +296,6 @@ struct SaveBlock2
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
 
-#define PARTY_SIZE 6
-
 struct SecretBaseParty
 {
     u32 personality[PARTY_SIZE];
@@ -407,7 +405,7 @@ struct UnkMauvilleOldManStruct
     u8 unk_2D95;
     /*0x2D96*/ u16 mauvilleOldMan_ecArray[6];
     /*0x2DA2*/ u16 mauvilleOldMan_ecArray2[6];
-    /*0x2DAE*/ u8 playerName[8];
+    /*0x2DAE*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     /*0x2DB6*/ u8 filler_2DB6[0x3];
     /*0x2DB9*/ u8 playerTrainerId[4];
     u8 unk_2DBD;
@@ -715,6 +713,12 @@ struct TrainerRematchState
     u8 rematches[100];
 };
 
+struct TrainerNameRecord
+{
+    u32 trainerId;
+    u8 trainerName[PLAYER_NAME_LENGTH];
+};
+
 struct SaveBlock1
 {
     /*0x0000*/ struct Coords16 pos;
@@ -769,7 +773,8 @@ struct SaveBlock1
     /*0x3A18*/ u8 seen2[DEX_FLAGS_NO];
     /*0x3A4C*/ u8 rivalName[PLAYER_NAME_LENGTH];
     /*0x3A54*/ struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS];
-    /*0x3A94*/ u8 filler3A94[0x204];
+    /*0x3A94*/ u8 filler3A94[0x114];
+    /*0x3BA8*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C98*/ struct DaycareMon route5DayCareMon;
     /*0x3D24*/ u8 filler3D24[0x10];
     /*0x3D34*/ u32 unkArrayIdx;
