@@ -86,7 +86,6 @@ static void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 mo
 static void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon);
 static u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
 static u8 GetLevelFromMonExp(struct Pokemon *mon);
-static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon);
 
 #include "data/battle_moves.h"
 
@@ -2010,30 +2009,6 @@ void sub_803E23C(struct Pokemon *mon, struct BattleTowerPokemon *dest)
     dest->abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
     dest->personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
     GetMonData(mon, MON_DATA_NICKNAME, dest->nickname);
-}
-
-static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
-{
-    u16 checksum = 0;
-    union PokemonSubstruct *substruct0 = GetSubstruct(boxMon, 0);
-    union PokemonSubstruct *substruct1 = GetSubstruct(boxMon, 1);
-    union PokemonSubstruct *substruct2 = GetSubstruct(boxMon, 2);
-    union PokemonSubstruct *substruct3 = GetSubstruct(boxMon, 3);
-    s32 i;
-
-    for (i = 0; i < 6; i++)
-        checksum += substruct0->raw[i];
-
-    for (i = 0; i < 6; i++)
-        checksum += substruct1->raw[i];
-
-    for (i = 0; i < 6; i++)
-        checksum += substruct2->raw[i];
-
-    for (i = 0; i < 6; i++)
-        checksum += substruct3->raw[i];
-
-    return checksum;
 }
 
 #define CALC_STAT(base, iv, ev, statIndex, field)               \
