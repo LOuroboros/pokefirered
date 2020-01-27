@@ -1,47 +1,47 @@
-gUnknown_817DABB:: @ 817DABB
+ViridianCity_Text_CanCarryMonsAnywhere:: @ 817DABB
     .string "Those Poké Balls at your waist!\n"
     .string "You have Pokémon, don't you?\p"
     .string "It's great that you can carry and\n"
     .string "use Pokémon anytime, anywhere.$"
 
-gUnknown_817DB39:: @ 817DB39
+ViridianCity_Text_GymClosedWonderWhoLeaderIs:: @ 817DB39
     .string "This Pokémon Gym is always closed.\p"
     .string "I wonder who the Leader is?$"
 
-gUnknown_817DB78:: @ 817DB78
+ViridianCity_Text_ViridiansGymLeaderReturned:: @ 817DB78
     .string "Viridian Gym's Leader returned!$"
 
-gUnknown_817DB98:: @ 817DB98
+ViridianCity_Text_WantToKnowAboutCaterpillarMons:: @ 817DB98
     .string "You want to know about the two\n"
     .string "kinds of caterpillar Pokémon?$"
 
-gUnknown_817DBD5:: @ 817DBD5
+ViridianCity_Text_OhOkayThen:: @ 817DBD5
     .string "Oh, okay then!$"
 
-gUnknown_817DBE4:: @ 817DBE4
+ViridianCity_Text_ExplainCaterpieWeedle:: @ 817DBE4
     .string "Caterpie has no poison,\n"
     .string "but Weedle does.\p"
     .string "Watch that your Pokémon aren't\n"
     .string "stabbed by Weedle's POISON STING.$"
 
-gUnknown_817DC4E:: @ 817DC4E
+ViridianCity_Text_GrandpaHasntHadCoffeeYet:: @ 817DC4E
     .string "Oh, Grandpa!\n"
     .string "Don't be so mean!\p"
     .string "I'm so sorry.\n"
     .string "He hasn't had his coffee yet.$"
 
-gUnknown_817DC99:: @ 817DC99
+ViridianCity_Text_GoShoppingInPewterOccasionally:: @ 817DC99
     .string "I go shopping in Pewter City\n"
     .string "occasionally.\p"
     .string "I have to take the winding trail in\n"
     .string "Viridian Forest when I go.$"
 
-gUnknown_817DD03:: @ 817DD03
+ViridianCity_Text_ThisIsPrivateProperty:: @ 817DD03
     .string "I absolutely forbid you from\n"
     .string "going through here!\p"
     .string "This is private property!$"
 
-gUnknown_817DD4E:: @ 817DD4E
+ViridianCity_Text_ShowYouHowToCatchMons:: @ 817DD4E
     .string "Well, now, I've had my coffee, and\n"
     .string "that's what I need to get going!\p"
     .string "Hm?\n"
@@ -58,18 +58,18 @@ gUnknown_817DD4E:: @ 817DD4E
     .string "I suppose I had better show you\n"
     .string "then!$"
 
-gUnknown_817DE9B:: @ 817DE9B
+ViridianCity_Text_ThatWasEducationalTakeThis:: @ 817DE9B
     .string "There! Now tell me, that was\n"
     .string "educational, was it not?\p"
     .string "And here, take this, too.$"
 
-gUnknown_817DEEB:: @ 817DEEB
+ViridianCity_Text_WatchThatToLearnBasics:: @ 817DEEB
     .string "If there's something you don't\n"
     .string "understand, watch that.\p"
     .string "It will teach you about the basics\n"
     .string "of being a Pokémon Trainer.$"
 
-gUnknown_817DF61:: @ 817DF61
+ViridianCity_Text_WeakenMonsFirstToCatch:: @ 817DF61
     .string "Well, now, I've had my coffee, and\n"
     .string "that's what I need to get going!\p"
     .string "But I made it too strong.\n"
@@ -79,7 +79,7 @@ gUnknown_817DF61:: @ 817DF61
     .string "At first, focus on weakening the\n"
     .string "Pokémon before trying to catch it.$"
 
-gUnknown_817E046:: @ 817E046
+ViridianCity_Text_HowsTeachyTVHelping:: @ 817E046
     .string "Well, now, I've had my coffee, and\n"
     .string "that's what I need to get going!\p"
     .string "But I made it too strong.\n"
@@ -87,39 +87,38 @@ gUnknown_817E046:: @ 817E046
     .string "Incidentally, is my old Teachy TV\n"
     .string "helping you?$"
 
-gUnknown_817E0EA:: @ 817E0EA
+ViridianCity_Text_MyGrandsonOnTheShow:: @ 817E0EA
     .string "Wahaha!\n"
     .string "It's my grandson on the show!\p"
     .string "Since he's the one doing the\n"
     .string "teaching, you're bound to learn.$"
 
-gUnknown_817E14E:: @ 817E14E
+ViridianCity_Text_TooBusyForTeachyTV:: @ 817E14E
     .string "Hm… You're too busy to not even\n"
     .string "have the time for Teachy TV…\p"
     .string "Time is money, and neither should\n"
     .string "be ill spent…$"
 
-gUnknown_817E1BB:: @ 817E1BB
+ViridianCity_Text_CitySign:: @ 817E1BB
     .string "Viridian City \n"
     .string "The Eternally Green Paradise$"
 
-gUnknown_817E1E7:: @ 817E1E7
+ViridianCity_Text_CatchMonsForEasierBattles:: @ 817E1E7
     .string "Trainer Tips\p"
     .string "Catch Pokémon and expand your\n"
     .string "collection.\p"
     .string "The more you have, the easier it\n"
     .string "is to battle.$"
 
-gUnknown_817E24D:: @ 817E24D
+ViridianCity_Text_MovesLimitedByPP:: @ 817E24D
     .string "Trainer Tips\p"
     .string "The battle moves of Pokémon are\n"
     .string "limited by their Power Points (PP).\p"
     .string "To replenish PP, rest your tired\n"
     .string "Pokémon at a Pokémon Center.$"
 
-gUnknown_817E2DB:: @ 817E2DB
+ViridianCity_Text_GymSign:: @ 817E2DB
     .string "Viridian City Pokémon Gym$"
 
-gUnknown_817E2F5:: @ 817E2F5
+ViridianCity_Text_GymDoorsAreLocked:: @ 817E2F5
     .string "Viridian Gym's doors are locked…$"
-

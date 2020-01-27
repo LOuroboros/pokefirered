@@ -1,10 +1,10 @@
-ViridianCity_House2_EventScript_1ACD65:: @ 81ACD65
+ViridianCity_House2_EventScript_PokemonJournal:: @ 81ACD65
 	lock
 	faceplayer
 	famechecker FAMECHECKER_OAK, 3
 	famechecker FAMECHECKER_DAISY, 3
 	textcolor 3
-	msgbox gUnknown_81B1AB9
+	msgbox PokemonJournal_Text_SpecialFeatureProfOak
 	release
 	end
 
@@ -14,7 +14,7 @@ EventScript_1ACD8D:: @ 81ACD8D
 	famechecker FAMECHECKER_DAISY, 1
 	famechecker FAMECHECKER_OAK, 4
 	textcolor 3
-	msgbox gUnknown_81B1AB9
+	msgbox PokemonJournal_Text_SpecialFeatureProfOak
 	release
 	end
 
@@ -23,7 +23,7 @@ EventScript_1ACDB5:: @ 81ACDB5
 	faceplayer
 	famechecker FAMECHECKER_DAISY, 4
 	textcolor 3
-	msgbox gUnknown_81B1AB9
+	msgbox PokemonJournal_Text_SpecialFeatureProfOak
 	release
 	end
 
@@ -84,11 +84,11 @@ CeruleanCity_PokemonCenter_1F_EventScript_PokemonJournalMisty:: @ 81ACE68
 	release
 	end
 
-VermilionCity_PokemonCenter_1F_EventScript_1ACE83:: @ 81ACE83
+VermilionCity_PokemonCenter_1F_EventScript_PokemonJournalLtSurge:: @ 81ACE83
 	lockall
 	famechecker FAMECHECKER_LTSURGE, 5
 	textcolor 3
-	msgbox gUnknown_81B1558
+	msgbox PokemonJournal_Text_SpecialFeatureLtSurge
 	releaseall
 	end
 
@@ -101,20 +101,20 @@ CeladonCity_Condominiums_2F_EventScript_1ACE9D:: @ 81ACE9D
 	release
 	end
 
-FuchsiaCity_Building1_EventScript_1ACEB8:: @ 81ACEB8
+FuchsiaCity_WardensHouse_EventScript_PokemonJournalKoga:: @ 81ACEB8
 	lock
 	faceplayer
 	famechecker FAMECHECKER_KOGA, 4
 	textcolor 3
-	msgbox gUnknown_81B16A8
+	msgbox PokemonJournal_Text_SpecialFeatureKoga
 	release
 	end
 
-SafariZone_Building3_EventScript_1ACED3:: @ 81ACED3
+SafariZone_North_RestHouse_EventScript_BaldingMan:: @ 81ACED3
 	lock
 	faceplayer
 	famechecker FAMECHECKER_KOGA, 5
-	msgbox Text_177C47
+	msgbox SafariZone_West_Text_KogaPatrolsSafariEverySoOften
 	release
 	end
 
@@ -127,11 +127,11 @@ SaffronCity_PokemonCenter_1F_EventScript_1ACEEC:: @ 81ACEEC
 	release
 	end
 
-CinnabarIsland_Gym_EventScript_1ACF07:: @ 81ACF07
+CinnabarIsland_Gym_EventScript_BlaineFujiPhoto:: @ 81ACF07
 	lockall
 	famechecker FAMECHECKER_BLAINE, 4
 	famechecker FAMECHECKER_MRFUJI, 4
-	msgbox Text_199E8A
+	msgbox CinnabarIsland_Gym_Text_PhotoOfBlaineAndFuji
 	releaseall
 	end
 
@@ -252,20 +252,20 @@ IndigoPlateau_PokemonCenter_1F_EventScript_1AD087:: @ 81AD087
 	release
 	end
 
-LavenderTown_PokemonCenter_1F_EventScript_1AD0A0:: @ 81AD0A0
+LavenderTown_PokemonCenter_1F_EventScript_BaldingMan:: @ 81AD0A0
 	lock
 	faceplayer
 	famechecker FAMECHECKER_MRFUJI, 3
-	msgbox Text_19358E
+	msgbox LavenderTown_PokemonCenter_1F_Text_HearMrFujiNotFromAroundHere
 	release
 	end
 
-CinnabarIsland_PokemonCenter_1F_EventScript_1AD0B9:: @ 81AD0B9
+CinnabarIsland_PokemonCenter_1F_EventScript_PokemonJournalMrFuji:: @ 81AD0B9
 	lock
 	faceplayer
 	famechecker FAMECHECKER_MRFUJI, 5
 	textcolor 3
-	msgbox gUnknown_81B1BD1
+	msgbox PokemonJournal_Text_SpecialFeatureMrFuji
 	release
 	end
 

@@ -294,20 +294,20 @@ static void Task_ShopMenu(u8 taskId)
 static void Task_HandleShopMenuBuy(u8 taskId)
 {
     SetWordTaskArg(taskId, 0xE, (u32)CB2_InitBuyMenu);
-    fade_screen(1, 0);
+    FadeScreen(1, 0);
     gTasks[taskId].func = Task_GoToBuyOrSellMenu;
 }
 
 static void Task_HandleShopMenuSell(u8 taskId)
 {
     SetWordTaskArg(taskId, 0xE, (u32)CB2_GoToSellMenu);
-    fade_screen(1, 0);
+    FadeScreen(1, 0);
     gTasks[taskId].func = Task_GoToBuyOrSellMenu;    
 }
 
 static void CB2_GoToSellMenu(void)
 {
-    GoToBagMenu(2, POCKET_POKE_BALLS, CB2_ReturnToField);
+    GoToBagMenu(ITEMMENULOCATION_SHOP, OPEN_BAG_LAST, CB2_ReturnToField);
     gFieldCallback = MapPostLoadHook_ReturnToShopMenu;
 }
 
@@ -1127,11 +1127,11 @@ static void RecordQuestLogItemPurchase(void)
 
     v = gShopMenuHistory[0].unkA;
     if (v != 0)
-        sub_8113550(v + 0x24, (const u16 *)&gShopMenuHistory[0]);
+        SetQuestLogEvent(v + QL_EVENT_USED_POKEMART, (const u16 *)&gShopMenuHistory[0]);
     
     v = gShopMenuHistory[1].unkA;
     if (v != 0)
-        sub_8113550(v + 0x24, (const u16 *)&gShopMenuHistory[1]);
+        SetQuestLogEvent(v + QL_EVENT_USED_POKEMART, (const u16 *)&gShopMenuHistory[1]);
 }
 
 void CreatePokemartMenu(const u16 *itemsForSale)

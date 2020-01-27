@@ -5,10 +5,24 @@
 
 #define CHAR_SPACE          0x00
 #define CHAR_0              0xA1
+#define CHAR_1              0xA2
+#define CHAR_2              0xA3
+#define CHAR_3              0xA4
+#define CHAR_4              0xA5
+#define CHAR_5              0xA6
+#define CHAR_6              0xA7
+#define CHAR_7              0xA8
+#define CHAR_8              0xA9
+#define CHAR_9              0xAA
+#define CHAR_EXCL_MARK      0xAB
 #define CHAR_QUESTION_MARK  0xAC
 #define CHAR_PERIOD         0xAD
 #define CHAR_HYPHEN         0xAE
 #define CHAR_ELLIPSIS       0xB0
+#define CHAR_DBL_QUOT_LEFT  0xB1
+#define CHAR_DBL_QUOT_RIGHT 0xB2
+#define CHAR_SGL_QUOT_LEFT  0xB3
+#define CHAR_SGL_QUOT_RIGHT 0xB4
 #define CHAR_MALE           0xB5
 #define CHAR_FEMALE         0xB6
 #define CHAR_CURRENCY       0xB7
@@ -94,6 +108,21 @@
 #define TEXT_DYNAMIC_COLOR_4    0xD // Usually aquamarine
 #define TEXT_DYNAMIC_COLOR_5    0xE // Usually blue-green
 #define TEXT_DYNAMIC_COLOR_6    0xF // Usually cerulean
+
+#define PLACEHOLDER_ID_UNKNOWN       0x0
+#define PLACEHOLDER_ID_PLAYER        0x1
+#define PLACEHOLDER_ID_STRING_VAR_1  0x2
+#define PLACEHOLDER_ID_STRING_VAR_2  0x3
+#define PLACEHOLDER_ID_STRING_VAR_3  0x4
+#define PLACEHOLDER_ID_KUN           0x5
+#define PLACEHOLDER_ID_RIVAL         0x6
+#define PLACEHOLDER_ID_VERSION       0x7
+#define PLACEHOLDER_ID_MAGMA         0x8
+#define PLACEHOLDER_ID_AQUA          0x9
+#define PLACEHOLDER_ID_MAXIE         0xA
+#define PLACEHOLDER_ID_ARCHIE        0xB
+#define PLACEHOLDER_ID_GROUDON       0xC
+#define PLACEHOLDER_ID_KYOGRE        0xD
 
 // battle placeholders are located in battle_message.h
 #define EXT_CTRL_CODE_COLOR     0x1

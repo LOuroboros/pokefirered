@@ -469,7 +469,7 @@ bool8 ScrCmd_additem(struct ScriptContext *ctx)
     u32 quantity = VarGet(ScriptReadHalfword(ctx));
 
     gSpecialVar_Result = AddBagItem(itemId, (u8)quantity);
-    sub_809A824(itemId);
+    TrySetObtainedItemQuestLogEvent(itemId);
     return FALSE;
 }
 
@@ -630,7 +630,7 @@ static bool8 IsPaletteNotActive(void)
 
 bool8 ScrCmd_fadescreen(struct ScriptContext *ctx)
 {
-    fade_screen(ScriptReadByte(ctx), 0);
+    FadeScreen(ScriptReadByte(ctx), 0);
     SetupNativeScript(ctx, IsPaletteNotActive);
     return TRUE;
 }
@@ -640,7 +640,7 @@ bool8 ScrCmd_fadescreenspeed(struct ScriptContext *ctx)
     u8 mode = ScriptReadByte(ctx);
     u8 speed = ScriptReadByte(ctx);
 
-    fade_screen(mode, speed);
+    FadeScreen(mode, speed);
     SetupNativeScript(ctx, IsPaletteNotActive);
     return TRUE;
 }
@@ -929,7 +929,7 @@ bool8 ScrCmd_playbgm(struct ScriptContext *ctx)
     u16 songId = ScriptReadHalfword(ctx);
     bool8 val = ScriptReadByte(ctx);
 
-    if (gUnknown_203ADFA == 2 || gUnknown_203ADFA == 3)
+    if (gQuestLogState == 2 || gQuestLogState == 3)
         return FALSE;
     if (val == TRUE)
         Overworld_SetSavedMusic(songId);
@@ -945,7 +945,7 @@ bool8 ScrCmd_savebgm(struct ScriptContext *ctx)
 
 bool8 ScrCmd_fadedefaultbgm(struct ScriptContext *ctx)
 {
-    if (gUnknown_203ADFA == 2 || gUnknown_203ADFA == 3)
+    if (gQuestLogState == 2 || gQuestLogState == 3)
         return FALSE;
     Overworld_ChangeMusicToDefault();
     return FALSE;
@@ -954,7 +954,7 @@ bool8 ScrCmd_fadedefaultbgm(struct ScriptContext *ctx)
 bool8 ScrCmd_fadenewbgm(struct ScriptContext *ctx)
 {
     u16 music = ScriptReadHalfword(ctx);
-    if (gUnknown_203ADFA == 2 || gUnknown_203ADFA == 3)
+    if (gQuestLogState == 2 || gQuestLogState == 3)
         return FALSE;
     Overworld_ChangeMusicTo(music);
     return FALSE;
@@ -964,7 +964,7 @@ bool8 ScrCmd_fadeoutbgm(struct ScriptContext *ctx)
 {
     u8 speed = ScriptReadByte(ctx);
 
-    if (gUnknown_203ADFA == 2 || gUnknown_203ADFA == 3)
+    if (gQuestLogState == 2 || gQuestLogState == 3)
         return FALSE;
     if (speed != 0)
         FadeOutBGMTemporarily(4 * speed);
@@ -978,7 +978,7 @@ bool8 ScrCmd_fadeinbgm(struct ScriptContext *ctx)
 {
     u8 speed = ScriptReadByte(ctx);
 
-    if (gUnknown_203ADFA == 2 || gUnknown_203ADFA == 3)
+    if (gQuestLogState == 2 || gQuestLogState == 3)
         return FALSE;
     if (speed != 0)
         FadeInBGM(4 * speed);
@@ -1064,7 +1064,7 @@ bool8 ScrCmd_addobject(struct ScriptContext *ctx)
 {
     u16 objectId = VarGet(ScriptReadHalfword(ctx));
 
-    show_sprite(objectId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    TrySpawnObjectEvent(objectId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
     return FALSE;
 }
 
@@ -1074,7 +1074,7 @@ bool8 ScrCmd_addobject_at(struct ScriptContext *ctx)
     u8 mapGroup = ScriptReadByte(ctx);
     u8 mapNum = ScriptReadByte(ctx);
 
-    show_sprite(objectId, mapNum, mapGroup);
+    TrySpawnObjectEvent(objectId, mapNum, mapGroup);
     return FALSE;
 }
 
@@ -1328,7 +1328,7 @@ static bool8 WaitForAorBPress(void)
         sub_8069998(r4);
         if (r4)
         {
-            if (gUnknown_203ADFA != 2)
+            if (gQuestLogState != 2)
             {
                 sub_80699F8();
                 if (r4 < 9 || r4 > 10)
@@ -1342,7 +1342,7 @@ static bool8 WaitForAorBPress(void)
             }
         }
     }
-    if (sub_8112CAC() == 1 || gUnknown_203ADFA == 2)
+    if (sub_8112CAC() == 1 || gQuestLogState == 2)
     {
         if (gUnknown_20370AC == 120)
             return TRUE;
@@ -1407,7 +1407,7 @@ bool8 ScrCmd_waitbuttonpress(struct ScriptContext *ctx)
 {
     gUnknown_3005070 = ctx;
 
-    if (sub_8112CAC() == 1 || gUnknown_203ADFA == 2)
+    if (sub_8112CAC() == 1 || gQuestLogState == 2)
         gUnknown_20370AC = 0;
     SetupNativeScript(ctx, WaitForAorBPress);
     return TRUE;

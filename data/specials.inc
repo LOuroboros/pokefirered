@@ -132,8 +132,8 @@ gSpecials:: @ 815FD60
 	def_special GetMagikarpSizeRecordInfo
 	def_special CompareMagikarpSize
 	def_special NameRaterWasNicknameChanged
-	def_special TV_CopyNicknameToStringVar1AndEnsureTerminated
-	def_special TV_CheckMonOTIDEqualsPlayerID
+	def_special Special_GetMonNickname
+	def_special Special_IsMonOTIDNotPlayers
 	def_special nullsub_75
 	def_special nullsub_75
 	def_special BufferRandomHobbyOrLifestyleString
@@ -171,14 +171,14 @@ gSpecials:: @ 815FD60
 	def_special nullsub_75
 	def_special nullsub_75
 	def_special nullsub_75
-	def_special ShouldMoveSaffronFanClubMember
-	def_special GetNumMovedSaffronFanClubMembers
-	def_special BufferStreakTrainerText
-	def_special sub_8113064
-	def_special UpdateMovedSaffronFanClubMembers
-	def_special sub_8113510
-	def_special sub_81130A8
-	def_special sub_8113530
+	def_special Special_IsFanClubMemberFanOfPlayer
+	def_special Special_GetNumFansOfPlayerInTrainerFanClub
+	def_special Special_BufferFanClubTrainerName
+	def_special Special_TryLoseFansFromPlayTimeAfterLinkBattle
+	def_special Special_TryLoseFansFromPlayTime
+	def_special Special_SetPlayerGotFirstFans
+	def_special Special_UpdateTrainerFanClubGameClear
+	def_special Special_TryGainNewFanFromCounter
 	def_special ScrSpecial_RockSmashWildEncounter
 	def_special nullsub_75
 	def_special nullsub_75
@@ -194,7 +194,7 @@ gSpecials:: @ 815FD60
 	def_special RejectEggFromDayCare
 	def_special GiveEggFromDaycare
 	def_special SetDaycareCompatibilityString
-	def_special GetSelectedMonNickAndSpecies
+	def_special GetSelectedMonNicknameAndSpecies
 	def_special StoreSelectedPokemonInDaycare
 	def_special ChooseSendDaycareMon
 	def_special ShowDaycareLevelMenu
@@ -344,7 +344,7 @@ gSpecials:: @ 815FD60
 	def_special nullsub_75
 	def_special nullsub_75
 	def_special HasAllKantoMons
-	def_special Special_BufferMonOTNameAndCompareToPlayerName
+	def_special Special_IsMonOTNameNotPlayers
 	def_special nullsub_75
 	def_special Dummy_TryEnableBravoTrainerBattleTower
 	def_special GetNameOfEnigmaBerryInPlayerParty
@@ -369,7 +369,7 @@ gSpecials:: @ 815FD60
 	def_special ChangeBoxPokemonNickname
 	def_special Special_UpdateTrainerCardPhotoIcons
 	def_special Special_StickerLadyGetBragFlags
-	def_special sub_80CC524
+	def_special SetUsedPkmnCenterQuestLogEvent
 	def_special IsWirelessAdapterConnected
 	def_special TryBecomeLinkLeader
 	def_special TryJoinLinkGroup
@@ -387,7 +387,7 @@ gSpecials:: @ 815FD60
 	def_special IsThereMonInRoute5Daycare
 	def_special GetNumLevelsGainedForRoute5DaycareMon
 	def_special TakePokemonFromRoute5Daycare
-	def_special ScrSpecial_SeagallopFerry
+	def_special DoSeagallopFerryScene
 	def_special Special_PlayerPartyContainsSpecies
 	def_special Special_SetSomeVariable
 	def_special HelpSystem_BackupSomeVariable
@@ -399,7 +399,7 @@ gSpecials:: @ 815FD60
 	def_special sub_811390C
 	def_special Special_GetMartClerkObjectId
 	def_special Special_BattleCardAction
-	def_special sub_8110AB4
+	def_special Special_GetQuestLogState
 	def_special sub_8112364
 	def_special Special_GetMENewsJisanItemAndState
 	def_special GetPCBoxToSendMon
@@ -433,11 +433,11 @@ gSpecials:: @ 815FD60
 	def_special ShowDodrioBerryPickingRecords
 	def_special Special_DrawSeagallopDestinationMenu
 	def_special Special_GetSelectedSeagallopDestination
-	def_special sub_8147500
+	def_special GetSeagallopNumber
 	def_special GetPlayerFacingDirection
 	def_special DoDeoxysRockInteraction
 	def_special Special_SetDeoxysTriangleObjectPal
-	def_special sub_8147594
+	def_special IsPlayerLeftOfVermilionSailor
 	def_special Special_BadEggInParty
 	def_special sub_815D834
 	def_special HasAllMons

@@ -411,7 +411,7 @@ gOtherText_Use::
 gOtherText_Toss::
 	.string "TOSS$"
 
-gUnknown_84161A9::
+gOtherText_Register::
 	.string "REGISTER$"
 
 gOtherText_Give::
@@ -420,7 +420,7 @@ gOtherText_Give::
 gUnknown_84161B7::
 	.string "けってい$"
 
-gUnknown_84161BC::
+gOtherText_Walk::
 	.string "WALK$"
 
 gFameCheckerText_Cancel:: @ 84161C1
@@ -447,16 +447,16 @@ gText_Take::
 gText_Store::
 	.string "STORE$"
 
-gUnknown_84161E9::
+gOtherText_Check::
 	.string "CHECK$"
 
 gUnknown_84161EF:: @ 84161EF
 	.string "NONE$"
 
-gUnknown_84161F4::
+gOtherText_Open::
 	.string "OPEN$"
 
-gUnknown_84161F9::
+gOtherText_Deselect::
 	.string "DESELECT$"
 
 gUnknown_8416202:: @ 8416202
@@ -555,19 +555,19 @@ gUnknown_84162BD:: @ 84162BD
 gText_Coins:: @ 84162C4
 	.string "{STR_VAR_1} COINS$"
 
-gUnknown_84162CD:: @ 0x84162CD
+gText_Items2:: @ 0x84162CD
 	.string "ITEMS$"
 
-gUnknown_84162D3:: @ 0x84162D3
+gText_PokeBalls2:: @ 0x84162D3
 	.string "POKé BALLS$"
 
-gUnknown_84162DE:: @ 0x84162DE
+gText_KeyItems2:: @ 0x84162DE
 	.string "KEY ITEMS$"
 
 gText_DepositItem:: @ 84162E8
 	.string "DEPOSIT ITEM$"
 
-gUnknown_84162F5:: @ 84162F5
+gText_CloseBag:: @ 84162F5
 	.string "CLOSE BAG$"
 
 gOtherText_StrVar1:: @ 84162FF
@@ -577,7 +577,7 @@ gText_IsSelected:: @ 8416301
 	.string " is\n"
 	.string "selected.$"
 
-gUnknown_841630F:: @ 841630F
+gText_CantWriteMailHere:: @ 841630F
 	.string "You can't write\n"
 	.string "MAIL here.$"
 
@@ -596,15 +596,15 @@ gText_TheStrVar1CantBeHeldHere:: @ 8416374
 	.string "The {STR_VAR_1} can't be held\n"
 	.string "here.$"
 
-gUnknown_841638F:: @ 841638F
+gText_DepositHowManyStrVars1:: @ 841638F
 	.string "Deposit how many\n"
 	.string "{STR_VAR_1}(s)?$"
 
-gUnknown_84163A7:: @ 84163A7
+gText_DepositedStrVar2StrVar1s:: @ 84163A7
 	.string "Deposited {STR_VAR_2}\n"
 	.string "{STR_VAR_1}(s).$"
 
-gUnknown_84163BB:: @ 84163BB
+gText_NoRoomToStoreItems:: @ 84163BB
 	.string "There's no room to\n"
 	.string "store items.$"
 
@@ -1356,10 +1356,10 @@ gText_Withdraw::
 gText_ReturnToPC:: @ 84178BE
 	.string "Return to the PC.$"
 
-gUnknown_84178D0:: @ 84178D0
+gText_LtSurge:: @ 84178D0
 	.string "LT. SURGE$"
 
-gUnknown_84178DA:: @ 84178DA
+gText_Koga:: @ 84178DA
 	.string "KOGA$"
 
 gUnknown_84178DF:: @ 0x84178DF
@@ -2435,7 +2435,7 @@ gUnknown_8418BF3:: @ 0x8418BF3
 gUnknown_8418C12:: @ 0x8418C12
 	.string "ポケモン リ-グ$"
 
-gUnknown_8418C1B:: @ 8418C1B
+gText_PokemonCenter:: @ 8418C1B
 	.string "POKéMON CENTER$"
 
 gUnknown_8418C2A:: @ 8418C2A
@@ -2465,14 +2465,14 @@ gUnknown_8418C62:: @ 0x8418C62
 gUnknown_8418C6F:: @ 0x8418C6F
 	.string "もう これいじょう たべない みたい‥$"
 
-gUnknown_8418C83:: @ 8418C83
+gText_SaveFailedScreen_CheckingBackupMemory:: @ 8418C83
 	.string "Save failed.\n"
 	.string "Checking the backup memory‥\n"
 	.string "Please wait.\n"
 	.string "“Time required:\n"
 	.string "about 1 minute”$"
 
-gUnknown_8418CD9:: @ 8418CD9
+gText_SaveFailedScreen_BackupMemoryDamaged:: @ 8418CD9
 	.string "The backup memory is damaged or\n"
 	.string "the game's battery has run dry.\n"
 	.string "The game can be played, but its\n"
@@ -2493,7 +2493,7 @@ gUnknown_8418DC9:: @ 0x8418DC9
 	.string "{COLOR RED}“このまま ぼうけんをつづけることは できません\n"
 	.string "タイトルに もどります”$"
 
-gUnknown_8418E09:: @ 8418E09
+gText_SaveFailedScreen_SaveCompleted:: @ 8418E09
 	.string "Save completed.\n"
 	.string "“Please press the A Button.”$"
 
@@ -3093,40 +3093,40 @@ gUnknown_841B32E:: @ 841B32E
 	.string "{DYNAMIC 0x00} learned\n"
 	.string "{DYNAMIC 0x01}!$"
 
-gUnknown_841B33D:: @ 0x841B33D
+gText_Upper:: @ 0x841B33D
 	.string "UPPER$"
 
-gUnknown_841B343:: @ 0x841B343
+gText_Lower:: @ 0x841B343
 	.string "lower$"
 
-gUnknown_841B349:: @ 0x841B349
+gText_Others:: @ 0x841B349
 	.string "OTHERS$"
 
-gUnknown_841B350:: @ 0x841B350
+gText_Symbols:: @ 0x841B350
 	.string "SYMBOLS$"
 
-gUnknown_841B358:: @ 0x841B358
+gText_Register2:: @ 0x841B358
 	.string "REGISTER$"
 
-gUnknown_841B361:: @ 0x841B361
+gText_Exit:: @ 0x841B361
 	.string "EXIT$"
 
-gUnknown_841B366:: @ 0x841B366
+gText_QuitChatting:: @ 0x841B366
 	.string "Quit chatting?$"
 
-gUnknown_841B375:: @ 0x841B375
+gText_RegisterTextWhere:: @ 0x841B375
 	.string "Register text where?$"
 
-gUnknown_841B38A:: @ 0x841B38A
+gText_RegisterTextHere:: @ 0x841B38A
 	.string "Register text here?$"
 
-gUnknown_841B39E:: @ 0x841B39E
+gText_InputText:: @ 0x841B39E
 	.string "Input text.$"
 
-gUnknown_841B3AA:: @ 841B3AA
+gText_F700JoinedChat:: @ 841B3AA
 	.string "{DYNAMIC 0x00} joined the chat!$"
 
-gUnknown_841B3BE:: @ 841B3BE
+gText_F700LeftChat:: @ 841B3BE
 	.string "{DYNAMIC 0x00} left the chat.$"
 
 gUnknown_841B3D0:: @ 0x841B3D0
@@ -3135,60 +3135,60 @@ gUnknown_841B3D0:: @ 0x841B3D0
 gUnknown_841B3DA:: @ 0x841B3DA
 	.string "{DYNAMIC 0x00}の{DYNAMIC 0x01}ひきめは いません$"
 
-gUnknown_841B3E9:: @ 0x841B3E9
+gText_ExitingTheChat:: @ 0x841B3E9
 	.string "Exiting the chat‥$"
 
-gUnknown_841B3FB:: @ 0x841B3FB
+gText_LeaderHasLeftEndingChat:: @ 0x841B3FB
 	.string "The LEADER, {DYNAMIC 0x00}, has\n"
 	.string "left, ending the chat.$"
 
-gUnknown_841B426:: @ 0x841B426
+gText_RegisteredTextChanged_OKtoSave:: @ 0x841B426
 	.string "The registered text has been changed.\n"
 	.string "Is it okay to save the game?$"
 
-gUnknown_841B469:: @ 0x841B469
+gText_RegisteredTextChanged_AlreadySavedFile:: @ 0x841B469
 	.string "There is already a saved file.\n"
 	.string "Is it okay to overwrite it?$"
 
-gUnknown_841B4A4:: @ 0x841B4A4
+gText_RegisteredTextChanged_SavingDontTurnOff:: @ 0x841B4A4
 	.string "SAVING‥\n"
 	.string "DON'T TURN OFF THE POWER.$"
 
-gUnknown_841B4C6:: @ 0x841B4C6
+gText_RegisteredTextChanged_SavedTheGame:: @ 0x841B4C6
 	.string "{DYNAMIC 0x00} saved the game.$"
 
-gUnknown_841B4D9:: @ 0x841B4D9
+gText_IfLeaderLeavesChatWillEnd:: @ 0x841B4D9
 	.string "If the LEADER leaves, the chat\n"
 	.string "will end. Is that okay?$"
 
-gUnknown_841B510:: @ 841B510
+gText_Hello:: @ 841B510
 	.string "HELLO$"
 
-gUnknown_841B516:: @ 841B516
+gText_Pokemon2:: @ 841B516
 	.string "POKéMON$"
 
-gUnknown_841B51E:: @ 841B51E
+gText_Trade:: @ 841B51E
 	.string "TRADE$"
 
-gUnknown_841B524:: @ 841B524
+gText_Battle:: @ 841B524
 	.string "BATTLE$"
 
-gUnknown_841B52B:: @ 841B52B
+gText_Lets:: @ 841B52B
 	.string "LET'S$"
 
-gUnknown_841B531:: @ 841B531
+gText_Ok:: @ 841B531
 	.string "OK!$"
 
-gUnknown_841B535:: @ 841B535
+gText_Sorry:: @ 841B535
 	.string "SORRY$"
 
-gUnknown_841B53B:: @ 841B53B
+gText_YaySmileEmoji:: @ 841B53B
 	.string "YAY{EXTRA 0xF9}$"
 
-gUnknown_841B541:: @ 841B541
+gText_ThankYou:: @ 841B541
 	.string "THANK YOU$"
 
-gUnknown_841B54B:: @ 841B54B
+gText_ByeBye:: @ 841B54B
 	.string "BYE-BYE!$"
 
 gUnknown_841B554:: @ 841B554
@@ -3535,7 +3535,7 @@ gUnknown_841D13C:: @ 841D13C
 	.string "{STR_VAR_1} PLAYERS$"
 
 	.align 2
-gUnknown_841D148:: @ 841D148
+gText_Ghost:: @ 841D148
 	.string "GHOST$"
 
 gUnknown_841D14E:: @ 841D14E
@@ -4598,14 +4598,14 @@ gText_WhichMoveShouldBeForgotten:: @ 841E50C
 gUnknown_841E52D:: @ 0x841E52D
 	.string "----------$"
 
-gUnknown_841E538:: @ 841E538
+gText_CommStandbyAwaitingOtherPlayer:: @ 841E538
 	.string "Communication standby‥\n"
 	.string "Awaiting another player to choose.$"
 
-gUnknown_841E572:: @ 841E572
+gText_BattleWasRefused:: @ 841E572
 	.string "The battle was refused.{PAUSE 0x3C}$"
 
-gUnknown_841E58D:: @ 841E58D
+gText_RefusedBattle:: @ 841E58D
 	.string "Refused the battle.{PAUSE 0x3C}$"
 
 gFameCheckerText_MainScreenUI:: @ 841E5A4

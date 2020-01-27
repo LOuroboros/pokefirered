@@ -78,7 +78,7 @@ static EWRAM_DATA u8 *sTrainerVictorySpeech = NULL;
 static EWRAM_DATA u8 *sTrainerCannotBattleSpeech = NULL;
 static EWRAM_DATA u8 *sTrainerBattleEndScript = NULL;
 static EWRAM_DATA u8 *sTrainerABattleScriptRetAddr = NULL;
-static EWRAM_DATA u16 gUnknown_20386CC = 0;
+static EWRAM_DATA u16 sRivalBattleFlags = 0;
 
 static const u8 sBattleTransitionTable_Wild[][2] =
 {
@@ -148,11 +148,11 @@ static const struct TrainerBattleParameter sOrdinaryNoIntroBattleParams[] =
     {&sTrainerBattleEndScript,      TRAINER_PARAM_LOAD_SCRIPT_RET_ADDR},
 };
 
-static const struct TrainerBattleParameter sTutorialBattleParams[] =
+static const struct TrainerBattleParameter sEarlyRivalBattleParams[] =
 {
     {&sTrainerBattleMode,           TRAINER_PARAM_LOAD_VAL_8BIT},
     {&gTrainerBattleOpponent_A,     TRAINER_PARAM_LOAD_VAL_16BIT},
-    {&gUnknown_20386CC,             TRAINER_PARAM_LOAD_VAL_16BIT},
+    {&sRivalBattleFlags,            TRAINER_PARAM_LOAD_VAL_16BIT},
     {&sTrainerAIntroSpeech,         TRAINER_PARAM_CLEAR_VAL_32BIT},
     {&sTrainerADefeatSpeech,        TRAINER_PARAM_LOAD_VAL_32BIT},
     {&sTrainerVictorySpeech,        TRAINER_PARAM_LOAD_VAL_32BIT},
@@ -276,7 +276,7 @@ static void DoGhostBattle(void)
     gMain.savedCallback = CB2_EndWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_GHOST;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
-    SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, gUnknown_841D148);
+    SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, gText_Ghost);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
 }
@@ -301,7 +301,7 @@ void BattleSetup_StartScriptedWildBattle(void)
 {
     ScriptContext2_Enable();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
-    gBattleTypeFlags = BATTLE_TYPE_PALACE;
+    gBattleTypeFlags = BATTLE_TYPE_WILD_SCRIPTED;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
@@ -313,7 +313,7 @@ void ScrSpecial_StartMarowakBattle(void)
     gMain.savedCallback = CB2_EndMarowakBattle;
     if (CheckBagHasItem(ITEM_SILPH_SCOPE, 1))
     {
-        gBattleTypeFlags = BATTLE_TYPE_GHOST | BATTLE_TYPE_LEGENDARY;
+        gBattleTypeFlags = BATTLE_TYPE_GHOST | BATTLE_TYPE_GHOST_UNVEILED;
         CreateMonWithGenderNatureLetter(gEnemyParty, SPECIES_MAROWAK, 30, 31, MON_FEMALE, NATURE_SERIOUS, 0);
     }
     else
@@ -321,7 +321,7 @@ void ScrSpecial_StartMarowakBattle(void)
         gBattleTypeFlags = BATTLE_TYPE_GHOST;
     }
     CreateBattleStartTask(GetWildBattleTransition(), 0);
-    SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, gUnknown_841D148);
+    SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, gText_Ghost);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
 }
@@ -342,7 +342,7 @@ void Special_StartLegendaryBattle(void)
     
     ScriptContext2_Enable();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
-    gBattleTypeFlags = BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_ARENA;
+    gBattleTypeFlags = BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_LEGENDARY_FRLG;
     species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES);
     switch (species)
     {
@@ -444,10 +444,11 @@ static void CB2_EndMarowakBattle(void)
     }
     else
     {
+        // If result is TRUE player didnt defeat Marowak, force player back from stairs
         if (gBattleOutcome == B_OUTCOME_WON)
-            gSpecialVar_Result = 0;
+            gSpecialVar_Result = FALSE;
         else
-            gSpecialVar_Result = 1;
+            gSpecialVar_Result = TRUE;
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
 }
@@ -705,7 +706,7 @@ static void InitTrainerBattleVariables(void)
     sTrainerCannotBattleSpeech = NULL;
     sTrainerBattleEndScript = NULL;
     sTrainerABattleScriptRetAddr = NULL;
-    gUnknown_20386CC = 0;
+    sRivalBattleFlags = 0;
 }
 
 static inline void SetU8(void *ptr, u8 value)
@@ -807,8 +808,8 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
         SetMapVarsToTrainer();
         gTrainerBattleOpponent_A = GetRematchTrainerId(gTrainerBattleOpponent_A);
         return EventScript_TryDoRematchBattle;
-    case TRAINER_BATTLE_TUTORIAL:
-        TrainerBattleLoadArgs(sTutorialBattleParams, data);
+    case TRAINER_BATTLE_EARLY_RIVAL:
+        TrainerBattleLoadArgs(sEarlyRivalBattleParams, data);
         return EventScript_DoTrainerBattle;
     default:
         TrainerBattleLoadArgs(sOrdinaryBattleParams, data);
@@ -845,9 +846,9 @@ u8 ScrSpecial_GetTrainerBattleMode(void)
     return sTrainerBattleMode;
 }
 
-u16 sub_80803D8(void)
+u16 GetRivalBattleFlags(void)
 {
-    return gUnknown_20386CC;
+    return sRivalBattleFlags;
 }
 
 u16 ScrSpecial_HasTrainerBeenFought(void)
@@ -884,8 +885,7 @@ void ClearTrainerFlag(u16 trainerId)
 void BattleSetup_StartTrainerBattle(void)
 {
     gBattleTypeFlags = BATTLE_TYPE_TRAINER;
-    if (ScrSpecial_GetTrainerBattleMode() == TRAINER_BATTLE_TUTORIAL
-     && sub_80803D8() & 3)
+    if (ScrSpecial_GetTrainerBattleMode() == TRAINER_BATTLE_EARLY_RIVAL && GetRivalBattleFlags() & RIVAL_BATTLE_TUTORIAL)
         gBattleTypeFlags |= BATTLE_TYPE_FIRST_BATTLE;
     gMain.savedCallback = CB2_EndTrainerBattle;
     DoTrainerBattle();
@@ -894,12 +894,12 @@ void BattleSetup_StartTrainerBattle(void)
 
 static void CB2_EndTrainerBattle(void)
 {
-    if (sTrainerBattleMode == TRAINER_BATTLE_TUTORIAL)
+    if (sTrainerBattleMode == TRAINER_BATTLE_EARLY_RIVAL)
     {
         if (IsPlayerDefeated(gBattleOutcome) == TRUE)
         {
-            gSpecialVar_Result = 1;
-            if (gUnknown_20386CC & 1)
+            gSpecialVar_Result = TRUE;
+            if (sRivalBattleFlags & RIVAL_BATTLE_HEAL_AFTER)
             {
                 HealPlayerParty();
             }
@@ -914,7 +914,7 @@ static void CB2_EndTrainerBattle(void)
         }
         else
         {
-            gSpecialVar_Result = 0;
+            gSpecialVar_Result = FALSE;
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
             SetBattledTrainerFlag();
             sub_81139BC();
@@ -977,7 +977,7 @@ const u8 *BattleSetup_GetScriptAddrAfterBattle(void)
     if (sTrainerBattleEndScript != NULL)
         return sTrainerBattleEndScript;
     else
-        return EventScript_1C555B;
+        return Test_EventScript_Sign;
 }
 
 const u8 *BattleSetup_GetTrainerPostBattleScript(void)
@@ -985,7 +985,7 @@ const u8 *BattleSetup_GetTrainerPostBattleScript(void)
     if (sTrainerABattleScriptRetAddr != NULL)
         return sTrainerABattleScriptRetAddr;
     else
-        return EventScript_1C555B;
+        return Test_EventScript_Sign;
 }
 
 void ScrSpecial_ShowTrainerNonBattlingSpeech(void)
@@ -997,8 +997,8 @@ void PlayTrainerEncounterMusic(void)
 {
     u16 music;
 
-    if (gUnknown_203ADFA != 2
-     && gUnknown_203ADFA != 3
+    if (gQuestLogState != 2
+     && gQuestLogState != 3
      && sTrainerBattleMode != TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC
      && sTrainerBattleMode != TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC)
     {

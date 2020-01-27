@@ -182,13 +182,13 @@ struct BerryCrush
     u32 unk;
 };
 
-#define PLAYER_NAME_LENGTH  8
+#define PLAYER_NAME_LENGTH   7
 
 #define LINK_B_RECORDS_COUNT 5
 
 struct LinkBattleRecord
 {
-    u8 name[PLAYER_NAME_LENGTH];
+    u8 name[PLAYER_NAME_LENGTH + 1];
     u16 trainerId;
     u16 wins;
     u16 losses;
@@ -261,7 +261,7 @@ struct BattleTowerData // Leftover from R/S
 
 struct SaveBlock2
 {
-    /*0x000*/ u8 playerName[PLAYER_NAME_LENGTH];
+    /*0x000*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     /*0x008*/ u8 playerGender; // MALE, FEMALE
     /*0x009*/ u8 specialSaveWarpFlags;
     /*0x00A*/ u8 playerTrainerId[4];
@@ -313,7 +313,7 @@ struct SecretBaseRecord
     /*0x1A9D*/ u8 gender:1;
     /*0x1A9D*/ u8 sbr_field_1_5:1;
     /*0x1A9D*/ u8 sbr_field_1_6:2;
-    /*0x1A9E*/ u8 trainerName[7]; // TODO: Change PLAYER_NAME_LENGTH to 7
+    /*0x1A9E*/ u8 trainerName[PLAYER_NAME_LENGTH];
     /*0x1AA5*/ u8 trainerId[4]; // byte 0 is used for determining trainer class
     /*0x1AA9*/ u8 language;
     /*0x1AAA*/ u16 sbr_field_e;
@@ -399,41 +399,68 @@ struct MailStruct
     /*0x20*/ u16 itemId;
 };
 
-struct UnkMauvilleOldManStruct
+struct MauvilleManCommon
 {
-    u8 unk_2D94;
-    u8 unk_2D95;
-    /*0x2D96*/ u16 mauvilleOldMan_ecArray[6];
-    /*0x2DA2*/ u16 mauvilleOldMan_ecArray2[6];
-    /*0x2DAE*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x2DB6*/ u8 filler_2DB6[0x3];
-    /*0x2DB9*/ u8 playerTrainerId[4];
-    u8 unk_2DBD;
+    u8 id;
+};
+
+struct MauvilleManBard
+{
+    /*0x00*/ u8 id;
+    /*0x02*/ u16 songLyrics[BARD_SONG_LENGTH];
+    /*0x0E*/ u16 temporaryLyrics[BARD_SONG_LENGTH];
+    /*0x1A*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
+    /*0x22*/ u8 filler_2DB6[0x3];
+    /*0x25*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
+    /*0x29*/ bool8 hasChangedSong;
+    /*0x2A*/ u8 language;
 }; /*size = 0x2C*/
 
-struct UnkMauvilleOldManStruct2
+struct MauvilleManStoryteller
 {
-    u8 filler0;
-    u8 unk1;
-    u8 unk2;
-    u16 mauvilleOldMan_ecArray[10];
-    u8 mauvilleOldMan_ecArray2[12];
-    u8 fillerF[0x2];
+    u8 id;
+    bool8 alreadyRecorded;
+    u8 filler2[2];
+    u8 gameStatIDs[NUM_STORYTELLER_TALES];
+    u8 trainerNames[NUM_STORYTELLER_TALES][PLAYER_NAME_LENGTH];
+    u8 statValues[NUM_STORYTELLER_TALES][4];
+    u8 language[NUM_STORYTELLER_TALES];
+};
+
+struct MauvilleManGiddy
+{
+    /*0x00*/ u8 id;
+    /*0x01*/ u8 taleCounter;
+    /*0x02*/ u8 questionNum;
+    /*0x04*/ u16 randomWords[10];
+    /*0x18*/ u8 questionList[8];
+    /*0x20*/ u8 language;
 }; /*size = 0x2C*/
+
+struct MauvilleManHipster
+{
+    u8 id;
+    bool8 alreadySpoken;
+    u8 language;
+};
 
 struct MauvilleOldManTrader
 {
-    u8 unk0;
-    u8 unk1[4];
-    u8 unk5[4][11];
-    u8 unk31;
+    u8 id;
+    u8 decorIds[NUM_TRADER_ITEMS];
+    u8 playerNames[NUM_TRADER_ITEMS][11];
+    u8 alreadyTraded;
+    u8 language[NUM_TRADER_ITEMS];
 };
 
 typedef union OldMan
 {
-    struct UnkMauvilleOldManStruct oldMan1;
-    struct UnkMauvilleOldManStruct2 oldMan2;
+    struct MauvilleManCommon common;
+    struct MauvilleManBard bard;
+    struct MauvilleManGiddy giddy;
+    struct MauvilleManHipster hipster;
     struct MauvilleOldManTrader trader;
+    struct MauvilleManStoryteller storyteller;
     u8 filler[0x40];
 } OldMan;
 
@@ -602,17 +629,17 @@ struct QuestLogObjectEvent
 struct QuestLog
 {
     /*0x0000*/ u8 unk_000;
-    /*0x0001*/ s8 unk_001;
-    /*0x0002*/ s8 unk_002;
-    /*0x0003*/ s8 unk_003;
-    /*0x0004*/ s16 unk_004;
-    /*0x0006*/ s16 unk_006;
+    /*0x0001*/ u8 mapGroup;
+    /*0x0002*/ u8 mapNum;
+    /*0x0003*/ u8 warpId;
+    /*0x0004*/ s16 x;
+    /*0x0006*/ s16 y;
     /*0x0008*/ struct QuestLogObjectEvent unk_008[OBJECT_EVENTS_COUNT];
 
     // These arrays hold the game state for
     // playing back the quest log
-    /*0x0148*/ u8 flags[0x120];
-    /*0x02c8*/ u16 vars[0x100];
+    /*0x0148*/ u8 flags[FLAGS_COUNT];
+    /*0x02c8*/ u16 vars[VARS_COUNT];
     /*0x0468*/ struct QuestLogNPCData npcData[64];
     /*0x0568*/ u16 unk_568[128];
     /*0x0668*/ u16 end[0];
@@ -716,8 +743,10 @@ struct TrainerRematchState
 struct TrainerNameRecord
 {
     u32 trainerId;
-    u8 trainerName[PLAYER_NAME_LENGTH];
+    u8 trainerName[PLAYER_NAME_LENGTH + 1];
 };
+
+#define UNION_ROOM_KB_ROW_COUNT 10
 
 struct SaveBlock1
 {
@@ -753,7 +782,7 @@ struct SaveBlock1
     /*0x0EE0*/ u8 flags[FLAGS_COUNT];
     /*0x1000*/ u16 vars[VARS_COUNT];
     /*0x1200*/ u32 gameStats[NUM_GAME_STATS];
-    /*0x1300*/ struct QuestLog questLog[4];
+    /*0x1300*/ struct QuestLog questLog[QUEST_LOG_SCENE_COUNT];
     /*0x2CA0*/ u16 easyChatProfile[6];
     /*0x2CAC*/ u16 easyChatBattleStart[6];
     /*0x2CB8*/ u16 easyChatBattleWon[6];
@@ -771,9 +800,10 @@ struct SaveBlock1
     /*0x361C*/ struct RamScript ramScript;
     /*0x3A08*/ u8 filler3A08[16];
     /*0x3A18*/ u8 seen2[DEX_FLAGS_NO];
-    /*0x3A4C*/ u8 rivalName[PLAYER_NAME_LENGTH];
+    /*0x3A4C*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
     /*0x3A54*/ struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS];
-    /*0x3A94*/ u8 filler3A94[0x114];
+    /*0x3A94*/ u8 filler3A94[0x40];
+    /*0x3AD4*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
     /*0x3BA8*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C98*/ struct DaycareMon route5DayCareMon;
     /*0x3D24*/ u8 filler3D24[0x10];

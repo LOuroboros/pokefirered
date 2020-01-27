@@ -32,8 +32,15 @@
 #define BAG_TMHM_COUNT      58
 #define BAG_BERRIES_COUNT   43
 
+#define QUEST_LOG_SCENE_COUNT 4
+
 #define MALE   0
 #define FEMALE 1
+#define GENDER_COUNT 2
+
+#define BARD_SONG_LENGTH       6
+#define NUM_STORYTELLER_TALES  4
+#define NUM_TRADER_ITEMS       4
 
 #define OPTIONS_BUTTON_MODE_HELP         0
 #define OPTIONS_BUTTON_MODE_LR           1
@@ -57,6 +64,9 @@
 
 #define NUM_BAG_POCKETS 5
 
+#define MAX_MON_MOVES 4
+
+#define TRAINER_ID_LENGTH 4
 #define PARTY_SIZE 6
 #define MULTI_PARTY_SIZE (PARTY_SIZE / 2)
 

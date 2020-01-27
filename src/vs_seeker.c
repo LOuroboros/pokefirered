@@ -29,6 +29,7 @@
 #include "constants/trainers.h"
 #include "constants/maps.h"
 #include "constants/items.h"
+#include "constants/quest_log.h"
 
 typedef enum
 {
@@ -744,7 +745,7 @@ void Task_VsSeeker_0(u8 taskId)
     }
     else if (respval == 2)
     {
-        ItemUse_SetQuestLogEvent(4, 0, gSpecialVar_ItemId, 0xffff);
+        ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, 0, gSpecialVar_ItemId, 0xffff);
         FieldEffectStart(FLDEFF_UNK_41); // TODO: name this enum
         gTasks[taskId].func = Task_VsSeeker_1;
         gTasks[taskId].data[0] = 15;
@@ -1272,7 +1273,7 @@ static u8 GetRematchableTrainerLocalId(void)
 
 static void StartTrainerObjectMovementScript(struct VsSeekerTrainerInfo * trainerInfo, const u8 * script)
 {
-    npc_sync_anim_pause_bits(&gObjectEvents[trainerInfo->objectEventId]);
+    UnfreezeObjectEvent(&gObjectEvents[trainerInfo->objectEventId]);
     ScriptMovement_StartObjectMovementScript(trainerInfo->localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, script);
 }
 

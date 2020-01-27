@@ -100,7 +100,7 @@ _0806C914:
 	orrs r0, r1
 	strb r0, [r5]
 _0806C940:
-	ldr r0, _0806CA18 @ =gUnknown_203ADFA
+	ldr r0, _0806CA18 @ =gQuestLogState
 	ldrb r0, [r0]
 	subs r0, 0x2
 	lsls r0, 24
@@ -158,7 +158,7 @@ _0806C996:
 	orrs r0, r1
 	strb r0, [r5, 0x1]
 _0806C9AC:
-	ldr r0, _0806CA18 @ =gUnknown_203ADFA
+	ldr r0, _0806CA18 @ =gQuestLogState
 	ldrb r0, [r0]
 	subs r0, 0x2
 	lsls r0, 24
@@ -198,7 +198,7 @@ _0806C9E6:
 	orrs r0, r1
 	strb r0, [r5]
 _0806C9F6:
-	ldr r0, _0806CA18 @ =gUnknown_203ADFA
+	ldr r0, _0806CA18 @ =gQuestLogState
 	ldrb r0, [r0]
 	subs r0, 0x2
 	lsls r0, 24
@@ -214,7 +214,7 @@ _0806C9F6:
 	b _0806CA3E
 	.align 2, 0
 _0806CA14: .4byte gPlayerAvatar
-_0806CA18: .4byte gUnknown_203ADFA
+_0806CA18: .4byte gQuestLogState
 _0806CA1C:
 	movs r0, 0x80
 	ands r0, r1
@@ -1100,11 +1100,11 @@ sub_806D0E4: @ 806D0E4
 	ldr r0, [r5, 0x8]
 	cmp r0, 0
 	bne _0806D120
-	ldr r0, _0806D11C @ =EventScript_1C555B
+	ldr r0, _0806D11C @ =Test_EventScript_Sign
 	b _0806D1E6
 	.align 2, 0
 _0806D118: .4byte gMapHeader
-_0806D11C: .4byte EventScript_1C555B
+_0806D11C: .4byte Test_EventScript_Sign
 _0806D120:
 	adds r0, r7, 0
 	adds r1, r6, 0
@@ -1787,7 +1787,7 @@ sub_806D698: @ 806D698
 	bl InUnionRoom
 	cmp r0, 0x1
 	beq _0806D72C
-	ldr r0, _0806D6E0 @ =gUnknown_203ADFA
+	ldr r0, _0806D6E0 @ =gQuestLogState
 	ldrb r0, [r0]
 	cmp r0, 0x2
 	beq _0806D72C
@@ -1813,7 +1813,7 @@ sub_806D698: @ 806D698
 	bl ScriptContext1_SetupScript
 	b _0806D730
 	.align 2, 0
-_0806D6E0: .4byte gUnknown_203ADFA
+_0806D6E0: .4byte gQuestLogState
 _0806D6E4: .4byte gPlayerAvatar
 _0806D6E8: .4byte gUnknown_81A8CED
 _0806D6EC:
@@ -1834,11 +1834,11 @@ _0806D704:
 	beq _0806D720
 	movs r0, 0xD
 	bl IncrementGameStat
-	ldr r0, _0806D71C @ =EventScript_81BF546
+	ldr r0, _0806D71C @ =EventScript_EggHatch
 	bl ScriptContext1_SetupScript
 	b _0806D730
 	.align 2, 0
-_0806D71C: .4byte EventScript_81BF546
+_0806D71C: .4byte EventScript_EggHatch
 _0806D720:
 	bl SafariZoneTakeStep
 	lsls r0, 24
@@ -2150,13 +2150,13 @@ _0806D950:
 	ldr r0, [r0, 0x8]
 	cmp r0, 0
 	bne _0806D958
-	ldr r0, _0806D960 @ =EventScript_1C555B
+	ldr r0, _0806D960 @ =Test_EventScript_Sign
 _0806D958:
 	pop {r4}
 	pop {r1}
 	bx r1
 	.align 2, 0
-_0806D960: .4byte EventScript_1C555B
+_0806D960: .4byte Test_EventScript_Sign
 	thumb_func_end sub_806D928
 
 	thumb_func_start mapheader_run_first_tag2_script_list_match_conditionally

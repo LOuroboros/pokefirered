@@ -229,13 +229,13 @@ static const u8 sLinkErrorTextColor[] = { 0x00, 0x01, 0x02 };
 
 bool8 IsWirelessAdapterConnected(void)
 {
-    if (gUnknown_203ADFA == 2 || gUnknown_203ADFA == 3)
+    if (gQuestLogState == 2 || gQuestLogState == 3)
         return FALSE;
 
     sub_800B1F4();
     sub_80F86F4();
-    sub_80FB128(1);
-    if (sub_80FD3A4() == 0x8001)
+    sub_80FB128(TRUE);
+    if (sub_80FD3A4() == RFU_ID)
     {
         rfu_REQ_stopMode();
         rfu_waitREQComplete();

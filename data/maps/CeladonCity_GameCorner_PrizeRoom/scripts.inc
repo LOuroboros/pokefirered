@@ -13,9 +13,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_16CB88:: @ 816CB88
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_COIN_CASE, EventScript_16CD99
-	special sub_8110AB4
-	compare VAR_RESULT, 2
-	goto_if_eq EventScript_1A7AE0
+	goto_if_questlog EventScript_ReleaseEnd
 	showcoinsbox 0, 0
 	msgbox gUnknown_8197057
 	goto EventScript_16CBB2
@@ -188,7 +186,7 @@ EventScript_16CD52:: @ 816CD52
 
 EventScript_16CD74:: @ 816CD74
 	textcolor 3
-	msgbox gUnknown_81A5E31
+	msgbox Text_NoMoreRoomForPokemon
 	hidecoinsbox 0, 0
 	release
 	end
@@ -197,7 +195,7 @@ EventScript_16CD83:: @ 816CD83
 	getpartysize
 	subvar VAR_RESULT, 1
 	copyvar VAR_0x8004, VAR_RESULT
-	call EventScript_1A74EB
+	call EventScript_ChangePokemonNickname
 	goto EventScript_16CC10
 	end
 
@@ -217,10 +215,10 @@ EventScript_16CDB3:: @ 816CDB3
 	updatecoinsbox 0, 5
 	getspeciesname 0, VAR_TEMP_1
 	playfanfare MUS_FANFA1
-	message Text_1A5DF1
+	message Text_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
-	msgbox gUnknown_81A56A7, MSGBOX_YESNO
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq EventScript_16CD83
 	goto EventScript_16CC10
@@ -231,18 +229,18 @@ EventScript_16CDE0:: @ 816CDE0
 	updatecoinsbox 0, 5
 	getspeciesname 0, VAR_TEMP_1
 	playfanfare MUS_FANFA1
-	message Text_1A5DF1
+	message Text_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
-	msgbox gUnknown_81A56A7, MSGBOX_YESNO
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_16CE12
-	call EventScript_1A8C33
+	call EventScript_NameReceivedBoxMon
 	goto EventScript_16CE12
 	end
 
 EventScript_16CE12:: @ 816CE12
-	call EventScript_1A8C3C
+	call EventScript_TransferredToPC
 	goto EventScript_16CC10
 	end
 
@@ -250,9 +248,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_16CE1D:: @ 816CE1D
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_COIN_CASE, EventScript_16CD99
-	special sub_8110AB4
-	compare VAR_RESULT, 2
-	goto_if_eq EventScript_1A7AE0
+	goto_if_questlog EventScript_ReleaseEnd
 	showcoinsbox 0, 0
 	msgbox gUnknown_8197057
 	goto EventScript_16CE47
@@ -347,9 +343,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_16CF88:: @ 816CF88
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_COIN_CASE, EventScript_16CD99
-	special sub_8110AB4
-	compare VAR_RESULT, 2
-	goto_if_eq EventScript_1A7AE0
+	goto_if_questlog EventScript_ReleaseEnd
 	showcoinsbox 0, 0
 	msgbox gUnknown_8197057
 	goto EventScript_16CFB2

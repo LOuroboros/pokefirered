@@ -463,7 +463,7 @@ const u8 *const gPokeblockWasTooXStringTable[] = {
 
 static const u8 sText_PlayerUsedItem[] = _("{B_PLAYER_NAME} used\n{B_LAST_ITEM}!");
 static const u8 sText_OldManUsedItem[] = _("The old man used\n{B_LAST_ITEM}!");
-static const u8 sText_PokeDudeUsedItem[] = _("The POKé DUDE used\n{B_LAST_ITEM}!");
+static const u8 sText_PokedudeUsedItem[] = _("The POKé DUDE used\n{B_LAST_ITEM}!");
 static const u8 sText_Trainer1UsedItem[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nused {B_LAST_ITEM}!");
 static const u8 sText_TrainerBlockedBall[] = _("The trainer blocked the ball!");
 static const u8 sText_DontBeAThief[] = _("Don't be a thief!");
@@ -873,11 +873,11 @@ const u8 *const gBattleStringsTable[] = {
     gUnknown_83FDDEB,
     gUnknown_83FB484,
     gUnknown_83FB4BE,
-    Text_1A5CF1,
-    Text_1A5D31,
-    Text_1A5D6E,
-    Text_1A5DB1,
-    sText_PokeDudeUsedItem,
+    Text_MonSentToBoxInSomeonesPC,
+    Text_MonSentToBoxInBillsPC,
+    Text_MonSentToBoxSomeonesBoxFull,
+    Text_MonSentToBoxBillsBoxFull,
+    sText_PokedudeUsedItem,
     gUnknown_83FDA4D,
     gUnknown_83FDA7A,
     gUnknown_83FDA8C,
@@ -1518,7 +1518,7 @@ void BufferStringBattle(u16 stringId)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_GHOST)
             {
-                if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
+                if (gBattleTypeFlags & BATTLE_TYPE_GHOST_UNVEILED)
                     stringPtr = gUnknown_83FD30D;
                 else
                     stringPtr = gUnknown_83FD2D9;
@@ -2029,7 +2029,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_RIVAL
                      || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_RIVAL_2
                      || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
-                        toCpy = GetExpandedPlaceholder(6);
+                        toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
                     else
                         toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;
                 }

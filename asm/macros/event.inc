@@ -652,7 +652,7 @@
 			.4byte \pointer2 @ text
 			.4byte \pointer3 @ text
 			.4byte \pointer4 @ event script
-		.elseif \type == TRAINER_BATTLE_TUTORIAL
+		.elseif \type == TRAINER_BATTLE_EARLY_RIVAL
 			.4byte \pointer1 @ text
 			.4byte \pointer2 @ text
 		.endif
@@ -699,9 +699,9 @@
 	trainerbattle TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT, \trainer, 0, \lose_text
 	.endm
 
-	@
-	.macro trainerbattle_tutorial trainer:req, unk:req, intro_text:req, lose_text:req
-	trainerbattle TRAINER_BATTLE_TUTORIAL, \trainer, \unk, \intro_text, \lose_text
+	@ Starts a trainer battle with victory text if the player loses. If flags is nonzero, the player will be healed after battle (and its assumed to be the tutorial battle)
+	.macro trainerbattle_earlyrival trainer:req, flags:req, defeat_text:req, victory_text:req
+	trainerbattle TRAINER_BATTLE_EARLY_RIVAL, \trainer, \flags, \defeat_text, \victory_text
 	.endm
 
 	@ Starts a trainer battle using the battle information stored in RAM (usually by trainerbattle, which actually calls this command behind-the-scenes), and blocks script execution until the battle finishes.
@@ -1627,9 +1627,16 @@
 	call EventScript_SetGymTrainers
 	.endm
 
-	@ Appears frequently at start of NPC scripts. Should be used once named/understood
-	.macro unk_questlog
-	special sub_8110AB4
+	@ Jumps to dest if the Quest Log is currently showing playback scenes (dest is usually a release/end)
+	.macro goto_if_questlog dest:req
+	special Special_GetQuestLogState
 	compare VAR_RESULT, 2
-	goto_if_eq EventScript_1A7AE0
+	goto_if_eq \dest
+	.endm
+
+	.macro braillemessage_wait text:req
+	setvar VAR_0x8006, 0
+	braillemessage \text
+	getbraillestringwidth \text
+	call EventScript_BrailleCursorWaitButton
 	.endm

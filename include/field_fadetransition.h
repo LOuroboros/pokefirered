@@ -17,6 +17,9 @@ void FieldCallback_ReturnToEventScript2(void);
 void sub_807DC00(void);
 void FadeTransition_FadeInOnReturnToStartMenu(void);
 
+void sub_807DCE4(void);
+
 bool32 sub_807E418(void);
+void palette_bg_faded_fill_black(void);
 
 #endif // GUARD_FIELD_FADETRANSITION_H

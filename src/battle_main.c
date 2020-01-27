@@ -50,6 +50,7 @@
 #include "cable_club.h"
 #include "constants/abilities.h"
 #include "constants/battle_move_effects.h"
+#include "constants/battle_setup.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -86,7 +87,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum);
 static void CB2_HandleStartBattle(void);
 static void TryCorrectShedinjaLanguage(struct Pokemon *mon);
 static void BattleMainCB1(void);
-static void CB2_QuitPokeDudeBattle(void);
+static void CB2_QuitPokedudeBattle(void);
 static void sub_80111FC(struct Sprite *sprite);
 static void sub_8011B94(void);
 static void sub_8011BB0(void);
@@ -1438,7 +1439,7 @@ void BattleMainCB2(void)
         gSpecialVar_Result = gBattleOutcome = B_OUTCOME_DREW;
         ResetPaletteFadeControl();
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
-        SetMainCallback2(CB2_QuitPokeDudeBattle);
+        SetMainCallback2(CB2_QuitPokedudeBattle);
     }
 }
 
@@ -1454,7 +1455,7 @@ void FreeRestoreBattleData(void)
     FreeBattleResources();
 }
 
-static void CB2_QuitPokeDudeBattle(void)
+static void CB2_QuitPokedudeBattle(void)
 {
     UpdatePaletteFade();
     if (!gPaletteFade.active)
@@ -1826,7 +1827,7 @@ static void sub_8011BB0(void)
         if (!gPaletteFade.active)
         {
             SetMainCallback2(gMain.savedCallback);
-            sub_812C224();
+            TrySetQuestLogLinkBattleEvent();
             FreeMonSpritesGfx();
             FreeBattleSpritesData();
             FreeBattleResources();
@@ -2559,9 +2560,9 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
             {
                 if (GetBattlerSide(gActiveBattler) == B_SIDE_OPPONENT)
                 {
-                    if (gBattleTypeFlags & (BATTLE_TYPE_GHOST | BATTLE_TYPE_LEGENDARY))
+                    if (gBattleTypeFlags & (BATTLE_TYPE_GHOST | BATTLE_TYPE_GHOST_UNVEILED))
                     {
-                        if ((gBattleTypeFlags & (BATTLE_TYPE_GHOST | BATTLE_TYPE_LEGENDARY)) != BATTLE_TYPE_GHOST)
+                        if (!IS_BATTLE_TYPE_GHOST_WITHOUT_SCOPE(gBattleTypeFlags))
                             HandleSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gActiveBattler].species), FLAG_SET_SEEN, gBattleMons[gActiveBattler].personality);
                     }
                     else if (!(gBattleTypeFlags & (BATTLE_TYPE_EREADER_TRAINER
@@ -2674,7 +2675,7 @@ static void BattleIntroPrintWildMonAttacked(void)
     {
         gBattleMainFunc = BattleIntroPrintPlayerSendsOut;
         PrepareStringBattle(STRINGID_INTROMSG, 0);
-        if ((gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_GHOST)) == (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_GHOST))
+        if (IS_BATTLE_TYPE_GHOST_WITH_SCOPE(gBattleTypeFlags))
         {
             gBattleScripting.battler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
             BattleScriptExecute(BattleScript_SilphScopeUnveiled);
@@ -3720,12 +3721,12 @@ static void HandleEndTurn_BattleLost(void)
     }
     else
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && ScrSpecial_GetTrainerBattleMode() == 9)
+        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && ScrSpecial_GetTrainerBattleMode() == TRAINER_BATTLE_EARLY_RIVAL)
         {
-            if (sub_80803D8() & 1)
-                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+            if (GetRivalBattleFlags() & RIVAL_BATTLE_HEAL_AFTER)
+                gBattleCommunication[MULTISTRING_CHOOSER] = 1; // Dont do white out text
             else
-                gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 2; // Do white out text
             gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         }
         else
@@ -3786,7 +3787,7 @@ static void HandleEndTurn_FinishBattle(void)
                 }
             }
         }
-        sub_812BFDC();
+        TrySetQuestLogBattleEvent();
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             sub_810CB90();
         BeginFastPaletteFade(3);
@@ -4187,7 +4188,7 @@ bool8 TryRunFromBattle(u8 battler)
         gProtectStructs[battler].fleeFlag = 2;
         ++effect;
     }
-    else if ((gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_GHOST)) == BATTLE_TYPE_GHOST)
+    else if (IS_BATTLE_TYPE_GHOST_WITHOUT_SCOPE(gBattleTypeFlags))
     {
         if (GetBattlerSide(battler) == B_SIDE_PLAYER)
             ++effect;

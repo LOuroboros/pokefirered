@@ -346,7 +346,7 @@ EventScript_16939C:: @ 816939C
 	end
 
 EventScript_1693AC:: @ 81693AC
-	trainerbattle_tutorial TRAINER_RIVAL_OAKS_LAB_SQUIRTLE, 3, Text_18DDEA, Text_18DE1A
+	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_SQUIRTLE, RIVAL_BATTLE_TUTORIAL, Text_18DDEA, Text_RivalVictory
 	goto EventScript_1694C2
 	end
 
@@ -402,7 +402,7 @@ EventScript_169414:: @ 8169414
 	end
 
 EventScript_169424:: @ 8169424
-	trainerbattle_tutorial TRAINER_RIVAL_OAKS_LAB_CHARMANDER, 3, Text_18DDEA, Text_18DE1A
+	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_CHARMANDER, RIVAL_BATTLE_TUTORIAL, Text_18DDEA, Text_RivalVictory
 	goto EventScript_1694C2
 	end
 
@@ -461,7 +461,7 @@ EventScript_16948F:: @ 816948F
 	end
 
 EventScript_16949F:: @ 816949F
-	trainerbattle_tutorial TRAINER_RIVAL_OAKS_LAB_BULBASAUR, 3, Text_18DDEA, Text_18DE1A
+	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_BULBASAUR, RIVAL_BATTLE_TUTORIAL, Text_18DDEA, Text_RivalVictory
 	goto EventScript_1694C2
 	end
 
@@ -978,9 +978,7 @@ EventScript_1699F9:: @ 81699F9
 	end
 
 EventScript_1699FB:: @ 81699FB
-	special sub_8110AB4
-	compare VAR_RESULT, 2
-	goto_if_eq EventScript_1A7AE0
+	goto_if_questlog EventScript_ReleaseEnd
 	special sub_8112364
 	goto_if_set FLAG_OAK_SKIP_22_RIVAL_CHECK, EventScript_169A6E
 	goto_if_set FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL, EventScript_169A78
@@ -1208,7 +1206,7 @@ EventScript_ThisPokeIsRealyEnergetic:: @ 8169C74
 	waitmessage
 	playfanfare MUS_FAN5
 	waitfanfare
-	msgbox gUnknown_81A56A7, MSGBOX_YESNO
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq EventScript_GiveNicknameToStarter
 	compare VAR_RESULT, NO
@@ -1217,7 +1215,7 @@ EventScript_ThisPokeIsRealyEnergetic:: @ 8169C74
 
 EventScript_GiveNicknameToStarter:: @ 8169CCC
 	setvar VAR_0x8004, 0
-	call EventScript_1A74EB
+	call EventScript_ChangePokemonNickname
 	goto EventScript_SkipGiveNicknameToStarter
 	end
 

@@ -115,7 +115,7 @@ void AgbMain()
     gSoftResetDisabled = FALSE;
     gHelpSystemEnabled = FALSE;
 
-    sub_80F50F4();
+    SetNotInSaveFailedScreen();
 
     AGBPrintInit();
 
@@ -186,7 +186,7 @@ static void InitMainCallbacks(void)
 
 static void CallCallbacks(void)
 {
-    if (!sub_80F5118() && !RunHelpSystemCallback())
+    if (!RunSaveFailedScreen() && !RunHelpSystemCallback())
     {
         if (gMain.callback1)
             gMain.callback1();
@@ -352,7 +352,7 @@ static void VBlankIntr(void)
 
     sub_800DD28();
     Random();
-    sub_80FCF34();
+    UpdateWirelessStatusIndicatorSprite();
 
     INTR_CHECK |= INTR_FLAG_VBLANK;
     gMain.intrCheck |= INTR_FLAG_VBLANK;

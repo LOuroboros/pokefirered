@@ -98,17 +98,17 @@ void ResetMenuAndMonGlobals(void)
     gDifferentSaveFile = FALSE;
     ZeroPlayerPartyMons();
     ZeroEnemyPartyMons();
-    sub_81089BC();
+    ResetBagCursorPositions();
     ResetTMCaseCursorPos();
     BerryPouch_CursorResetToTop();
-    sub_811089C();
+    ResetQuestLog();
     SeedWildEncounterRng(Random());
     ResetSpecialVars();
 }
 
 void NewGameInitData(void)
 {
-    u8 rivalName[PLAYER_NAME_LENGTH];
+    u8 rivalName[PLAYER_NAME_LENGTH + 1];
 
     StringCopy(rivalName, gSaveBlock1Ptr->rivalName);
     gDifferentSaveFile = TRUE;
@@ -142,8 +142,8 @@ void NewGameInitData(void)
     NewGameInitPCItems();
     sub_809C794();
     InitEasyChatPhrases();
-    sub_8113044();
-    copy_strings_to_sav1();
+    ResetTrainerFanClub();
+    UnionRoomChat_InitializeRegisteredTexts();
     ResetMiniGamesResults();
     sub_8143D24();
     SetAllRenewableItemFlags();

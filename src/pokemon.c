@@ -1546,7 +1546,7 @@ const struct SpriteTemplate gUnknown_825DF50[] =
         .paletteTag = 0,
         .oam = &gOamData_824F018,
         .anims = NULL, 
-        .images = gTrainerBackPicTable_PokeDude,
+        .images = gTrainerBackPicTable_Pokedude,
         .affineAnims = gSpriteAffineAnimTable_82348C8,
         .callback = sub_80120C4,
     },
@@ -2890,7 +2890,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     {
         retVal = 0;
 
-        // FRLG changed this to 7 which used to be PLAYER_NAME_LENGTH
+        // FRLG changed this to 7 which used to be PLAYER_NAME_LENGTH + 1
         while (retVal < 7)
         {
             data[retVal] = boxMon->otName[retVal];
@@ -3860,49 +3860,49 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & 0xF)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_ATK] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] += itemEffect[cmdIndex] & 0xF;
-                if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] > 12)
-                    gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] = 12;
+                gBattleMons[gActiveBattler].statStages[STAT_ATK] += itemEffect[cmdIndex] & 0xF;
+                if (gBattleMons[gActiveBattler].statStages[STAT_ATK] > 12)
+                    gBattleMons[gActiveBattler].statStages[STAT_ATK] = 12;
                 retVal = FALSE;
             }
             break;
         // in-battle stat boosting effects?
         case 1:
             if ((itemEffect[cmdIndex] & 0xF0)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_DEF] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] += (itemEffect[cmdIndex] & 0xF0) >> 4;
-                if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] > 12)
-                    gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] = 12;
+                gBattleMons[gActiveBattler].statStages[STAT_DEF] += (itemEffect[cmdIndex] & 0xF0) >> 4;
+                if (gBattleMons[gActiveBattler].statStages[STAT_DEF] > 12)
+                    gBattleMons[gActiveBattler].statStages[STAT_DEF] = 12;
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & 0xF)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_SPEED] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] += itemEffect[cmdIndex] & 0xF;
-                if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] > 12)
-                    gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] = 12;
+                gBattleMons[gActiveBattler].statStages[STAT_SPEED] += itemEffect[cmdIndex] & 0xF;
+                if (gBattleMons[gActiveBattler].statStages[STAT_SPEED] > 12)
+                    gBattleMons[gActiveBattler].statStages[STAT_SPEED] = 12;
                 retVal = FALSE;
             }
             break;
         // more stat boosting effects?
         case 2:
             if ((itemEffect[cmdIndex] & 0xF0)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_ACC] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += (itemEffect[cmdIndex] & 0xF0) >> 4;
-                if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] > 12)
-                    gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] = 12;
+                gBattleMons[gActiveBattler].statStages[STAT_ACC] += (itemEffect[cmdIndex] & 0xF0) >> 4;
+                if (gBattleMons[gActiveBattler].statStages[STAT_ACC] > 12)
+                    gBattleMons[gActiveBattler].statStages[STAT_ACC] = 12;
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & 0xF)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_SPATK] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] += itemEffect[cmdIndex] & 0xF;
-                if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] > 12)
-                    gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] = 12;
+                gBattleMons[gActiveBattler].statStages[STAT_SPATK] += itemEffect[cmdIndex] & 0xF;
+                if (gBattleMons[gActiveBattler].statStages[STAT_SPATK] > 12)
+                    gBattleMons[gActiveBattler].statStages[STAT_SPATK] = 12;
                 retVal = FALSE;
             }
             break;
@@ -4374,25 +4374,25 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
              && !(gBattleMons[gActiveBattler].status2 & STATUS2_FOCUS_ENERGY))
                 retVal = FALSE;
             if ((itemEffect[cmdIndex] & 0xF)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_ATK] < 12)
                 retVal = FALSE;
             break;
         // in-battle stat boosting effects?
         case 1:
             if ((itemEffect[cmdIndex] & 0xF0)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_DEF] < 12)
                 retVal = FALSE;
             if ((itemEffect[cmdIndex] & 0xF)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_SPEED] < 12)
                 retVal = FALSE;
             break;
         // more stat boosting effects?
         case 2:
             if ((itemEffect[cmdIndex] & 0xF0)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_ACC] < 12)
                 retVal = FALSE;
             if ((itemEffect[cmdIndex] & 0xF)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] < 12)
+             && gBattleMons[gActiveBattler].statStages[STAT_SPATK] < 12)
                 retVal = FALSE;
             break;
         case 3:
@@ -5764,7 +5764,7 @@ s8 GetFlavorRelationByPersonality(u32 personality, u8 flavor)
 
 bool8 IsTradedMon(struct Pokemon *mon)
 {
-    u8 otName[7 + 1]; // change PLAYER_NAME_LENGTH to 7
+    u8 otName[PLAYER_NAME_LENGTH];
     u32 otId;
     GetMonData(mon, MON_DATA_OT_NAME, otName);
     otId = GetMonData(mon, MON_DATA_OT_ID, 0);
@@ -6054,7 +6054,7 @@ bool8 CheckBattleTypeGhost(struct Pokemon *mon, u8 battlerId)
     {
         GetMonData(mon, MON_DATA_NICKNAME, buffer);
         StringGetEnd10(buffer);
-        if (!StringCompare(buffer, gUnknown_841D148))
+        if (!StringCompare(buffer, gText_Ghost))
             return TRUE;
     }
     return FALSE;

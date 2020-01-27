@@ -523,9 +523,10 @@ u16 Special_GetSpeciesOfPartySlot_x8004(void)
     return GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES2, NULL);
 }
 
-bool8 Special_BufferMonOTNameAndCompareToPlayerName(void)
+bool8 Special_IsMonOTNameNotPlayers(void)
 {
     GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_OT_NAME, gStringVar1);
+    
     if (!StringCompare(gSaveBlock2Ptr->playerName, gStringVar1))
         return FALSE;
     else
@@ -1632,13 +1633,13 @@ static void ChangePokemonNickname_CB(void)
     CB2_ReturnToFieldContinueScriptPlayMapMusic();
 }
 
-void TV_CopyNicknameToStringVar1AndEnsureTerminated(void)
+void Special_GetMonNickname(void)
 {
     GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar1);
     StringGetEnd10(gStringVar1);
 }
 
-void TV_CheckMonOTIDEqualsPlayerID(void)
+void Special_IsMonOTIDNotPlayers(void)
 {
     if (GetPlayerTrainerId() == GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_OT_ID, NULL))
         gSpecialVar_Result = FALSE;
@@ -1766,9 +1767,9 @@ u8 Special_GetMartClerkObjectId(void)
     return 1;
 }
 
-void sub_80CC524(void)
+void SetUsedPkmnCenterQuestLogEvent(void)
 {
-    sub_8113550(11, NULL);
+    SetQuestLogEvent(QL_EVENT_USED_PKMN_CENTER, NULL);
 }
 
 static const struct {
@@ -1815,7 +1816,7 @@ static const struct {
     {MAP_GROUP(ROCKET_HIDEOUT_B1F),                    MAP_NUM(ROCKET_HIDEOUT_B1F),                    MAP_GROUP(CELADON_CITY_GAME_CORNER),              MAP_NUM(CELADON_CITY_GAME_CORNER)},
     {MAP_GROUP(SAFARI_ZONE_CENTER),                    MAP_NUM(SAFARI_ZONE_CENTER),                    MAP_GROUP(FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE),     MAP_NUM(FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE)},
     {MAP_GROUP(FUCHSIA_CITY_GYM),                      MAP_NUM(FUCHSIA_CITY_GYM),                      MAP_GROUP(FUCHSIA_CITY),                          MAP_NUM(FUCHSIA_CITY)},
-    {MAP_GROUP(FUCHSIA_CITY_BUILDING1),                MAP_NUM(FUCHSIA_CITY_BUILDING1),                MAP_GROUP(FUCHSIA_CITY),                          MAP_NUM(FUCHSIA_CITY)},
+    {MAP_GROUP(FUCHSIA_CITY_WARDENS_HOUSE),            MAP_NUM(FUCHSIA_CITY_WARDENS_HOUSE),            MAP_GROUP(FUCHSIA_CITY),                          MAP_NUM(FUCHSIA_CITY)},
     {MAP_GROUP(SAFFRON_CITY_DOJO),                     MAP_NUM(SAFFRON_CITY_DOJO),                     MAP_GROUP(SAFFRON_CITY),                          MAP_NUM(SAFFRON_CITY)},
     {MAP_GROUP(SAFFRON_CITY_GYM),                      MAP_NUM(SAFFRON_CITY_GYM),                      MAP_GROUP(SAFFRON_CITY),                          MAP_NUM(SAFFRON_CITY)},
     {MAP_GROUP(SILPH_CO_1F),                           MAP_NUM(SILPH_CO_1F),                           MAP_GROUP(SAFFRON_CITY),                          MAP_NUM(SAFFRON_CITY)},
@@ -1868,7 +1869,7 @@ void sub_80CC59C(void)
                     sp0.unk1 = r5;
                 else
                     sp0.unk1 = r5 + 1;
-                sub_8113550(35, (void *)&sp0);
+                SetQuestLogEvent(QL_EVENT_DEPARTED, (void *)&sp0);
                 FlagClear(FLAG_0x808);
                 return;
             }
@@ -1882,7 +1883,7 @@ void sub_80CC59C(void)
                     sp0.unk1 = r5;
                 else
                     sp0.unk1 = r5 + 1;
-                sub_8113550(35, (void *)&sp0);
+                SetQuestLogEvent(QL_EVENT_DEPARTED, (void *)&sp0);
                 FlagClear(FLAG_0x808);
                 return;
             }
@@ -1903,7 +1904,7 @@ void sub_80CC59C(void)
                 if (x != 67 || y != 15)
                     sp0.unk1++;
             }
-            sub_8113550(35, (void *)&sp0);
+            SetQuestLogEvent(QL_EVENT_DEPARTED, (void *)&sp0);
             FlagClear(FLAG_0x808);
             if (r5 == 35)
             {
@@ -2447,7 +2448,7 @@ void Special_BrailleCursorToggle(void)
     // 8005 = y
     // 8006 = action (0 = create, 1 = delete)
     u16 x;
-    if (gUnknown_203ADFA != 2)
+    if (gQuestLogState != 2)
     {
         x = gSpecialVar_0x8004 + 27;
         if (gSpecialVar_0x8006 == 0)
