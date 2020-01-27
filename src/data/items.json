@@ -2131,7 +2131,7 @@
     {
       "english": "Cheri Berry",
       "itemId": "ITEM_CHERI_BERRY",
-      "price": 20,
+      "price": 100,
       "holdEffect": "HOLD_EFFECT_CURE_PAR",
       "holdEffectParam": 0,
       "description_english": "When held by a POKéMON, it will be\\nused in battle to heal paralysis.",
@@ -2147,7 +2147,7 @@
     {
       "english": "Chesto Berry",
       "itemId": "ITEM_CHESTO_BERRY",
-      "price": 20,
+      "price": 125,
       "holdEffect": "HOLD_EFFECT_CURE_SLP",
       "holdEffectParam": 0,
       "description_english": "When held by a POKéMON, it will be\\nused in battle to wake up.",
@@ -2163,7 +2163,7 @@
     {
       "english": "Pecha Berry",
       "itemId": "ITEM_PECHA_BERRY",
-      "price": 20,
+      "price": 50,
       "holdEffect": "HOLD_EFFECT_CURE_PSN",
       "holdEffectParam": 0,
       "description_english": "When held by a POKéMON, it will be\\nused in battle to cure poison.",
@@ -2179,7 +2179,7 @@
     {
       "english": "Rawst Berry",
       "itemId": "ITEM_RAWST_BERRY",
-      "price": 20,
+      "price": 125,
       "holdEffect": "HOLD_EFFECT_CURE_BRN",
       "holdEffectParam": 0,
       "description_english": "When held by a POKéMON, it will be\\nused in battle to heal a burn.",
@@ -2195,7 +2195,7 @@
     {
       "english": "Aspear Berry",
       "itemId": "ITEM_ASPEAR_BERRY",
-      "price": 20,
+      "price": 125,
       "holdEffect": "HOLD_EFFECT_CURE_FRZ",
       "holdEffectParam": 0,
       "description_english": "When held by a POKéMON, it will be\\nused in battle for defrosting.",
@@ -2211,7 +2211,7 @@
     {
       "english": "Leppa Berry",
       "itemId": "ITEM_LEPPA_BERRY",
-      "price": 20,
+      "price": 600,
       "holdEffect": "HOLD_EFFECT_RESTORE_PP",
       "holdEffectParam": 10,
       "description_english": "When held by a POKéMON, it will be\\nused in battle to restore 10 PP.",
@@ -2227,7 +2227,7 @@
     {
       "english": "Oran Berry",
       "itemId": "ITEM_ORAN_BERRY",
-      "price": 20,
+      "price": 150,
       "holdEffect": "HOLD_EFFECT_RESTORE_HP",
       "holdEffectParam": 10,
       "description_english": "When held by a POKéMON, it will be\\nused in battle to restore 10 HP.",
@@ -2243,7 +2243,7 @@
     {
       "english": "Persim Berry",
       "itemId": "ITEM_PERSIM_BERRY",
-      "price": 20,
+      "price": 125,
       "holdEffect": "HOLD_EFFECT_CURE_CONFUSION",
       "holdEffectParam": 0,
       "description_english": "When held by a POKéMON, it will be\\nused in battle to lift confusion.",
@@ -2259,7 +2259,7 @@
     {
       "english": "Lum Berry",
       "itemId": "ITEM_LUM_BERRY",
-      "price": 20,
+      "price": 300,
       "holdEffect": "HOLD_EFFECT_CURE_STATUS",
       "holdEffectParam": 0,
       "description_english": "When held by a POKéMON, it will be\\nused in battle to heal any problem.",

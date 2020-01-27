@@ -26,13 +26,15 @@ CeladonCity_DepartmentStore_5F_EventScript_16BC5C:: @ 816BC5C
 
 	.align 2
 Items_16BC84:: @ 816BC84
-	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFEND
-	.2byte ITEM_X_SPEED
-	.2byte ITEM_X_SPECIAL
-	.2byte ITEM_X_ACCURACY
-	.2byte ITEM_GUARD_SPEC
-	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_ORAN_BERRY
+	.2byte ITEM_LEPPA_BERRY
+	.2byte ITEM_PECHA_BERRY
+	.2byte ITEM_RAWST_BERRY
+	.2byte ITEM_ASPEAR_BERRY
+	.2byte ITEM_CHESTO_BERRY
+	.2byte ITEM_CHERI_BERRY
+	.2byte ITEM_LUM_BERRY
+	.2byte ITEM_PERSIM_BERRY
 	.2byte ITEM_NONE
 	release
 	end

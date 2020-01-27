@@ -17,27 +17,7 @@ CeladonCity_DepartmentStore_2F_EventScript_16BB10:: @ 816BB10
 	goto_if_questlog EventScript_ReleaseEnd
 	lock
 	faceplayer
-	message Text_MayIHelpYou
-	waitmessage
-	pokemart Items_16BB38
-	msgbox Text_PleaseComeAgain
-	release
-	end
-
-	.align 2
-Items_16BB38:: @ 816BB38
-	.2byte ITEM_GREAT_BALL
-	.2byte ITEM_SUPER_POTION
-	.2byte ITEM_REVIVE
-	.2byte ITEM_ANTIDOTE
-	.2byte ITEM_PARALYZE_HEAL
-	.2byte ITEM_AWAKENING
-	.2byte ITEM_BURN_HEAL
-	.2byte ITEM_ICE_HEAL
-	.2byte ITEM_SUPER_REPEL
-	.2byte ITEM_NONE
-	release
-	end
+	goto General_PokeMart_Script
 
 CeladonCity_DepartmentStore_2F_EventScript_16BB4E:: @ 816BB4E
 	goto_if_questlog EventScript_ReleaseEnd
