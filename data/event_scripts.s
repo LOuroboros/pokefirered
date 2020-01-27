@@ -883,7 +883,8 @@ Text_GiveNicknameToReceivedMon:: @ 81A5446
 	.string "{STR_VAR_2} you received?$"
 
 gText_PkmnFainted3:: @ 81A5476
-	.string "{STR_VAR_1} fainted…\p"
+	.string "{STR_VAR_1} survived the poisoning!\n"
+	.string "The poison faded away.\p"
 	.string "$"
 
 Text_WelcomeWantToHealPkmn:: @ 81A5483
