@@ -2116,3 +2116,4 @@ EventScript_1B2DF6:: @ 81B2DF6
 	.include "data/text/save.inc"
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/poke_dude.inc"
+	.include "data/scripts/ev_iv_check.inc"
