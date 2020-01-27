@@ -2,7 +2,7 @@ General_PokeMart_Script::
 	goto_if_set FLAG_SYS_GAME_CLEAR, General_PokeMart_PostLeague @ Mostly based on LGPE with 3 additions of my own.
 	goto_if_set FLAG_BADGE08_GET, General_PokeMart_Badge8 @ Mostly based on LGPE with 1 addition of my own.
 	goto_if_set FLAG_BADGE07_GET, General_PokeMart_Badge7 @ Based on Badge6 with 1 addition of my own.
-	goto_if_set FLAG_BADGE05_GET, General_PokeMart_Badge6 @ Mostly based on LGPE
+	goto_if_set FLAG_BADGE06_GET, General_PokeMart_Badge6 @ Mostly based on LGPE
 	goto_if_set FLAG_BADGE05_GET, General_PokeMart_Badge5 @ Mostly based on LGPE
 	goto_if_set FLAG_BADGE04_GET, General_PokeMart_Badge4 @ Mostly based on LGPE
 	goto_if_set FLAG_BADGE03_GET, General_PokeMart_Badge3 @ Mostly based on LGPE
