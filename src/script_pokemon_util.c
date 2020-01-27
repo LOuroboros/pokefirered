@@ -48,14 +48,27 @@ void HealPlayerParty(void)
     }
 }
 
-u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
+//u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
+u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 nature, u32 pokeball, u8 fixedIv)
 {
     u16 nationalDexNum;
     int sentToPc;
     u8 heldItem[2];
     struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
 
-    CreateMon(mon, species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+    //CreateMon(mon, species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+
+    if (fixedIv == 0 || fixedIv == 0xFF || fixedIv >= 32)
+        fixedIv = 32;   // If an amount is not specified, then randomize the IVs.
+
+    if (nature != 0xFF)
+        CreateMonWithNature(mon, species, level, fixedIv, nature);
+    else
+        CreateMon(mon, species, level, fixedIv, 0, 0, OT_ID_PLAYER_ID, 0);
+
+    if (pokeball > ITEM_NONE && pokeball <= POKEBALL_COUNT)
+        SetMonData(mon, MON_DATA_POKEBALL, &pokeball);
+
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, heldItem);

@@ -877,9 +877,19 @@
 	.2byte \species
 	.byte \level
 	.2byte \item
-	.4byte 0x0
+	.4byte 0xFF
 	.4byte 0x0
 	.byte 0
+	.endm
+
+    .macro givecustommon species:req, level:req, item:req, nature:req, ball:req, fixedIv:req
+	.byte 0x79
+	.2byte \species
+	.byte \level
+	.2byte \item
+	.4byte \nature
+	.4byte \ball
+	.byte \fixedIv
 	.endm
 
 	.macro giveegg species:req
@@ -1444,7 +1454,6 @@
 	.2byte \item
 	.2byte \quantity
 	.endm
-
 
 @ Supplementary
 

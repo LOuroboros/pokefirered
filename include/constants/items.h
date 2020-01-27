@@ -454,4 +454,7 @@
 // Check if the item is one that can be used on a Pokemon.
 #define IS_POKEMON_ITEM(item) ((item) >= ITEM_POTION && (item) <= ITEM_0B2)
 
+// Amount of Poké Balls in the game, used by givecustommon
+#define POKEBALL_COUNT 11
+
 #endif  // GUARD_CONSTANTS_ITEMS_H
