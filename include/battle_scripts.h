@@ -231,6 +231,7 @@ extern const u8 BattleScript_SilphScopeUnveiled[];
 extern const u8 BattleScript_BattleTowerTrainerBattleWon[];
 extern const u8 BattleScript_MotorDriveActivates[];
 extern const u8 BattleScript_OpponentWokeUp[];
+extern const u8 BattleScript_AngerPointBoost[];
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];

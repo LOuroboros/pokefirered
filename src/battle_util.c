@@ -1987,6 +1987,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     ++effect;
                 }
                 break;
+            case ABILITY_ANGER_POINT:
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                 && gCritMultiplier > 1
+                 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                 && gBattleMons[gBattlerTarget].hp != 0
+                 && (gSpecialStatuses[gBattlerTarget].physicalDmg || gSpecialStatuses[gBattlerTarget].specialDmg))
+                {
+                    gBattleMons[gBattlerTarget].statStages[STAT_ATK] = 12;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_AngerPointBoost;
+                    effect++;
+                }
+                break;
             case ABILITY_EFFECT_SPORE:
                 if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                  && gBattleMons[gBattlerAttacker].hp != 0

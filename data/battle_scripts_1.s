@@ -4316,6 +4316,11 @@ BattleScript_CuteCharmActivates::
 	waitmessage 0x40
 	return
 
+BattleScript_AngerPointBoost::
+	printstring STRINGID_ANGERPOINTBOOST
+	waitmessage 0x40
+	return
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary

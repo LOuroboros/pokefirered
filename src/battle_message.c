@@ -516,6 +516,7 @@ const u8 gUnknown_83FDD23[] = _("Oak: No! There's no running away\nfrom a traine
 const u8 gUnknown_83FDD64[] = _("Oak: Hm! Excellent!\pIf you win, you earn prize money,\nand your Pokémon will grow!\pBattle other trainers and make\nyour Pokémon strong!\p");
 const u8 gUnknown_83FDDEB[] = _("Oak: Hm…\nHow disappointing…\pIf you win, you earn prize money,\nand your Pokémon grow.\pBut if you lose, {B_PLAYER_NAME}, you end\nup paying prize money…\pHowever, since you had no warning\nthis time, I'll pay for you.\pBut things won't be this way once\nyou step outside these doors.\pThat's why you must strengthen your\nPokémon by battling wild Pokémon.\p");
 const u8 sText_OpponentWokeUp[] = _("{B_DEF_NAME_WITH_PREFIX} woke up!");
+const u8 sText_AngerPointBoost[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_LAST_ABILITY}\nmaximized its ATTACK!");
 
 const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB219,
@@ -892,7 +893,8 @@ const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB232,
     gUnknown_83FB235,
     gUnknown_83FB248,
-    sText_OpponentWokeUp
+    sText_OpponentWokeUp,
+    sText_AngerPointBoost
 };
 
 const u16 gMissStringIds[] = {
