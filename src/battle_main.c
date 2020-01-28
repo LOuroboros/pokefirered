@@ -3365,9 +3365,12 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         speedMultiplierBattler1 = 1;
         speedMultiplierBattler2 = 1;
     }
+
+    // check first battlerId's speed
     speedBattler1 = (gBattleMons[battler1].speed * speedMultiplierBattler1)
                     * (gStatStageRatios[gBattleMons[battler1].statStages[STAT_SPEED]][0])
                     / (gStatStageRatios[gBattleMons[battler1].statStages[STAT_SPEED]][1]);
+
     if (gBattleMons[battler1].item == ITEM_ENIGMA_BERRY)
     {
         holdEffect = gEnigmaBerries[battler1].holdEffect;
@@ -3378,23 +3381,33 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         holdEffect = ItemId_GetHoldEffect(gBattleMons[battler1].item);
         holdEffectParam = ItemId_GetHoldEffectParam(gBattleMons[battler1].item);
     }
+
     // badge boost
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK)
      && FlagGet(FLAG_BADGE03_GET)
      && GetBattlerSide(battler1) == B_SIDE_PLAYER)
         speedBattler1 = (speedBattler1 * 110) / 100;
+
     if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
         speedBattler1 /= 2;
+
     if (gBattleMons[battler1].status1 & STATUS1_PARALYSIS)
-        speedBattler1 /= 4;
+        speedBattler1 /= 2;
+
     if (holdEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * holdEffectParam) / 100)
         speedBattler1 = UINT_MAX;
+
     if (gBattleMons[battler1].ability == ABILITY_STEADFAST && gBattleMons[battler1].statStages[STAT_SPEED] < 0xC && gProtectStructs[battler1].flinchImmobility)
         ++gBattleMons[battler1].statStages[STAT_SPEED];
+
+	if (gBattleMons[battler1].item == ITEM_NONE && gBattleMons[battler1].ability == ABILITY_UNBURDEN && gBattleMons[gActiveBattler].itemwasremoved)
+        speedBattler1 *= 2;
+
     // check second battlerId's speed
     speedBattler2 = (gBattleMons[battler2].speed * speedMultiplierBattler2)
                     * (gStatStageRatios[gBattleMons[battler2].statStages[STAT_SPEED]][0])
                     / (gStatStageRatios[gBattleMons[battler2].statStages[STAT_SPEED]][1]);
+
     if (gBattleMons[battler2].item == ITEM_ENIGMA_BERRY)
     {
         holdEffect = gEnigmaBerries[battler2].holdEffect;
@@ -3405,19 +3418,28 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         holdEffect = ItemId_GetHoldEffect(gBattleMons[battler2].item);
         holdEffectParam = ItemId_GetHoldEffectParam(gBattleMons[battler2].item);
     }
+
     // badge boost
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK)
      && FlagGet(FLAG_BADGE03_GET)
      && GetBattlerSide(battler2) == B_SIDE_PLAYER)
         speedBattler2 = (speedBattler2 * 110) / 100;
+
     if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
         speedBattler2 /= 2;
+
     if (gBattleMons[battler2].status1 & STATUS1_PARALYSIS)
-        speedBattler2 /= 4;
+        speedBattler2 /= 2;
+
     if (holdEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * holdEffectParam) / 100)
         speedBattler2 = UINT_MAX;
+
     if (gBattleMons[battler2].ability == ABILITY_STEADFAST && gBattleMons[battler2].statStages[STAT_SPEED] < 0xC && gProtectStructs[battler2].flinchImmobility)
         ++gBattleMons[battler2].statStages[STAT_SPEED];
+
+	if (gBattleMons[battler2].item == ITEM_NONE && gBattleMons[battler2].ability == ABILITY_UNBURDEN && gBattleMons[gActiveBattler].itemwasremoved)
+        speedBattler2 *= 2;
+
     if (ignoreChosenMoves)
     {
         moveBattler1 = MOVE_NONE;
@@ -3444,6 +3466,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         else
             moveBattler2 = MOVE_NONE;
     }
+
     // both move priorities are different than 0
     if (gBattleMoves[moveBattler1].priority != 0 || gBattleMoves[moveBattler2].priority != 0)
     {
@@ -3469,6 +3492,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
             strikesFirst = 1; // battler2 has more speed
         // else battler1 has more speed
     }
+
     return strikesFirst;
 }
 

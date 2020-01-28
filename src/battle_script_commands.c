@@ -5755,6 +5755,7 @@ static void atk6A_removeitem(void)
 {
     u16 *usedHeldItem;
 
+    gBattleMons[gActiveBattler].itemwasremoved = 1;
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     usedHeldItem = &gBattleStruct->usedHeldItems[gActiveBattler];
     *usedHeldItem = gBattleMons[gActiveBattler].item;
