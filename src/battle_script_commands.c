@@ -1335,6 +1335,10 @@ static void atk06_typecalc(void)
         gBattleMoveDamage = gBattleMoveDamage * 15;
         gBattleMoveDamage = gBattleMoveDamage / 10;
     }
+    
+    // Heatproof
+    if (gBattleMons[gBattlerTarget].ability == ABILITY_HEATPROOF && gBattleMoves[gCurrentMove].type == TYPE_FIRE)
+        gBattleMoveDamage = gBattleMoveDamage / 2;
 
     if (gBattleMons[gBattlerTarget].ability == ABILITY_LEVITATE && moveType == TYPE_GROUND)
     {
@@ -1503,6 +1507,10 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
         gBattleMoveDamage = gBattleMoveDamage * 15;
         gBattleMoveDamage = gBattleMoveDamage / 10;
     }
+    
+    // Heatproof
+    if (gBattleMons[defender].ability == ABILITY_HEATPROOF && gBattleMoves[gCurrentMove].type == TYPE_FIRE)
+        gBattleMoveDamage = gBattleMoveDamage / 2;
 
     if (gBattleMons[defender].ability == ABILITY_LEVITATE && moveType == TYPE_GROUND)
     {
