@@ -3915,9 +3915,14 @@ static void atk48_playstatchangeanimation(void)
     u16 statAnimId = 0;
     s32 changeableStatsCount = 0;
     u8 statsToCheck = 0;
+    u32 flags = gBattlescriptCurrInstr[3];
 
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     statsToCheck = gBattlescriptCurrInstr[2];
+
+    if (gBattleMons[gBattlerAttacker].ability == ABILITY_SIMPLE)
+        flags |= ATK48_STAT_BY_TWO;
+
     if (gBattlescriptCurrInstr[3] & ATK48_STAT_NEGATIVE) // goes down
     {
         s16 startingStatAnimId;
@@ -6884,6 +6889,12 @@ static u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8 *BS_ptr)
     if (flags & STAT_CHANGE_NOT_PROTECT_AFFECTED)
         ++notProtectAffected;
     flags &= ~(STAT_CHANGE_NOT_PROTECT_AFFECTED);
+
+    if (gBattleMons[gBattlerAttacker].ability == ABILITY_SIMPLE)
+    {
+        statValue = (SET_STAT_BUFF_VALUE(GET_STAT_BUFF_VALUE(statValue) * 2)) | ((statValue <= -1) ? STAT_BUFF_NEGATIVE : 0);
+    }
+
     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId)
     if (statValue <= -1) // Stat decrease.
     {
