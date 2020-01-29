@@ -4321,6 +4321,14 @@ BattleScript_AngerPointBoost::
 	waitmessage 0x40
 	return
 
+BattleScript_DrySkinDmg::
+	printstring STRINGID_DRYSKINDMG
+	waitmessage 0x40
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	end3
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary
