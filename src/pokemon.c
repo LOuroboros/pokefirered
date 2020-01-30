@@ -2428,17 +2428,19 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         defense /= 2;
     if (defender->ability == ABILITY_DRY_SKIN && (gBattleMoves[gCurrentMove].type == TYPE_FIRE))
         gBattleMovePower = (125 * gBattleMovePower) / 100;
+    if (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_AFFECTED)
+        gBattleMovePower = (120 * gBattleMovePower) / 100;
 
     // Rivalry
     attackersGender = GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality);
     defendersGender = GetGenderFromSpeciesAndPersonality(defender->species, defender->personality);
-	if (attacker->ability == ABILITY_RIVALRY && defendersGender != MON_GENDERLESS)
-	{
-		if (attackersGender == defendersGender)
-			gBattleMovePower = (125 * gBattleMovePower) / 100;
-		else
-			gBattleMovePower = (75 * gBattleMovePower) / 100;
-	}
+    if (attacker->ability == ABILITY_RIVALRY && defendersGender != MON_GENDERLESS)
+    {
+        if (attackersGender == defendersGender)
+            gBattleMovePower = (125 * gBattleMovePower) / 100;
+        else
+            gBattleMovePower = (75 * gBattleMovePower) / 100;
+    }
 
     if (IS_TYPE_PHYSICAL(gBattleMoves[move]))
     {
@@ -4847,28 +4849,28 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_LEVEL_NIGHT:
-				/*
+                /*
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= 0 && gLocalTime.hours < 12 && gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
-				*/
+                */
                 break;
             case EVO_LEVEL_DAY:
-				/*
+                /*
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= 12 && gLocalTime.hours < 24 && gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
-				*/
+                */
                 break;
             case EVO_LEVEL_DUSK:
-				/*
+                /*
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= 17 && gLocalTime.hours < 18 && gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
-				*/
+                */
                 break;
             case EVO_ITEM_HOLD_DAY:
-				/*
+                /*
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= 12 && gLocalTime.hours < 24 && heldItem == gEvolutionTable[species][i].param)
                 {
@@ -4876,18 +4878,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                     SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
-				*/
+                */
                 break;
             case EVO_ITEM_HOLD_NIGHT:
                 /*
-				RtcCalcLocalTime();
+                RtcCalcLocalTime();
                 if (gLocalTime.hours >= 0 && gLocalTime.hours < 12 && heldItem == gEvolutionTable[species][i].param)
                 {
                     heldItem = 0;
                     SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
-				*/
+                */
                 break;
             case EVO_MOVE:
                 if (MonKnowsMove(mon, gEvolutionTable[species][i].param))
