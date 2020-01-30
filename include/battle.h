@@ -226,6 +226,7 @@ struct SpecialStatus
     u8 specialBattlerId;
     u8 field12;
     u8 field13;
+    u8 switchInAbilityDone : 1;
 };
 
 extern struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT];
@@ -716,5 +717,6 @@ extern u8 gBattleTerrain;
 extern struct UnknownPokemonStruct4 gMultiPartnerParty[3];
 extern u16 *gUnknown_2022BC0;
 extern u16 gRandomTurnNumber;
+extern u8 gBattlerAbility;
 
 #endif // GUARD_BATTLE_H

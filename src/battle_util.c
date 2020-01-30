@@ -1790,6 +1790,43 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     }
                 }
                 break;
+            case ABILITY_DOWNLOAD:
+                if (!gSpecialStatuses[battler].switchInAbilityDone)
+                {
+                    u32 statId, opposingBattler;
+                    u32 opposingDef = 0, opposingSpDef = 0;
+            
+                    opposingBattler = BATTLE_OPPOSITE(battler);
+                    for (i = 0; i < 2; opposingBattler ^= BIT_SIDE, i++)
+                    {
+                        if (IsBattlerAlive(opposingBattler))
+                        {
+                            opposingDef += gBattleMons[opposingBattler].defense
+                                        * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][0]
+                                        / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][1];
+                            opposingSpDef += gBattleMons[opposingBattler].spDefense
+                                          * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][0]
+                                          / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][1];
+                        }
+                    }
+            
+                    if (opposingDef < opposingSpDef)
+                        statId = STAT_ATK;
+                    else
+                        statId = STAT_SPATK;
+            
+                    gSpecialStatuses[battler].switchInAbilityDone = 1;
+            
+                    if (gBattleMons[battler].statStages[statId] != 12)
+                    {
+                        gBattleMons[battler].statStages[statId]++;
+                        SET_STATCHANGER(statId, 1, FALSE);
+                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                        effect++;
+                    }
+                }
+                break;
             }
             break;
         case ABILITYEFFECT_ENDTURN: // 1
@@ -3330,4 +3367,16 @@ u8 IsMonDisobedient(void)
             return 1;
         }
     }
+}
+
+bool32 IsBattlerAlive(u8 battlerId)
+{
+    if (gBattleMons[battlerId].hp == 0)
+        return FALSE;
+    else if (battlerId >= gBattlersCount)
+        return FALSE;
+    else if (gAbsentBattlerFlags & gBitTable[battlerId])
+        return FALSE;
+	else
+		return TRUE;
 }

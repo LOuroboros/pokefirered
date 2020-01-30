@@ -518,6 +518,7 @@ const u8 gUnknown_83FDDEB[] = _("Oak: Hm…\nHow disappointing…\pIf you win, y
 const u8 sText_OpponentWokeUp[] = _("{B_DEF_NAME_WITH_PREFIX} woke up!");
 const u8 sText_AngerPointBoost[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_LAST_ABILITY}\nmaximized its ATTACK!");
 const u8 sText_DrySkinDmg[] = _("{DEFENDING_MON} is hurt\nby its {B_LAST_ABILITY}!");
+const u8 sText_AttackerAbilityRaisedStat[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\nraised its {B_BUFF1}!");
 
 const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB219,
@@ -896,7 +897,8 @@ const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB248,
     sText_OpponentWokeUp,
     sText_AngerPointBoost,
-    sText_DrySkinDmg
+    sText_DrySkinDmg,
+    sText_AttackerAbilityRaisedStat
 };
 
 const u16 gMissStringIds[] = {

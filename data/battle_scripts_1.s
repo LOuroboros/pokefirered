@@ -4329,6 +4329,19 @@ BattleScript_DrySkinDmg::
 	datahpupdate BS_ATTACKER
 	end3
 
+BattleScript_AttackerAbilityStatRaiseEnd3::
+	call BattleScript_AttackerAbilityStatRaise
+	end3
+
+BattleScript_AttackerAbilityStatRaise::
+	setgraphicalstatchangevalues
+	copybyte gBattlerAbility, gBattlerAttacker
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printstring STRINGID_ATTACKERABILITYRAISEDSTAT
+	waitmessage 0x40
+	return
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary
