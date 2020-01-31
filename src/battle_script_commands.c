@@ -1331,6 +1331,11 @@ static void atk06_typecalc(void)
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
+    if (gBattleMons[gBattlerAttacker].ability == ABILITY_NORMALIZE)
+    {
+        moveType = TYPE_NORMAL;
+    }
+
     // check stab
     if (IS_BATTLER_OF_TYPE(gBattlerAttacker, moveType))
     {
@@ -1512,6 +1517,11 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
         return 0;
 
     moveType = gBattleMoves[move].type;
+
+    if (gBattleMons[attacker].ability == ABILITY_NORMALIZE)
+    {
+        moveType = TYPE_NORMAL;
+    }
 
     // check stab
     if (IS_BATTLER_OF_TYPE(attacker, moveType))
