@@ -3404,6 +3404,9 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 	if (gBattleMons[battler1].item == ITEM_NONE && gBattleMons[battler1].ability == ABILITY_UNBURDEN && gBattleMons[gActiveBattler].itemwasremoved)
         speedBattler1 *= 2;
 
+	if (gBattleMons[battler1].ability == ABILITY_QUICK_FEET && (gBattleMons[battler1].status1 & STATUS1_ANY))
+        speedBattler1 = (speedBattler1 * 150) / 100;
+
     // check second battlerId's speed
     speedBattler2 = (gBattleMons[battler2].speed * speedMultiplierBattler2)
                     * (gStatStageRatios[gBattleMons[battler2].statStages[STAT_SPEED]][0])
@@ -3440,6 +3443,9 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 
 	if (gBattleMons[battler2].item == ITEM_NONE && gBattleMons[battler2].ability == ABILITY_UNBURDEN && gBattleMons[gActiveBattler].itemwasremoved)
         speedBattler2 *= 2;
+
+	if (gBattleMons[battler2].ability == ABILITY_QUICK_FEET && (gBattleMons[battler2].status1 & STATUS1_ANY))
+        speedBattler2 = (speedBattler2 * 150) / 100;
 
     if (ignoreChosenMoves)
     {
