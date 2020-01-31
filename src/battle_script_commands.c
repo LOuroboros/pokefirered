@@ -1240,6 +1240,8 @@ static void atk04_critcalc(void)
      && (!(gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE) || sub_80EB2E0(1))
      && !(gBattleTypeFlags & BATTLE_TYPE_POKEDUDE))
         gCritMultiplier = 2;
+    else if (gBattleMons[gBattlerAttacker].ability == ABILITY_SNIPER)
+        gCritMultiplier = 3;
     else
         gCritMultiplier = 1;
     ++gBattlescriptCurrInstr;
