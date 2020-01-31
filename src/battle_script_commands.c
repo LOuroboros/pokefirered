@@ -1328,14 +1328,24 @@ static void atk06_typecalc(void)
         ++gBattlescriptCurrInstr;
         return;
     }
+
     GET_MOVE_TYPE(gCurrentMove, moveType);
+
     // check stab
     if (IS_BATTLER_OF_TYPE(gBattlerAttacker, moveType))
     {
-        gBattleMoveDamage = gBattleMoveDamage * 15;
-        gBattleMoveDamage = gBattleMoveDamage / 10;
+        if (gBattleMons[gBattlerAttacker].ability == ABILITY_ADAPTABILITY)
+        {
+            gBattleMoveDamage = gBattleMoveDamage * 20;
+            gBattleMoveDamage = gBattleMoveDamage / 10;
+        }
+        else
+        {
+            gBattleMoveDamage = gBattleMoveDamage * 15;
+            gBattleMoveDamage = gBattleMoveDamage / 10;
+        }
     }
-    
+
     // Heatproof
     if (gBattleMons[gBattlerTarget].ability == ABILITY_HEATPROOF && gBattleMoves[gCurrentMove].type == TYPE_FIRE)
         gBattleMoveDamage = gBattleMoveDamage / 2;
@@ -1500,14 +1510,24 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
 
     if (move == MOVE_STRUGGLE)
         return 0;
+
     moveType = gBattleMoves[move].type;
+
     // check stab
     if (IS_BATTLER_OF_TYPE(attacker, moveType))
     {
-        gBattleMoveDamage = gBattleMoveDamage * 15;
-        gBattleMoveDamage = gBattleMoveDamage / 10;
+        if (gBattleMons[attacker].ability == ABILITY_ADAPTABILITY)
+        {
+            gBattleMoveDamage = gBattleMoveDamage * 20;
+            gBattleMoveDamage = gBattleMoveDamage / 10;
+        }
+        else
+        {
+            gBattleMoveDamage = gBattleMoveDamage * 15;
+            gBattleMoveDamage = gBattleMoveDamage / 10;
+        }
     }
-    
+
     // Heatproof
     if (gBattleMons[defender].ability == ABILITY_HEATPROOF && gBattleMoves[gCurrentMove].type == TYPE_FIRE)
         gBattleMoveDamage = gBattleMoveDamage / 2;
