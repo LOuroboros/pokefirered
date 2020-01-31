@@ -1884,26 +1884,33 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                         ++effect;
                     }
                     break;
+                case ABILITY_HYDRATION:
+                    if ((gBattleMons[battler].status1 & STATUS1_ANY) && (gBattleWeather & WEATHER_RAIN_ANY))
+                    {
+                        goto ABILITY_HEAL_STATUS;
+                    }
+                    break;
                 case ABILITY_SHED_SKIN:
                     if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
                     {
-                        if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
-                            StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
-                        if (gBattleMons[battler].status1 & STATUS1_SLEEP)
-                            StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                        if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
-                            StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
-                        if (gBattleMons[battler].status1 & STATUS1_BURN)
-                            StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
-                        if (gBattleMons[battler].status1 & STATUS1_FREEZE)
-                            StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
-                        gBattleMons[battler].status1 = 0;
-                        gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);  // fix nightmare glitch
-                        gBattleScripting.battler = gActiveBattler = battler;
-                        BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
-                        BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
-                        MarkBattlerForControllerExec(gActiveBattler);
-                        ++effect;
+                        ABILITY_HEAL_STATUS:
+                            if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+                                StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                            if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                                StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                            if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+                                StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                            if (gBattleMons[battler].status1 & STATUS1_BURN)
+                                StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                            if (gBattleMons[battler].status1 & STATUS1_FREEZE)
+                                StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                            gBattleMons[battler].status1 = 0;
+                            gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);  // fix nightmare glitch
+                            gBattleScripting.battler = gActiveBattler = battler;
+                            BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+                            BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+                            MarkBattlerForControllerExec(gActiveBattler);
+                            ++effect;
                     }
                     break;
                 case ABILITY_SPEED_BOOST:
