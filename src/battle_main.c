@@ -3347,6 +3347,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     u8 holdEffect = 0;
     u8 holdEffectParam = 0;
     u16 moveBattler1 = 0, moveBattler2 = 0;
+    s8 priority1 = 0, priority2 = 0;
 
     if (WEATHER_HAS_EFFECT)
     {
@@ -3474,30 +3475,34 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
             moveBattler2 = MOVE_NONE;
     }
 
-    // both move priorities are different than 0
-    if (gBattleMoves[moveBattler1].priority != 0 || gBattleMoves[moveBattler2].priority != 0)
+    if (gChosenActionByBattler[battler1] == B_ACTION_USE_MOVE)
+        priority1 = gBattleMoves[moveBattler1].priority;
+    if (gChosenActionByBattler[battler2] == B_ACTION_USE_MOVE)
+        priority2 = gBattleMoves[moveBattler2].priority;
+
+    if (priority1 == priority2)
     {
-        // both priorities are the same
-        if (gBattleMoves[moveBattler1].priority == gBattleMoves[moveBattler2].priority)
+        if (gBattleMons[battler1].ability == ABILITY_STALL && gBattleMons[battler2].ability != ABILITY_STALL)
+            strikesFirst = 1; // If battler1's ability is Stall and battler2's is not, battler1 always moves last.
+        else if (gBattleMons[battler2].ability == ABILITY_STALL && gBattleMons[battler1].ability != ABILITY_STALL)
+            strikesFirst = 0; // If battler2's ability is Stall and battler1's is not, battler2 always moves last.
+        else
         {
             if (speedBattler1 == speedBattler2 && Random() & 1)
                 strikesFirst = 2; // same speeds, same priorities
             else if (speedBattler1 < speedBattler2)
                 strikesFirst = 1; // battler2 has more speed
-            // else battler1 has more speed
+            else
+                strikesFirst = 0; // battler1 has more speed
         }
-        else if (gBattleMoves[moveBattler1].priority < gBattleMoves[moveBattler2].priority)
-            strikesFirst = 1; // battler2's move has greater priority
-        // else battler1's move has greater priority
     }
-    // both priorities are equal to 0
+    else if (priority1 < priority2)
+    {
+        strikesFirst = 1; // battler2's move has greater priority
+    }
     else
     {
-        if (speedBattler1 == speedBattler2 && Random() & 1)
-            strikesFirst = 2; // same speeds, same priorities
-        else if (speedBattler1 < speedBattler2)
-            strikesFirst = 1; // battler2 has more speed
-        // else battler1 has more speed
+        strikesFirst = 0; // battler1's move has greater priority
     }
 
     return strikesFirst;
