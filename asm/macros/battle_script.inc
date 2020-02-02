@@ -1379,3 +1379,9 @@
 	.macro jumpifnotbattletype flags:req, jumpptr:req
 	jumpifword CMP_NO_COMMON_BITS, gBattleTypeFlags, \flags, \jumpptr
 	.endm
+
+	.macro jumpifleafguard jumpptr:req
+	jumpifhalfword CMP_NO_COMMON_BITS, gBattleWeather, WEATHER_SUN_ANY, 1f
+	jumpifability BS_TARGET, ABILITY_LEAF_GUARD, \jumpptr
+	1:
+	.endm

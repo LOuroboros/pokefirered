@@ -2227,6 +2227,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 break;
             if (gBattleMons[gEffectBattler].ability == ABILITY_INSOMNIA)
                 break;
+            if (IsLeafGuardProtected(gEffectBattler))
+                break;
             CancelMultiTurnMoves(gEffectBattler);
             statusChanged = TRUE;
             break;
@@ -2266,6 +2268,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 break;
             if (gBattleMons[gEffectBattler].ability == ABILITY_IMMUNITY)
                 break;
+            if (IsLeafGuardProtected(gEffectBattler))
+                break;
             statusChanged = TRUE;
             break;
         case STATUS1_BURN:
@@ -2302,6 +2306,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 break;
             if (gBattleMons[gEffectBattler].status1)
                 break;
+            if (IsLeafGuardProtected(gEffectBattler))
+                break;
             statusChanged = TRUE;
             break;
         case STATUS1_FREEZE:
@@ -2314,6 +2320,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
             if (noSunCanFreeze == 0)
                 break;
             if (gBattleMons[gEffectBattler].ability == ABILITY_MAGMA_ARMOR)
+                break;
+            if (IsLeafGuardProtected(gEffectBattler))
                 break;
             CancelMultiTurnMoves(gEffectBattler);
             statusChanged = TRUE;
@@ -2342,6 +2350,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     break;
             }
             if (gBattleMons[gEffectBattler].status1)
+                break;
+            if (IsLeafGuardProtected(gEffectBattler))
                 break;
             statusChanged = TRUE;
             break;
@@ -2384,6 +2394,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 statusChanged = TRUE;
                 break;
             }
+            if (IsLeafGuardProtected(gEffectBattler))
+                break;
             else
             {
                 gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
@@ -9971,4 +9983,12 @@ static void atkF8_setroost(void)
     }
 
     gBattlescriptCurrInstr++;
+}
+
+u32 IsLeafGuardProtected(u32 battler)
+{
+    if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY) && gBattleMons[battler].ability == ABILITY_LEAF_GUARD)
+        return ABILITY_LEAF_GUARD;
+    else
+        return 0;
 }
