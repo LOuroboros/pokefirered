@@ -2432,6 +2432,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gBattleMovePower = (120 * gBattleMovePower) / 100;
     if (attacker->ability == ABILITY_SOLAR_POWER && (gBattleWeather & WEATHER_SUN_ANY))
         spAttack = (150 * spAttack) / 100;
+    if (attacker->ability == ABILITY_TECHNICIAN && gBattleMoves[gCurrentMove].power <= 60)
+        gBattleMovePower = (150 * gBattleMovePower) / 100;
 
     // Rivalry
     attackersGender = GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality);
