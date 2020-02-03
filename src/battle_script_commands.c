@@ -1414,6 +1414,8 @@ static void atk06_typecalc(void)
     }
     if (gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE)
         gProtectStructs[gBattlerAttacker].targetNotAffected = 1;
+    if (gMoveResultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE && gBattleMons[gBattlerAttacker].ability == ABILITY_TINTED_LENS)
+        gBattleMoveDamage *= 2;
     ++gBattlescriptCurrInstr;
 }
 
@@ -1590,6 +1592,8 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
      && (!(flags & MOVE_RESULT_SUPER_EFFECTIVE) || ((flags & (MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE)) == (MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE)))
      && gBattleMoves[move].power)
         flags |= MOVE_RESULT_MISSED;
+    if (flags & MOVE_RESULT_NOT_VERY_EFFECTIVE && gBattleMons[attacker].ability == ABILITY_TINTED_LENS)
+        gBattleMoveDamage *= 2;
     return flags;
 }
 
