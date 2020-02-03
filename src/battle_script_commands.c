@@ -1139,7 +1139,7 @@ static void atk01_accuracycheck(void)
         }
         gPotentialItemEffectBattler = gBattlerTarget;
 
-        if (holdEffect == HOLD_EFFECT_EVASION_UP)
+        if (holdEffect == HOLD_EFFECT_EVASION_UP && gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ)
             calc = (calc * (100 - param)) / 100;
 
         // final calculation
@@ -1233,9 +1233,9 @@ static void atk04_critcalc(void)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_BLAZE_KICK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_POISON_TAIL)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_RAZOR_WIND)
-                + (holdEffect == HOLD_EFFECT_SCOPE_LENS)
-                + 2 * (holdEffect == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
-                + 2 * (holdEffect == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD);
+                + (holdEffect == HOLD_EFFECT_SCOPE_LENS && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ)
+                + 2 * (holdEffect == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ)
+                + 2 * (holdEffect == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ);
     if (critChance >= NELEMS(sCriticalHitChance))
         critChance = NELEMS(sCriticalHitChance) - 1;
     if ((gBattleMons[gBattlerTarget].ability != ABILITY_BATTLE_ARMOR && gBattleMons[gBattlerTarget].ability != ABILITY_SHELL_ARMOR)
@@ -1664,7 +1664,7 @@ static void atk07_adjustnormaldamage(void)
         param = ItemId_GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
     }
     gPotentialItemEffectBattler = gBattlerTarget;
-    if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
+    if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param && gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ)
     {
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
@@ -1704,7 +1704,7 @@ static void atk08_adjustnormaldamage2(void)
         param = ItemId_GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
     }
     gPotentialItemEffectBattler = gBattlerTarget;
-    if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
+    if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param && gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ)
     {
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
@@ -5790,7 +5790,7 @@ static void atk69_adjustsetdamage(void)
         param = ItemId_GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
     }
     gPotentialItemEffectBattler = gBattlerTarget;
-    if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
+    if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param && gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ)
     {
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
@@ -7365,7 +7365,7 @@ static void atk93_tryKO(void)
         param = ItemId_GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
     }
     gPotentialItemEffectBattler = gBattlerTarget;
-    if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
+    if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param && gBattleMons[gBattlerTarget].ability != ABILITY_KLUTZ)
     {
         RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_FOCUS_BAND);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;

@@ -3197,6 +3197,14 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
         }
         break;
     }
+
+    if (gBattleMons[battlerId].ability == ABILITY_KLUTZ
+     && (battlerHoldEffect != HOLD_EFFECT_MACHO_BRACE
+     || battlerHoldEffect != HOLD_EFFECT_LUCKY_EGG
+     || battlerHoldEffect != HOLD_EFFECT_DOUBLE_PRIZE
+     || battlerHoldEffect != HOLD_EFFECT_HAPPINESS_UP))
+        effect = ITEM_NO_EFFECT;
+
     return effect;
 }
 
