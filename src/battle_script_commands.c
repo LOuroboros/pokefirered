@@ -1235,7 +1235,8 @@ static void atk04_critcalc(void)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_RAZOR_WIND)
                 + (holdEffect == HOLD_EFFECT_SCOPE_LENS && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ)
                 + 2 * (holdEffect == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ)
-                + 2 * (holdEffect == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ);
+                + 2 * (holdEffect == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD && gBattleMons[gBattlerAttacker].ability != ABILITY_KLUTZ)
+                + (gBattleMons[gBattlerAttacker].ability == ABILITY_SUPER_LUCK);
     if (critChance >= NELEMS(sCriticalHitChance))
         critChance = NELEMS(sCriticalHitChance) - 1;
     if ((gBattleMons[gBattlerTarget].ability != ABILITY_BATTLE_ARMOR && gBattleMons[gBattlerTarget].ability != ABILITY_SHELL_ARMOR)
