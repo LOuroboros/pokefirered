@@ -234,6 +234,7 @@ extern const u8 BattleScript_OpponentWokeUp[];
 extern const u8 BattleScript_AngerPointBoost[];
 extern const u8 BattleScript_DrySkinDmg[];
 extern const u8 BattleScript_AttackerAbilityStatRaiseEnd3[];
+extern const u8 BattleScript_AftermathDmg[];
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];
