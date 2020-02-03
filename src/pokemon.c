@@ -2448,7 +2448,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
     if (IS_TYPE_PHYSICAL(gBattleMoves[move]))
     {
-        if (gCritMultiplier == 2)
+        if (defender->ability == ABILITY_UNAWARE)
+            damage = attack;
+        else if (gCritMultiplier == 2)
         {
             if (attacker->statStages[STAT_ATK] > 6)
                 APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)
@@ -2461,7 +2463,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         damage = damage * gBattleMovePower;
         damage *= (2 * attacker->level / 5 + 2);
 
-        if (gCritMultiplier == 2)
+        if (attacker->ability == ABILITY_UNAWARE)
+            damageHelper = defense;
+        else if (gCritMultiplier == 2)
         {
             if (defender->statStages[STAT_DEF] < 6)
                 APPLY_STAT_MOD(damageHelper, defender, defense, STAT_DEF)
@@ -2498,7 +2502,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
     if (IS_TYPE_SPECIAL(gBattleMoves[move]))
     {
-        if (gCritMultiplier == 2)
+        if (defender->ability == ABILITY_UNAWARE)
+            damage = spAttack;
+        else if (gCritMultiplier == 2)
         {
             if (attacker->statStages[STAT_SPATK] > 6)
                 APPLY_STAT_MOD(damage, attacker, spAttack, STAT_SPATK)
@@ -2511,7 +2517,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         damage = damage * gBattleMovePower;
         damage *= (2 * attacker->level / 5 + 2);
 
-        if (gCritMultiplier == 2)
+        if (attacker->ability == ABILITY_UNAWARE)
+            damageHelper = spDefense;
+        else if (gCritMultiplier == 2)
         {
             if (defender->statStages[STAT_SPDEF] < 6)
                 APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_SPDEF)

@@ -1104,6 +1104,11 @@ static void atk01_accuracycheck(void)
             buff = acc + 6 - gBattleMons[gBattlerTarget].statStages[STAT_EVASION];
         }
 
+        if (gBattleMons[gBattlerAttacker].ability == ABILITY_UNAWARE)
+            gBattleMons[gBattlerTarget].statStages[STAT_EVASION] = 6;
+        if (gBattleMons[gBattlerTarget].ability == ABILITY_UNAWARE)
+            gBattleMons[gBattlerAttacker].statStages[STAT_ACC] = 6;
+
         if (buff < 0)
             buff = 0;
         if (buff > 0xC)
@@ -7384,7 +7389,7 @@ static void atk93_tryKO(void)
         u16 chance;
 
         if ((gBattleMons[gBattlerAttacker].ability == ABILITY_NO_GUARD || gBattleMons[gBattlerTarget].ability == ABILITY_NO_GUARD)
-		 && (gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level))
+         && (gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level))
         {
             chance = TRUE;
         }
