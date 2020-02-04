@@ -4134,6 +4134,14 @@ BattleScript_SandstreamActivates::
 	call BattleScript_HandleWeatherFormChanges
 	end3
 
+BattleScript_SnowWarningActivates::
+	pause 0x20
+	printstring STRINGID_WHIPHAILSTORM
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES, NULL
+	call BattleScript_HandleWeatherFormChanges
+	end3
+
 BattleScript_ShedSkinActivates::
 	printstring STRINGID_PKMNSXCUREDYPROBLEM
 	waitmessage 0x40
