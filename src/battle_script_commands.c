@@ -1416,6 +1416,10 @@ static void atk06_typecalc(void)
         gProtectStructs[gBattlerAttacker].targetNotAffected = 1;
     if (gMoveResultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE && gBattleMons[gBattlerAttacker].ability == ABILITY_TINTED_LENS)
         gBattleMoveDamage *= 2;
+    if (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE
+     && (gBattleMons[gBattlerTarget].ability == ABILITY_FILTER
+     || gBattleMons[gBattlerTarget].ability == ABILITY_SOLID_ROCK))
+        gBattleMoveDamage = gBattleMoveDamage * 3 / 4;
     ++gBattlescriptCurrInstr;
 }
 
@@ -1594,6 +1598,10 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
         flags |= MOVE_RESULT_MISSED;
     if (flags & MOVE_RESULT_NOT_VERY_EFFECTIVE && gBattleMons[attacker].ability == ABILITY_TINTED_LENS)
         gBattleMoveDamage *= 2;
+    if (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE
+     && (gBattleMons[defender].ability == ABILITY_FILTER
+     || gBattleMons[defender].ability == ABILITY_SOLID_ROCK))
+        gBattleMoveDamage = gBattleMoveDamage * 3 / 4;
     return flags;
 }
 
