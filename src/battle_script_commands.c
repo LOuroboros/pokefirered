@@ -1306,9 +1306,17 @@ void ModulateDmgByType(u8 multiplier)
     switch (multiplier)
     {
     case TYPE_MUL_NO_EFFECT:
-        gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
-        gMoveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
-        gMoveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
+        if (gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
+        {
+            multiplier = 10;
+            break;
+        }
+        else
+        {
+            gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+            gMoveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
+            gMoveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
+        }
         break;
     case TYPE_MUL_NOT_EFFECTIVE:
         if (gBattleMoves[gCurrentMove].power && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
@@ -1383,7 +1391,7 @@ static void atk06_typecalc(void)
         {
             if (TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
             {
-                if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT)
+                if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT || gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
                     break;
                 i += 3;
                 continue;
@@ -1443,7 +1451,7 @@ static void CheckWonderGuardAndLevitate(void)
     {
         if (TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
         {
-            if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT)
+            if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT || gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
                 break;
             i += 3;
             continue;
@@ -1501,9 +1509,17 @@ static void ModulateDmgByType2(u8 multiplier, u16 move, u8 *flags)
     switch (multiplier)
     {
     case TYPE_MUL_NO_EFFECT:
-        *flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
-        *flags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
-        *flags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
+        if (gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
+        {
+            multiplier = 10;
+            break;
+        }
+        else
+        {
+            *flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+            *flags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
+            *flags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
+        }
         break;
     case TYPE_MUL_NOT_EFFECTIVE:
         if (gBattleMoves[move].power && !(*flags & MOVE_RESULT_NO_EFFECT))
@@ -1571,7 +1587,7 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
         {
             if (TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
             {
-                if (gBattleMons[defender].status2 & STATUS2_FORESIGHT)
+                if (gBattleMons[defender].status2 & STATUS2_FORESIGHT || gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
                     break;
                 i += 3;
                 continue;
@@ -4385,7 +4401,7 @@ static void atk4A_typecalc2(void)
         {
             if (TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
             {
-                if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT)
+                if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT || gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
                 {
                     break;
                 }
