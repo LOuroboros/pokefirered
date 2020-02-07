@@ -4376,6 +4376,16 @@ BattleScript_AttackerAbilityStatRaise::
 	waitmessage 0x40
 	return
 
+BattleScript_SlowStarting::
+	printstring STRINGID_SLOWSTARTING
+	waitmessage 0x40
+	end3
+
+BattleScript_SlowStarted::
+	printstring STRINGID_SLOWSTARTED
+	waitmessage 0x40
+	end3
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary

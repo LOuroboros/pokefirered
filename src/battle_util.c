@@ -1837,6 +1837,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     }
                 }
                 break;
+            case ABILITY_SLOW_START:
+                if (!gSpecialStatuses[battler].switchInAbilityDone)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_SlowStarting);
+                    gDisableStructs[gBattlerAttacker].slowStartTimer = 0;
+                    gSpecialStatuses[gBattlerAttacker].switchInAbilityDone = 0;
+                    effect++;
+                }
+                break;
             }
             break;
         case ABILITYEFFECT_ENDTURN: // 1
@@ -1946,6 +1955,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     break;
                 case ABILITY_TRUANT:
                     gDisableStructs[gBattlerAttacker].truantCounter ^= 1;
+                    break;
+                case ABILITY_SLOW_START:
+                    if (gSpecialStatuses[gBattlerAttacker].switchInAbilityDone == 1)
+                    {
+                        break;
+                    }
+                    else if (gDisableStructs[gBattlerAttacker].slowStartTimer == 4)
+                    {
+                        BattleScriptPushCursorAndCallback(BattleScript_SlowStarted);
+                        gSpecialStatuses[gBattlerAttacker].switchInAbilityDone = 1;
+                        effect++;
+                    }
+                    ++gDisableStructs[gBattlerAttacker].slowStartTimer;
                     break;
                 }
             }

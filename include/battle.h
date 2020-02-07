@@ -142,7 +142,7 @@ struct DisableStruct
     /*0x0B*/ u8 disableTimer : 4;
     /*0x0B*/ u8 disableTimerStartValue : 4;
     /*0x0C*/ u8 encoredMovePos;
-    /*0x0D*/ u8 unkD;
+    /*0x0D*/ u8 slowStartTimer;
     /*0x0E*/ u8 encoreTimer : 4;
     /*0x0E*/ u8 encoreTimerStartValue : 4;
     /*0x0F*/ u8 perishSongTimer : 4;

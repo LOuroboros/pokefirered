@@ -243,4 +243,7 @@ extern const u8 *const gBattlescriptsForRunningByItem[];
 extern const u8 *const gBattlescriptsForUsingItem[];
 extern const u8 *const gBattlescriptsForSafariActions[];
 
+extern const u8 BattleScript_SlowStarting[];
+extern const u8 BattleScript_SlowStarted[];
+
 #endif // GUARD_BATTLE_SCRIPTS_H
