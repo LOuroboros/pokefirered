@@ -2450,6 +2450,12 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (attacker->ability == ABILITY_SLOW_START && gDisableStructs[battlerIdAtk].slowStartTimer < 4)
         attack /= 2;
 
+    // Reckless
+    if (attacker->ability == ABILITY_RECKLESS
+     && (gBattleMoves[gCurrentMove].effect == EFFECT_RECOIL || gBattleMoves[gCurrentMove].effect == EFFECT_RECOIL_IF_MISS || gBattleMoves[gCurrentMove].effect == EFFECT_DOUBLE_EDGE)
+     && gCurrentMove != MOVE_STRUGGLE)
+        gBattleMovePower = (120 * gBattleMovePower) / 100;
+
     // Rivalry
     attackersGender = GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality);
     defendersGender = GetGenderFromSpeciesAndPersonality(defender->species, defender->personality);
