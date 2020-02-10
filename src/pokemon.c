@@ -1455,27 +1455,6 @@ const u8 gStatStageRatios[][2] =
 
 static const u8 sFiller = _("");
 
-static const u8 sHoldEffectToType[][2] = 
-{
-    {HOLD_EFFECT_BUG_POWER, TYPE_BUG},
-    {HOLD_EFFECT_STEEL_POWER, TYPE_STEEL},
-    {HOLD_EFFECT_GROUND_POWER, TYPE_GROUND},
-    {HOLD_EFFECT_ROCK_POWER, TYPE_ROCK},
-    {HOLD_EFFECT_GRASS_POWER, TYPE_GRASS},
-    {HOLD_EFFECT_DARK_POWER, TYPE_DARK},
-    {HOLD_EFFECT_FIGHTING_POWER, TYPE_FIGHTING},
-    {HOLD_EFFECT_ELECTRIC_POWER, TYPE_ELECTRIC},
-    {HOLD_EFFECT_WATER_POWER, TYPE_WATER},
-    {HOLD_EFFECT_FLYING_POWER, TYPE_FLYING},
-    {HOLD_EFFECT_POISON_POWER, TYPE_POISON},
-    {HOLD_EFFECT_ICE_POWER, TYPE_ICE},
-    {HOLD_EFFECT_GHOST_POWER, TYPE_GHOST},
-    {HOLD_EFFECT_PSYCHIC_POWER, TYPE_PSYCHIC},
-    {HOLD_EFFECT_FIRE_POWER, TYPE_FIRE},
-    {HOLD_EFFECT_DRAGON_POWER, TYPE_DRAGON},
-    {HOLD_EFFECT_NORMAL_POWER, TYPE_NORMAL},
-};
-
 const struct SpriteTemplate gUnknown_825DEF0[] = 
 {
     {
@@ -2307,7 +2286,6 @@ static void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 mo
 
 s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *defender, u32 move, u16 sideStatus, u16 powerOverride, u8 typeOverride, u8 battlerIdAtk, u8 battlerIdDef)
 {
-    u32 i;
     s32 damage = 0;
     s32 damageHelper;
     u8 type;
@@ -2386,15 +2364,13 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             spDefense = (110 * spDefense) / 100;
     }
 
-    for (i = 0; i < NELEMS(sHoldEffectToType); i++)
+    if ((attackerHoldEffect == HOLD_EFFECT_TYPE_POWER || attackerHoldEffect == HOLD_EFFECT_PLATE)
+        && type == attackerHoldEffectParam)
     {
-        if (attackerHoldEffect == sHoldEffectToType[i][0]
-            && type == sHoldEffectToType[i][1])
-        {
-            attack = (attack * (attackerHoldEffectParam + 100)) / 100;
-            spAttack = (spAttack * (attackerHoldEffectParam + 100)) / 100;
-            break;
-        }
+        if (gBattleMoves[gCurrentMove].category == MOVE_CATEGORY_PHYSICAL)
+            attack = (attack + (attack / 5));
+        else
+            spAttack = (spAttack + (spAttack / 5));
     }
 
     if (attackerHoldEffect == HOLD_EFFECT_CHOICE_BAND)

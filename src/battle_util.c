@@ -2649,6 +2649,13 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 BattleScriptExecute(BattleScript_WhiteHerbEnd2);
             }
             break;
+        case HOLD_EFFECT_PLATE:
+            if (gBattleMons[battlerId].ability == ABILITY_MULTITYPE)
+            {
+                gBattleMons[battlerId].type1 = battlerHoldEffectParam;
+                gBattleMons[battlerId].type2 = battlerHoldEffectParam;
+            }
+            break;
         }
         break;
     case 1:

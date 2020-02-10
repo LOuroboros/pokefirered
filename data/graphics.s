@@ -15532,6 +15532,74 @@ gFile_graphics_items_icon_palettes_stick_palette:: @ 8E90330
 	.incbin "graphics/items/icon_palettes/stick.gbapal.lz"
 
 	.align 2
+gFile_graphics_items_icons_plate_sheet::
+	.incbin "graphics/items/icons/plate.4bpp.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_flame_plate_palette::
+	.incbin "graphics/items/icon_palettes/flame_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_splash_plate_palette::
+	.incbin "graphics/items/icon_palettes/splash_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_zap_plate_palette::
+	.incbin "graphics/items/icon_palettes/zap_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_meadow_plate_palette::
+	.incbin "graphics/items/icon_palettes/meadow_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_icicle_plate_palette::
+	.incbin "graphics/items/icon_palettes/icicle_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_fist_plate_palette::
+	.incbin "graphics/items/icon_palettes/fist_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_toxic_plate_palette::
+	.incbin "graphics/items/icon_palettes/toxic_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_earth_plate_palette::
+	.incbin "graphics/items/icon_palettes/earth_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_sky_plate_palette::
+	.incbin "graphics/items/icon_palettes/sky_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_mind_plate_palette::
+	.incbin "graphics/items/icon_palettes/mind_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_insect_plate_palette::
+	.incbin "graphics/items/icon_palettes/insect_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_stone_plate_palette::
+	.incbin "graphics/items/icon_palettes/stone_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_spooky_plate_palette::
+	.incbin "graphics/items/icon_palettes/spooky_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_draco_plate_palette::
+	.incbin "graphics/items/icon_palettes/draco_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_dread_plate_palette::
+	.incbin "graphics/items/icon_palettes/dread_plate.gbapal.lz"
+
+	.align 2
+gFile_graphics_items_icon_palettes_iron_plate_palette::
+	.incbin "graphics/items/icon_palettes/iron_plate.gbapal.lz"
+
+	.align 2
 gFile_graphics_items_icons_scarf_sheet:: @ 8E90354
 	.incbin "graphics/items/icons/scarf.4bpp.lz"
 

@@ -122,7 +122,7 @@ static const u8 sSnowWarningDescription[] = _("Summons a hailstorm in battle.");
 static const u8 sHoneyGatherDescription[] = _("This is a placeholder."); // To Do
 static const u8 sFriskDescription[] = _("This is a placeholder."); // To Do
 static const u8 sRecklessDescription[] = _("Powers up moves that do recoil damage.");
-static const u8 sMultitypeDescription[] = _("This is a placeholder."); // To Do
+static const u8 sMultitypeDescription[] = _("Changes type to match the held Plate.");
 static const u8 sFlowerGiftDescription[] = _("This is a placeholder."); // To Do
 static const u8 sBadDreamsDescription[] = _("This is a placeholder."); // To Do
 
@@ -251,7 +251,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_HONEY_GATHER] = sHoneyGatherDescription, // To Do
     [ABILITY_FRISK]        = sFriskDescription, // To Do
     [ABILITY_RECKLESS]     = sRecklessDescription,
-    [ABILITY_MULTITYPE]    = sMultitypeDescription, // To Do
+    [ABILITY_MULTITYPE]    = sMultitypeDescription,
     [ABILITY_FLOWER_GIFT]  = sFlowerGiftDescription, // To Do
     [ABILITY_BAD_DREAMS]   = sBadDreamsDescription, // To Do
 };
@@ -381,7 +381,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_HONEY_GATHER] = _("HONEY GATHER"), // To Do
     [ABILITY_FRISK]        = _("FRISK"), // To Do
     [ABILITY_RECKLESS]     = _("RECKLESS"),
-    [ABILITY_MULTITYPE]    = _("MULTITYPE"), // To Do
+    [ABILITY_MULTITYPE]    = _("MULTITYPE"),
     [ABILITY_FLOWER_GIFT]  = _("FLOWER GIFT"), // To Do
     [ABILITY_BAD_DREAMS]   = _("BAD DREAMS"), // To Do
 };
