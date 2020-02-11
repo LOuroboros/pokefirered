@@ -66,6 +66,7 @@ static void DrawLevelUpWindow2(void);
 static bool8 sub_8026648(void);
 static void PutMonIconOnLvlUpBox(void);
 static void PutLevelAndGenderOnLvlUpBox(void);
+static bool8 CriticalCapture(u32 odds);
 
 static void SpriteCB_MonIconOnLvlUpBox(struct Sprite *sprite);
 
@@ -9728,17 +9729,34 @@ static void atkEF_handleballthrow(void)
             }
             else // mon may be caught, calculate shakes
             {
-                u8 shakes;
-
-                odds = Sqrt(Sqrt(16711680 / odds));
-                odds = 1048560 / odds;
-                for (shakes = 0; shakes < 4 && Random() < odds; ++shakes);
+                u8 shakes, maxShakes;
+                
+                gBattleSpritesDataPtr->animationData->isCriticalCapture = 0;    //initialize
+                gBattleSpritesDataPtr->animationData->criticalCaptureSuccess = 0;
+                if (CriticalCapture(odds))
+                {
+                    maxShakes = 1;  // critical capture doesn't guarantee capture
+                    gBattleSpritesDataPtr->animationData->isCriticalCapture = 1;
+                }
+                else
+                {
+                    maxShakes = 4;
+                }
                 if (gLastUsedItem == ITEM_MASTER_BALL)
-                    shakes = BALL_3_SHAKES_SUCCESS; // why calculate the shakes before that check?
+                {
+                    shakes = maxShakes;
+                }
+                else
+                {
+                    odds = Sqrt(Sqrt(16711680 / odds));
+                    odds = 1048560 / odds;
+                    for (shakes = 0; shakes < maxShakes && Random() < odds; shakes++);
+                }
                 BtlController_EmitBallThrowAnim(0, shakes);
                 MarkBattlerForControllerExec(gActiveBattler);
-                if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above
+                if (shakes == maxShakes) // mon caught, copy of the code above
                 {
+                    gBattleSpritesDataPtr->animationData->criticalCaptureSuccess = 1;
                     gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                     SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
                     if (CalculatePlayerPartyCount() == 6)
@@ -9748,7 +9766,10 @@ static void atkEF_handleballthrow(void)
                 }
                 else // not caught
                 {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = shakes;
+                    if (IsCriticalCapture())
+                        gBattleCommunication[MULTISTRING_CHOOSER] = shakes + 3;
+                    else
+                        gBattleCommunication[MULTISTRING_CHOOSER] = shakes;
                     gBattlescriptCurrInstr = BattleScript_ShakeBallThrow;
                 }
             }
@@ -10059,4 +10080,28 @@ u32 IsLeafGuardProtected(u32 battler)
         return ABILITY_LEAF_GUARD;
     else
         return 0;
+}
+
+static bool8 CriticalCapture(u32 odds)
+{
+	u16 numCaught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
+
+    if (numCaught <= 30)
+		odds = 0;
+	else if (numCaught <= 150)
+		odds /= 2;
+	else if (numCaught <= 300)
+		;
+	else if (numCaught <= 450)
+		odds = (odds * 150) / 100;
+	else if (numCaught <= 600)
+		odds *= 2;
+	else
+		odds = (odds * 250) / 100;
+
+    odds /= 6;
+    if ((Random() % 255) < odds)
+		return TRUE;
+
+    return FALSE;
 }

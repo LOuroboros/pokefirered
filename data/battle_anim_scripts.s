@@ -421,6 +421,7 @@ gBattleAnims_Special::
 	.4byte Special_SafariBallThrow
 	.4byte Special_SubstituteToMon
 	.4byte Special_MonToSubstitute
+	.4byte Special_CriticalCaptureBallThrow
 
 Move_NONE:: @ 81C6F34
 	loadspritegfx 10135
@@ -11096,3 +11097,13 @@ Special_SubstituteToMon:: @ 81D6594
 Special_MonToSubstitute:: @ 81D659E
 	createvisualtask sub_80F1420, 2, 0
 	end
+
+Special_CriticalCaptureBallThrow:
+	createvisualtask sub_80EF490, 2, 
+	delay 0
+	playsewithpan SE_RU_HYUU, 0
+	createvisualtask sub_80EF5AC, 2, 
+	createvisualtask AnimTask_IsBallBlockedByTrainerOrDodged, 2, 
+	jumpargeq 7, 65535, gUnknown_81D652D
+	jumpargeq 7, 65534, gUnknown_81D6555
+	goto gUnknown_81D6524
