@@ -127,7 +127,7 @@
 #define VAR_MAP_SCENE_PALLET_TOWN_OAK                                          0x4050
 #define VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN                                    0x4051
 #define VAR_MAP_SCENE_CERULEAN_CITY_RIVAL                                      0x4052
-#define VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER                                           0x4053
+#define VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER                                0x4053
 #define VAR_MAP_SCENE_ROUTE22                                                  0x4054
 #define VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB                           0x4055
 #define VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F                             0x4056
@@ -153,20 +153,20 @@
 #define VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE 0x406A
 #define VAR_MAP_SCENE_ROUTE24                                                  0x406B
 #define VAR_MAP_SCENE_PEWTER_CITY                                              0x406C
-#define VAR_0x406D                                                             0x406D
+#define VAR_0x406D                                                             0x406D // Unused Var
 #define VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE                        0x406E
-#define VAR_CABLE_CLUB_STATE                                                    0x406F
+#define VAR_CABLE_CLUB_STATE                                                   0x406F
 #define VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY                                    0x4070
 #define VAR_MAP_SCENE_CINNABAR_ISLAND                                          0x4071
-#define VAR_0x4072                                                             0x4072
+#define VAR_0x4072                                                             0x4072 // Unused Var
 #define VAR_MAP_SCENE_SAFFRON_CITY_POKEMON_TRAINER_FAN_CLUB                    0x4073
 #define VAR_MAP_SCENE_SEVEN_ISLAND_HOUSE_ROOM1                                 0x4074
 #define VAR_MAP_SCENE_ONE_ISLAND_HARBOR                                        0x4075
 #define VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F                             0x4076
-#define VAR_0x4077                                                             0x4077
+#define VAR_0x4077                                                             0x4077 // Unused Var
 #define VAR_MAP_SCENE_TWO_ISLAND                                               0x4078
 #define VAR_MAP_SCENE_TWO_ISLAND_JOYFUL_GAME_CORNER                            0x4079
-#define VAR_0x407A                                                             0x407A
+#define VAR_0x407A                                                             0x407A // Unused Var
 #define VAR_MAP_SCENE_THREE_ISLAND                                             0x407B
 #define VAR_MAP_SCENE_POKEMON_CENTER_TEALA                                     0x407C
 #define VAR_MAP_SCENE_CERULEAN_CITY_ROCKET                                     0x407D
@@ -179,53 +179,53 @@
 #define VAR_MAP_SCENE_FIVE_ISLAND_RESORT_GORGEOUS                              0x4084
 #define VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR                                  0x4085
 #define VAR_MAP_SCENE_FOUR_ISLAND                                              0x4086
-#define VAR_0x4087                                                             0x4087
+#define VAR_0x4087                                                             0x4087 // Unused Var
 #define VAR_MAP_SCENE_ROCKET_WAREHOUSE                                         0x4088
 #define VAR_MAP_SCENE_SIX_ISLAND_POKEMON_CENTER_1F                             0x4089
 #define VAR_MAP_SCENE_CINNABAR_ISLAND_2                                        0x408A
 #define VAR_MAP_SCENE_MT_MOON_B2F                                              0x408B
 
 
-#define VAR_0x408C                 0x408C
-#define VAR_0x408D                 0x408D
-#define VAR_0x408E                 0x408E
-#define VAR_0x408F                 0x408F
-#define VAR_0x4090                 0x4090
-#define VAR_0x4091                 0x4091
-#define VAR_0x4092                 0x4092
-#define VAR_0x4093                 0x4093
-#define VAR_0x4094                 0x4094
-#define VAR_0x4095                 0x4095
-#define VAR_0x4096                 0x4096
-#define VAR_0x4097                 0x4097
-#define VAR_0x4098                 0x4098
-#define VAR_0x4099                 0x4099
-#define VAR_0x409A                 0x409A
-#define VAR_0x409B                 0x409B
-#define VAR_0x409C                 0x409C
-#define VAR_0x409D                 0x409D
-#define VAR_0x409E                 0x409E
-#define VAR_0x409F                 0x409F
-#define VAR_0x40A0                 0x40A0
-#define VAR_0x40A1                 0x40A1
-#define VAR_0x40A2                 0x40A2
-#define VAR_0x40A3                 0x40A3
-#define VAR_0x40A4                 0x40A4
-#define VAR_0x40A5                 0x40A5
-#define VAR_0x40A6                 0x40A6
-#define VAR_0x40A7                 0x40A7
-#define VAR_0x40A8                 0x40A8
-#define VAR_0x40A9                 0x40A9
+#define VAR_0x408C                 0x408C // Unused Var
+#define VAR_0x408D                 0x408D // Unused Var
+#define VAR_0x408E                 0x408E // Unused Var
+#define VAR_0x408F                 0x408F // Unused Var
+#define VAR_0x4090                 0x4090 // Unused Var
+#define VAR_0x4091                 0x4091 // Unused Var
+#define VAR_0x4092                 0x4092 // Unused Var
+#define VAR_0x4093                 0x4093 // Unused Var
+#define VAR_0x4094                 0x4094 // Unused Var
+#define VAR_0x4095                 0x4095 // Unused Var
+#define VAR_0x4096                 0x4096 // Unused Var
+#define VAR_0x4097                 0x4097 // Unused Var
+#define VAR_0x4098                 0x4098 // Unused Var
+#define VAR_0x4099                 0x4099 // Unused Var
+#define VAR_0x409A                 0x409A // Unused Var
+#define VAR_0x409B                 0x409B // Unused Var
+#define VAR_0x409C                 0x409C // Unused Var
+#define VAR_0x409D                 0x409D // Unused Var
+#define VAR_0x409E                 0x409E // Unused Var
+#define VAR_0x409F                 0x409F // Unused Var
+#define VAR_0x40A0                 0x40A0 // Unused Var
+#define VAR_0x40A1                 0x40A1 // Unused Var
+#define VAR_0x40A2                 0x40A2 // Unused Var
+#define VAR_0x40A3                 0x40A3 // Unused Var
+#define VAR_0x40A4                 0x40A4 // Unused Var
+#define VAR_0x40A5                 0x40A5 // Unused Var
+#define VAR_0x40A6                 0x40A6 // Unused Var
+#define VAR_0x40A7                 0x40A7 // Unused Var
+#define VAR_0x40A8                 0x40A8 // Unused Var
+#define VAR_0x40A9                 0x40A9 // Unused Var
 #define VAR_0x40AA                 0x40AA
-#define VAR_0x40AB                 0x40AB
-#define VAR_0x40AC                 0x40AC
-#define VAR_0x40AD                 0x40AD
+#define VAR_0x40AB                 0x40AB // Unused Var
+#define VAR_0x40AC                 0x40AC // Unused Var
+#define VAR_0x40AD                 0x40AD // Unused Var
 #define VAR_0x40AE                 0x40AE
-#define VAR_0x40AF                 0x40AF
-#define VAR_0x40B0                 0x40B0
-#define VAR_0x40B1                 0x40B1
-#define VAR_0x40B2                 0x40B2
-#define VAR_0x40B3                 0x40B3
+#define VAR_0x40AF                 0x40AF // Unused Var
+#define VAR_0x40B0                 0x40B0 // Unused Var
+#define VAR_0x40B1                 0x40B1 // Unused Var
+#define VAR_0x40B2                 0x40B2 // Unused Var
+#define VAR_0x40B3                 0x40B3 // Unused Var
 #define VAR_PORTHOLE               0x40B4
 #define VAR_EVENT_PICHU_SLOT       0x40B5
 #define VAR_0x40B6                 0x40B6
@@ -235,73 +235,73 @@
 #define VAR_0x40BA                 0x40BA
 #define VAR_0x40BB                 0x40BB
 #define VAR_0x40BC                 0x40BC
-#define VAR_0x40BD                 0x40BD
-#define VAR_0x40BE                 0x40BE
-#define VAR_0x40BF                 0x40BF
-#define VAR_0x40C0                 0x40C0
-#define VAR_0x40C1                 0x40C1
-#define VAR_0x40C2                 0x40C2
-#define VAR_0x40C3                 0x40C3
-#define VAR_0x40C4                 0x40C4
-#define VAR_0x40C5                 0x40C5
-#define VAR_0x40C6                 0x40C6
-#define VAR_0x40C7                 0x40C7
-#define VAR_0x40C8                 0x40C8
-#define VAR_0x40C9                 0x40C9
-#define VAR_0x40CA                 0x40CA
-#define VAR_0x40CB                 0x40CB
-#define VAR_0x40CC                 0x40CC
-#define VAR_0x40CD                 0x40CD
-#define VAR_0x40CE                 0x40CE
+#define VAR_0x40BD                 0x40BD // Unused Var
+#define VAR_0x40BE                 0x40BE // Unused Var
+#define VAR_0x40BF                 0x40BF // Unused Var
+#define VAR_0x40C0                 0x40C0 // Unused Var
+#define VAR_0x40C1                 0x40C1 // Unused Var
+#define VAR_0x40C2                 0x40C2 // Unused Var
+#define VAR_0x40C3                 0x40C3 // Unused Var
+#define VAR_0x40C4                 0x40C4 // Unused Var
+#define VAR_0x40C5                 0x40C5 // Unused Var
+#define VAR_0x40C6                 0x40C6 // Unused Var
+#define VAR_0x40C7                 0x40C7 // Unused Var
+#define VAR_0x40C8                 0x40C8 // Unused Var
+#define VAR_0x40C9                 0x40C9 // Unused Var
+#define VAR_0x40CA                 0x40CA // Unused Var
+#define VAR_0x40CB                 0x40CB // Unused Var
+#define VAR_0x40CC                 0x40CC // Unused Var
+#define VAR_0x40CD                 0x40CD // Unused Var
+#define VAR_0x40CE                 0x40CE // Unused Var
 #define VAR_FRONTIER_FACILITY      0x40CF
-#define VAR_0x40D0                 0x40D0
-#define VAR_0x40D1                 0x40D1
-#define VAR_0x40D2                 0x40D2
-#define VAR_0x40D3                 0x40D3
-#define VAR_0x40D4                 0x40D4
-#define VAR_0x40D5                 0x40D5
-#define VAR_0x40D6                 0x40D6
-#define VAR_0x40D7                 0x40D7
-#define VAR_0x40D8                 0x40D8
-#define VAR_0x40D9                 0x40D9
-#define VAR_0x40DA                 0x40DA
-#define VAR_0x40DB                 0x40DB
-#define VAR_0x40DC                 0x40DC
-#define VAR_0x40DD                 0x40DD
-#define VAR_0x40DE                 0x40DE
-#define VAR_0x40DF                 0x40DF
-#define VAR_0x40E0                 0x40E0
-#define VAR_0x40E1                 0x40E1
-#define VAR_0x40E2                 0x40E2
-#define VAR_0x40E3                 0x40E3
-#define VAR_0x40E4                 0x40E4
-#define VAR_0x40E5                 0x40E5
-#define VAR_DAILY_SLOTS            0x40E6
-#define VAR_DAILY_WILDS            0x40E7
-#define VAR_DAILY_BLENDER          0x40E8
-#define VAR_DAILY_PLANTED_BERRIES  0x40E9
-#define VAR_DAILY_PICKED_BERRIES   0x40EA
-#define VAR_DAILY_ROULETTE         0x40EB
-#define VAR_0x40EC                 0x40EC
-#define VAR_0x40ED                 0x40ED
-#define VAR_0x40EE                 0x40EE
-#define VAR_0x40EF                 0x40EF
-#define VAR_0x40F0                 0x40F0
-#define VAR_DAILY_BP               0x40F1
-#define VAR_0x40F2                 0x40F2
-#define VAR_0x40F3                 0x40F3
-#define VAR_0x40F4                 0x40F4
-#define VAR_0x40F5                 0x40F5
-#define VAR_0x40F6                 0x40F6
-#define VAR_0x40F7                 0x40F7
-#define VAR_0x40F8                 0x40F8
-#define VAR_0x40F9                 0x40F9
-#define VAR_0x40FA                 0x40FA
-#define VAR_0x40FB                 0x40FB
-#define VAR_0x40FC                 0x40FC
-#define VAR_0x40FD                 0x40FD
-#define VAR_0x40FE                 0x40FE
-#define VAR_0x40FF                 0x40FF
+#define VAR_0x40D0                 0x40D0 // Unused Var
+#define VAR_0x40D1                 0x40D1 // Unused Var
+#define VAR_0x40D2                 0x40D2 // Unused Var
+#define VAR_0x40D3                 0x40D3 // Unused Var
+#define VAR_0x40D4                 0x40D4 // Unused Var
+#define VAR_0x40D5                 0x40D5 // Unused Var
+#define VAR_0x40D6                 0x40D6 // Unused Var
+#define VAR_0x40D7                 0x40D7 // Unused Var
+#define VAR_0x40D8                 0x40D8 // Unused Var
+#define VAR_0x40D9                 0x40D9 // Unused Var
+#define VAR_0x40DA                 0x40DA // Unused Var
+#define VAR_0x40DB                 0x40DB // Unused Var
+#define VAR_0x40DC                 0x40DC // Unused Var
+#define VAR_0x40DD                 0x40DD // Unused Var
+#define VAR_0x40DE                 0x40DE // Unused Var
+#define VAR_0x40DF                 0x40DF // Unused Var
+#define VAR_0x40E0                 0x40E0 // Unused Var
+#define VAR_0x40E1                 0x40E1 // Unused Var
+#define VAR_0x40E2                 0x40E2 // Unused Var
+#define VAR_0x40E3                 0x40E3 // Unused Var
+#define VAR_0x40E4                 0x40E4 // Unused Var
+#define VAR_0x40E5                 0x40E5 // Unused Var
+#define VAR_0x40E6                 0x40E6 // Unused Var
+#define VAR_0x40E7                 0x40E7 // Unused Var
+#define VAR_0x40E8                 0x40E8 // Unused Var
+#define VAR_0x40E9                 0x40E9 // Unused Var
+#define VAR_0x40EA                 0x40EA // Unused Var
+#define VAR_0x40EB                 0x40EB // Unused Var
+#define VAR_0x40EC                 0x40EC // Unused Var
+#define VAR_0x40ED                 0x40ED // Unused Var
+#define VAR_0x40EE                 0x40EE // Unused Var
+#define VAR_0x40EF                 0x40EF // Unused Var
+#define VAR_0x40F0                 0x40F0 // Unused Var
+#define VAR_0x40F1                 0x40F1 // Unused Var
+#define VAR_0x40F2                 0x40F2 // Unused Var
+#define VAR_0x40F3                 0x40F3 // Unused Var
+#define VAR_0x40F4                 0x40F4 // Unused Var
+#define VAR_0x40F5                 0x40F5 // Unused Var
+#define VAR_0x40F6                 0x40F6 // Unused Var
+#define VAR_0x40F7                 0x40F7 // Unused Var
+#define VAR_0x40F8                 0x40F8 // Unused Var
+#define VAR_0x40F9                 0x40F9 // Unused Var
+#define VAR_0x40FA                 0x40FA // Unused Var
+#define VAR_0x40FB                 0x40FB // Unused Var
+#define VAR_0x40FC                 0x40FC // Unused Var
+#define VAR_0x40FD                 0x40FD // Unused Var
+#define VAR_0x40FE                 0x40FE // Unused Var
+#define VAR_0x40FF                 0x40FF // Unused Var
 
 #define VARS_END                   0x40FF
 
