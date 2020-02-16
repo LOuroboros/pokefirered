@@ -3298,13 +3298,13 @@ static void atk23_getexp(void)
             }
             else
             {
-                // music change in wild battle after fainting a poke
+                // Music change in a wild battle after fainting opposing Pokémon.
                 if (!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_POKEDUDE))
                  && gBattleMons[0].hp
                  && !gBattleStruct->wildVictorySong)
                 {
                     BattleStopLowHpSound();
-                    PlayBGM(MUS_WIN_YASEI);
+                    //PlayBGM(MUS_WIN_YASEI);
                     ++gBattleStruct->wildVictorySong;
                 }
                 if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && !GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG))
