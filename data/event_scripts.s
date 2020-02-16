@@ -27,7 +27,9 @@
 #include "constants/battle_setup.h"
 #include "constants/map_scripts.h"
 #include "constants/cable_club.h"
+#include "constants/field_tasks.h"
 #include "constants/field_weather.h"
+#include "constants/weather.h"
 #include "constants/union_room.h"
 #include "constants/trade.h"
 #include "constants/quest_log.h"
@@ -281,7 +283,7 @@ gStdScriptsEnd::
 	.include "data/maps/CinnabarIsland/scripts.inc"
 	.include "data/maps/IndigoPlateau_Exterior/scripts.inc"
 	.include "data/maps/SaffronCity/scripts.inc"
-	.include "data/maps/SaffronCity_Classic/scripts.inc"
+	.include "data/maps/SaffronCity_Connection/scripts.inc"
 	.include "data/maps/OneIsland/scripts.inc"
 	.include "data/maps/TwoIsland/scripts.inc"
 	.include "data/maps/ThreeIsland/scripts.inc"
@@ -320,10 +322,10 @@ gStdScriptsEnd::
 	.include "data/maps/TwoIsland_CapeBrink/scripts.inc"
 	.include "data/maps/ThreeIsland_BondBridge/scripts.inc"
 	.include "data/maps/ThreeIsland_Port/scripts.inc"
-	.include "data/maps/UnknownMap_03_50/scripts.inc"
-	.include "data/maps/UnknownMap_03_51/scripts.inc"
-	.include "data/maps/UnknownMap_03_52/scripts.inc"
-	.include "data/maps/UnknownMap_03_53/scripts.inc"
+	.include "data/maps/Prototype_SeviiIsle_6/scripts.inc"
+	.include "data/maps/Prototype_SeviiIsle_7/scripts.inc"
+	.include "data/maps/Prototype_SeviiIsle_8/scripts.inc"
+	.include "data/maps/Prototype_SeviiIsle_9/scripts.inc"
 	.include "data/maps/FiveIsland_ResortGorgeous/scripts.inc"
 	.include "data/maps/FiveIsland_WaterLabyrinth/scripts.inc"
 	.include "data/maps/FiveIsland_Meadow/scripts.inc"
@@ -661,6 +663,7 @@ gStdScriptsEnd::
 	.include "data/maps/SevenIsland_TrainerTower/text.inc"
 	.include "data/maps/SevenIsland_SevaultCanyon_Entrance/text.inc"
 	.include "data/maps/SevenIsland_SevaultCanyon/text.inc"
+	.include "data/maps/SevenIsland_TanobyRuins/text.inc"
 	.include "data/maps/PalletTown_PlayersHouse_1F/text.inc"
 	.include "data/maps/PalletTown_PlayersHouse_2F/text.inc"
 	.include "data/maps/PalletTown_GarysHouse/text.inc"
@@ -1587,9 +1590,9 @@ EventScript_1A8EC0:: @ 81A8EC0
 	.include "data/scripts/seagallop.inc"
 	.include "data/scripts/static_pokemon.inc"
 
-EventScript_1A925E:: @ 81A925E
+EventScript_TryDarkenRuins:: @ 81A925E
 	goto_if_set FLAG_SYS_UNLOCKED_TANOBY_RUINS, EventScript_Return
-	setweather 11
+	setweather WEATHER_SHADE
 	doweather
 	return
 
