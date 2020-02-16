@@ -1153,9 +1153,9 @@ static void CB2_PreInitMultiBattle(void)
         {
             ++gBattleCommunication[MULTIUSE_STATE];
             if (gWirelessCommType)
-                sub_800AB9C();
+                PrepareSendLinkCmd2FFE_or_RfuCmd6600();
             else
-                sub_800AAC0();
+                Link_TryStartSend5FFF();
         }
         break;
     case 3:
@@ -4212,7 +4212,6 @@ bool8 TryRunFromBattle(u8 battler)
 {
     bool8 effect = FALSE;
     u8 holdEffect;
-    u8 pyramidMultiplier;
     u8 speedVar;
 
     if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY)

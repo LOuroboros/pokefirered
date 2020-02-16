@@ -39,6 +39,15 @@
 #define METATILE_VermilionGym_Beam_Node_BottomRight_Edge_HalfOn 0x2C6
 #define METATILE_VermilionGym_Beam_Node_BottomRight_HalfOn      0x2C7
 
+// Celadon Game Corner
+#define METATILE_GameCorner_Floor_ShadeFull          0x292
+#define METATILE_GameCorner_Floor_StairsTop          0x29D
+#define METATILE_GameCorner_StairsTop                0x29E
+#define METATILE_GameCorner_StairsBottom             0x29F
+#define METATILE_GameCorner_PurpleWall_Floor         0x2CF
+#define METATILE_GameCorner_PurpleWall_StairsTop     0x2A6
+#define METATILE_GameCorner_PurpleWall_stairsBottom  0x2A7
+
 // Pokemon Mansion
 #define METATILE_PokemonMansion_Floor                                    0x284
 #define METATILE_PokemonMansion_Floor_ShadeFull                          0x285
@@ -72,6 +81,18 @@
 #define METATILE_PokemonMansion_Statue_RedEyes_Shade                     0x34E
 #define METATILE_PokemonMansion_Statue_RedEyes_Basement                  0x34F
 
+// Rocket Hideout, Rocket Warehouse, Silph Co, elevators
+#define METATILE_Hideout_Arrow_Up               0x2A0
+#define METATILE_Hideout_Arrow_Left             0x2A1
+#define METATILE_Hideout_Arrow_Down             0x2A8
+#define METATILE_Hideout_Arrow_RIght            0x2A9   
+#define METATILE_Hideout_Barrier_TopLeft_Floor  0x2CE
+#define METATILE_Hideout_Barrier_TopRight_Floor 0x2CF
+#define METATILE_Hideout_Barrier_BottomLeft     0x2D6
+#define METATILE_Hideout_Barrier_BottomRight    0x2D7
+#define METATILE_Hideout_Floor                  0x281
+#define METATILE_Hideout_Floor_ShadeFull        0x282
+
 // Cinnabar Gym
 #define METATILE_CinnabarGym_Floor                  0x281
 #define METATILE_CinnabarGym_Floor_ShadeDiagonal    0x282
@@ -85,5 +106,8 @@
 // gTileset_82D504C. Below metatile probably needs generic name
 #define METATILE_MtEmber_CaveEntrance  0x346
 
+// Trainer Tower
+#define METATILE_TrainerTower_Floor_ShadeBottomLeft  0x287
+#define METATILE_TrainerTower_CounterBarrier         0x2B4
 
 #endif // GUARD_METATILE_LABELS_H

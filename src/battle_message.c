@@ -22,6 +22,7 @@
 #include "constants/moves.h"
 #include "constants/items.h"
 #include "constants/trainer_classes.h"
+#include "constants/trainer_tower.h"
 
 struct BattleWindowText
 {
@@ -1310,9 +1311,9 @@ const u8 gUnknown_83FE94D[] = _("a PSYCHIC move");
 const u8 gUnknown_83FE95C[] = _("an ICE move");
 const u8 gUnknown_83FE968[] = _("a DRAGON move");
 const u8 gUnknown_83FE976[] = _("a DARK move");
-const u8 gUnknown_83FE982[] = _("TIME BOARD");
-const u8 gUnknown_83FE98D[] = _("CLEAR TIME");
-const u8 gUnknown_83FE998[] = _("{STR_VAR_1}MIN. {STR_VAR_2}.{STR_VAR_3}SEC.");
+const u8 gText_TimeBoard[] = _("TIME BOARD");
+const u8 gText_ClearTime[] = _("CLEAR TIME"); // Unused
+const u8 gText_XMinYZSec[] = _("{STR_VAR_1}MIN. {STR_VAR_2}.{STR_VAR_3}SEC.");
 const u8 gUnknown_83FE9A9[] = _("1F");
 const u8 gUnknown_83FE9AC[] = _("2F");
 const u8 gUnknown_83FE9AF[] = _("3F");
@@ -1322,7 +1323,7 @@ const u8 gUnknown_83FE9B8[] = _("6F");
 const u8 gUnknown_83FE9BB[] = _("7F");
 const u8 gUnknown_83FE9BE[] = _("8F");
 
-const u8 *const gUnknown_83FE9C4[] = {
+const u8 *const gTrainerTowerChallengeTypeTexts[NUM_TOWER_CHALLENGE_TYPES] = {
     gOtherText_Single,
     gOtherText_Double,
     gOtherText_Knockout,
@@ -2006,7 +2007,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
                     toCpy = gTrainerClassNames[GetBattleTowerTrainerClassNameId()];
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
-                    toCpy = gTrainerClassNames[sub_815DA10()];
+                    toCpy = gTrainerClassNames[GetTrainerTowerOpponentClass()];
                 else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
                     toCpy = gTrainerClassNames[GetEreaderTrainerClassId()];
                 else
@@ -2030,7 +2031,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
                 {
-                    sub_815DA28(text);
+                    GetTrainerTowerOpponentName(text);
                     toCpy = text;
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
@@ -2070,7 +2071,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
             case B_TXT_TRAINER1_LOSE_TEXT: // trainerA lose text
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
                 {
-                    sub_815DC40(gStringVar4, 0);
+                    GetTrainerTowerOpponentLoseText(gStringVar4, 0);
                     toCpy = gStringVar4;
                 }
                 else
@@ -2081,7 +2082,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
             case B_TXT_TRAINER1_WIN_TEXT: // trainerA win text
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
                 {
-                    sub_815DBF4(gStringVar4, 0);
+                    GetTrainerTowerOpponentWinText(gStringVar4, 0);
                     toCpy = gStringVar4;
                 }
                 else
@@ -2090,11 +2091,11 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 break;
             case B_TXT_TRAINER2_LOSE_TEXT:
-                sub_815DC40(gStringVar4, 1);
+                GetTrainerTowerOpponentLoseText(gStringVar4, 1);
                 toCpy = gStringVar4;
                 break;
             case B_TXT_TRAINER2_WIN_TEXT:
-                sub_815DBF4(gStringVar4, 1);
+                GetTrainerTowerOpponentWinText(gStringVar4, 1);
                 toCpy = gStringVar4;
                 break;
             case B_TXT_26: // ?

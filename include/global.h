@@ -74,8 +74,8 @@
 // GameFreak never ceases to amaze.
 // TODO: Propagate use of this macro
 #define TEST_BUTTON(field, button) ({(field) & (button);})
-#define JOY_NEW(button) TEST_BUTTON(gMain.newKeys,  button)
-#define JOY_HELD(button)  TEST_BUTTON(gMain.heldKeys, button)
+#define JOY_NEW(button)  TEST_BUTTON(gMain.newKeys,  button)
+#define JOY_HELD(button) TEST_BUTTON(gMain.heldKeys, button)
 #define JOY_REPT(button) TEST_BUTTON(gMain.newAndRepeatedKeys, button)
 
 extern u8 gStringVar1[];
@@ -166,13 +166,6 @@ struct BerryPickingResults // possibly used in the game itself? Size may be wron
     u8 field_D;
     u8 field_E;
     u8 field_F;
-};
-
-struct PyramidBag
-{
-    u16 items_Lvl50[10];
-    u16 items_OpenLvl[10];
-    u8 quantity[10];
 };
 
 struct BerryCrush
@@ -659,8 +652,8 @@ struct FameCheckerSaveData
 
 struct MEWonderNewsData
 {
-    u16 unk_00;
-    u8 unk_02;
+    u16 newsId;
+    u8 shareState;
     u8 unk_03;
     u8 unk_04[40];
     u8 unk_2C[10][40];
@@ -674,13 +667,13 @@ struct MEWonderNewsStruct
 
 struct MEWonderCardData
 {
-    u16 unk_00;
+    u16 cardId;
     u16 unk_02;
     u32 unk_04;
     u8 unk_08_0:2;
     u8 unk_08_2:4;
-    u8 unk_08_6:2;
-    u8 unk_09;
+    u8 shareState:2;
+    u8 recvMonCapacity;
     u8 unk_0A[40];
     u8 unk_32[40];
     u8 unk_5A[4][40];
@@ -696,11 +689,12 @@ struct MEWonderCardStruct
 
 struct MEventBuffer_3430_Sub
 {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
+    u16 linkWins;
+    u16 linkLosses;
+    u16 linkTrades;
     u16 unk_06;
-    u16 unk_08[2][7];
+    u16 distributedMons[2][7]; // [0][x] = species
+                               // [1][x] = ???
 };
 
 struct MEventBuffer_3430
@@ -719,19 +713,18 @@ struct MEventBuffers
     /*0x344 0x3464*/ u32 unk_344[2][5];
 }; // 0x36C 0x348C
 
-struct TrainerTowerLog
+struct TrainerTower
 {
-    u32 unk0;
-    u32 unk4;
-    u8 unk8;
+    u32 timer;
+    u32 bestTime;
+    u8 floorsCleared;
     u8 unk9;
-    u8 unkA_0:1;
-    u8 unkA_1:1;
-    u8 unkA_2:1;
-    u8 unkA_3:1;
-    u8 unkA_4:1;
-    u8 unkA_5:1;
-    u8 unkA_6:2;
+    bool8 receivedPrize:1;
+    bool8 checkedFinalTime:1;
+    bool8 spokeToOwner:1;
+    bool8 hasLost:1;
+    bool8 unkA_4:1;
+    bool8 validated:1;
 };
 
 struct TrainerRematchState
@@ -807,8 +800,8 @@ struct SaveBlock1
     /*0x3BA8*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C98*/ struct DaycareMon route5DayCareMon;
     /*0x3D24*/ u8 filler3D24[0x10];
-    /*0x3D34*/ u32 unkArrayIdx;
-    /*0x3D38*/ struct TrainerTowerLog unkArray[4];
+    /*0x3D34*/ u32 towerChallengeId;
+    /*0x3D38*/ struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];
 };
 
 struct MapPosition
