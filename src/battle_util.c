@@ -682,12 +682,15 @@ enum
     ENDTURN_YAWN,
     ENDTURN_ITEMS2,
     ENDTURN_ROOST,
+    ENDTURN_BAD_DREAMS,
     ENDTURN_BATTLER_COUNT
 };
 
 u8 DoBattlerEndTurnEffects(void)
 {
     u8 effect = 0;
+    u8 bankDef = 0;
+    u8 opposingBattler;
 
     gHitMarker |= (HITMARKER_GRUDGE | HITMARKER_x20);
     while (gBattleStruct->turnEffectsBattlerId < gBattlersCount && gBattleStruct->turnEffectsTracker <= ENDTURN_BATTLER_COUNT)
@@ -1051,6 +1054,20 @@ u8 DoBattlerEndTurnEffects(void)
                     gBattleMons[gActiveBattler].type2 = gBattleStruct->roostTypes[gActiveBattler][1];
                 }
                 gBattleStruct->turnEffectsTracker++;
+                break;
+            case ENDTURN_BAD_DREAMS: // Bad Dreams
+                opposingBattler = BATTLE_OPPOSITE(gActiveBattler);
+                if (gBattleMons[gActiveBattler].hp != 0
+                 && gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP
+                 && gBattleMons[opposingBattler].ability == ABILITY_BAD_DREAMS)
+                {
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    BattleScriptExecute(BattleScript_BadDreamsDmg);
+                    ++effect;
+                }
+                ++gBattleStruct->turnEffectsTracker;
                 break;
             case ENDTURN_BATTLER_COUNT:  // done
                 gBattleStruct->turnEffectsTracker = 0;

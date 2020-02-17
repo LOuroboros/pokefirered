@@ -236,6 +236,7 @@ extern const u8 BattleScript_DrySkinDmg[];
 extern const u8 BattleScript_AttackerAbilityStatRaiseEnd3[];
 extern const u8 BattleScript_AftermathDmg[];
 extern const u8 BattleScript_SnowWarningActivates[];
+extern const u8 BattleScript_BadDreamsDmg[];
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];

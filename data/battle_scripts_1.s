@@ -4142,6 +4142,12 @@ BattleScript_SnowWarningActivates::
 	call BattleScript_HandleWeatherFormChanges
 	end3
 
+BattleScript_BadDreamsDmg::
+	pause 0x20
+	printstring STRINGID_BADDREAMSDMG
+	waitmessage 0x40
+	goto BattleScript_DoTurnDmg
+
 BattleScript_ShedSkinActivates::
 	printstring STRINGID_PKMNSXCUREDYPROBLEM
 	waitmessage 0x40
