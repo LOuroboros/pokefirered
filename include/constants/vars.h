@@ -186,7 +186,7 @@
 #define VAR_MAP_SCENE_MT_MOON_B2F                                              0x408B
 
 
-#define VAR_0x408C                 0x408C // Unused Var
+#define VAR_GENERATE_SHINY         0x408C // Originally Unused Var
 #define VAR_0x408D                 0x408D // Unused Var
 #define VAR_0x408E                 0x408E // Unused Var
 #define VAR_0x408F                 0x408F // Unused Var
