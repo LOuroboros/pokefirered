@@ -2434,6 +2434,14 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gBattleMovePower = (150 * gBattleMovePower) / 100;
     if (attacker->ability == ABILITY_SLOW_START && gDisableStructs[battlerIdAtk].slowStartTimer < 4)
         attack /= 2;
+    if (attacker->ability == ABILITY_FLOWER_GIFT && (gBattleWeather & WEATHER_SUN_ANY))
+        attack = (150 * attack) / 100;
+    if (attacker->ability == ABILITY_FLOWER_GIFT && (gBattleWeather & WEATHER_SUN_ANY))
+        spDefense = (150 * spDefense) / 100;
+    if ((gBattleWeather & WEATHER_SUN_ANY) && ABILITY_ON_FIELD2(ABILITY_FLOWER_GIFT))
+        attack = (150 * attack) / 100;
+    if ((gBattleWeather & WEATHER_SUN_ANY) && ABILITY_ON_FIELD2(ABILITY_FLOWER_GIFT))
+        spDefense = (150 * spDefense) / 100;
 
     // Reckless
     if (attacker->ability == ABILITY_RECKLESS
