@@ -236,15 +236,15 @@ extern const u8 BattleScript_DrySkinDmg[];
 extern const u8 BattleScript_AttackerAbilityStatRaiseEnd3[];
 extern const u8 BattleScript_AftermathDmg[];
 extern const u8 BattleScript_SnowWarningActivates[];
+extern const u8 BattleScript_SlowStarting[];
+extern const u8 BattleScript_SlowStarted[];
 extern const u8 BattleScript_BadDreamsDmg[];
+extern const u8 BattleScript_Frisk[];
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];
 extern const u8 *const gBattlescriptsForRunningByItem[];
 extern const u8 *const gBattlescriptsForUsingItem[];
 extern const u8 *const gBattlescriptsForSafariActions[];
-
-extern const u8 BattleScript_SlowStarting[];
-extern const u8 BattleScript_SlowStarted[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

@@ -4392,6 +4392,11 @@ BattleScript_SlowStarted::
 	waitmessage 0x40
 	end3
 
+BattleScript_Frisk::
+	printstring STRINGID_FRISKED
+	waitmessage 0x40
+	end3
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary

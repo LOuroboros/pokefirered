@@ -525,6 +525,7 @@ const u8 sText_WhipHailstorm[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACT
 const u8 sText_SlowStarted[] = _("{DEFENDING_MON} can't get it going!");
 const u8 sText_SlowStartEnds[] = _("{DEFENDING_MON} put its act together!");
 const u8 sText_BadDreamsDmg[] = _("{DEFENDING_MON} is tormented by\n{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}!");
+const u8 sText_Frisked[] = _("{B_ATK_NAME_WITH_PREFIX} frisked {B_DEF_NAME_WITH_PREFIX} and\nfound its {B_LAST_ITEM}!");
 
 const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB219,
@@ -909,7 +910,8 @@ const u8 *const gBattleStringsTable[] = {
     sText_WhipHailstorm,
     sText_SlowStarted,
     sText_SlowStartEnds,
-    sText_BadDreamsDmg
+    sText_BadDreamsDmg,
+    sText_Frisked
 };
 
 const u16 gMissStringIds[] = {

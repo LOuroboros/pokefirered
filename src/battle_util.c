@@ -1863,6 +1863,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     effect++;
                 }
                 break;
+            case ABILITY_FRISK:
+                if (!gSpecialStatuses[gBattlerAttacker].switchInAbilityDone)
+                {
+                    u8 opposingBattler;
+                    opposingBattler = gBattlerTarget = BATTLE_OPPOSITE(gBattlerAttacker);
+
+                    gLastUsedItem = gBattleMons[opposingBattler].item;
+                    if (gLastUsedItem != ITEM_NONE)
+                    {
+                        BattleScriptPushCursorAndCallback(BattleScript_Frisk);
+                        gSpecialStatuses[gBattlerAttacker].switchInAbilityDone = 1;
+                        ++effect;
+                    }
+                }
+                break;
             }
             break;
         case ABILITYEFFECT_ENDTURN: // 1
