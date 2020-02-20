@@ -1878,6 +1878,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     }
                 }
                 break;
+            case ABILITY_ANTICIPATION:
+                if (!gSpecialStatuses[battler].switchInAbilityDone)
+                {
+                    u8 opposingBattler;
+                    u16 move;
+
+                    opposingBattler = gBattlerTarget = BATTLE_OPPOSITE(battler);
+
+                    for (i = 0; i < MAX_MON_MOVES; ++i)
+                    {
+                        move = gBattleMons[opposingBattler].moves[i];
+                        if ((TypeCalc(move, opposingBattler, battler) & MOVE_RESULT_SUPER_EFFECTIVE) && gBattleMoves[move].power > 0)
+                        {
+                            if (gSpecialStatuses[battler].switchInAbilityDone == 1)
+                                break;
+                            BattleScriptPushCursorAndCallback(BattleScript_Anticipation);
+                            gSpecialStatuses[battler].switchInAbilityDone = 1;
+                            ++effect;
+                        }
+                    }
+                }
+                break;
             }
             break;
         case ABILITYEFFECT_ENDTURN: // 1
@@ -2400,7 +2422,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 if (gBattleMons[i].ability == ABILITY_TRACE && (gStatuses3[i] & STATUS3_TRACE))
                 {
                     u8 target2;
-                    
+
                     side = (GetBattlerPosition(i) ^ BIT_SIDE) & BIT_SIDE; // side of the opposing pokemon
                     target1 = GetBattlerAtPosition(side);
                     target2 = GetBattlerAtPosition(side + BIT_FLANK);

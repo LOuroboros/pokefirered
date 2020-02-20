@@ -4397,6 +4397,11 @@ BattleScript_Frisk::
 	waitmessage 0x40
 	end3
 
+BattleScript_Anticipation::
+	printstring STRINGID_ANTICIPATION
+	waitmessage 0x40
+	end3
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary
