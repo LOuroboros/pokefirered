@@ -2442,6 +2442,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack = (150 * attack) / 100;
     if ((gBattleWeather & WEATHER_SUN_ANY) && ABILITY_ON_FIELD2(ABILITY_FLOWER_GIFT))
         spDefense = (150 * spDefense) / 100;
+    if (attacker->ability == ABILITY_SNIPER && gCritMultiplier == 2)
+        gBattleMovePower = (150 * gBattleMovePower) / 100;
 
     // Reckless
     if (attacker->ability == ABILITY_RECKLESS
