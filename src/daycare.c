@@ -1,7 +1,6 @@
 #include "global.h"
 #include "gflib.h"
 #include "battle.h"
-#include "daycare.h"
 #include "constants/species.h"
 #include "constants/items.h"
 #include "mail_data.h"
@@ -1816,7 +1815,7 @@ static void CB2_EggHatch_0(void)
         break;
     case 2:
         DecompressAndLoadBgGfxUsingHeap(0, gBattleTextboxTiles, 0, 0, 0);
-        CopyToBgTilemapBuffer(0, gFile_graphics_interface_menu_map_tilemap, 0, 0);
+        CopyToBgTilemapBuffer(0, gBattleTextboxTilemap, 0, 0);
         LoadCompressedPalette(gBattleTextboxPalette, 0, 0x20);
         gMain.state++;
         break;

@@ -94,8 +94,7 @@ SECTIONS {
         src/field_door.o(.text);
         asm/field_player_avatar.o(.text);
         asm/event_object_movement.o(.text);
-        asm/field_ground_effect.o(.text);
-        src/event_object_80688E4.o(.text);
+        src/event_object_80688E4.o(.text); /* event_object_movement */
         asm/field_message_box.o(.text);
         src/event_object_lock.o(.text);
         src/text_window_graphics.o(.text);
@@ -122,7 +121,7 @@ SECTIONS {
         src/field_screen_effect.o(.text);
         src/battle_setup.o(.text);
         asm/cable_club.o(.text);
-        asm/trainer_see.o(.text);
+        src/trainer_see.o(.text);
         src/wild_encounter.o(.text);
         asm/field_effect.o(.text);
         src/scanline_effect.o(.text);
@@ -274,8 +273,12 @@ SECTIONS {
         src/mevent_show_news.o(.text);
         src/menews_jisan.o(.text);
         src/seagallop.o(.text);
-        asm/pokemon_jump.o(.text);
-        asm/pokemon_jump_2.o(.text);
+        src/pokemon_jump.o(.text);
+        src/pokemon_jump_2.o(.text);
+        src/pokemon_jump_3.o(.text);
+        src/pokemon_jump_4.o(.text);
+        src/pokemon_jump_5.o(.text);
+        src/pokemon_jump_6.o(.text);
         asm/berry_crush.o(.text);
         asm/berry_crush_2.o(.text);
         asm/berry_crush_3.o(.text);
@@ -422,8 +425,7 @@ SECTIONS {
         src/field_door.o(.rodata);
         data/field_player_avatar.o(.rodata);
         data/event_object_movement.o(.rodata);
-        data/field_ground_effect.o(.rodata);
-        src/event_object_80688E4.o(.rodata);
+        src/event_object_80688E4.o(.rodata); /* event_object_movement */
         src/scrcmd.o(.rodata);
         src/coord_event_weather.o(.rodata);
         src/field_tasks.o(.rodata);
@@ -440,7 +442,7 @@ SECTIONS {
         src/field_screen_effect.o(.rodata);
         src/battle_setup.o(.rodata);
         data/cable_club.o(.rodata);
-        data/trainer_see.o(.rodata);
+        src/trainer_see.o(.rodata);
         src/wild_encounter.o(.rodata);
         data/field_effect.o(.rodata);
         src/option_menu.o(.rodata);
@@ -565,7 +567,11 @@ SECTIONS {
         src/menews_jisan.o(.rodata);
         src/menews_jisan.o(.rodata.str1.4);
         src/seagallop.o(.rodata);
-        data/pokemon_jump.o(.rodata);
+        src/pokemon_jump.o(.rodata);
+        src/pokemon_jump_2.o(.rodata);
+        src/pokemon_jump_4.o(.rodata);
+        src/pokemon_jump_5.o(.rodata);
+        src/pokemon_jump_6.o(.rodata);
         data/berry_crush.o(.rodata);
         src/wireless_communication_status_screen.o(.rodata);
         src/braille_text.o(.rodata);
@@ -1009,7 +1015,7 @@ SECTIONS {
     gfx_data :
     ALIGN(4)
     {
-        data/graphics.o(gfx_data);
+        src/graphics.o(.rodata);
     } =0
 
     /* DWARF 2 sections */

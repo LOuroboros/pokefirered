@@ -10,7 +10,6 @@
 #include "palette.h"
 #include "trade.h"
 #include "link.h"
-#include "librfu.h"
 #include "link_rfu.h"
 #include "text.h"
 #include "mevent.h"
@@ -31,7 +30,6 @@
 #include "quest_log.h"
 #include "help_system.h"
 #include "new_menu_helpers.h"
-#include "battle_interface.h"
 #include "pokedex.h"
 #include "save.h"
 #include "load_save.h"
@@ -948,13 +946,13 @@ static void TradeAnimInit_LoadGfx(void)
     DeactivateAllTextPrinters();
     // Doing the graphics load...
     DecompressAndLoadBgGfxUsingHeap(0, gBattleTextboxTiles, 0, 0, 0);
-    LZDecompressWram(gFile_graphics_interface_menu_map_tilemap, gDecompressionBuffer);
+    LZDecompressWram(gBattleTextboxTilemap, gDecompressionBuffer);
     CopyToBgTilemapBuffer(0, gDecompressionBuffer, BG_SCREEN_SIZE, 0);
     LoadCompressedPalette(gBattleTextboxPalette, 0x000, 0x20);
     InitWindows(gUnknown_826D1BC);
     // ... and doing the same load again
     DecompressAndLoadBgGfxUsingHeap(0, gBattleTextboxTiles, 0, 0, 0);
-    LZDecompressWram(gFile_graphics_interface_menu_map_tilemap, gDecompressionBuffer);
+    LZDecompressWram(gBattleTextboxTilemap, gDecompressionBuffer);
     CopyToBgTilemapBuffer(0, gDecompressionBuffer, BG_SCREEN_SIZE, 0);
     LoadCompressedPalette(gBattleTextboxPalette, 0x000, 0x20);
 }
