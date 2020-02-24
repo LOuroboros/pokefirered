@@ -1900,6 +1900,59 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     }
                 }
                 break;
+            case ABILITY_IMMUNITY:
+                if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+                {
+                    // In Gen. 4, if a Pokémon with Immunity is somehow sent out poisoned, the ability heals up the status condition.
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                    gBattleMons[battler].status1 = 0;
+                    gBattleScripting.battler = gActiveBattler = battler;
+                    BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+                    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    ++effect;
+                }
+                break;
+            case ABILITY_LIMBER:
+                if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+                {
+                    // In Gen. 4, if a Pokémon with Limber is somehow sent out paralyzed, the ability heals up the status condition.
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                    gBattleMons[battler].status1 = 0;
+                    gBattleScripting.battler = gActiveBattler = battler;
+                    BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+                    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    ++effect;
+                }
+                break;
+            case ABILITY_INSOMNIA:
+            case ABILITY_VITAL_SPIRIT:
+                if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                {
+                    // In Gen. 4, if a Pokémon with Insomnia or Vital Spirit is somehow sent out asleep, the ability heals up the status condition.
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                    gBattleMons[battler].status1 = 0;
+                    gBattleScripting.battler = gActiveBattler = battler;
+                    BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+                    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    ++effect;
+                }
+                break;
+            case ABILITY_MAGMA_ARMOR:
+                if (gBattleMons[battler].status1 & STATUS1_BURN)
+                {
+                    // In Gen. 4, if a Pokémon with Magma Armor is somehow sent out burned, the ability heals up the status condition.
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                    gBattleMons[battler].status1 = 0;
+                    gBattleScripting.battler = gActiveBattler = battler;
+                    BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+                    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    ++effect;
+                }
+                break;
             }
             break;
         case ABILITYEFFECT_ENDTURN: // 1
