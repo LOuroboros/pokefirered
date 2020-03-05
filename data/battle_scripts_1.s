@@ -619,6 +619,7 @@ BattleScript_EffectRoar::
 	attackstring
 	ppreduce
 	jumpifability BS_TARGET, ABILITY_SUCTION_CUPS, BattleScript_AbilityPreventsPhasingOut
+BattleScript_EffectRoar2:
 	jumpifstatus3 BS_TARGET, STATUS3_ROOTED, BattleScript_PrintMonIsRooted
 	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
@@ -4268,6 +4269,7 @@ BattleScript_FlashFireBoost::
 	goto BattleScript_MoveEnd
 
 BattleScript_AbilityPreventsPhasingOut::
+	jumpifability BS_ATTACKER, ABILITY_MOLD_BREAKER, BattleScript_EffectRoar2
 	pause 0x20
 	printstring STRINGID_PKMNANCHORSITSELFWITH
 	waitmessage 0x40
