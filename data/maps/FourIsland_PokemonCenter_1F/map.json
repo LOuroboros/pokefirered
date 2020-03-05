@@ -16,7 +16,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJECT_EVENT_GFX_NURSE",
+      "graphics_id": "OBJ_EVENT_GFX_NURSE",
       "x": 7,
       "y": 2,
       "elevation": 3,
@@ -25,11 +25,11 @@
       "movement_range_y": 1,
       "trainer_type": 0,
       "trainer_sight_or_berry_tree_id": 0,
-      "script": "FourIsland_PokemonCenter_1F_EventScript_171BF9",
+      "script": "FourIsland_PokemonCenter_1F_EventScript_Nurse",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJECT_EVENT_GFX_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_MAN",
       "x": 10,
       "y": 6,
       "elevation": 3,
@@ -38,11 +38,11 @@
       "movement_range_y": 1,
       "trainer_type": 0,
       "trainer_sight_or_berry_tree_id": 0,
-      "script": "FourIsland_PokemonCenter_1F_EventScript_171C02",
+      "script": "FourIsland_PokemonCenter_1F_EventScript_Man",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJECT_EVENT_GFX_WOMAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
       "x": 5,
       "y": 5,
       "elevation": 3,
@@ -51,11 +51,11 @@
       "movement_range_y": 1,
       "trainer_type": 0,
       "trainer_sight_or_berry_tree_id": 0,
-      "script": "FourIsland_PokemonCenter_1F_EventScript_171C0B",
+      "script": "FourIsland_PokemonCenter_1F_EventScript_Woman",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJECT_EVENT_GFX_GENTLEMAN",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 2,
       "y": 2,
       "elevation": 3,
@@ -64,7 +64,7 @@
       "movement_range_y": 1,
       "trainer_type": 0,
       "trainer_sight_or_berry_tree_id": 0,
-      "script": "FourIsland_PokemonCenter_1F_EventScript_171C14",
+      "script": "FourIsland_PokemonCenter_1F_EventScript_Gentleman",
       "flag": "0"
     }
   ],
@@ -87,18 +87,20 @@
   "coord_events": [],
   "bg_events": [
     {
-      "type": "bg_event_type_1",
+      "type": "sign",
       "x": 3,
       "y": 1,
       "elevation": 0,
-      "script": "FourIsland_PokemonCenter_1F_EventScript_1ACDD0"
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "FourIsland_PokemonCenter_1F_EventScript_PokemonJournal"
     },
     {
-      "type": "bg_event_type_1",
+      "type": "sign",
       "x": 2,
       "y": 1,
       "elevation": 0,
-      "script": "FourIsland_PokemonCenter_1F_EventScript_1ACDD0"
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "FourIsland_PokemonCenter_1F_EventScript_PokemonJournal"
     }
   ]
 }

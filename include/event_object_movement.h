@@ -33,15 +33,15 @@ u8 GetObjectEventIdByXY(s16, s16);
 void ObjectEventSetDirection(struct ObjectEvent *, u8);
 u8 sub_808D4F4(void);
 void RemoveObjectEventByLocalIdAndMap(u8, u8, u8);
-void npc_load_two_palettes__no_record(u16, u8);
-void npc_load_two_palettes__and_record(u16, u8);
+void LoadPlayerObjectReflectionPalette(u16, u8);
+void LoadSpecialObjectReflectionPalette(u16, u8);
 void sub_805F7C4(u8, u8, u8, s16, s16);
-void pal_patch_for_npc(u16, u8);
+void PatchObjectPalette(u16, u8);
 void sub_808E16C(s16, s16);
 void sub_808F28C(u8 localId, u8 mapNum, u8 mapGroup, u8 decorCat);
 void sub_8092FF0(s16, s16, s16 *, s16 *);
 u8 ObjectEventDirectionToImageAnimId(u8);
-void sub_80930E0(s16 *, s16 *, s16, s16);
+void sub_8063BC4(s16 *, s16 *, s16, s16);
 void ObjectEventClearAnim(struct ObjectEvent *);
 void ObjectEventClearAnimIfSpecialAnimActive(struct ObjectEvent *);
 void SpawnObjectEventsInView(s16, s16);
@@ -116,6 +116,18 @@ void RfuUnionObjectToggleInvisibility(u8 objectEventId, bool32 invisible);
 bool32 RfuUnionObjectIsInvisible(u8 objectEventId);
 void RfuUnionObjectStartWarp(u8 objectEventId, u8 animNo);
 bool32 RfuUnionObjectIsWarping(u8 objectEventId);
+u8 sub_8063F2C(u8 direction);
+u8 sub_8064194(u8 direction);
+u8 sub_80641C0(u8 direction);
+
+void sub_805F378(s16 x, s16 y);
+void sub_805F724(struct ObjectEvent *, s16 x, s16 y);
+u8 CreateCopySpriteAt(struct Sprite * sprite, s16 x, s16 y, u8 subpriority);
+u16 GetObjectPaletteTag(u8 paletteIndex);
+void SetSpritePosToMapCoords(s16 x, s16 y, s16 *x2, s16 *y2);
+void UpdateObjectEventSpriteVisibility(struct Sprite *sprite, bool8 invisible);
+u8 ZCoordToPriority(u8 z);
+void SetObjectSubpriorityByZCoord(u8 z, struct Sprite * sprite, u8 offset);
 
 // Exported data declarations
 
@@ -124,5 +136,8 @@ extern const struct SpritePalette gUnknown_83A5348;
 extern const struct SpriteTemplate * const gFieldEffectObjectTemplatePointers[];
 extern const struct OamData gObjectEventBaseOam_32x32;
 extern const struct UCoords16 gUnknown_83A64C8[];
+extern const u16 gUnknown_8398648[];
+extern const u16 gUnknown_8398688[];
+extern const u8 gReflectionEffectPaletteMap[];
 
 #endif // GUARD_EVENT_OBJECT_MOVEMENT_H

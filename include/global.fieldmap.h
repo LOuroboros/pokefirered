@@ -3,6 +3,15 @@
 
 #define OBJECT_EVENTS_COUNT 16
 
+#define METATILE_COLLISION_MASK 0x0C00
+#define METATILE_ID_MASK 0x03FF
+#define METATILE_ID_UNDEFINED 0x03FF
+#define METATILE_ELEVATION_SHIFT 12
+#define METATILE_COLLISION_SHIFT 10
+#define METATILE_ELEVATION_MASK 0xF000
+
+#define METATILE_ID(tileset, name) (METATILE_##tileset##_##name)
+
 enum
 {
     CONNECTION_SOUTH = 1,
@@ -208,17 +217,17 @@ struct ObjectEvent
     /*0x0C*/        struct Coords16 initialCoords;
     /*0x10*/        struct Coords16 currentCoords;
     /*0x14*/        struct Coords16 previousCoords;
-    /*0x18*/        u8 facingDirection:4;  //current direction?
-    /*0x18*/        u8 placeholder18:4;
+    /*0x18*/        u8 facingDirection:4;
+    /*0x18*/        u8 movementDirection:4;
     /*0x19*/        union ObjectEventRange range;
-    /*0x1A*/        u8 mapobj_unk_1A;
+    /*0x1A*/        u8 fieldEffectSpriteId;
     /*0x1B*/        u8 mapobj_unk_1B;
     /*0x1C*/        u8 mapobj_unk_1C;
     /*0x1D*/        u8 trainerRange_berryTreeId;
-    /*0x1E*/        u8 mapobj_unk_1E;
-    /*0x1F*/        u8 mapobj_unk_1F;
+    /*0x1E*/        u8 currentMetatileBehavior;
+    /*0x1F*/        u8 previousMetatileBehavior;
     /*0x20*/        u8 mapobj_unk_20;
-    /*0x21*/        u8 mapobj_unk_21;
+    /*0x21*/        u8 directionSequenceIndex;
     /*0x22*/        u8 animId;
     /*size = 0x24*/
 };
@@ -276,7 +285,7 @@ struct PlayerAvatar /* 0x202E858 */
     /*0x03*/ u8 tileTransitionState; // this is a transition running state: 00 is not moving, 01 is transition between tiles, 02 means you are on the frame in which you have centered on a tile but are about to keep moving, even if changing directions. 2 is also used for a ledge hop, since you are transitioning.
     /*0x04*/ u8 spriteId;
     /*0x05*/ u8 objectEventId;
-    /*0x06*/ u8 unk6;
+    /*0x06*/ bool8 preventStep;
     /*0x07*/ u8 gender;
     u8 acroBikeState;
     u8 unk9;

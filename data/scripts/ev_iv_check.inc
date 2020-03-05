@@ -1,5 +1,5 @@
 CheckIVs::
-	special Special_ChooseMonFromParty
+	special ChoosePartyMon
 	waitstate
 	compare VAR_0x8004, 255
 	goto_if_eq ButIRefuse
@@ -19,7 +19,7 @@ CheckIVs_Proceed:
 	end
 
 CheckEVs::
-	special Special_ChooseMonFromParty
+	special ChoosePartyMon
 	waitstate
 	compare VAR_0x8004, 255
 	goto_if_eq ButIRefuse
@@ -39,7 +39,7 @@ CheckEVs_Proceed:
 	end
 
 ResetEVs::
-	special Special_ChooseMonFromParty
+	special ChoosePartyMon
 	waitstate
 	compare VAR_0x8004, 255
 	goto_if_eq ButIRefuse

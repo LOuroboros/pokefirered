@@ -2921,7 +2921,7 @@ IsPlayerFacingSurfableFishableWater: @ 805C8B0
 	ldrsh r0, [r0, r1]
 	movs r2, 0
 	ldrsh r1, [r5, r2]
-	bl sub_805C938
+	bl MetatileAtCoordsIsWaterTile
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -2940,24 +2940,24 @@ _0805C92E:
 	bx r1
 	thumb_func_end IsPlayerFacingSurfableFishableWater
 
-	thumb_func_start sub_805C938
-sub_805C938: @ 805C938
+	thumb_func_start MetatileAtCoordsIsWaterTile
+MetatileAtCoordsIsWaterTile: @ 805C938
 	push {lr}
 	lsls r0, 16
 	asrs r0, 16
 	lsls r1, 16
 	asrs r1, 16
 	movs r2, 0x1
-	bl sub_8058F48
+	bl MapGridGetMetatileAttributeAt
 	lsls r0, 24
 	lsrs r0, 24
 	movs r1, 0x2
-	bl sub_805A2BC
+	bl TestMetatileAttributeBit
 	lsls r0, 24
 	lsrs r0, 24
 	pop {r1}
 	bx r1
-	thumb_func_end sub_805C938
+	thumb_func_end MetatileAtCoordsIsWaterTile
 
 	thumb_func_start ClearPlayerAvatarInfo
 ClearPlayerAvatarInfo: @ 805C95C
@@ -3158,7 +3158,7 @@ InitPlayerAvatar: @ 805CA3C
 	movs r1, 0x1
 	orrs r0, r1
 	strb r0, [r4, 0x2]
-	bl sub_80DB0C4
+	bl CreateWarpArrowSprite
 	strb r0, [r4, 0x1B]
 	adds r0, r4, 0
 	mov r1, r9
@@ -3403,7 +3403,7 @@ _0805CC62:
 	movs r1, 0
 	ldrsh r3, [r7, r1]
 	adds r1, r6, 0
-	bl sub_80DB134
+	bl ShowWarpArrowSprite
 	b _0805CCC2
 	.align 2, 0
 _0805CCA4: .4byte gUnknown_835B890
@@ -3419,7 +3419,7 @@ _0805CCA8:
 	cmp r1, 0x3
 	ble _0805CC62
 	ldrb r0, [r5, 0x1B]
-	bl objid_set_invisible
+	bl SetSpriteInvisible
 _0805CCC2:
 	add sp, 0x4
 	pop {r3,r4}
@@ -4157,7 +4157,7 @@ sub_805D240: @ 805D240
 	bl DestroySprite
 	adds r0, r5, 0
 	bl DestroyTask
-	bl sub_812B35C
+	bl SetHelpContextForMap
 _0805D2AE:
 	pop {r4-r6}
 	pop {r0}
@@ -5337,7 +5337,7 @@ _0805DBBA:
 	strh r0, [r7, 0x22]
 	movs r2, 0x22
 	ldrsh r1, [r7, r2]
-	ldr r0, _0805DBF0 @ =gUnknown_3005068
+	ldr r0, _0805DBF0 @ =gTotalCameraPixelOffsetY
 	movs r2, 0
 	ldrsh r0, [r0, r2]
 	adds r1, r0
@@ -5350,7 +5350,7 @@ _0805DBBA:
 	strh r0, [r5]
 	b _0805DBFA
 	.align 2, 0
-_0805DBF0: .4byte gUnknown_3005068
+_0805DBF0: .4byte gTotalCameraPixelOffsetY
 _0805DBF4:
 	adds r0, r2, 0
 	bl DestroyTask

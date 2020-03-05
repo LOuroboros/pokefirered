@@ -16,7 +16,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJECT_EVENT_GFX_POLICEMAN",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
       "x": 6,
       "y": 2,
       "elevation": 3,
@@ -25,7 +25,7 @@
       "movement_range_y": 1,
       "trainer_type": 0,
       "trainer_sight_or_berry_tree_id": 0,
-      "script": "Route15_WestEntrance_1F_EventScript_170089",
+      "script": "Route15_WestEntrance_1F_EventScript_Guard",
       "flag": "0"
     }
   ],

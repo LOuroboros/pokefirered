@@ -1421,7 +1421,7 @@ PokemonJournal_Text_SpecialFeatureSabrina:: @ 81B1753
 	.string "communicate with her POKéMON\l"
 	.string "during battle without speaking.$"
 
-gUnknown_81B17E9:: @ 81B17E9
+PokemonJournal_Text_SpecialFeatureBlaine:: @ 81B17E9
 	.string "POKéMON JOURNAL\p"
 	.string "Special Feature: CINNABAR GYM\n"
 	.string "LEADER BLAINE!\p"
@@ -1429,7 +1429,7 @@ gUnknown_81B17E9:: @ 81B17E9
 	.string "shades only when he is thinking up\l"
 	.string "new quiz questions.$"
 
-gUnknown_81B187F:: @ 81B187F
+PokemonJournal_Text_SpecialFeatureLorelei:: @ 81B187F
 	.string "POKéMON JOURNAL\p"
 	.string "Special Feature:\n"
 	.string "ELITE FOUR's LORELEI!\p"
@@ -1445,7 +1445,7 @@ PokemonJournal_Text_SpecialFeatureBruno:: @ 81B1913
 	.string "FOUR out of his burning ambition to\l"
 	.string "battle the best TRAINERS.$"
 
-gUnknown_81B19A8:: @ 81B19A8
+PokemonJournal_Text_SpecialFeatureAgatha:: @ 81B19A8
 	.string "POKéMON JOURNAL\p"
 	.string "Special Feature:\n"
 	.string "ELITE FOUR's AGATHA!\p"
@@ -1468,7 +1468,7 @@ PokemonJournal_Text_SpecialFeatureProfOak:: @ 81B1AB9
 	.string "PROF. OAK reportedly lives with his\n"
 	.string "grandchildren DAISY and {RIVAL}.$"
 
-gUnknown_81B1B3D:: @ 81B1B3D
+PokemonJournal_Text_SpecialFeatureDaisyOak:: @ 81B1B3D
 	.string "This is a POKéMON JOURNAL from\n"
 	.string "years ago…\p"
 	.string "POKéMON JOURNAL\n"

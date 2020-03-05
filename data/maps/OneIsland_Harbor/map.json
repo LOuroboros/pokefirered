@@ -16,7 +16,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJECT_EVENT_GFX_SEAGALLOP",
+      "graphics_id": "OBJ_EVENT_GFX_SEAGALLOP",
       "x": 8,
       "y": 9,
       "elevation": 0,
@@ -29,7 +29,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJECT_EVENT_GFX_SAILOR",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
       "x": 8,
       "y": 6,
       "elevation": 3,
@@ -38,7 +38,7 @@
       "movement_range_y": 1,
       "trainer_type": 0,
       "trainer_sight_or_berry_tree_id": 0,
-      "script": "OneIsland_Harbor_EventScript_1713BD",
+      "script": "OneIsland_Harbor_EventScript_Sailor",
       "flag": "0"
     }
   ],

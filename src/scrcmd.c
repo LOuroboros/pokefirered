@@ -1238,7 +1238,7 @@ bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
     HideFieldMessageBox();
     playerObjectId = GetObjectEventIdByLocalIdAndMap(0xFF, 0, 0);
     ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
-    sub_80974D8();
+    ScriptMovement_UnfreezeObjectEvents();
     UnfreezeObjectEvents();
     return FALSE;
 }
@@ -1252,7 +1252,7 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
         ObjectEventClearHeldMovementIfFinished(&gObjectEvents[gSelectedObjectEvent]);
     playerObjectId = GetObjectEventIdByLocalIdAndMap(0xFF, 0, 0);
     ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
-    sub_80974D8();
+    ScriptMovement_UnfreezeObjectEvents();
     UnfreezeObjectEvents();
     return FALSE;
 }
@@ -1896,7 +1896,7 @@ bool8 ScrCmd_trainerbattle(struct ScriptContext *ctx)
 
 bool8 ScrCmd_dotrainerbattle(struct ScriptContext *ctx)
 {
-    BattleSetup_StartTrainerBattle();
+    StartTrainerBattle();
     return TRUE;
 }
 
@@ -1948,7 +1948,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
 
 bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
 {
-    BattleSetup_StartScriptedWildBattle();
+    StartScriptedWildBattle();
     ScriptContext1_Stop();
     return TRUE;
 }
@@ -2115,7 +2115,7 @@ bool8 ScrCmd_setmetatile(struct ScriptContext *ctx)
     if (!v8)
         MapGridSetMetatileIdAt(x, y, tileId);
     else
-        MapGridSetMetatileIdAt(x, y, tileId | 0xC00);
+        MapGridSetMetatileIdAt(x, y, tileId | METATILE_COLLISION_MASK);
     return FALSE;
 }
 

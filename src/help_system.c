@@ -90,7 +90,7 @@ u8 RunHelpSystemCallback(void)
         HelpSystem_FillPanel2();
         HelpSystem_PrintText_Row61(gString_Help);
         sub_813BD14(1);
-        if (sub_812B40C() == TRUE)
+        if (HelpSystem_UpdateHasntSeenIntro() == TRUE)
             HelpSystemSubroutine_PrintWelcomeMessage(&gHelpSystemListMenu, gHelpSystemListMenuItems);
         else
             HelpSystemSubroutine_WelcomeEndGotoMenu(&gHelpSystemListMenu, gHelpSystemListMenuItems);
@@ -1085,7 +1085,7 @@ void PlaceListMenuCursor(void)
     u8 glyphHeight = GetFontAttribute(2, 1) + 1;
     u8 x = gHelpSystemListMenu.sub.left;
     u8 y = gHelpSystemListMenu.sub.top + glyphHeight * gHelpSystemListMenu.cursorPos;
-    HelpSystem_PrintTextAt(gFameCheckerText_ListMenuCursor, x, y);
+    HelpSystem_PrintTextAt(gText_SelectorArrow2, x, y);
 }
 
 void sub_813C860(u8 i)
@@ -1184,7 +1184,7 @@ bool8 MoveCursor(u8 by, u8 dirn)
             HelpSystem_FillPanel1();
             PrintListMenuItems();
             PlaceListMenuCursor();
-            sub_812BDEC();
+            HelpSystem_PrintTopicLabel();
             sub_813C75C();
         }
         else

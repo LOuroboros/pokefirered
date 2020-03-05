@@ -8,7 +8,7 @@
 	thumb_func_start sub_8054BC8
 sub_8054BC8: @ 8054BC8
 	push {r4,lr}
-	ldr r0, _08054BFC @ =gUnknown_81A654B
+	ldr r0, _08054BFC @ =EventScript_ResetEliteFourEnd
 	bl ScriptContext2_RunNewScript
 	ldr r0, _08054C00 @ =gSaveBlock1Ptr
 	ldr r4, [r0]
@@ -27,7 +27,7 @@ sub_8054BC8: @ 8054BC8
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08054BFC: .4byte gUnknown_81A654B
+_08054BFC: .4byte EventScript_ResetEliteFourEnd
 _08054C00: .4byte gSaveBlock1Ptr
 	thumb_func_end sub_8054BC8
 
@@ -66,8 +66,8 @@ _08054C40: .4byte sWhiteOutMoneyLossMultipliers
 _08054C44: .4byte gSaveBlock1Ptr
 	thumb_func_end ComputeWhiteOutMoneyLoss
 
-	thumb_func_start Special_OverworldWhiteOutGetMoneyLoss
-Special_OverworldWhiteOutGetMoneyLoss: @ 8054C48
+	thumb_func_start OverworldWhiteOutGetMoneyLoss
+OverworldWhiteOutGetMoneyLoss: @ 8054C48
 	push {r4,r5,lr}
 	bl ComputeWhiteOutMoneyLoss
 	adds r4, r0, 0
@@ -85,7 +85,7 @@ Special_OverworldWhiteOutGetMoneyLoss: @ 8054C48
 	bx r0
 	.align 2, 0
 _08054C6C: .4byte gStringVar1
-	thumb_func_end Special_OverworldWhiteOutGetMoneyLoss
+	thumb_func_end OverworldWhiteOutGetMoneyLoss
 
 	thumb_func_start CountBadgesForOverworldWhiteOutLossCalculation
 CountBadgesForOverworldWhiteOutLossCalculation: @ 8054C70
@@ -115,8 +115,8 @@ _08054C8A:
 _08054C9C: .4byte sWhiteOutMoneyLossBadgeFlagIDs
 	thumb_func_end CountBadgesForOverworldWhiteOutLossCalculation
 
-	thumb_func_start sub_8054CA0
-sub_8054CA0: @ 8054CA0
+	thumb_func_start Overworld_ResetStateAfterFly
+Overworld_ResetStateAfterFly: @ 8054CA0
 	push {lr}
 	bl ResetInitialPlayerAvatarState
 	movs r0, 0x83
@@ -152,7 +152,7 @@ _08054CF8: .4byte 0x00000805
 _08054CFC: .4byte 0x00000806
 _08054D00: .4byte 0x00000808
 _08054D04: .4byte 0x0000404d
-	thumb_func_end sub_8054CA0
+	thumb_func_end Overworld_ResetStateAfterFly
 
 	thumb_func_start Overworld_ResetStateAfterTeleport
 Overworld_ResetStateAfterTeleport: @ 8054D08
@@ -1242,12 +1242,12 @@ sub_805550C: @ 805550C
 	lsls r0, 24
 	lsrs r5, r0, 24
 	adds r0, r4, 0
-	bl is_light_level_1_2_3_5_or_6
+	bl IsMapTypeOutdoors
 	lsls r0, 24
 	cmp r0, 0
 	beq _08055590
 	adds r0, r5, 0
-	bl is_light_level_1_2_3_5_or_6
+	bl IsMapTypeOutdoors
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -1764,7 +1764,7 @@ sub_8055920: @ 8055920
 	bl sub_8054F68
 	ldr r0, _0805599C @ =gMapHeader
 	ldrb r0, [r0, 0x17]
-	bl is_light_level_1_2_3_5_or_6
+	bl IsMapTypeOutdoors
 	adds r4, r0, 0
 	lsls r4, 24
 	lsrs r4, 24
@@ -1815,7 +1815,7 @@ sub_80559A8: @ 80559A8
 	bl sub_8054F68
 	ldr r0, _080559E0 @ =gMapHeader
 	ldrb r0, [r0, 0x17]
-	bl is_light_level_1_2_3_5_or_6
+	bl IsMapTypeOutdoors
 	bl TrySetMapSaveWarpStatus
 	bl SetSav1WeatherFromCurrMapHeader
 	bl sub_805610C
@@ -2611,8 +2611,8 @@ _08055F82:
 	bx r1
 	thumb_func_end GetMapMusicFadeoutSpeed
 
-	thumb_func_start sub_8055F88
-sub_8055F88: @ 8055F88
+	thumb_func_start TryFadeOutOldMapMusic
+TryFadeOutOldMapMusic: @ 8055F88
 	push {r4,lr}
 	bl sub_8055DA4
 	lsls r0, 16
@@ -2638,7 +2638,7 @@ _08055FB8:
 	bx r0
 	.align 2, 0
 _08055FC0: .4byte 0x00004001
-	thumb_func_end sub_8055F88
+	thumb_func_end TryFadeOutOldMapMusic
 
 	thumb_func_start BGMusicStopped
 BGMusicStopped: @ 8055FC4
@@ -2933,8 +2933,8 @@ sub_80561B4: @ 80561B4
 _080561D4: .4byte gUnknown_2031DB4
 	thumb_func_end sub_80561B4
 
-	thumb_func_start is_light_level_1_2_3_5_or_6
-is_light_level_1_2_3_5_or_6: @ 80561D8
+	thumb_func_start IsMapTypeOutdoors
+IsMapTypeOutdoors: @ 80561D8
 	push {lr}
 	lsls r0, 24
 	lsrs r0, 24
@@ -2956,7 +2956,7 @@ _080561F6:
 _080561F8:
 	pop {r1}
 	bx r1
-	thumb_func_end is_light_level_1_2_3_5_or_6
+	thumb_func_end IsMapTypeOutdoors
 
 	thumb_func_start Overworld_MapTypeAllowsTeleportAndFly
 Overworld_MapTypeAllowsTeleportAndFly: @ 80561FC
@@ -3347,8 +3347,8 @@ _08056522:
 _08056530: .4byte gUnknown_3005E90
 	thumb_func_end sub_80564C8
 
-	thumb_func_start sub_8056534
-sub_8056534: @ 8056534
+	thumb_func_start CB1_Overworld
+CB1_Overworld: @ 8056534
 	push {r4,lr}
 	ldr r4, _0805655C @ =gMain
 	ldr r1, [r4, 0x4]
@@ -3379,7 +3379,7 @@ _08056570:
 	pop {r4}
 	pop {r0}
 	bx r0
-	thumb_func_end sub_8056534
+	thumb_func_end CB1_Overworld
 
 	thumb_func_start sub_8056578
 sub_8056578: @ 8056578
@@ -3507,7 +3507,7 @@ CB2_NewGame: @ 8056644
 	ldr r0, _08056698 @ =gMain + 0x438
 	bl do_load_map_stuff_loop
 	bl SetFieldVBlankCallback
-	ldr r0, _0805669C @ =sub_8056534
+	ldr r0, _0805669C @ =CB1_Overworld
 	bl SetMainCallback1
 	ldr r0, _080566A0 @ =sub_80565B4
 	bl SetMainCallback2
@@ -3518,7 +3518,7 @@ _0805668C: .4byte gFieldCallback
 _08056690: .4byte sub_807DF7C
 _08056694: .4byte gFieldCallback2
 _08056698: .4byte gMain + 0x438
-_0805669C: .4byte sub_8056534
+_0805669C: .4byte CB1_Overworld
 _080566A0: .4byte sub_80565B4
 	thumb_func_end CB2_NewGame
 
@@ -3555,7 +3555,7 @@ CB2_WhiteOut: @ 80566A4
 	bl do_load_map_stuff_loop
 	bl sub_8112364
 	bl SetFieldVBlankCallback
-	ldr r0, _08056714 @ =sub_8056534
+	ldr r0, _08056714 @ =CB1_Overworld
 	bl SetMainCallback1
 	ldr r0, _08056718 @ =sub_80565B4
 	bl SetMainCallback2
@@ -3567,7 +3567,7 @@ _08056702:
 _08056708: .4byte gMain
 _0805670C: .4byte gFieldCallback
 _08056710: .4byte sub_807F5F0
-_08056714: .4byte sub_8056534
+_08056714: .4byte CB1_Overworld
 _08056718: .4byte sub_80565B4
 	thumb_func_end CB2_WhiteOut
 
@@ -3608,7 +3608,7 @@ sub_805674C: @ 805674C
 _08056768: .4byte gMain + 0x438
 _0805676C:
 	bl SetFieldVBlankCallback
-	ldr r0, _08056780 @ =sub_8056534
+	ldr r0, _08056780 @ =CB1_Overworld
 	bl SetMainCallback1
 	ldr r0, _08056784 @ =sub_80565B4
 	bl SetMainCallback2
@@ -3616,7 +3616,7 @@ _0805677C:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08056780: .4byte sub_8056534
+_08056780: .4byte CB1_Overworld
 _08056784: .4byte sub_80565B4
 	thumb_func_end sub_805674C
 
@@ -3741,7 +3741,7 @@ _08056880: .4byte gFieldCallback
 _08056884: .4byte FieldCB_ReturnToFieldWirelessLink
 _08056888:
 	ldr r1, _080568A0 @ =gFieldCallback
-	ldr r0, _080568A4 @ =sub_807DDD0
+	ldr r0, _080568A4 @ =FieldCB_ReturnToFieldWiredLink
 _0805688C:
 	str r0, [r1]
 	bl ScriptContext1_Init
@@ -3751,7 +3751,7 @@ _0805688C:
 	bx r0
 	.align 2, 0
 _080568A0: .4byte gFieldCallback
-_080568A4: .4byte sub_807DDD0
+_080568A4: .4byte FieldCB_ReturnToFieldWiredLink
 	thumb_func_end c2_8056854
 
 	thumb_func_start CB2_ReturnToFieldWithOpenMenu
@@ -3870,7 +3870,7 @@ _0805699C:
 	ldr r0, _080569B0 @ =gFieldCallback
 	ldr r1, _080569B4 @ =sub_8056918
 	str r1, [r0]
-	ldr r0, _080569B8 @ =sub_8056534
+	ldr r0, _080569B8 @ =CB1_Overworld
 	bl SetMainCallback1
 	bl CB2_ReturnToField
 _080569AC:
@@ -3879,7 +3879,7 @@ _080569AC:
 	.align 2, 0
 _080569B0: .4byte gFieldCallback
 _080569B4: .4byte sub_8056918
-_080569B8: .4byte sub_8056534
+_080569B8: .4byte CB1_Overworld
 	thumb_func_end CB2_ContinueSavedGame
 
 	thumb_func_start FieldClearVBlankHBlankCallbacks
@@ -4012,7 +4012,7 @@ _08056ACE:
 	bl sub_8057074
 	bl sub_80571A8
 	bl sub_8057140
-	bl sub_812B35C
+	bl SetHelpContextForMap
 	b _08056B62
 _08056AE4:
 	bl InitCurrentFlashLevelScanlineEffect
@@ -4152,7 +4152,7 @@ _08056BFE:
 	bl sub_80CC534
 	bl sub_80CC59C
 _08056C16:
-	bl sub_812B35C
+	bl SetHelpContextForMap
 	b _08056CCA
 	.align 2, 0
 _08056C1C: .4byte gQuestLogState
@@ -4275,7 +4275,7 @@ _08056D04:
 	b _08056D30
 _08056D1C:
 	bl sub_8056F08
-	bl sub_812B35C
+	bl SetHelpContextForMap
 	b _08056D30
 _08056D26:
 	bl map_post_load_hook_exec
@@ -4343,7 +4343,7 @@ _08056DAE:
 	bl sub_8057230
 	bl sub_8057100
 	bl sub_805715C
-	bl sub_812B35C
+	bl SetHelpContextForMap
 	b _08056E3E
 _08056DC0:
 	bl InitCurrentFlashLevelScanlineEffect
@@ -4659,10 +4659,10 @@ _0805706A:
 	thumb_func_start sub_8057074
 sub_8057074: @ 8057074
 	push {lr}
-	ldr r0, _08057094 @ =gUnknown_300506C
+	ldr r0, _08057094 @ =gTotalCameraPixelOffsetX
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, _08057098 @ =gUnknown_3005068
+	ldr r0, _08057098 @ =gTotalCameraPixelOffsetY
 	strh r1, [r0]
 	bl sub_805DE74
 	movs r0, 0
@@ -4672,18 +4672,18 @@ sub_8057074: @ 8057074
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08057094: .4byte gUnknown_300506C
-_08057098: .4byte gUnknown_3005068
+_08057094: .4byte gTotalCameraPixelOffsetX
+_08057098: .4byte gTotalCameraPixelOffsetY
 	thumb_func_end sub_8057074
 
 	thumb_func_start mli4_mapscripts_and_other
 mli4_mapscripts_and_other: @ 805709C
 	push {r4,r5,lr}
 	sub sp, 0x4
-	ldr r0, _080570F4 @ =gUnknown_300506C
+	ldr r0, _080570F4 @ =gTotalCameraPixelOffsetX
 	movs r1, 0
 	strh r1, [r0]
-	ldr r0, _080570F8 @ =gUnknown_3005068
+	ldr r0, _080570F8 @ =gTotalCameraPixelOffsetY
 	strh r1, [r0]
 	bl sub_805DE74
 	mov r4, sp
@@ -4715,8 +4715,8 @@ mli4_mapscripts_and_other: @ 805709C
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080570F4: .4byte gUnknown_300506C
-_080570F8: .4byte gUnknown_3005068
+_080570F4: .4byte gTotalCameraPixelOffsetX
+_080570F8: .4byte gTotalCameraPixelOffsetY
 _080570FC: .4byte gSaveBlock2Ptr
 	thumb_func_end mli4_mapscripts_and_other
 
@@ -4963,7 +4963,7 @@ sub_80572D8: @ 80572D8
 	ldr r0, _080572F4 @ =gMain + 0x438
 	bl sub_8057300
 	bl SetFieldVBlankCallback
-	ldr r0, _080572F8 @ =sub_8056534
+	ldr r0, _080572F8 @ =CB1_Overworld
 	bl SetMainCallback1
 	ldr r0, _080572FC @ =sub_80565B4
 	bl SetMainCallback2
@@ -4971,7 +4971,7 @@ sub_80572D8: @ 80572D8
 	bx r0
 	.align 2, 0
 _080572F4: .4byte gMain + 0x438
-_080572F8: .4byte sub_8056534
+_080572F8: .4byte CB1_Overworld
 _080572FC: .4byte sub_80565B4
 	thumb_func_end sub_80572D8
 
@@ -5148,14 +5148,14 @@ _08057484: .4byte gUnknown_2036E28
 _08057488: .4byte gUnknown_2031DE0
 _0805748C: .4byte CB2_LoadMap
 _08057490:
-	ldr r0, _080574A0 @ =sub_8056534
+	ldr r0, _080574A0 @ =CB1_Overworld
 	bl SetMainCallback1
 	bl CB2_ReturnToField
 _0805749A:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080574A0: .4byte sub_8056534
+_080574A0: .4byte CB1_Overworld
 	thumb_func_end sub_8057430
 
 	thumb_func_start Overworld_CreditsMainCB
@@ -6809,7 +6809,7 @@ _080580F4: .4byte gUnknown_3000E80
 _080580F8: .4byte CableClub_EventScript_TooBusyToNotice
 _080580FC:
 	adds r0, r2, 0
-	bl sub_8081A34
+	bl GetSeeingLinkPlayerCardMsg
 	cmp r0, 0
 	bne _08058110
 	ldr r0, _0805810C @ =CableClub_EventScript_ReadTrainerCard
@@ -7273,7 +7273,7 @@ InitLinkPlayerObjectEventPos: @ 8058448
 	adds r2, 0xC
 	adds r3, r4, 0
 	adds r3, 0xE
-	bl sub_8063B1C
+	bl SetSpritePosToMapCoords
 	ldrh r0, [r4, 0xC]
 	adds r0, 0x8
 	strh r0, [r4, 0xC]

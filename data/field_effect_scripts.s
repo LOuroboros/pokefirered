@@ -1,7 +1,7 @@
 	.include "asm/macros/field_effect_script.inc"
 	.section script_data, "aw", %progbits
 	.align 2
-gUnknown_81D96AC:: @ 81D96AC
+gFieldEffectScriptPointers:: @ 81D96AC
 	.4byte gFldEffScript_ExclamationMarkIcon
 	.4byte gFldEffScript_UseCutOnGrass
 	.4byte gFldEffScript_UseCutOnTree
@@ -67,9 +67,9 @@ gUnknown_81D96AC:: @ 81D96AC
 	.4byte gFldEffScript_HallOfFameRecord
 	.4byte gFldEffScript_UseTeleport
 	.4byte gFldEffScript_SmileyFaceIcon
-	.4byte gFldEffScript_Unk41
+	.4byte gFldEffScript_UseVsSeeker
 	.4byte gFldEffScript_DoubleExclMarkIcon
-	.4byte gFldEffScript_Unk43
+	.4byte gFldEffScript_MoveDeoxysRock
 	.4byte gFldEffScript_Unk44
 	.4byte gFldEffScript_Unk45
 
@@ -78,23 +78,23 @@ gFldEffScript_ExclamationMarkIcon:: @ 81D97C4
 	end 
 
 gFldEffScript_UseCutOnGrass:: @ 81D97CA
-	callnative sub_80979A0
+	callnative FldEff_UseCutOnGrass
 	end 
 
 gFldEffScript_UseCutOnTree:: @ 81D97D0
-	callnative sub_80979F0
+	callnative FldEff_UseCutOnTree
 	end 
 
 gFldEffScript_Shadow:: @ 81D97D6
-	callnative oei_shadow
+	callnative FldEff_Shadow
 	end 
 
 gFldEffScript_TallGrass:: @ 81D97DC
-	loadfadedpal_callnative gUnknown_83A5348, oei_grass_normal
+	loadfadedpal_callnative gUnknown_83A5348, FldEff_TallGrass
 	end 
 
 gFldEffScript_Ripple:: @ 81D97E6
-	loadfadedpal_callnative gUnknown_83A5348, oei_ripples
+	loadfadedpal_callnative gUnknown_83A5348, FldEff_Ripple
 	end 
 
 gFldEffScript_FieldMoveShowMon:: @ 81D97F0
@@ -102,15 +102,15 @@ gFldEffScript_FieldMoveShowMon:: @ 81D97F0
 	end 
 
 gFldEffScript_Ash:: @ 81D97F6
-	loadfadedpal_callnative gUnknown_83A5348, oei_ash
+	loadfadedpal_callnative gUnknown_83A5348, FldEff_Ash
 	end 
 
 gFldEffScript_SurfBlob:: @ 81D9800
-	callnative sub_80DC3D0
+	callnative FldEff_SurfBlob
 	end 
 
 gFldEffScript_UseSurf:: @ 81D9806
-	callnative sub_8086944
+	callnative FldEff_UseSurf
 	end 
 
 gFldEffScript_Dust:: @ 81D980C
@@ -129,7 +129,7 @@ gFldEffScript_SandFootprints:: @ 81D9821
 	end 
 
 gFldEffScript_JumpBigSplash:: @ 81D982B
-	loadfadedpal_callnative gUnknown_83A5340, oei_water_drop_tall
+	loadfadedpal_callnative gUnknown_83A5340, FldEff_JumpBigSplash
 	end 
 
 gFldEffScript_Splash:: @ 81D9835
@@ -165,7 +165,7 @@ gFldEffScript_Unknown22:: @ 81D987B
 	end 
 
 gFldEffScript_BerryTreeGrowthSparkle:: @ 81D9885
-	callnative sub_80DC9DC
+	callnative FldEff_BerryTreeGrowthSparkle
 	end 
 
 gFldEffScript_DeepSandFootprints:: @ 81D988B
@@ -174,7 +174,7 @@ gFldEffScript_DeepSandFootprints:: @ 81D988B
 
 gFldEffScript_PokecenterHeal:: @ 81D9895
 	loadfadedpal gUnknown_83CBE9C
-	loadfadedpal_callnative gUnknown_83A5340, sub_8083B8C
+	loadfadedpal_callnative gUnknown_83A5340, FldEff_PokecenterHeal
 	end 
 
 gFldEffScript_UseSecretPowerTree:: @ 81D98A4
@@ -192,7 +192,7 @@ gFldEffScript_MountainDisguise:: @ 81D98AC
 	end 
 
 gFldEffScript_NpcflyOut:: @ 81D98B2
-	callnative sub_8086D38
+	callnative FldEff_NpcFlyOut
 	end 
 
 gFldEffScript_UseFly:: @ 81D98B8
@@ -224,7 +224,7 @@ gFldEffScript_UseRockSmash:: @ 81D98E4
 	end 
 
 gFldEffScript_UseStrength:: @ 81D98EA
-	callnative sub_80D0860
+	callnative FldEff_UseStrength
 	end 
 
 gFldEffScript_UseDig:: @ 81D98F0
@@ -236,15 +236,15 @@ gFldEffScript_SandPile:: @ 81D98F6
 	end 
 
 gFldEffScript_ShortGrass:: @ 81D9900
-	loadfadedpal_callnative gUnknown_83A5348, sub_80DB808
+	loadfadedpal_callnative gUnknown_83A5348, FldEff_ShortGrass
 	end 
 
 gFldEffScript_HotSpringsWater:: @ 81D990A
-	loadfadedpal_callnative gUnknown_83A5348, sub_80DBF50
+	loadfadedpal_callnative gUnknown_83A5348, FldEff_HotSpringsWater
 	end 
 
 gFldEffScript_UseWaterfall:: @ 81D9914
-	callnative oei_waterfall
+	callnative FldEff_UseWaterfall
 	end 
 
 gFldEffScript_UseDive:: @ 81D991A
@@ -299,7 +299,7 @@ gFldEffScript_SecretPowerShrub:: @ 81D9964
 	end 
 
 gFldEffScript_CutGrass:: @ 81D9965
-	loadfadedpal_callnative gUnknown_83D4144, sub_8097A48
+	loadfadedpal_callnative gFldEffPalette_CutGrass, FldEff_CutGrass
 	end 
 
 gFldEffScript_FieldMoveShowMonInit:: @ 81D996F
@@ -314,7 +314,7 @@ gFldEffScript_PcturnOn:: @ 81D9976
 
 gFldEffScript_HallOfFameRecord:: @ 81D9977
 	loadfadedpal gUnknown_83CBE9C
-	loadfadedpal_callnative gUnknown_83CBEA4, sub_8083CE0
+	loadfadedpal_callnative gUnknown_83CBEA4, FldEff_HallOfFameRecord
 	end 
 
 gFldEffScript_UseTeleport:: @ 81D9986
@@ -325,22 +325,22 @@ gFldEffScript_SmileyFaceIcon:: @ 81D998C
 	callnative FldEff_SmileyFaceIcon
 	end 
 
-gFldEffScript_Unk41:: @ 81D9992
-	callnative sub_8086BA8
+gFldEffScript_UseVsSeeker:: @ 81D9992
+	callnative FldEff_UseVsSeeker
 	end 
 
 gFldEffScript_DoubleExclMarkIcon:: @ 81D9998
 	callnative FldEff_DoubleExclMarkIcon
 	end 
 
-gFldEffScript_Unk43:: @ 81D999E
-	callnative sub_8087924
+gFldEffScript_MoveDeoxysRock:: @ 81D999E
+	callnative FldEff_MoveDeoxysRock
 	end 
 
 gFldEffScript_Unk44:: @ 81D99A4
-	callnative sub_8087AB4
+	callnative FldEff_Unk44
 	end 
 
 gFldEffScript_Unk45:: @ 81D99AA
-	callnative sub_8087E28
+	callnative FldEff_Unk45
 	end 

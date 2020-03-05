@@ -336,7 +336,7 @@ static void Task_GoToBuyOrSellMenu(u8 taskId)
 
 static void MapPostLoadHook_ReturnToShopMenu(void)
 {
-    sub_807DC00();
+    FadeInFromBlack();
     CreateTask(Task_ReturnToShopMenu, 8);
 }
 
@@ -668,7 +668,7 @@ static void BuyMenuPrintCursorAtYPosition(u8 y, u8 a1)
     }
     else
     {
-        BuyMenuPrint(4, 2, gFameCheckerText_ListMenuCursor, 1, y, 0, 0, 0, a1);
+        BuyMenuPrint(4, 2, gText_SelectorArrow2, 1, y, 0, 0, 0, a1);
     }
 }
 

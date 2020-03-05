@@ -60,10 +60,8 @@ gUnknown_3000EA0: @ 3000EA0
 	.include "src/tileset_anims.o"
 	.align 2
 	.include "src/sound.o"
-
 	.align 2
-gUnknown_3000FC8: @ 3000FC8
-	.space 0x20
+	.include "src/field_effect.o"
 
 gUnknown_3000FE8: @ 3000FE8
 	.space 0x184
@@ -88,17 +86,12 @@ gUnknown_3002038: @ 3002038
 
 	.align 2
 	.include "src/wireless_communication_status_screen.o"
-
 	.align 2
-gUnknown_3002044: @ 3002044
-	.space 0x4
-
+	.include "src/dodrio_berry_picking.o"
 	.align 3
 	.include "src/ereader_helpers.o"
-
 	.align 3
 	.include "src/digit_obj_util.o"
-
 	.align 3
 	.include "asm/m4a_1.o"
 	.align 3

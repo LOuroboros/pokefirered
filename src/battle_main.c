@@ -642,17 +642,17 @@ void CB2_InitBattle(void)
             if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-                    HelpSystem_SetSomeVariable2(0x19);
+                    SetHelpContext(HELPCONTEXT_TRAINER_BATTLE_DOUBLE);
                 else
-                    HelpSystem_SetSomeVariable2(0x18);
+                    SetHelpContext(HELPCONTEXT_TRAINER_BATTLE_SINGLE);
             }
             else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
             {
-                HelpSystem_SetSomeVariable2(0x1A);
+                SetHelpContext(HELPCONTEXT_SAFARI_BATTLE);
             }
             else
             {
-                HelpSystem_SetSomeVariable2(0x17);
+                SetHelpContext(HELPCONTEXT_WILD_BATTLE);
             }
         }
     }
@@ -976,7 +976,7 @@ static void CB2_HandleStartBattle(void)
             ResetBlockReceivedFlags();
             sub_8010414(2, playerMultiplayerId);
             SetAllPlayersBerryData();
-            taskId = CreateTask(sub_800F6FC, 0);
+            taskId = CreateTask(InitLinkBattleVsScreen, 0);
             gTasks[taskId].data[1] = 270;
             gTasks[taskId].data[2] = 90;
             gTasks[taskId].data[5] = 0;
@@ -1224,7 +1224,7 @@ static void CB2_HandleStartMultiBattle(void)
             SetAllPlayersBerryData();
             SetDeoxysStats();
             memcpy(gDecompressionBuffer, gPlayerParty, sizeof(struct Pokemon) * 3);
-            taskId = CreateTask(sub_800F6FC, 0);
+            taskId = CreateTask(InitLinkBattleVsScreen, 0);
             gTasks[taskId].data[1] = 270;
             gTasks[taskId].data[2] = 90;
             gTasks[taskId].data[5] = 0;
@@ -1782,7 +1782,7 @@ void sub_8011A1C(void)
     FreeAllSpritePalettes();
     gReservedSpritePaletteCount = 4;
     SetVBlankCallback(VBlankCB_Battle);
-    taskId = CreateTask(sub_800F6FC, 0);
+    taskId = CreateTask(InitLinkBattleVsScreen, 0);
     gTasks[taskId].data[1] = 270;
     gTasks[taskId].data[2] = 90;
     gTasks[taskId].data[5] = 1;
@@ -3760,7 +3760,7 @@ static void HandleEndTurn_BattleLost(void)
     }
     else
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && ScrSpecial_GetTrainerBattleMode() == TRAINER_BATTLE_EARLY_RIVAL)
+        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && GetTrainerBattleMode() == TRAINER_BATTLE_EARLY_RIVAL)
         {
             if (GetRivalBattleFlags() & RIVAL_BATTLE_HEAL_AFTER)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 1; // Dont do white out text
