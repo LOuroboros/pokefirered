@@ -1,10 +1,9 @@
 CheckIVs::
 	special ChoosePartyMon
 	waitstate
-	compare VAR_0x8004, 255
-	goto_if_eq ButIRefuse
-	compare VAR_0x8004, 255
-	goto_if_ne CheckIVs_Proceed
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge ButIRefuse
+	goto CheckIVs_Proceed
 CheckIVs_Proceed:
 	lockall
 	faceplayer
@@ -21,10 +20,9 @@ CheckIVs_Proceed:
 CheckEVs::
 	special ChoosePartyMon
 	waitstate
-	compare VAR_0x8004, 255
-	goto_if_eq ButIRefuse
-	compare VAR_0x8004, 255
-	goto_if_ne CheckEVs_Proceed
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge ButIRefuse
+	goto CheckEVs_Proceed
 CheckEVs_Proceed:
 	lockall
 	faceplayer
@@ -41,10 +39,9 @@ CheckEVs_Proceed:
 ResetEVs::
 	special ChoosePartyMon
 	waitstate
-	compare VAR_0x8004, 255
-	goto_if_eq ButIRefuse
-	compare VAR_0x8004, 255
-	goto_if_ne ResetEVs_Proceed
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge ButIRefuse
+	goto ResetEVs_Proceed
 ResetEVs_Proceed:
 	lockall
 	faceplayer
@@ -62,19 +59,19 @@ ButIRefuse:
 
 RyuIVDebug1:
 	.string "Chosen Pokémon Defensive IVs:\n"
-	.string "HP: {STR_VAR_1}    Def: {STR_VAR_2}     SpDef: {STR_VAR_3}$"
+	.string "HP: {STR_VAR_1}   Def: {STR_VAR_2}   SpDef: {STR_VAR_3}$"
 
 RyuIVDebug2:
 	.string "Chosen Pokémon Offensive IVs:\n"
-	.string "Atk: {STR_VAR_1}    SpAtk: {STR_VAR_2}     Speed: {STR_VAR_3}$"
+	.string "Atk: {STR_VAR_1}   SpAtk: {STR_VAR_2}   Speed: {STR_VAR_3}$"
 
 RyuEVDebug1:
 	.string "Chosen Pokémon Defensive EVs:\n"
-	.string "HP: {STR_VAR_1}    Def: {STR_VAR_2}     SpDef: {STR_VAR_3}$"
+	.string "HP: {STR_VAR_1}   Def: {STR_VAR_2}   SpDef: {STR_VAR_3}$"
 
 RyuEVDebug2:
 	.string "Chosen Pokémon Offensive EVs:\n"
-	.string "Atk: {STR_VAR_1}    SpAtk: {STR_VAR_2}     Speed: {STR_VAR_3}$"
+	.string "Atk: {STR_VAR_1}   SpAtk: {STR_VAR_2}   Speed: {STR_VAR_3}$"
 
 Reject:
 	.string "Sorry, I can't determine the stats\n"
