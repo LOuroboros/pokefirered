@@ -1104,7 +1104,7 @@ static void atk01_accuracycheck(void)
         GET_MOVE_TYPE(move, type);
         if (JumpIfMoveAffectedByProtect(move) || AccuracyCalcHelper(move))
             return;
-        if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT)
+        if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT || gStatuses3[gBattlerTarget] & STATUS3_MIRACLE_EYE)
         {
             u8 acc = gBattleMons[gBattlerAttacker].statStages[STAT_ACC];
 
@@ -1311,23 +1311,12 @@ void AI_CalcDmg(u8 attacker, u8 defender)
 
 void ModulateDmgByType(u8 multiplier)
 {
-    gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
-    if (gBattleMoveDamage == 0 && multiplier)
-        gBattleMoveDamage = 1;
     switch (multiplier)
     {
     case TYPE_MUL_NO_EFFECT:
-        if (gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
-        {
-            multiplier = 10;
-            break;
-        }
-        else
-        {
-            gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
-            gMoveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
-            gMoveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
-        }
+        gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+        gMoveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
+        gMoveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
         break;
     case TYPE_MUL_NOT_EFFECTIVE:
         if (gBattleMoves[gCurrentMove].power && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
@@ -1348,6 +1337,9 @@ void ModulateDmgByType(u8 multiplier)
         }
         break;
     }
+    gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
+    if (gBattleMoveDamage == 0 && multiplier)
+        gBattleMoveDamage = 1;
 }
 
 static void atk06_typecalc(void)
@@ -1404,6 +1396,12 @@ static void atk06_typecalc(void)
             {
                 if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT || gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
                     break;
+                i += 3;
+                continue;
+            }
+            else if ((gTypeEffectiveness[i] == TYPE_PSYCHIC && gTypeEffectiveness[i + 1] == TYPE_DARK)
+                  && (gStatuses3[gBattlerTarget] & STATUS3_MIRACLE_EYE))
+            {
                 i += 3;
                 continue;
             }
@@ -1514,23 +1512,12 @@ static void CheckWonderGuardAndLevitate(void)
 // same as ModulateDmgByType except different arguments
 static void ModulateDmgByType2(u8 multiplier, u16 move, u8 *flags)
 {
-    gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
-    if (gBattleMoveDamage == 0 && multiplier != 0)
-        gBattleMoveDamage = 1;
     switch (multiplier)
     {
     case TYPE_MUL_NO_EFFECT:
-        if (gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
-        {
-            multiplier = 10;
-            break;
-        }
-        else
-        {
-            *flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
-            *flags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
-            *flags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
-        }
+        *flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+        *flags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
+        *flags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
         break;
     case TYPE_MUL_NOT_EFFECTIVE:
         if (gBattleMoves[move].power && !(*flags & MOVE_RESULT_NO_EFFECT))
@@ -1551,6 +1538,9 @@ static void ModulateDmgByType2(u8 multiplier, u16 move, u8 *flags)
         }
         break;
     }
+    gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
+    if (gBattleMoveDamage == 0 && multiplier != 0)
+        gBattleMoveDamage = 1;
 }
 
 u8 TypeCalc(u16 move, u8 attacker, u8 defender)
@@ -8335,7 +8325,10 @@ static void atkB0_trysetspikes(void)
 
 static void atkB1_setforesight(void)
 {
-    gBattleMons[gBattlerTarget].status2 |= STATUS2_FORESIGHT;
+    if (gCurrentMove == MOVE_MIRACLE_EYE)
+        gStatuses3[gBattlerTarget] |= STATUS3_MIRACLE_EYE;
+    else
+        gBattleMons[gBattlerTarget].status2 |= STATUS2_FORESIGHT;
     ++gBattlescriptCurrInstr;
 }
 

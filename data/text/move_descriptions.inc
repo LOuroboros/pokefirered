@@ -1067,7 +1067,7 @@ gMoveDescription_Gravity::
 	.string "Boosts gravity for\nfive turns halting\nlevitation and\nflying based moves.$"
 
 gMoveDescription_MiracleEye::
-	.string "Lets the user hit\nGHOST type foes\nand evasive ones\nwith a move.$"
+	.string "Ignores EVASION to\nstrike. DARK-type\nfoes become vul-\nnerable as well.$"
 
 gMoveDescription_WakeUpSlap::
 	.string "This move damages\nsleeping foes the\nhardest. Though it\nalso wakes them up.$"

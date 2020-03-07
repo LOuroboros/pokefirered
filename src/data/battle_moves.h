@@ -4999,10 +4999,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_MIRACLE_EYE] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_MIRACLE_EYE,
+        .effect = EFFECT_FORESIGHT,
         .power = 0,
         .type = TYPE_PSYCHIC,
-        .accuracy = 0,
+        .accuracy = 100,
         .pp = 40,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
