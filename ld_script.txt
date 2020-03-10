@@ -141,7 +141,7 @@ SECTIONS {
         src/special_field_anim.o(.text);
         src/berry.o(.text);
         src/script_menu.o(.text);
-        asm/naming_screen.o(.text);
+        src/naming_screen.o(.text);
         src/money.o(.text);
         src/script_pokemon_util.o(.text);
         src/field_poison.o(.text);
@@ -183,7 +183,7 @@ SECTIONS {
         src/battle_ai_script_commands.o(.text);
         src/fldeff_rocksmash.o(.text);
         src/fldeff_dig.o(.text);
-        asm/fldeff_flash.o(.text);
+        src/fldeff_flash.o(.text);
         src/post_battle_event_funcs.o(.text);
         src/prof_pc.o(.text);
         src/hof_pc.o(.text);
@@ -226,7 +226,8 @@ SECTIONS {
         src/link_rfu_2.o(.text);
         src/link_rfu_3.o(.text);
         src/AgbRfu_LinkManager.o(.text);
-        asm/easy_chat_2.o(.text);
+        src/easy_chat_2.o(.text);
+        src/easy_chat_3.o(.text);
         src/pokedex_screen.o(.text);
         asm/pokedex_screen.o(.text);
         src/list_menu.o(.text);
@@ -458,7 +459,7 @@ SECTIONS {
         src/special_field_anim.o(.rodata);
         src/berry.o(.rodata);
         src/script_menu.o(.rodata);
-        data/naming_screen.o(.rodata);
+        src/naming_screen.o(.rodata);
         src/pokemon_size_record.o(.rodata);
         src/item_use.o(.rodata);
         src/battle_anim_effects_1.o(.rodata);
@@ -488,7 +489,7 @@ SECTIONS {
         src/region_map.o(.rodata);
         src/image_processing_effects.o(.rodata);
         src/battle_ai_script_commands.o(.rodata);
-        data/fldeff_flash.o(.rodata);
+        src/fldeff_flash.o(.rodata);
         src/field_specials.o(.rodata);
         src/battle_records.o(.rodata);
         src/evolution_scene.o(.rodata);
@@ -517,7 +518,8 @@ SECTIONS {
         src/map_preview_screen.o(.rodata);
         src/link_rfu_2.o(.rodata);
         src/link_rfu_3.o(.rodata);
-        data/easy_chat_2.o(.rodata);
+        src/easy_chat_2.o(.rodata);
+        src/easy_chat_3.o(.rodata);
         src/pokedex_screen.o(.rodata);
         data/pokedex_screen.o(.rodata);
         src/list_menu.o(.rodata);
@@ -589,6 +591,7 @@ SECTIONS {
         src/trainer_tower.o(.rodata);
         src/minigame_countdown.o(.rodata);
         src/berry_fix_program.o(.rodata);
+        src/keyboard_text.o(.rodata);
         data/data_8479668.o(.rodata);
 
         /* These should not be moved to C files */

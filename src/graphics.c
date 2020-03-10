@@ -1182,14 +1182,14 @@ const u32 gUnknown_8E97EC4[] = INCBIN_U32("graphics/interface/learn_move.bin.lz"
 
 const u16 gUnknown_8E97FE4[] = INCBIN_U16("graphics/interface/naming_screen_8E97FE4.gbapal");
 const u16 gUnknown_8E98004[] = INCBIN_U16("graphics/interface/naming_screen_8E98004.gbapal");
-const u16 gUnknown_8E98024[] = INCBIN_U16("graphics/interface/naming_screen_8E98024.gbapal");
+const u16 gNamingScreenMenu_Pal[] = INCBIN_U16("graphics/interface/naming_screen_8E98024.gbapal");
 const u16 gUnknown_8E98044[] = INCBIN_U16("graphics/interface/naming_screen_8E98044.gbapal");
 const u16 gUnknown_8E98064[] = INCBIN_U16("graphics/interface/naming_screen_8E98064.gbapal");
 const u16 gUnknown_8E98084[] = INCBIN_U16("graphics/interface/naming_screen_8E98084.gbapal");
 const u16 gUnknown_8E980A4[] = INCBIN_U16("graphics/interface/naming_screen_8E980A4.gbapal");
 const u16 gUnknown_8E980C4[] = INCBIN_U16("graphics/interface/naming_screen_8E980C4.gbapal");
 
-const u32 gUnknown_8E980E4[] = INCBIN_U32("graphics/interface/naming_screen_menu.4bpp.lz");
+const u32 gNamingScreenMenu_Gfx[] = INCBIN_U32("graphics/interface/naming_screen_menu.4bpp.lz");
 const u32 gUnknown_8E982BC[] = INCBIN_U32("graphics/interface/naming_screen_menu.bin.lz");
 const u32 gUnknown_8E98398[] = INCBIN_U32("graphics/interface/naming_screen_E98398.bin.lz");
 const u32 gUnknown_8E98458[] = INCBIN_U32("graphics/interface/naming_screen_E98458.bin.lz");
@@ -1215,13 +1215,13 @@ const u32 gKantoTrainerCard_Gfx[] = INCBIN_U32("graphics/trainer_card/card.4bpp.
 const u16 gHoennTrainerCard_Pal[] = INCBIN_U16("graphics/trainer_card/0star_em.gbapal");
 const u32 gHoennTrainerCard_Gfx[] = INCBIN_U32("graphics/trainer_card/card_em.4bpp.lz");
 
-const u16 gUnknown_8E99D8C[] = INCBIN_U16("graphics/link_rfu/unk_8E99DAC.gbapal");
-const u32 gUnknown_8E99DAC[] = INCBIN_U32("graphics/link_rfu/unk_8E99DAC.4bpp.lz");
-const u32 gUnknown_8E99E74[] = INCBIN_U32("graphics/link_rfu/unk_8E99E74.bin.lz");
+const u16 gEasyChatMode_Pal[] = INCBIN_U16("graphics/link_rfu/unk_8E99DAC.gbapal");
+const u32 gEasyChatWindow_Gfx[] = INCBIN_U32("graphics/link_rfu/unk_8E99DAC.4bpp.lz");
+const u32 gEasyChatWindow_Tilemap[] = INCBIN_U32("graphics/link_rfu/unk_8E99E74.bin.lz");
 
 const u16 gUnknown_8E99F24[] = INCBIN_U16("graphics/link_rfu/unk_8E9A168.gbapal");
-const u32 gUnknown_8E99F44[] = INCBIN_U32("graphics/link_rfu/unk_8E99F44.4bpp.lz");
-const u32 gUnknown_8E9A168[] = INCBIN_U32("graphics/link_rfu/unk_8E9A168.4bpp.lz");
+const u32 gEasyChatSelectGroupHelp_Tiles[] = INCBIN_U32("graphics/link_rfu/unk_8E99F44.4bpp.lz");
+const u32 gEasyChatModeIcons_Tiles[] = INCBIN_U32("graphics/link_rfu/unk_8E9A168.4bpp.lz");
 
 const u32 gUnknown_8E9A460[] = INCBIN_U32("graphics/interface/trainer_memo.4bpp.lz");
 const u32 gUnknown_8E9B310[] = INCBIN_U32("graphics/interface/trainer_memo_pal1.gbapal");
@@ -1240,7 +1240,7 @@ const u32 gUnknown_8E9BBCC[] = INCBIN_U32("graphics/interface/trainer_memo_5.bin
 
 const u16 gUnknown_8E9BD08[] = INCBIN_U16("graphics/unknown/unknown_E9BD08.gbapal"); // might be an alternate unused palette of the link_rfu gfx below.
 
-const u32 gUnknown_8E9BD28[] = INCBIN_U32("graphics/interface/link_rfu_frame.4bpp.lz");
+const u32 gEasyChatRedRectangularCursor_Tiles[] = INCBIN_U32("graphics/interface/link_rfu_frame.4bpp.lz");
 const u16 gUnknown_8E9BF28[] = INCBIN_U16("graphics/interface/link_rfu_frame.gbapal");
 const u32 gUnknown_8E9BF48[] = INCBIN_U32("graphics/interface/link_rfu_status.4bpp.lz");
 
