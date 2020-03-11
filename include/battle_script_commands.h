@@ -27,6 +27,16 @@
 #define WINDOW_CLEAR            0x1
 #define WINDOW_x80              0x80
 
+// for Natural Gift and Fling
+struct TypePower
+{
+    u8 type;
+    u8 power;
+    u16 effect;
+};
+
+extern const struct TypePower gNaturalGiftTable[];
+
 void SetMoveEffect(bool8 primary, u8 certain);
 bool8 UproarWakeUpCheck(u8 battlerId);
 u8 AI_TypeCalc(u16 move, u16 targetSpecies, u8 targetAbility);

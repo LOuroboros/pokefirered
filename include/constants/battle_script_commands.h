@@ -84,6 +84,7 @@
 #define VARIOUS_CHECK_POKEFLUTE                 11
 #define VARIOUS_WAIT_FANFARE                    12
 #define VARIOUS_BYPASS_PROTECTIONS              13
+#define VARIOUS_JUMP_IF_NOT_BERRY               14
 
 // atk80, dmg manipulation
 #define ATK80_DMG_CHANGE_SIGN                               0

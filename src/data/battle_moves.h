@@ -5083,7 +5083,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_NATURAL_GIFT] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_NATURAL_GIFT,
+        .effect = EFFECT_NATURAL_GIFT,
         .power = 1,
         .type = TYPE_NORMAL,
         .accuracy = 100,

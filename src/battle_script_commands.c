@@ -886,6 +886,53 @@ static const u8 sBallCatchBonuses[] =
     20, 15, 10, 15 // Ultra, Great, Poke, Safari
 };
 
+const struct TypePower gNaturalGiftTable[] =
+{
+    [ITEM_TO_BERRY(ITEM_CHERI_BERRY)]  = {TYPE_FIRE, 80},
+    [ITEM_TO_BERRY(ITEM_CHESTO_BERRY)] = {TYPE_WATER, 80},
+    [ITEM_TO_BERRY(ITEM_PECHA_BERRY)]  = {TYPE_ELECTRIC, 80},
+    [ITEM_TO_BERRY(ITEM_RAWST_BERRY)]  = {TYPE_GRASS, 80},
+    [ITEM_TO_BERRY(ITEM_ASPEAR_BERRY)] = {TYPE_ICE, 80},
+    [ITEM_TO_BERRY(ITEM_LEPPA_BERRY)]  = {TYPE_FIGHTING, 80},
+    [ITEM_TO_BERRY(ITEM_ORAN_BERRY)]   = {TYPE_POISON, 80},
+    [ITEM_TO_BERRY(ITEM_PERSIM_BERRY)] = {TYPE_GROUND, 80},
+    [ITEM_TO_BERRY(ITEM_LUM_BERRY)]    = {TYPE_FLYING, 80},
+    [ITEM_TO_BERRY(ITEM_SITRUS_BERRY)] = {TYPE_PSYCHIC, 80},
+    [ITEM_TO_BERRY(ITEM_FIGY_BERRY)]   = {TYPE_BUG, 80},
+    [ITEM_TO_BERRY(ITEM_WIKI_BERRY)]   = {TYPE_ROCK, 80},
+    [ITEM_TO_BERRY(ITEM_MAGO_BERRY)]   = {TYPE_GHOST, 80},
+    [ITEM_TO_BERRY(ITEM_AGUAV_BERRY)]  = {TYPE_DRAGON, 80},
+    [ITEM_TO_BERRY(ITEM_IAPAPA_BERRY)] = {TYPE_DARK, 80},
+    [ITEM_TO_BERRY(ITEM_RAZZ_BERRY)]   = {TYPE_STEEL, 80},
+    [ITEM_TO_BERRY(ITEM_BLUK_BERRY)]   = {TYPE_FIRE, 90},
+    [ITEM_TO_BERRY(ITEM_NANAB_BERRY)]  = {TYPE_WATER, 90},
+    [ITEM_TO_BERRY(ITEM_WEPEAR_BERRY)] = {TYPE_ELECTRIC, 90},
+    [ITEM_TO_BERRY(ITEM_PINAP_BERRY)]  = {TYPE_GRASS, 90},
+    [ITEM_TO_BERRY(ITEM_POMEG_BERRY)]  = {TYPE_ICE, 90},
+    [ITEM_TO_BERRY(ITEM_KELPSY_BERRY)] = {TYPE_FIGHTING, 90},
+    [ITEM_TO_BERRY(ITEM_QUALOT_BERRY)] = {TYPE_POISON, 90},
+    [ITEM_TO_BERRY(ITEM_HONDEW_BERRY)] = {TYPE_GROUND, 90},
+    [ITEM_TO_BERRY(ITEM_GREPA_BERRY)]  = {TYPE_FLYING, 90},
+    [ITEM_TO_BERRY(ITEM_TAMATO_BERRY)] = {TYPE_PSYCHIC, 90},
+    [ITEM_TO_BERRY(ITEM_CORNN_BERRY)]  = {TYPE_BUG, 90},
+    [ITEM_TO_BERRY(ITEM_MAGOST_BERRY)] = {TYPE_ROCK, 90},
+    [ITEM_TO_BERRY(ITEM_RABUTA_BERRY)] = {TYPE_GHOST, 90},
+    [ITEM_TO_BERRY(ITEM_NOMEL_BERRY)]  = {TYPE_DRAGON, 90},
+    [ITEM_TO_BERRY(ITEM_SPELON_BERRY)] = {TYPE_DARK, 90},
+    [ITEM_TO_BERRY(ITEM_PAMTRE_BERRY)] = {TYPE_STEEL, 90},
+    [ITEM_TO_BERRY(ITEM_WATMEL_BERRY)] = {TYPE_FIRE, 100},
+    [ITEM_TO_BERRY(ITEM_DURIN_BERRY)]  = {TYPE_WATER, 100},
+    [ITEM_TO_BERRY(ITEM_BELUE_BERRY)]  = {TYPE_ELECTRIC, 100},
+    [ITEM_TO_BERRY(ITEM_LIECHI_BERRY)] = {TYPE_GRASS, 100},
+    [ITEM_TO_BERRY(ITEM_GANLON_BERRY)] = {TYPE_ICE, 100},
+    [ITEM_TO_BERRY(ITEM_SALAC_BERRY)]  = {TYPE_FIGHTING, 100},
+    [ITEM_TO_BERRY(ITEM_PETAYA_BERRY)] = {TYPE_POISON, 100},
+    [ITEM_TO_BERRY(ITEM_APICOT_BERRY)] = {TYPE_GROUND, 100},
+    [ITEM_TO_BERRY(ITEM_LANSAT_BERRY)] = {TYPE_FLYING, 100},
+    [ITEM_TO_BERRY(ITEM_STARF_BERRY)]  = {TYPE_PSYCHIC, 100},
+    [ITEM_TO_BERRY(ITEM_ENIGMA_BERRY)] = {TYPE_BUG, 100},
+};
+
 // not used
 static const u32 gUnknown_8250898 = 0xFF7EAE60;
 
@@ -1355,10 +1402,11 @@ static void atk06_typecalc(void)
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
+    if (gCurrentMove == MOVE_NATURAL_GIFT)
+		moveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[gBattlerAttacker].item)].type;
+
     if (gBattleMons[gBattlerAttacker].ability == ABILITY_NORMALIZE)
-    {
         moveType = TYPE_NORMAL;
-    }
 
     // check stab
     if (IS_BATTLER_OF_TYPE(gBattlerAttacker, moveType))
@@ -1554,10 +1602,11 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
 
     moveType = gBattleMoves[move].type;
 
+    if (gCurrentMove == MOVE_NATURAL_GIFT)
+		moveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[attacker].item)].type;
+
     if (gBattleMons[attacker].ability == ABILITY_NORMALIZE)
-    {
         moveType = TYPE_NORMAL;
-    }
 
     // check stab
     if (IS_BATTLER_OF_TYPE(attacker, moveType))
@@ -1588,7 +1637,7 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
         {
             if (TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
             {
-                if (gBattleMons[defender].status2 & STATUS2_FORESIGHT || gBattleMons[gBattlerAttacker].ability == ABILITY_SCRAPPY)
+                if (gBattleMons[defender].status2 & STATUS2_FORESIGHT || gBattleMons[attacker].ability == ABILITY_SCRAPPY)
                     break;
                 i += 3;
                 continue;
@@ -6369,6 +6418,12 @@ static void atk76_various(void)
         gProtectStructs[gBattlerTarget].protected = 0;
         gDisableStructs[gBattlerTarget].protectUses = 0;
         break;
+    case VARIOUS_JUMP_IF_NOT_BERRY:
+        if (ItemId_GetPocket(gBattleMons[gActiveBattler].item) == POCKET_BERRY_POUCH)
+            gBattlescriptCurrInstr += 7;
+        else
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        return;
     }
     gBattlescriptCurrInstr += 3;
 }

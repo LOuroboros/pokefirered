@@ -2442,11 +2442,15 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         spDefense = (150 * spDefense) / 100;
     if (attacker->ability == ABILITY_SNIPER && gCritMultiplier == 2)
         gBattleMovePower = (150 * gBattleMovePower) / 100;
+    if (gCurrentMove == MOVE_NATURAL_GIFT)
+        gBattleMovePower = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerIdAtk].item)].power;
 
     // Reckless
     if (attacker->ability == ABILITY_RECKLESS
-     && (gBattleMoves[gCurrentMove].effect == EFFECT_RECOIL || gBattleMoves[gCurrentMove].effect == EFFECT_RECOIL_IF_MISS || gBattleMoves[gCurrentMove].effect == EFFECT_DOUBLE_EDGE)
-     && gCurrentMove != MOVE_STRUGGLE)
+     && gCurrentMove != MOVE_STRUGGLE
+     && (gBattleMoves[gCurrentMove].effect == EFFECT_RECOIL
+     || gBattleMoves[gCurrentMove].effect == EFFECT_RECOIL_IF_MISS
+     || gBattleMoves[gCurrentMove].effect == EFFECT_DOUBLE_EDGE))
         gBattleMovePower = (120 * gBattleMovePower) / 100;
 
     // Rivalry

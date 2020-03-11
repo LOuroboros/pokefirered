@@ -240,6 +240,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHammerArm
 	.4byte BattleScript_EffectBrine
 	.4byte BattleScript_EffectFeint
+	.4byte BattleScript_EffectNaturalGift
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -2958,6 +2959,35 @@ BattleScript_EffectBrine::
 BattleScript_EffectFeint::
 	bypassprotections BS_ATTACKER
 	goto BattleScript_EffectHit
+
+BattleScript_EffectNaturalGift::
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifnotberry BS_ATTACKER, BattleScript_ButItFailed
+	jumpifability BS_ATTACKER, ABILITY_KLUTZ, BattleScript_ButItFailed
+	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	seteffectwithchance
+	jumpifmovehadnoeffect BattleScript_EffectNaturalGiftEnd
+	removeitem BS_ATTACKER
+BattleScript_EffectNaturalGiftEnd:
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER
