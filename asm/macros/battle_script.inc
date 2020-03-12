@@ -1308,6 +1308,14 @@
 	.4byte \ptr
 	.endm
 
+	.macro restorepp battler:req
+	various \battler, VARIOUS_RESTORE_PP
+	.endm
+
+	.macro instanthpdrop battler:req
+	various \battler, VARIOUS_INSTANT_HP_DROP
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7
@@ -1389,4 +1397,8 @@
 	jumpifhalfword CMP_NO_COMMON_BITS, gBattleWeather, WEATHER_SUN_ANY, 1f
 	jumpifability BS_TARGET, ABILITY_LEAF_GUARD, \jumpptr
 	1:
+	.endm
+
+	.macro dmgtomaxattackerhp
+	manipulatedamage ATK80_FULL_ATTACKER_HP
 	.endm
