@@ -241,6 +241,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectBrine
 	.4byte BattleScript_EffectFeint
 	.4byte BattleScript_EffectNaturalGift
+	.4byte BattleScript_EffectHealingWish
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -2988,6 +2989,48 @@ BattleScript_EffectNaturalGift::
 BattleScript_EffectNaturalGiftEnd:
 	tryfaintmon BS_TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectHealingWish::
+	attackcanceler
+	jumpifcantswitch BS_ATTACKER | ATK4F_DONT_CHECK_STATUSES, BattleScript_ButItFailedAtkStringPpReduce
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
+	instanthpdrop BS_ATTACKER
+	setatkhptozero
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	openpartyscreen BS_ATTACKER, BattleScript_EffectHealingWishEnd
+	switchoutabilities BS_ATTACKER
+	waitstate
+	switchhandleorder BS_ATTACKER, 0x2
+	returnatktoball
+	getswitchedmondata BS_ATTACKER
+	switchindataupdate BS_ATTACKER
+	hpthresholds BS_ATTACKER
+	printstring STRINGID_SWITCHINMON
+	switchinanim BS_ATTACKER, TRUE
+	waitstate
+	restorepp BS_ATTACKER
+BattleScript_EffectHealingWishNewMon:
+	printstring STRINGID_HEALINGWISHCAMETRUE
+	waitmessage 0x40
+	playanimation BS_ATTACKER, B_ANIM_WISH_HEAL, NULL
+	waitanimation
+	dmgtomaxattackerhp
+	manipulatedamage 0
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	clearstatusfromeffect BS_ATTACKER
+	waitstate
+	updatestatusicon BS_ATTACKER
+	waitstate
+	printstring STRINGID_HEALINGWISHHEALED
+	waitmessage 0x40
+	switchineffects BS_ATTACKER
+BattleScript_EffectHealingWishEnd:
+	moveendall
+	end
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER

@@ -1403,7 +1403,7 @@ static void atk06_typecalc(void)
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
     if (gCurrentMove == MOVE_NATURAL_GIFT)
-		moveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[gBattlerAttacker].item)].type;
+        moveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[gBattlerAttacker].item)].type;
 
     if (gBattleMons[gBattlerAttacker].ability == ABILITY_NORMALIZE)
         moveType = TYPE_NORMAL;
@@ -1603,7 +1603,7 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
     moveType = gBattleMoves[move].type;
 
     if (gCurrentMove == MOVE_NATURAL_GIFT)
-		moveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[attacker].item)].type;
+        moveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[attacker].item)].type;
 
     if (gBattleMons[attacker].ability == ABILITY_NORMALIZE)
         moveType = TYPE_NORMAL;
@@ -4228,7 +4228,9 @@ static void atk49_moveend(void)
              && gChosenMove != MOVE_STRUGGLE 
              && (*choicedMoveAtk == 0 || *choicedMoveAtk == 0xFFFF))
             {
-                if (gChosenMove == MOVE_BATON_PASS && !(gMoveResultFlags & MOVE_RESULT_FAILED))
+                if (gChosenMove == MOVE_BATON_PASS
+                 && gChosenMove == MOVE_HEALING_WISH
+                 && !(gMoveResultFlags & MOVE_RESULT_FAILED))
                 {
                     ++gBattleScripting.atk49_state;
                     break;
@@ -4331,7 +4333,8 @@ static void atk49_moveend(void)
             }
             if (!(gAbsentBattlerFlags & gBitTable[gBattlerAttacker])
              && !(gBattleStruct->field_91 & gBitTable[gBattlerAttacker])
-             && gBattleMoves[originallyUsedMove].effect != EFFECT_BATON_PASS)
+             && gBattleMoves[originallyUsedMove].effect != EFFECT_BATON_PASS
+             && gBattleMoves[originallyUsedMove].effect != EFFECT_HEALING_WISH)
             {
                 if (gHitMarker & HITMARKER_OBEYS)
                 {
@@ -6269,6 +6272,7 @@ static void atk76_various(void)
     u32 monToCheck, status;
     u16 species;
     u8 abilityNum;
+    u8 data[10];
 
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
 
@@ -6424,6 +6428,20 @@ static void atk76_various(void)
         else
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
         return;
+    case VARIOUS_RESTORE_PP:
+        for (i = 0; i < 4; i++)
+        {
+            gBattleMons[gActiveBattler].pp[i] = CalculatePPWithBonus(gBattleMons[gActiveBattler].moves[i], gBattleMons[gActiveBattler].ppBonuses, i);
+            data[i] = gBattleMons[gActiveBattler].pp[i];
+        }
+        data[i] = gBattleMons[gActiveBattler].ppBonuses;
+        BtlController_EmitSetMonData(0, REQUEST_PP_DATA_BATTLE, 0, 5, data);
+        MarkBattlerForControllerExec(gActiveBattler);
+        break;
+    case VARIOUS_INSTANT_HP_DROP:
+        BtlController_EmitHealthBarUpdate(0, INSTANT_HP_BAR_DROP);
+        MarkBattlerForControllerExec(gActiveBattler);
+        break;
     }
     gBattlescriptCurrInstr += 3;
 }
@@ -6834,6 +6852,9 @@ static void atk80_manipulatedamage(void)
         break;
     case ATK80_DMG_DOUBLED:
         gBattleMoveDamage *= 2;
+        break;
+    case ATK80_FULL_ATTACKER_HP:
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP;
         break;
     }
     gBattlescriptCurrInstr += 2;
