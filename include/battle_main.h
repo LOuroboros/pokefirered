@@ -95,4 +95,9 @@ void RunBattleScriptCommands_PopCallbacksStack(void);
 void RunBattleScriptCommands(void);
 bool8 TryRunFromBattle(u8 battler);
 
+// battle_engine_v2 functions
+u32 GetBattlerTotalSpeedStat(u8 battlerId);
+s8 GetChosenMovePriority(u32 battlerId);
+s8 GetMovePriority(u32 battlerId, u16 move);
+
 #endif // GUARD_BATTLE_MAIN_H

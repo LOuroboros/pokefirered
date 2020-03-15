@@ -1316,6 +1316,10 @@
 	various \battler, VARIOUS_INSTANT_HP_DROP
 	.endm
 
+	.macro stattextbuffer battler:req
+	various \battler, VARIOUS_STAT_TEXT_BUFFER
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

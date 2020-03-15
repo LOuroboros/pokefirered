@@ -3418,13 +3418,6 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
         break;
     }
 
-    if (gBattleMons[battlerId].ability == ABILITY_KLUTZ
-     && (battlerHoldEffect != HOLD_EFFECT_MACHO_BRACE
-     || battlerHoldEffect != HOLD_EFFECT_LUCKY_EGG
-     || battlerHoldEffect != HOLD_EFFECT_DOUBLE_PRIZE
-     || battlerHoldEffect != HOLD_EFFECT_HAPPINESS_UP))
-        effect = ITEM_NO_EFFECT;
-
     return effect;
 }
 
@@ -3620,6 +3613,34 @@ u8 IsMonDisobedient(void)
             return 1;
         }
     }
+}
+
+u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
+{
+    if (checkNegating)
+    {
+        if (gBattleMons[battlerId].ability == ABILITY_KLUTZ
+         && (gBattleMons[battlerId].item != ITEM_MACHO_BRACE
+         || gBattleMons[battlerId].item != ITEM_LUCKY_EGG
+         || gBattleMons[battlerId].item != ITEM_AMULET_COIN
+         || gBattleMons[battlerId].item != ITEM_SOOTHE_BELL))
+            return HOLD_EFFECT_NONE;
+    }
+
+    gPotentialItemEffectBattler = battlerId;
+
+    if (gBattleMons[battlerId].item == ITEM_ENIGMA_BERRY)
+        return gEnigmaBerries[battlerId].holdEffect;
+    else
+        return ItemId_GetHoldEffect(gBattleMons[battlerId].item);
+}
+
+u32 GetBattlerHoldEffectParam(u8 battlerId)
+{
+    if (gBattleMons[battlerId].item == ITEM_ENIGMA_BERRY)
+        return gEnigmaBerries[battlerId].holdEffectParam;
+    else
+        return ItemId_GetHoldEffectParam(gBattleMons[battlerId].item);
 }
 
 bool32 IsBattlerAlive(u8 battlerId)

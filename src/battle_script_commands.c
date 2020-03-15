@@ -6442,6 +6442,9 @@ static void atk76_various(void)
         BtlController_EmitHealthBarUpdate(0, INSTANT_HP_BAR_DROP);
         MarkBattlerForControllerExec(gActiveBattler);
         break;
+    case VARIOUS_STAT_TEXT_BUFFER:
+        PREPARE_STAT_BUFFER(gBattleTextBuff1, gBattleCommunication[0]);
+        break;
     }
     gBattlescriptCurrInstr += 3;
 }
