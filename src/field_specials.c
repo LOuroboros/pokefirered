@@ -2622,3 +2622,85 @@ void RyuResetEvs(void)
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPDEF_EV, &ev);
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPEED_EV, &ev);
 }
+
+// Sets the HP EVs of the Pokémon in gSpecialVar_0x8004 according to the current value of var 0x8000 
+void SetHpEvs(void)
+{
+    u8 HpEv = gSpecialVar_0x8000;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HP_EV, &HpEv);
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+// Sets the Atk EVs of the Pokémon in gSpecialVar_0x8004 according to the current value of var 0x8001
+void SetAtkEvs(void)
+{
+    u8 AtkEv = gSpecialVar_0x8001;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ATK_EV, &AtkEv);
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+// Sets the Def EVs of the Pokémon in gSpecialVar_0x8004 according to the current value of var 0x8002
+void SetDefEvs(void)
+{
+    u8 DefEv = gSpecialVar_0x8002;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_DEF_EV, &DefEv);
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+// Sets the Spd EVs of the Pokémon in gSpecialVar_0x8004 according to the current value of var 0x8003
+void SetSpdEvs(void)
+{
+    u8 SpdEv = gSpecialVar_0x8003;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPEED_EV, &SpdEv);
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+// Sets the SpAtk EVs of the Pokémon in gSpecialVar_0x8004 according to the current value of var 0x8005
+void SetSpAtkEvs(void)
+{
+    u8 SpAtkEv = gSpecialVar_0x8005;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPATK_EV, &SpAtkEv);
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+// Sets the SpDef EVs of the Pokémon in gSpecialVar_0x8004 according to the current value of var 0x8006
+void SetSpDefEvs(void)
+{
+    u8 SpDefEv = gSpecialVar_0x8006;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPDEF_EV, &SpDefEv);
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+// Overwrites the moves of the Pokémon in gSpecialVar_0x8004 according to the current values of vars 0x8000, 0x8001, 0x8002 and 0x8003
+void SetMonMoves(void)
+{
+    u16 move1 = gSpecialVar_0x8000;
+    u16 move2 = gSpecialVar_0x8001;
+    u16 move3 = gSpecialVar_0x8002;
+    u16 move4 = gSpecialVar_0x8003;
+
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MOVE1, &move1);
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MOVE2, &move2);
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MOVE3, &move3);
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MOVE4, &move4);
+}
+
+// Restores the default amount of PP for each move, complementing SetMonMoves depending on the use
+void RestoreMovesPP(void)
+{
+    u16 move1 = gSpecialVar_0x8000;
+    u16 move2 = gSpecialVar_0x8001;
+    u16 move3 = gSpecialVar_0x8002;
+    u16 move4 = gSpecialVar_0x8003;
+
+    u8 ppBonuses = GetMonData(gPlayerParty[gSpecialVar_0x8004], MON_DATA_PP_BONUSES);
+    u8 move1pp = CalculatePPWithBonus(move1, ppBonuses, move1);
+    u8 move2pp = CalculatePPWithBonus(move2, ppBonuses, move2);
+    u8 move3pp = CalculatePPWithBonus(move3, ppBonuses, move3);
+    u8 move4pp = CalculatePPWithBonus(move4, ppBonuses, move4);
+
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PP1, &move1pp);
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PP2, &move2pp);
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PP3, &move3pp);
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PP4, &move4pp);
+}

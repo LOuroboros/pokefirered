@@ -18,7 +18,7 @@ CheckIVs_Proceed:
 	special RyuIvCheckerOff
 	msgbox RyuIVDebug2 4
 	closemessage
-	msgbox Decline 6
+	msgbox ComeBackAnytime 6
 	releaseall
 	end
 
@@ -37,7 +37,7 @@ CheckEVs_Proceed:
 	special RyuEvCheckerOff
 	msgbox RyuEVDebug2 4
 	closemessage
-	msgbox Decline 6
+	msgbox ComeBackAnytime 6
 	releaseall
 	end
 
@@ -58,7 +58,7 @@ ResetEVs_Proceed:
 ButIRefuse:
 	lockall
 	faceplayer
-	msgbox Decline 6
+	msgbox ComeBackAnytime 6
 	releaseall
 	end
 
@@ -82,7 +82,7 @@ Reject:
 	.string "Sorry, I can't determine the stats\n"
 	.string "of an EGG.$"
 
-Decline:
+ComeBackAnytime:
 	.string "Come back any time.$"
 
 SuccessfulReset:
@@ -239,7 +239,7 @@ GiveStarterKit::
 	msgbox StartingFlagsGotSet 4
 	waitfanfare
 	closemessage
-	msgbox Decline 6
+	msgbox ComeBackAnytime 6
 	release
 	end
 
@@ -263,3 +263,64 @@ PlayerGotEssentials:
 
 StartingFlagsGotSet:
 	.string "Various flags and vars were set!$"
+@----------------------------------------------------------------------------
+@ /********************************/
+@
+@ Modify a chosen Pokémon's moveset
+@
+@ /********************************/
+SetMoves::
+	special ChoosePartyMon
+	waitstate
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge ButIRefuse
+	goto SetMoves_Proceed
+SetMoves_Proceed:
+	lockall
+	faceplayer
+	setvar VAR_0x8000, MOVE_SPLASH
+	setvar VAR_0x8001, MOVE_SPLASH
+	setvar VAR_0x8002, MOVE_SPLASH
+	setvar VAR_0x8003, MOVE_SPLASH
+	special SetMonMoves
+	special RestoreMovesPP
+	msgbox ComeBackAnytime 4
+	closemessage
+	releaseall
+	end
+@----------------------------------------------------------------------------
+@ /********************************/
+@
+@ Modify a chosen Pokémon's EVs
+@
+@ /********************************/
+SetEVs::
+	special ChoosePartyMon
+	waitstate
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge ButIRefuse
+	goto SetEVs_Proceed
+SetEVs_Proceed:
+	lockall
+	faceplayer
+	setvar VAR_0x8000, 252
+	setvar VAR_0x8001, 252
+	setvar VAR_0x8002, 252
+	setvar VAR_0x8003, 252
+	setvar VAR_0x8005, 252
+	setvar VAR_0x8006, 252
+	special SetHpEvs
+	special SetAtkEvs
+	special SetDefEvs
+	special SetSpdEvs
+	special SetSpAtkEvs
+	special SetSpDefEvs
+	msgbox EVsSetSuccessfully 4
+	msgbox ComeBackAnytime 4
+	closemessage
+	releaseall
+	end
+
+EVsSetSuccessfully:
+	.string "The EVs of your Pokémon have been\n"
+	.string "modified successfully.$"
