@@ -242,7 +242,9 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectFeint
 	.4byte BattleScript_EffectNaturalGift
 	.4byte BattleScript_EffectHealingWish
+	.4byte BattleScript_EffectGyroBall
 
+BattleScript_EffectGyroBall::
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
@@ -3961,7 +3963,21 @@ BattleScript_MoveUsedIsParalyzed::
 BattleScript_MoveUsedFlinched::
 	printstring STRINGID_PKMNFLINCHED
 	waitmessage 0x40
+	jumpifability BS_ATTACKER ABILITY_STEADFAST BattleScript_TryActivateSteadFast
+BattleScript_MoveUsedFlinchedEnd:
 	goto BattleScript_MoveEnd
+BattleScript_TryActivateSteadFast:
+	setstatchanger STAT_SPEED, 1, FALSE
+	statbuffchange STAT_CHANGE_BS_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_MoveUsedFlinchedEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_MoveUsedFlinchedEnd
+	copybyte gBattlerAbility, gBattlerAttacker
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	setbyte gBattleCommunication, STAT_SPEED
+	stattextbuffer BS_ATTACKER
+	printstring STRINGID_ATTACKERABILITYRAISEDSTAT
+	waitmessage 0x40
+	goto BattleScript_MoveUsedFlinchedEnd
 
 BattleScript_PrintUproarOverTurns::
 	printfromtable gUproarOverTurnStringIds

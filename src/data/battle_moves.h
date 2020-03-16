@@ -5041,7 +5041,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_GYRO_BALL] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_GYRO_BALL,
+        .effect = EFFECT_GYRO_BALL,
         .power = 1,
         .type = TYPE_STEEL,
         .accuracy = 100,

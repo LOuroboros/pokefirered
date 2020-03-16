@@ -2445,6 +2445,14 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (gCurrentMove == MOVE_NATURAL_GIFT)
         gBattleMovePower = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerIdAtk].item)].power;
 
+    // Gyro Ball
+    if (gBattleMoves[gCurrentMove].effect == EFFECT_GYRO_BALL)
+    {
+        gBattleMovePower = 25 * (GetBattlerTotalSpeedStat(battlerIdDef) / GetBattlerTotalSpeedStat(battlerIdAtk)) + 1;
+        if (gBattleMovePower > 150)
+            gBattleMovePower = 150;
+    }
+
     // Reckless
     if (attacker->ability == ABILITY_RECKLESS
      && gCurrentMove != MOVE_STRUGGLE

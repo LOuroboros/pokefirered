@@ -3336,152 +3336,94 @@ void SwapTurnOrder(u8 id1, u8 id2)
     SWAP(gBattlerByTurnOrder[id1], gBattlerByTurnOrder[id2], temp);
 }
 
+u32 GetBattlerTotalSpeedStat(u8 battlerId)
+{
+    u32 speed = gBattleMons[battlerId].speed;
+    u32 ability = GetBattlerAbility(battlerId);
+    u32 holdEffect = GetBattlerHoldEffect(battlerId, TRUE);
+
+    // weather dependent abilities
+    if (WEATHER_HAS_EFFECT)
+    {
+        if (ability == ABILITY_SWIFT_SWIM && gBattleWeather & WEATHER_RAIN_ANY)
+            speed *= 2;
+        else if (ability == ABILITY_CHLOROPHYLL && gBattleWeather & WEATHER_SUN_ANY)
+            speed *= 2;
+    }
+
+    // other abilities
+    if (ability == ABILITY_QUICK_FEET && gBattleMons[battlerId].status1 & STATUS1_ANY)
+        speed = (speed * 150) / 100;
+    if (ability == ABILITY_UNBURDEN && gBattleMons[battlerId].item == ITEM_NONE && gBattleMons[battlerId].itemwasremoved)
+        speed *= 2;
+    if (ability == ABILITY_SLOW_START && gDisableStructs[battlerId].slowStartTimer < 4)
+        speed /= 2;
+
+    // stat stages
+    speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
+    speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
+
+    // player's badge boost
+    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK)
+     && FlagGet(FLAG_BADGE03_GET)
+     && GetBattlerSide(battlerId) == B_SIDE_PLAYER)
+        speed = (speed * 110) / 100;
+
+    // item effects
+    if (GetBattlerHoldEffect(battlerId, FALSE) == HOLD_EFFECT_MACHO_BRACE)
+        speed /= 2;
+
+    // paralysis drop
+    if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && ability != ABILITY_QUICK_FEET)
+        speed /= 2;
+
+    return speed;
+}
+
+s8 GetChosenMovePriority(u32 battlerId)
+{
+    u16 move;
+
+    if (gProtectStructs[battlerId].noValidMoves)
+        move = MOVE_STRUGGLE;
+    else
+        move = gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
+
+    return GetMovePriority(battlerId, move);
+}
+
+s8 GetMovePriority(u32 battlerId, u16 move)
+{
+    s8 priority;
+
+    priority = gBattleMoves[move].priority;
+
+    return priority;
+}
+
 u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 {
     u8 strikesFirst = 0;
-    u8 speedMultiplierBattler1 = 0, speedMultiplierBattler2 = 0;
     u32 speedBattler1 = 0, speedBattler2 = 0;
     u8 holdEffect = 0;
     u8 holdEffectParam = 0;
-    u16 moveBattler1 = 0, moveBattler2 = 0;
     s8 priority1 = 0, priority2 = 0;
 
-    if (WEATHER_HAS_EFFECT)
-    {
-        if ((gBattleMons[battler1].ability == ABILITY_SWIFT_SWIM && gBattleWeather & WEATHER_RAIN_ANY)
-         || (gBattleMons[battler1].ability == ABILITY_CHLOROPHYLL && gBattleWeather & WEATHER_SUN_ANY))
-            speedMultiplierBattler1 = 2;
-        else
-            speedMultiplierBattler1 = 1;
-        if ((gBattleMons[battler2].ability == ABILITY_SWIFT_SWIM && gBattleWeather & WEATHER_RAIN_ANY)
-         || (gBattleMons[battler2].ability == ABILITY_CHLOROPHYLL && gBattleWeather & WEATHER_SUN_ANY))
-            speedMultiplierBattler2 = 2;
-        else
-            speedMultiplierBattler2 = 1;
-    }
-    else
-    {
-        speedMultiplierBattler1 = 1;
-        speedMultiplierBattler2 = 1;
-    }
-
-    // check first battlerId's speed
-    speedBattler1 = (gBattleMons[battler1].speed * speedMultiplierBattler1)
-                    * (gStatStageRatios[gBattleMons[battler1].statStages[STAT_SPEED]][0])
-                    / (gStatStageRatios[gBattleMons[battler1].statStages[STAT_SPEED]][1]);
-
-    if (gBattleMons[battler1].item == ITEM_ENIGMA_BERRY)
-    {
-        holdEffect = gEnigmaBerries[battler1].holdEffect;
-        holdEffectParam = gEnigmaBerries[battler1].holdEffectParam;
-    }
-    else
-    {
-        holdEffect = ItemId_GetHoldEffect(gBattleMons[battler1].item);
-        holdEffectParam = ItemId_GetHoldEffectParam(gBattleMons[battler1].item);
-    }
-
-    // badge boost
-    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK)
-     && FlagGet(FLAG_BADGE03_GET)
-     && GetBattlerSide(battler1) == B_SIDE_PLAYER)
-        speedBattler1 = (speedBattler1 * 110) / 100;
-
-    if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
-        speedBattler1 /= 2;
-
-    if (gBattleMons[battler1].status1 & STATUS1_PARALYSIS)
-        speedBattler1 /= 2;
-
+    speedBattler1 = GetBattlerTotalSpeedStat(battler1);
     if (holdEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * holdEffectParam) / 100)
         speedBattler1 = UINT_MAX;
 
-    if (gBattleMons[battler1].ability == ABILITY_STEADFAST && gBattleMons[battler1].statStages[STAT_SPEED] < 0xC && gProtectStructs[battler1].flinchImmobility)
-        ++gBattleMons[battler1].statStages[STAT_SPEED];
-
-    if (gBattleMons[battler1].item == ITEM_NONE && gBattleMons[battler1].ability == ABILITY_UNBURDEN && gBattleMons[gActiveBattler].itemwasremoved)
-        speedBattler1 *= 2;
-
-    if (gBattleMons[battler1].ability == ABILITY_QUICK_FEET && (gBattleMons[battler1].status1 & STATUS1_ANY))
-        speedBattler1 = (speedBattler1 * 150) / 100;
-
-    if (gBattleMons[battler1].ability == ABILITY_SLOW_START && gDisableStructs[battler1].slowStartTimer < 4)
-        speedBattler1 /= 2;
-
-    // check second battlerId's speed
-    speedBattler2 = (gBattleMons[battler2].speed * speedMultiplierBattler2)
-                    * (gStatStageRatios[gBattleMons[battler2].statStages[STAT_SPEED]][0])
-                    / (gStatStageRatios[gBattleMons[battler2].statStages[STAT_SPEED]][1]);
-
-    if (gBattleMons[battler2].item == ITEM_ENIGMA_BERRY)
-    {
-        holdEffect = gEnigmaBerries[battler2].holdEffect;
-        holdEffectParam = gEnigmaBerries[battler2].holdEffectParam;
-    }
-    else
-    {
-        holdEffect = ItemId_GetHoldEffect(gBattleMons[battler2].item);
-        holdEffectParam = ItemId_GetHoldEffectParam(gBattleMons[battler2].item);
-    }
-
-    // badge boost
-    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK)
-     && FlagGet(FLAG_BADGE03_GET)
-     && GetBattlerSide(battler2) == B_SIDE_PLAYER)
-        speedBattler2 = (speedBattler2 * 110) / 100;
-
-    if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
-        speedBattler2 /= 2;
-
-    if (gBattleMons[battler2].status1 & STATUS1_PARALYSIS)
-        speedBattler2 /= 2;
-
+    speedBattler2 = GetBattlerTotalSpeedStat(battler1);
     if (holdEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * holdEffectParam) / 100)
         speedBattler2 = UINT_MAX;
 
-    if (gBattleMons[battler2].ability == ABILITY_STEADFAST && gBattleMons[battler2].statStages[STAT_SPEED] < 0xC && gProtectStructs[battler2].flinchImmobility)
-        ++gBattleMons[battler2].statStages[STAT_SPEED];
-
-    if (gBattleMons[battler2].item == ITEM_NONE && gBattleMons[battler2].ability == ABILITY_UNBURDEN && gBattleMons[gActiveBattler].itemwasremoved)
-        speedBattler2 *= 2;
-
-    if (gBattleMons[battler2].ability == ABILITY_QUICK_FEET && (gBattleMons[battler2].status1 & STATUS1_ANY))
-        speedBattler2 = (speedBattler2 * 150) / 100;
-
-    if (gBattleMons[battler2].ability == ABILITY_SLOW_START && gDisableStructs[battler2].slowStartTimer < 4)
-        speedBattler2 /= 2;
-
-    if (ignoreChosenMoves)
-    {
-        moveBattler1 = MOVE_NONE;
-        moveBattler2 = MOVE_NONE;
-    }
-    else
+    if (!ignoreChosenMoves)
     {
         if (gChosenActionByBattler[battler1] == B_ACTION_USE_MOVE)
-        {
-            if (gProtectStructs[battler1].noValidMoves)
-                moveBattler1 = MOVE_STRUGGLE;
-            else
-                moveBattler1 = gBattleMons[battler1].moves[*(gBattleStruct->chosenMovePositions + battler1)];
-        }
-        else
-            moveBattler1 = MOVE_NONE;
+            priority1 = GetChosenMovePriority(battler1);
         if (gChosenActionByBattler[battler2] == B_ACTION_USE_MOVE)
-        {
-            if (gProtectStructs[battler2].noValidMoves)
-                moveBattler2 = MOVE_STRUGGLE;
-            else
-                moveBattler2 = gBattleMons[battler2].moves[*(gBattleStruct->chosenMovePositions + battler2)];
-        }
-        else
-            moveBattler2 = MOVE_NONE;
+            priority2 = GetChosenMovePriority(battler2);
     }
-
-    if (gChosenActionByBattler[battler1] == B_ACTION_USE_MOVE)
-        priority1 = gBattleMoves[moveBattler1].priority;
-    if (gChosenActionByBattler[battler2] == B_ACTION_USE_MOVE)
-        priority2 = gBattleMoves[moveBattler2].priority;
 
     if (priority1 == priority2)
     {
