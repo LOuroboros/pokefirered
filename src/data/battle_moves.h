@@ -5181,12 +5181,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_CLOSE_COMBAT] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_CLOSE_COMBAT,
+        .effect = EFFECT_CLOSE_COMBAT,
         .power = 120,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
         .pp = 5,
-        .secondaryEffectChance = 100,
+        .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGSROCK_AFFECTED,

@@ -243,6 +243,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectNaturalGift
 	.4byte BattleScript_EffectHealingWish
 	.4byte BattleScript_EffectGyroBall
+	.4byte BattleScript_EffectCloseCombat
 
 BattleScript_EffectGyroBall::
 BattleScript_EffectHit::
@@ -3031,6 +3032,46 @@ BattleScript_EffectHealingWishNewMon:
 	waitmessage 0x40
 	switchineffects BS_ATTACKER
 BattleScript_EffectHealingWishEnd:
+	moveendall
+	end
+
+BattleScript_EffectCloseCombat::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	goto BattleScript_LowerDef
+BattleScript_LowerDef:
+	playstatchangeanimation BS_ATTACKER, BIT_DEF, ATK48_STAT_NEGATIVE
+	setstatchanger STAT_DEF, 1, TRUE
+	statbuffchange STAT_CHANGE_BS_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_LowerSpDef
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 2, BattleScript_LowerSpDef
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+BattleScript_LowerSpDef:
+	setstatchanger STAT_SPDEF, 1, TRUE
+	statbuffchange STAT_CHANGE_BS_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_CloseCombatEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 2, BattleScript_CloseCombatEnd
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+	goto BattleScript_CloseCombatEnd
+BattleScript_CloseCombatEnd:
+	tryfaintmon BS_TARGET, 0, NULL
 	moveendall
 	end
 
