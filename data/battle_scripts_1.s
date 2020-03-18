@@ -246,8 +246,10 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectCloseCombat
 	.4byte BattleScript_EffectPayback
 	.4byte BattleScript_EffectAssurance
+	.4byte BattleScript_EffectPunishment
 
 BattleScript_EffectGyroBall::
+BattleScript_EffectPunishment::
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler

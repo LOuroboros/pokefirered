@@ -1154,7 +1154,7 @@ gMoveDescription_GuardSwap::
 	.string "Placeholder text.$"
 
 gMoveDescription_Punishment::
-	.string "Placeholder text.$"
+	.string "The more the foe\nhas raised their\nstats, the greater\nthe move's power.$"
 
 gMoveDescription_LastResort::
 	.string "Placeholder text.$"

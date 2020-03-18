@@ -2445,6 +2445,27 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (gCurrentMove == MOVE_NATURAL_GIFT)
         gBattleMovePower = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerIdAtk].item)].power;
 
+    // Punishment
+    if (gBattleMoves[gCurrentMove].effect == EFFECT_PUNISHMENT)
+    {
+        if (defender->statStages[STAT_ATK] > 6)
+            gBattleMovePower += (defender->statStages[STAT_ATK] - 6) * 20;
+        if (defender->statStages[STAT_DEF] > 6)
+            gBattleMovePower += (defender->statStages[STAT_DEF] - 6) * 20;
+        if (defender->statStages[STAT_SPATK] > 6)
+            gBattleMovePower += (defender->statStages[STAT_SPATK] - 6) * 20;
+        if (defender->statStages[STAT_SPDEF] > 6)
+            gBattleMovePower += (defender->statStages[STAT_SPDEF] - 6) * 20;
+        if (defender->statStages[STAT_SPEED] > 6)
+            gBattleMovePower += (defender->statStages[STAT_SPEED] - 6) * 20;
+        if (defender->statStages[STAT_ACC] > 6)
+            gBattleMovePower += (defender->statStages[STAT_ACC] - 6) * 20;
+        if (defender->statStages[STAT_EVASION] > 6)
+            gBattleMovePower += (defender->statStages[STAT_EVASION] - 6) * 20;
+        if (gBattleMovePower > 200)
+            gBattleMovePower = 200;
+    }
+
     // Gyro Ball
     if (gBattleMoves[gCurrentMove].effect == EFFECT_GYRO_BALL)
     {
