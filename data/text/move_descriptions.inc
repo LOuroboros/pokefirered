@@ -1109,7 +1109,7 @@ gMoveDescription_CloseCombat::
 	.string "Fights the foe up\nclose. It lowers\nthe user's DEFENSE\nand SP. DEF. too.$"
 
 gMoveDescription_Payback::
-	.string "Placeholder text.$"
+	.string "This move's power\nis doubled if the\nuser moves last.$"
 
 gMoveDescription_Assurance::
 	.string "Placeholder text.$"

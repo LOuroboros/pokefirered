@@ -9181,6 +9181,12 @@ static void atkD6_doubledamagedealt(void)
             gBattleScripting.dmgMultiplier = 2;
         }
         break;
+    case EFFECT_PAYBACK:
+        if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
+        {
+            gBattleScripting.dmgMultiplier = 2;
+        }
+        break;
     }
     ++gBattlescriptCurrInstr;
 }
