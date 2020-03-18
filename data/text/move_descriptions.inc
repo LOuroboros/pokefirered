@@ -1112,7 +1112,7 @@ gMoveDescription_Payback::
 	.string "This move's power\nis doubled if the\nuser moves last.$"
 
 gMoveDescription_Assurance::
-	.string "Placeholder text.$"
+	.string "This move's power\nis doubled if the\nfoe was damaged in\nthe same turn.$"
 
 gMoveDescription_Embargo::
 	.string "Placeholder text.$"

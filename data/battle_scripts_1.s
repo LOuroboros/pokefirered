@@ -245,6 +245,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectGyroBall
 	.4byte BattleScript_EffectCloseCombat
 	.4byte BattleScript_EffectPayback
+	.4byte BattleScript_EffectAssurance
 
 BattleScript_EffectGyroBall::
 BattleScript_EffectHit::
@@ -3077,6 +3078,7 @@ BattleScript_CloseCombatEnd:
 	end
 
 BattleScript_EffectPayback::
+BattleScript_EffectAssurance::
 	doubledamagedealt
 	goto BattleScript_EffectHit
 

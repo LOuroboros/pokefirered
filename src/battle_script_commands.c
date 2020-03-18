@@ -9187,6 +9187,12 @@ static void atkD6_doubledamagedealt(void)
             gBattleScripting.dmgMultiplier = 2;
         }
         break;
+    case EFFECT_ASSURANCE:
+        if (gProtectStructs[gBattlerAttacker].physicalDmg != 0 || gProtectStructs[gBattlerAttacker].specialDmg != 0 || gProtectStructs[gBattlerTarget].confusionSelfDmg != 0)
+        {
+            gBattleScripting.dmgMultiplier = 2;
+        }
+        break;
     }
     ++gBattlescriptCurrInstr;
 }

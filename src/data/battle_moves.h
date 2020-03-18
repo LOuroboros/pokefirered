@@ -5209,7 +5209,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_ASSURANCE] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_ASSURANCE,
+        .effect = EFFECT_ASSURANCE,
         .power = 60,
         .type = TYPE_DARK,
         .accuracy = 100,
