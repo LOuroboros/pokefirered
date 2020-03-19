@@ -24,7 +24,7 @@
 #define ABILITYEFFECT_TRACE                      0xB
 #define ABILITYEFFECT_CHECK_OTHER_SIDE           0xC
 #define ABILITYEFFECT_CHECK_BATTLER_SIDE         0xD
-#define ABILITYEFFECT_FIELD_SPORT                0xE
+#define ABILITYEFFECT_UNUSED_01                  0xE
 #define ABILITYEFFECT_CHECK_FIELD_EXCEPT_BATTLER 0xF // TODO: Is it correct? 
 #define ABILITYEFFECT_COUNT_OTHER_SIDE           0x10
 #define ABILITYEFFECT_COUNT_BATTLER_SIDE         0x11
@@ -34,14 +34,12 @@
 
 #define ABILITY_ON_OPPOSING_FIELD(battlerId, abilityId)(AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, battlerId, abilityId, 0, 0))
 #define ABILITY_ON_FIELD(abilityId)(AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, abilityId, 0, 0))
-#define ABILITY_ON_FIELD2(abilityId)(AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, abilityId, 0, 0))
 
 #define ITEMEFFECT_ON_SWITCH_IN                 0x0
 #define ITEMEFFECT_MOVE_END                     0x3
 #define ITEMEFFECT_KINGSROCK_SHELLBELL          0x4
 
 #define WEATHER_HAS_EFFECT ((!AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, ABILITY_CLOUD_NINE, 0, 0) && !AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, ABILITY_AIR_LOCK, 0, 0)))
-#define WEATHER_HAS_EFFECT2 ((!AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, ABILITY_CLOUD_NINE, 0, 0) && !AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, ABILITY_AIR_LOCK, 0, 0)))
 
 #define BS_GET_TARGET                   0
 #define BS_GET_ATTACKER                 1

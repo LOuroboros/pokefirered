@@ -2400,17 +2400,17 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 2;
     if (attacker->ability == ABILITY_HUSTLE)
         attack = (150 * attack) / 100;
-    if (attacker->ability == ABILITY_PLUS && ABILITY_ON_FIELD2(ABILITY_MINUS))
+    if (attacker->ability == ABILITY_PLUS && ABILITY_ON_FIELD(ABILITY_MINUS))
         spAttack = (150 * spAttack) / 100;
-    if (attacker->ability == ABILITY_MINUS && ABILITY_ON_FIELD2(ABILITY_PLUS))
+    if (attacker->ability == ABILITY_MINUS && ABILITY_ON_FIELD(ABILITY_PLUS))
         spAttack = (150 * spAttack) / 100;
     if (attacker->ability == ABILITY_GUTS && attacker->status1)
         attack = (150 * attack) / 100;
     if (GetBattlerAbility(battlerIdDef) == ABILITY_MARVEL_SCALE && defender->status1)
         defense = (150 * defense) / 100;
-    if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFD, 0))
+    if (type == TYPE_ELECTRIC && (gFieldStatuses & STATUS_FIELD_MUDSPORT) && gDisableStructs[gBattlerAttacker].coveredIn == 1)
         gBattleMovePower /= 2;
-    if (type == TYPE_FIRE && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFE, 0))
+    if (type == TYPE_FIRE && (gFieldStatuses & STATUS_FIELD_WATERSPORT) && gDisableStructs[gBattlerAttacker].coveredIn == 1)
         gBattleMovePower /= 2;
     if (type == TYPE_GRASS && attacker->ability == ABILITY_OVERGROW && attacker->hp <= (attacker->maxHP / 3))
         gBattleMovePower = (150 * gBattleMovePower) / 100;
@@ -2436,9 +2436,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack = (150 * attack) / 100;
     if (attacker->ability == ABILITY_FLOWER_GIFT && (gBattleWeather & WEATHER_SUN_ANY))
         spDefense = (150 * spDefense) / 100;
-    if (ABILITY_ON_FIELD2(ABILITY_FLOWER_GIFT) && (gBattleWeather & WEATHER_SUN_ANY) && attacker->ability != ABILITY_FLOWER_GIFT)
+    if (ABILITY_ON_FIELD(ABILITY_FLOWER_GIFT) && (gBattleWeather & WEATHER_SUN_ANY) && attacker->ability != ABILITY_FLOWER_GIFT)
         attack = (150 * attack) / 100;
-    if (ABILITY_ON_FIELD2(ABILITY_FLOWER_GIFT) && (gBattleWeather & WEATHER_SUN_ANY) && attacker->ability != ABILITY_FLOWER_GIFT)
+    if (ABILITY_ON_FIELD(ABILITY_FLOWER_GIFT) && (gBattleWeather & WEATHER_SUN_ANY) && attacker->ability != ABILITY_FLOWER_GIFT)
         spDefense = (150 * spDefense) / 100;
     if (attacker->ability == ABILITY_SNIPER && gCritMultiplier == 2)
         gBattleMovePower = (150 * gBattleMovePower) / 100;
@@ -2592,7 +2592,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     }
 
     // are effects of weather negated with cloud nine or air lock
-    if (WEATHER_HAS_EFFECT2)
+    if (WEATHER_HAS_EFFECT)
     {
         if (gBattleWeather & WEATHER_RAIN_TEMPORARY)
         {

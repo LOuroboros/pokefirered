@@ -148,8 +148,8 @@
 #define STATUS3_IMPRISONED_OTHERS       0x2000
 #define STATUS3_GRUDGE                  0x4000
 #define STATUS3_CANT_SCORE_A_CRIT       0x8000
-#define STATUS3_MUDSPORT                0x10000
-#define STATUS3_WATERSPORT              0x20000
+#define STATUS3_UNUSED_01               0x10000
+#define STATUS3_UNUSED_02               0x20000
 #define STATUS3_UNDERWATER              0x40000
 #define STATUS3_INTIMIDATE_POKES        0x80000
 #define STATUS3_TRACE                   0x100000
@@ -193,6 +193,12 @@
 #define SIDE_STATUS_FUTUREATTACK     (1 << 6)
 #define SIDE_STATUS_MIST             (1 << 8)
 #define SIDE_STATUS_SPIKES_DAMAGED   (1 << 9)
+
+// Field affecting statuses.
+#define STATUS_FIELD_MUDSPORT           0x1
+#define STATUS_FIELD_WATERSPORT         0x2
+#define STATUS_FIELD_GRAVITY            0x4
+#define STATUS_FIELD_TRICK_ROOM         0x8
 
 // Flags describing move's result
 #define MOVE_RESULT_MISSED             (1 << 0)

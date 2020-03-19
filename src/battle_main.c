@@ -228,6 +228,8 @@ EWRAM_DATA u16 gBattleMovePower = 0;
 EWRAM_DATA u16 gMoveToLearn = 0;
 EWRAM_DATA u8 gBattleMonForms[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gBattlerAbility = 0;
+EWRAM_DATA u32 gFieldStatuses = 0;
+EWRAM_DATA struct FieldTimer gFieldTimers = {0};
 
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);
@@ -2318,7 +2320,7 @@ void SwitchInClearSetData(void)
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
         gBattleMons[gActiveBattler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED);
-        gStatuses3[gActiveBattler] &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED | STATUS3_MUDSPORT | STATUS3_WATERSPORT);
+        gStatuses3[gActiveBattler] &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED);
         for (i = 0; i < gBattlersCount; ++i)
         {
             if (GetBattlerSide(gActiveBattler) != GetBattlerSide(i)
@@ -2387,6 +2389,11 @@ void SwitchInClearSetData(void)
     *((u8 *)(&gBattleStruct->choicedMove[gActiveBattler]) + 1) = MOVE_NONE;
     gBattleResources->flags->flags[gActiveBattler] = 0;
     gCurrentMove = MOVE_NONE;
+    if (gDisableStructs[gActiveBattler].coveredIn == 1 && (gFieldStatuses & STATUS_FIELD_WATERSPORT))
+        gFieldStatuses &= ~(STATUS_FIELD_WATERSPORT);
+    else if (gDisableStructs[gActiveBattler].coveredIn == 1 && (gFieldStatuses & STATUS_FIELD_MUDSPORT))
+        gFieldStatuses &= ~(STATUS_FIELD_MUDSPORT);
+    gDisableStructs[gActiveBattler].coveredIn = 0;
 }
 
 void FaintClearSetData(void)

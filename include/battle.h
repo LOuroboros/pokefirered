@@ -160,7 +160,7 @@ struct DisableStruct
     /*0x17*/ u8 unk17;
     /*0x18*/ u8 truantCounter : 1;
     /*0x18*/ u8 truantSwitchInHack : 1; // unused? 
-    /*0x18*/ u8 unk18_a_2 : 2;
+    /*0x18*/ u8 coveredIn : 2; // originally unused
     /*0x18*/ u8 mimickedMoves : 4;
     /*0x19*/ u8 rechargeTimer;
     /*0x1A*/ u8 unk1A[2];
@@ -248,6 +248,14 @@ struct SideTimer
 };
 
 extern struct SideTimer gSideTimers[];
+
+struct FieldTimer
+{
+    u8 gravityTimer;
+    u8 trickRoomTimer;
+};
+
+extern struct FieldTimer gFieldTimers;
 
 struct WishFutureKnock
 {
@@ -721,5 +729,6 @@ extern struct UnknownPokemonStruct4 gMultiPartnerParty[3];
 extern u16 *gUnknown_2022BC0;
 extern u16 gRandomTurnNumber;
 extern u8 gBattlerAbility;
+extern u32 gFieldStatuses;
 
 #endif // GUARD_BATTLE_H
