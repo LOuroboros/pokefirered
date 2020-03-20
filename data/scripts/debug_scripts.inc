@@ -221,7 +221,7 @@ GiveStarterKit::
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_OPENED_START_MENU
 	setflag FLAG_VISITED_OAKS_LAB
-	setvar VAR_STARTER_MON, 0 @ Chose Charmander
+	setvar VAR_STARTER_MON, 2 @ Chose Charmander
 	setflag FLAG_BEAT_RIVAL_IN_OAKS_LAB
 	setflag FLAG_HIDE_RIVAL_IN_LAB
 	setflag FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL
