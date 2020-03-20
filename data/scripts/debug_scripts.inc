@@ -131,6 +131,52 @@ GiveStarterKit::
 	msgbox PlayerGotTrainingItemsSet 4
 	waitfanfare
 	closemessage
+	additem ITEM_CHERI_BERRY, 99
+	additem ITEM_CHESTO_BERRY, 99
+	additem ITEM_PECHA_BERRY, 99
+	additem ITEM_RAWST_BERRY, 99
+	additem ITEM_ASPEAR_BERRY, 99
+	additem ITEM_LEPPA_BERRY, 99
+	additem ITEM_ORAN_BERRY, 99
+	additem ITEM_PERSIM_BERRY, 99
+	additem ITEM_LUM_BERRY, 99
+	additem ITEM_SITRUS_BERRY, 99
+	additem ITEM_FIGY_BERRY, 99
+	additem ITEM_WIKI_BERRY, 99
+	additem ITEM_MAGO_BERRY, 99
+	additem ITEM_AGUAV_BERRY, 99
+	additem ITEM_IAPAPA_BERRY, 99
+	additem ITEM_RAZZ_BERRY, 99
+	additem ITEM_BLUK_BERRY, 99
+	additem ITEM_NANAB_BERRY, 99
+	additem ITEM_WEPEAR_BERRY, 99
+	additem ITEM_PINAP_BERRY, 99
+	additem ITEM_POMEG_BERRY, 99
+	additem ITEM_KELPSY_BERRY, 99
+	additem ITEM_QUALOT_BERRY, 99
+	additem ITEM_HONDEW_BERRY, 99
+	additem ITEM_GREPA_BERRY, 99
+	additem ITEM_TAMATO_BERRY, 99
+	additem ITEM_CORNN_BERRY, 99
+	additem ITEM_MAGOST_BERRY, 99
+	additem ITEM_RABUTA_BERRY, 99
+	additem ITEM_NOMEL_BERRY, 99
+	additem ITEM_SPELON_BERRY, 99
+	additem ITEM_PAMTRE_BERRY, 99
+	additem ITEM_WATMEL_BERRY, 99
+	additem ITEM_DURIN_BERRY, 99
+	additem ITEM_BELUE_BERRY, 99
+	additem ITEM_LIECHI_BERRY, 99
+	additem ITEM_GANLON_BERRY, 99
+	additem ITEM_SALAC_BERRY, 99
+	additem ITEM_PETAYA_BERRY, 99
+	additem ITEM_APICOT_BERRY, 99
+	additem ITEM_LANSAT_BERRY, 99
+	additem ITEM_STARF_BERRY, 99
+	playfanfare MUS_FANFA1
+	msgbox PlayerGotBerryPack 4
+	waitfanfare
+	closemessage
 	additem ITEM_HM01, 1
 	additem ITEM_HM02, 1
 	additem ITEM_HM03, 1
@@ -248,6 +294,9 @@ PlayerGotEvolutionaryStonesSet:
 
 PlayerGotTrainingItemsSet:
 	.string "{PLAYER} got various training items!$"
+
+PlayerGotBerryPack:
+	.string "{PLAYER} got tons of berries!$"
 
 PlayerGotLearnableMovesSet:
 	.string "{PLAYER} got a lot of TMs and HMs!$"
