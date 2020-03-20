@@ -3364,7 +3364,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
         speed = (speed * 150) / 100;
     if (ability == ABILITY_UNBURDEN && gBattleMons[battlerId].item == ITEM_NONE && gBattleMons[battlerId].itemwasremoved)
         speed *= 2;
-    if (ability == ABILITY_SLOW_START && gDisableStructs[battlerId].slowStartTimer < 4)
+    if (ability == ABILITY_SLOW_START && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
 
     // stat stages
