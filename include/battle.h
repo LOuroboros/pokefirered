@@ -198,6 +198,7 @@ struct ProtectStruct
     u32 flag_x80 : 1;           // 0x80
     /* field_3 */
     u32 field3 : 8;
+    u32 usedGravityPreventedMove:1;
 
     /* field_4 */ u32 physicalDmg;
     /* field_8 */ u32 specialDmg;

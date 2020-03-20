@@ -252,7 +252,8 @@ bool8 WasUnableToUseMove(u8 battler)
      || gProtectStructs[battler].usedTauntedMove
      || gProtectStructs[battler].flag2Unknown
      || gProtectStructs[battler].flinchImmobility
-     || gProtectStructs[battler].confusionSelfDmg)
+     || gProtectStructs[battler].confusionSelfDmg
+     || gProtectStructs[battler].usedGravityPreventedMove)
         return TRUE;
     else
         return FALSE;
@@ -325,6 +326,25 @@ void BattleScriptPop(void)
     gBattlescriptCurrInstr = gBattleResources->battleScriptsStack->ptr[--gBattleResources->battleScriptsStack->size];
 }
 
+static bool32 IsGravityPreventingMove(u32 move)
+{
+    if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
+        return FALSE;
+
+    switch (move)
+    {
+    case MOVE_FLY:
+    case MOVE_JUMP_KICK:
+    case MOVE_HI_JUMP_KICK:
+    case MOVE_SPLASH:
+    case MOVE_BOUNCE:
+    case MOVE_MAGNET_RISE:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 u8 TrySetCantSelectMoveBattleScript(void)
 {
     u8 holdEffect;
@@ -374,6 +394,12 @@ u8 TrySetCantSelectMoveBattleScript(void)
         gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingMoveWithNoPP;
         ++limitations;
     }
+    if (IsGravityPreventingMove(move))
+    {
+        gCurrentMove = move;
+        gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveGravity;
+        ++limitations;
+    }
     return limitations;
 }
 
@@ -406,6 +432,8 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check)
         if (gDisableStructs[battlerId].encoreTimer && gDisableStructs[battlerId].encoredMove != gBattleMons[battlerId].moves[i])
             unusableMoves |= gBitTable[i];
         if (holdEffect == HOLD_EFFECT_CHOICE_BAND && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
+            unusableMoves |= gBitTable[i];
+        if (IsGravityPreventingMove(gBattleMons[battlerId].moves[i]))
             unusableMoves |= gBitTable[i];
     }
     return unusableMoves;
@@ -463,6 +491,7 @@ enum
     ENDTURN_SANDSTORM,
     ENDTURN_SUN,
     ENDTURN_HAIL,
+    ENDTURN_GRAVITY,
     ENDTURN_FIELD_COUNT,
 };
 
@@ -697,6 +726,15 @@ u8 DoFieldEndTurnEffects(void)
                 ++effect;
             }
             ++gBattleStruct->turnCountersTracker;
+            break;
+        case ENDTURN_GRAVITY:
+            if (gFieldStatuses & STATUS_FIELD_GRAVITY && --gFieldTimers.gravityTimer == 0)
+            {
+                gFieldStatuses &= ~(STATUS_FIELD_GRAVITY);
+                BattleScriptExecute(BattleScript_GravityEnds);
+                effect++;
+            }
+            gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_FIELD_COUNT:
             ++effect;
@@ -1306,6 +1344,7 @@ enum
     CANCELLER_IN_LOVE,
     CANCELLER_BIDE,
     CANCELLER_THAW,
+    CANCELLER_GRAVITY,
     CANCELLER_END,
 };
 
@@ -1576,6 +1615,18 @@ u8 AtkCanceller_UnableToUseMove(void)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 1;
                 }
                 effect = 2;
+            }
+            ++gBattleStruct->atkCancellerTracker;
+            break;
+        case CANCELLER_GRAVITY:
+            if (gFieldStatuses & STATUS_FIELD_GRAVITY && IsGravityPreventingMove(gCurrentMove))
+            {
+                gProtectStructs[gBattlerAttacker].usedGravityPreventedMove = 1;
+                gBattleScripting.battler = gBattlerAttacker;
+                CancelMultiTurnMoves(gBattlerAttacker);
+                gBattlescriptCurrInstr = BattleScript_MoveUsagePreventedByGravity;
+                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                effect = 1;
             }
             ++gBattleStruct->atkCancellerTracker;
             break;
@@ -3634,6 +3685,20 @@ bool32 IsBattlerAlive(u8 battlerId)
     else if (battlerId >= gBattlersCount)
         return FALSE;
     else if (gAbsentBattlerFlags & gBitTable[battlerId])
+        return FALSE;
+    else
+        return TRUE;
+}
+
+bool32 IsBattlerGrounded(u8 battlerId)
+{
+    if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+        return TRUE;
+    else if (gStatuses3[battlerId] & STATUS3_ROOTED)
+        return TRUE;
+    else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
+        return FALSE;
+    else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
     else
         return TRUE;

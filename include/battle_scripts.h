@@ -242,6 +242,10 @@ extern const u8 BattleScript_BadDreamsDmg[];
 extern const u8 BattleScript_Frisk[];
 extern const u8 BattleScript_Anticipation[];
 extern const u8 BattleScript_MoldBreakerActivates[];
+extern const u8 BattleScript_GravityEnds[];
+extern const u8 BattleScript_MoveUsagePreventedByGravity[];
+extern const u8 BattleScript_SelectingNotAllowedMoveGravity[];
+extern const u8 BattleScript_GravityLoop[];
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];

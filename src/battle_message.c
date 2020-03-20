@@ -529,6 +529,10 @@ const u8 sText_Anticipation[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_LAST_ABILITY}\n
 const u8 sText_HealingWishCameTrue[] = _("The healing wish came true\nfor {B_ATK_NAME_WITH_PREFIX}!");
 const u8 sText_HealingWishHealed[] = _("{B_ATK_NAME_WITH_PREFIX} regained health!");
 const u8 sText_MoldBreakerActivates[] = _("{B_ATK_NAME_WITH_PREFIX} breaks the mold!");
+const u8 sText_GravityIntensified[] = _("GRAVITY intensified!");
+const u8 sText_GravityEnds[] = _("GRAVITY returned to normal!");
+const u8 sText_GravityPreventsUsage[] = _("{B_ATK_NAME_WITH_PREFIX} can't use {B_CURRENT_MOVE}\nbecause of GRAVITY!\p");
+const u8 sText_GravityGrounding[] = _("{B_DEF_NAME_WITH_PREFIX} can't stay airborne\nbecause of gravity!");
 
 const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB219,
@@ -918,7 +922,11 @@ const u8 *const gBattleStringsTable[] = {
     sText_Anticipation,
     sText_HealingWishCameTrue,
     sText_HealingWishHealed,
-    sText_MoldBreakerActivates
+    sText_MoldBreakerActivates,
+    sText_GravityIntensified,
+    sText_GravityEnds,
+    sText_GravityPreventsUsage,
+    sText_GravityGrounding
 };
 
 const u16 gMissStringIds[] = {

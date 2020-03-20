@@ -247,6 +247,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectPayback
 	.4byte BattleScript_EffectAssurance
 	.4byte BattleScript_EffectPunishment
+	.4byte BattleScript_EffectGravity
 
 BattleScript_EffectGyroBall::
 BattleScript_EffectPunishment::
@@ -3084,6 +3085,29 @@ BattleScript_EffectAssurance::
 	doubledamagedealt
 	goto BattleScript_EffectHit
 
+BattleScript_EffectGravity::
+	attackcanceler
+	attackstring
+	ppreduce
+	setgravity BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	printstring STRINGID_GRAVITYINTENSIFIED 
+	waitmessage 0x40
+	selectfirstvalidtarget
+BattleScript_GravityLoop:
+	movevaluescleanup
+	jumpifstatus3 BS_TARGET, STATUS3_ON_AIR, BattleScript_GravityLoopDrop
+	goto BattleScript_GravityLoopEnd
+BattleScript_GravityLoopDrop:
+	bringdownairbornebattler BS_TARGET
+	printstring STRINGID_GRAVITYGROUNDING 
+	waitmessage 0x40
+BattleScript_GravityLoopEnd:	
+	moveendto 16
+	jumpifnexttargetvalid BattleScript_GravityLoop
+	end   
+
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER
 	pause 0x40
@@ -4548,6 +4572,16 @@ BattleScript_MoldBreakerActivates::
 	waitmessage 0x40
 	end3
 
+BattleScript_GravityEnds::
+	printstring STRINGID_GRAVITYENDS
+	waitmessage 0x40
+	end3
+
+BattleScript_MoveUsagePreventedByGravity::
+	printstring STRINGID_GRAVITYPREVENTSUSAGE
+	waitmessage 0x40
+	goto BattleScript_MoveEnd
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary
@@ -4763,6 +4797,10 @@ BattleScript_BerryFocusEnergyEnd2::
 
 BattleScript_ActionSelectionItemsCantBeUsed::
 	printselectionstring STRINGID_ITEMSCANTBEUSEDNOW
+	endselectionscript
+
+BattleScript_SelectingNotAllowedMoveGravity::
+	printselectionstring STRINGID_GRAVITYPREVENTSUSAGE
 	endselectionscript
 
 BattleScript_FlushMessageBox::

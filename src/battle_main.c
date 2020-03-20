@@ -2294,6 +2294,7 @@ static void BattleStartClearSetData(void)
         gBattleResults.playerMon2Name[i] = 0;
         gBattleResults.caughtMonNick[i] = 0;
     }
+    gFieldStatuses = 0;
 }
 
 void SwitchInClearSetData(void)
@@ -2438,6 +2439,7 @@ void FaintClearSetData(void)
     gProtectStructs[gActiveBattler].flag2Unknown = FALSE;
     gProtectStructs[gActiveBattler].flinchImmobility = FALSE;
     gProtectStructs[gActiveBattler].notFirstStrike = FALSE;
+    gProtectStructs[gActiveBattler].usedGravityPreventedMove = FALSE;
     gDisableStructs[gActiveBattler].isFirstTurn = 2;
     gLastMoves[gActiveBattler] = MOVE_NONE;
     gLastLandedMoves[gActiveBattler] = MOVE_NONE;
@@ -2972,8 +2974,7 @@ u8 IsRunningFromBattleImpossible(void)
             return BATTLE_RUN_FAILURE;
         }
         if (side != GetBattlerSide(i)
-         && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE
-         && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING)
+         && IsBattlerGrounded(gActiveBattler)
          && gBattleMons[i].ability == ABILITY_ARENA_TRAP)
         {
             gBattleScripting.battler = i;

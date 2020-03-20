@@ -92,5 +92,6 @@ bool32 GetBattlerAbility(u8 battlerId);
 u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating);
 u32 GetBattlerHoldEffectParam(u8 battlerId);
 bool32 IsBattlerAlive(u8 battlerId);
+bool32 IsBattlerGrounded(u8 battlerId);
 
 #endif // GUARD_BATTLE_UTIL_H

@@ -88,6 +88,7 @@
 #define VARIOUS_RESTORE_PP                      15
 #define VARIOUS_INSTANT_HP_DROP                 16
 #define VARIOUS_STAT_TEXT_BUFFER                17
+#define VARIOUS_GRAVITY_ON_AIRBORNE_MONS        18
 
 // atk80, dmg manipulation
 #define ATK80_DMG_CHANGE_SIGN                               0

@@ -316,6 +316,7 @@ static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
 static void atkF8_setroost(void);
+static void atkF9_setgravity(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -568,6 +569,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF6_finishaction,
     atkF7_finishturn,
     atkF8_setroost,
+    atkF9_setgravity,
 };
 
 struct StatFractions
@@ -1183,14 +1185,16 @@ static void atk01_accuracycheck(void)
         calc /= sAccuracyStageRatios[buff].divisor;
         if (gBattleMons[gBattlerAttacker].ability == ABILITY_COMPOUND_EYES)
             calc = (calc * 130) / 100; // 1.3 compound eyes boost
-        else if (WEATHER_HAS_EFFECT && GetBattlerAbility(gBattlerTarget) == ABILITY_SAND_VEIL && gBattleWeather & WEATHER_SANDSTORM_ANY)
+        if (WEATHER_HAS_EFFECT && GetBattlerAbility(gBattlerTarget) == ABILITY_SAND_VEIL && gBattleWeather & WEATHER_SANDSTORM_ANY)
             calc = (calc * 80) / 100; // 1.2 sand veil loss
-        else if (gBattleMons[gBattlerAttacker].ability == ABILITY_HUSTLE && IS_TYPE_PHYSICAL(gBattleMoves[move]))
+        if (gBattleMons[gBattlerAttacker].ability == ABILITY_HUSTLE && IS_TYPE_PHYSICAL(gBattleMoves[move]))
             calc = (calc * 80) / 100; // 1.2 hustle loss
-        else if (GetBattlerAbility(gBattlerTarget) == ABILITY_TANGLED_FEET && gBattleMons[gBattlerTarget].status2 & STATUS2_CONFUSION)
+        if (GetBattlerAbility(gBattlerTarget) == ABILITY_TANGLED_FEET && gBattleMons[gBattlerTarget].status2 & STATUS2_CONFUSION)
             calc = (calc * 50) / 100; // 0.5 tangled feet loss
-        else if (WEATHER_HAS_EFFECT && GetBattlerAbility(gBattlerTarget) == ABILITY_SNOW_CLOAK && gBattleWeather & WEATHER_HAIL_ANY)
+        if (WEATHER_HAS_EFFECT && GetBattlerAbility(gBattlerTarget) == ABILITY_SNOW_CLOAK && gBattleWeather & WEATHER_HAIL_ANY)
             calc = (calc * 80) / 100; // 1.2 snow cloak loss
+        if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+            calc = (calc * 100) / 60; // 1.6 gravity boost
 
         if (gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY)
         {
@@ -1427,7 +1431,7 @@ static void atk06_typecalc(void)
     if (GetBattlerAbility(gBattlerTarget) == ABILITY_HEATPROOF && gBattleMoves[gCurrentMove].type == TYPE_FIRE)
         gBattleMoveDamage = gBattleMoveDamage / 2;
 
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND && !IsBattlerGrounded(gBattlerTarget))
     {
         gLastUsedAbility = gBattleMons[gBattlerTarget].ability;
         gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -1497,7 +1501,7 @@ static void CheckWonderGuardAndLevitate(void)
     if (gCurrentMove == MOVE_STRUGGLE || !gBattleMoves[gCurrentMove].power)
         return;
     GET_MOVE_TYPE(gCurrentMove, moveType);
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND && !IsBattlerGrounded(gBattlerTarget))
     {
         gLastUsedAbility = ABILITY_LEVITATE;
         gBattleCommunication[6] = moveType;
@@ -1627,7 +1631,7 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
     if (GetBattlerAbility(defender) == ABILITY_HEATPROOF && gBattleMoves[gCurrentMove].type == TYPE_FIRE)
         gBattleMoveDamage = gBattleMoveDamage / 2;
 
-    if (GetBattlerAbility(defender) == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+    if (GetBattlerAbility(defender) == ABILITY_LEVITATE && moveType == TYPE_GROUND && !IsBattlerGrounded(defender))
     {
         flags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
     }
@@ -1681,7 +1685,7 @@ u8 AI_TypeCalc(u16 move, u16 targetSpecies, u8 targetAbility)
     if (move == MOVE_STRUGGLE)
         return 0;
     moveType = gBattleMoves[move].type;
-    if (GetBattlerAbility(targetAbility) == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+    if (GetBattlerAbility(targetAbility) == ABILITY_LEVITATE && moveType == TYPE_GROUND && !IsBattlerGrounded(targetAbility))
     {
         flags = MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE;
     }
@@ -4435,7 +4439,7 @@ static void atk4A_typecalc2(void)
     s32 i = 0;
     u8 moveType = gBattleMoves[gCurrentMove].type;
 
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND && !IsBattlerGrounded(gBattlerTarget))
     {
         gLastUsedAbility = gBattleMons[gBattlerTarget].ability;
         gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -5015,8 +5019,7 @@ static void atk52_switchineffects(void)
     gSpecialStatuses[gActiveBattler].flag40 = 0;
     if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED)
      && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
-     && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING)
-     && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE
+     && IsBattlerGrounded(gActiveBattler)
      && gBattleMons[gActiveBattler].ability != ABILITY_MAGIC_GUARD)
     {
         u8 spikesDmg;
@@ -6444,6 +6447,11 @@ static void atk76_various(void)
         break;
     case VARIOUS_STAT_TEXT_BUFFER:
         PREPARE_STAT_BUFFER(gBattleTextBuff1, gBattleCommunication[0]);
+        break;
+    case VARIOUS_GRAVITY_ON_AIRBORNE_MONS:
+        if (gStatuses3[gActiveBattler] & STATUS3_ON_AIR)
+            CancelMultiTurnMoves(gActiveBattler);
+        gStatuses3[gActiveBattler] &= ~(STATUS3_ON_AIR);
         break;
     }
     gBattlescriptCurrInstr += 3;
@@ -10177,4 +10185,20 @@ static bool8 CriticalCapture(u32 odds)
         return TRUE;
 
     return FALSE;
+}
+
+static void atkF9_setgravity(void)
+{
+    if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+    {
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    }
+    else
+    {
+        u32 i;
+
+        gFieldStatuses |= STATUS_FIELD_GRAVITY;
+        gFieldTimers.gravityTimer = 5;
+        gBattlescriptCurrInstr += 5;
+    }
 }
