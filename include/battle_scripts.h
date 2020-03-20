@@ -241,6 +241,7 @@ extern const u8 BattleScript_SlowStarted[];
 extern const u8 BattleScript_BadDreamsDmg[];
 extern const u8 BattleScript_Frisk[];
 extern const u8 BattleScript_Anticipation[];
+extern const u8 BattleScript_MoldBreakerActivates[];
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];

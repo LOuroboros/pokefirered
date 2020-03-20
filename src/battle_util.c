@@ -2000,6 +2000,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     ++effect;
                 }
                 break;
+            case ABILITY_MOLD_BREAKER:
+                if (!gSpecialStatuses[battler].switchInAbilityDone)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_MoldBreakerActivates);
+                    effect++;
+                }
+                break;
             }
             break;
         case ABILITYEFFECT_ENDTURN: // 1

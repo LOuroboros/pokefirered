@@ -4543,6 +4543,11 @@ BattleScript_Anticipation::
 	waitmessage 0x40
 	end3
 
+BattleScript_MoldBreakerActivates::
+	printstring STRINGID_MOLDBREAKERACTIVATES
+	waitmessage 0x40
+	end3
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary
