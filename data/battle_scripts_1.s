@@ -250,6 +250,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectGravity
 	.4byte BattleScript_EffectSpecialAttackUpHit
 	.4byte BattleScript_EffectJudgment
+	.4byte BattleScript_EffectSpecialDefenseDownHit2
 
 BattleScript_EffectGyroBall::
 BattleScript_EffectPunishment::
@@ -3113,6 +3114,10 @@ BattleScript_GravityLoopEnd:
 
 BattleScript_EffectSpecialAttackUpHit::
 	setmoveeffect MOVE_EFFECT_SP_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
+	goto BattleScript_EffectHit
+
+BattleScript_EffectSpecialDefenseDownHit2::
+	setmoveeffect MOVE_EFFECT_SP_DEF_MINUS_2
 	goto BattleScript_EffectHit
 
 BattleScript_FaintAttacker::

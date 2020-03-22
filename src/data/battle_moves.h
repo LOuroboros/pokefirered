@@ -6511,7 +6511,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SEED_FLARE] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2,
+        .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2,
         .power = 120,
         .type = TYPE_GRASS,
         .accuracy = 85,

@@ -1391,7 +1391,7 @@ gMoveDescription_DarkVoid::
 	.string "Placeholder text.$"
 
 gMoveDescription_SeedFlare::
-	.string "Placeholder text.$"
+	.string "The user creates a\nshock wave from its\nbody. It may lower\nthe foe's SP. DEF.$"
 
 gMoveDescription_OminousWind::
 	.string "Placeholder text.$"
