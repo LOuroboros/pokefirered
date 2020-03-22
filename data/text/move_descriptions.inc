@@ -1349,7 +1349,7 @@ gMoveDescription_BugBite::
 	.string "Placeholder text.$"
 
 gMoveDescription_ChargeBeam::
-	.string "Placeholder text.$"
+	.string "The user fires a\nstrong electrical\nbeam. It may raise\nthe user's SP. ATK.$"
 
 gMoveDescription_WoodHammer::
 	.string "Placeholder text.$"
