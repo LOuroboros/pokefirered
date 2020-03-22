@@ -251,10 +251,12 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSpecialAttackUpHit
 	.4byte BattleScript_EffectJudgment
 	.4byte BattleScript_EffectSpecialDefenseDownHit2
+	.4byte BattleScript_EffectWringOut
 
 BattleScript_EffectGyroBall::
 BattleScript_EffectPunishment::
 BattleScript_EffectJudgment::
+BattleScript_EffectWringOut::
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler

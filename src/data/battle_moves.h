@@ -5293,7 +5293,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_WRING_OUT] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_WRING_OUT,
+        .effect = EFFECT_WRING_OUT,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -6469,8 +6469,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_CRUSH_GRIP] =
     {
-        .effect = EFFECT_HIT, // .effect = EFFECT_WRING_OUT,
-        .power = 1,
+        .effect = EFFECT_WRING_OUT,
+        .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 5,

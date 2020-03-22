@@ -2444,6 +2444,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gBattleMovePower = (150 * gBattleMovePower) / 100;
     if (gCurrentMove == MOVE_NATURAL_GIFT)
         gBattleMovePower = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerIdAtk].item)].power;
+    if (gBattleMoves[gCurrentMove].effect == EFFECT_WRING_OUT)
+        gBattleMovePower = 1 + 120 * (defender->hp / defender->maxHP);
 
     // Punishment
     if (gBattleMoves[gCurrentMove].effect == EFFECT_PUNISHMENT)

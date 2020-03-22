@@ -1130,7 +1130,7 @@ gMoveDescription_HealBlock::
 	.string "Placeholder text.$"
 
 gMoveDescription_WringOut::
-	.string "Placeholder text.$"
+	.string "Hits the foe with\ngreat force. Grows\nstronger the more\nHP they have.$"
 
 gMoveDescription_PowerTrick::
 	.string "Placeholder text.$"
@@ -1382,7 +1382,7 @@ gMoveDescription_LunarDance::
 	.string "Placeholder text.$"
 
 gMoveDescription_CrushGrip::
-	.string "Placeholder text.$"
+	.string "Hits the foe with\ngreat force. Grows\nstronger the more\nHP they have.$"
 
 gMoveDescription_MagmaStorm::
 	.string "Placeholder text.$"
