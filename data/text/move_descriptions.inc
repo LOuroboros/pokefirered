@@ -1184,7 +1184,7 @@ gMoveDescription_ForcePalm::
 	.string "Placeholder text.$"
 
 gMoveDescription_AuraSphere::
-	.string "Placeholder text.$"
+	.string "The user shoots a\nblast of aura at\nthe target.$"
 
 gMoveDescription_RockPolish::
 	.string "Placeholder text.$"
