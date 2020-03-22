@@ -1406,6 +1406,9 @@ static void atk06_typecalc(void)
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
+    if (gBattleMoves[gCurrentMove].effect == EFFECT_JUDGMENT)
+        moveType = ItemId_GetHoldEffectParam(gBattleMons[gBattlerAttacker].item);
+
     if (gCurrentMove == MOVE_NATURAL_GIFT)
         moveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[gBattlerAttacker].item)].type;
 
@@ -1605,6 +1608,9 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
         return 0;
 
     moveType = gBattleMoves[move].type;
+
+    if (gBattleMoves[gCurrentMove].effect == EFFECT_JUDGMENT)
+        moveType = ItemId_GetHoldEffectParam(gBattleMons[attacker].item);
 
     if (gCurrentMove == MOVE_NATURAL_GIFT)
         moveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[attacker].item)].type;

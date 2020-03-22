@@ -1343,7 +1343,7 @@ gMoveDescription_Chatter::
 	.string "Placeholder text.$"
 
 gMoveDescription_Judgment::
-	.string "Placeholder text.$"
+	.string "Hits with countless\nshots of light. Its\ntype changes if a\nPLATE is held.$"
 
 gMoveDescription_BugBite::
 	.string "Placeholder text.$"
