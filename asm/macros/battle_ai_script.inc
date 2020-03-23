@@ -479,9 +479,10 @@
 	.byte \battler
 	.endm
 
-	@ nullsub
-	.macro ai_52
+	.macro if_field_status flag jumpptr
 	.byte 0x52
+	.4byte \flag
+	.4byte \jumpptr
 	.endm
 
 	@ nullsub
