@@ -252,6 +252,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectJudgment
 	.4byte BattleScript_EffectSpecialDefenseDownHit2
 	.4byte BattleScript_EffectWringOut
+	.4byte BattleScript_EffectLunarDance
 
 BattleScript_EffectGyroBall::
 BattleScript_EffectPunishment::
@@ -3025,7 +3026,6 @@ BattleScript_EffectHealingWish::
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
-	restorepp BS_ATTACKER
 BattleScript_EffectHealingWishNewMon:
 	printstring STRINGID_HEALINGWISHCAMETRUE
 	waitmessage 0x40
@@ -3039,8 +3039,6 @@ BattleScript_EffectHealingWishNewMon:
 	waitstate
 	updatestatusicon BS_ATTACKER
 	waitstate
-	printstring STRINGID_HEALINGWISHHEALED
-	waitmessage 0x40
 	switchineffects BS_ATTACKER
 BattleScript_EffectHealingWishEnd:
 	moveendall
@@ -3121,6 +3119,46 @@ BattleScript_EffectSpecialAttackUpHit::
 BattleScript_EffectSpecialDefenseDownHit2::
 	setmoveeffect MOVE_EFFECT_SP_DEF_MINUS_2
 	goto BattleScript_EffectHit
+
+BattleScript_EffectLunarDance::
+	attackcanceler
+	jumpifcantswitch BS_ATTACKER | ATK4F_DONT_CHECK_STATUSES, BattleScript_ButItFailedAtkStringPpReduce
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
+	instanthpdrop BS_ATTACKER
+	setatkhptozero
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	openpartyscreen BS_ATTACKER, BattleScript_EffectLunarDanceEnd
+	switchoutabilities BS_ATTACKER
+	waitstate
+	switchhandleorder BS_ATTACKER, 0x2
+	returnatktoball
+	getswitchedmondata BS_ATTACKER
+	switchindataupdate BS_ATTACKER
+	hpthresholds BS_ATTACKER
+	printstring STRINGID_SWITCHINMON
+	switchinanim BS_ATTACKER, TRUE
+	waitstate
+	restorepp BS_ATTACKER
+BattleScript_EffectLunarDanceHealNewMon:
+	printstring STRINGID_CLOAKEDINMOONLIGHT
+	waitmessage 0x40
+	playanimation BS_ATTACKER, B_ANIM_WISH_HEAL, NULL
+	waitanimation
+	dmgtomaxattackerhp
+	manipulatedamage 0
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	clearstatusfromeffect BS_ATTACKER
+	waitstate
+	updatestatusicon BS_ATTACKER
+	waitstate
+	switchineffects BS_ATTACKER
+BattleScript_EffectLunarDanceEnd:
+	moveendall
+	end
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER

@@ -1379,7 +1379,7 @@ gMoveDescription_SpacialRend::
 	.string "Placeholder text.$"
 
 gMoveDescription_LunarDance::
-	.string "Placeholder text.$"
+	.string "The user faints to\nheal up a member\nof the party that\nwill fight instead.$"
 
 gMoveDescription_CrushGrip::
 	.string "Hits the foe with\ngreat force. Grows\nstronger the more\nHP they have.$"

@@ -527,12 +527,12 @@ const u8 sText_BadDreamsDmg[] = _("{DEFENDING_MON} is tormented by\n{B_SCR_ACTIV
 const u8 sText_Frisked[] = _("{B_ATK_NAME_WITH_PREFIX} frisked {B_DEF_NAME_WITH_PREFIX} and\nfound its {B_LAST_ITEM}!");
 const u8 sText_Anticipation[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_LAST_ABILITY}\nmade it shudder!");
 const u8 sText_HealingWishCameTrue[] = _("The healing wish came true\nfor {B_ATK_NAME_WITH_PREFIX}!");
-const u8 sText_HealingWishHealed[] = _("{B_ATK_NAME_WITH_PREFIX} regained health!");
 const u8 sText_MoldBreakerActivates[] = _("{B_ATK_NAME_WITH_PREFIX} breaks the mold!");
 const u8 sText_GravityIntensified[] = _("GRAVITY intensified!");
 const u8 sText_GravityEnds[] = _("GRAVITY returned to normal!");
 const u8 sText_GravityPreventsUsage[] = _("{B_ATK_NAME_WITH_PREFIX} can't use {B_CURRENT_MOVE}\nbecause of GRAVITY!\p");
 const u8 sText_GravityGrounding[] = _("{B_DEF_NAME_WITH_PREFIX} can't stay airborne\nbecause of gravity!");
+const u8 sText_CloakedInMoonlight[] = _("{B_ATK_NAME_WITH_PREFIX} became cloaked\nin mystical moonlight!");
 
 const u8 *const gBattleStringsTable[] = {
     gUnknown_83FB219,
@@ -921,12 +921,12 @@ const u8 *const gBattleStringsTable[] = {
     sText_Frisked,
     sText_Anticipation,
     sText_HealingWishCameTrue,
-    sText_HealingWishHealed,
     sText_MoldBreakerActivates,
     sText_GravityIntensified,
     sText_GravityEnds,
     sText_GravityPreventsUsage,
-    sText_GravityGrounding
+    sText_GravityGrounding,
+    sText_CloakedInMoonlight
 };
 
 const u16 gMissStringIds[] = {
