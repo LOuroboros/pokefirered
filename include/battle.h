@@ -504,6 +504,7 @@ struct BattleScripting
     u8 reshowMainState;
     u8 reshowHelperState;
     u8 field_23;
+    bool8 monCaught;
 };
 
 enum
