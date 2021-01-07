@@ -149,6 +149,7 @@ void NewGameInitData(void)
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
+    gSaveBlock2Ptr->expShare = 0;
 }
 
 static void ResetMiniGamesResults(void)
