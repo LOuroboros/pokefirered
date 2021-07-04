@@ -2549,3 +2549,10 @@ static void Task_WingFlapSound(u8 taskId)
     if (data[0] == gSpecialVar_0x8004 - 1)
         DestroyTask(taskId);
 }
+
+void SetRandomStarterSpecies(void)
+{
+    VarSet(VAR_TEMP_5, (Random() % (NUM_SPECIES - 1)) + 1);
+    VarSet(VAR_TEMP_6, (Random() % (NUM_SPECIES - 1)) + 1);
+    VarSet(VAR_TEMP_7, (Random() % (NUM_SPECIES - 1)) + 1);
+}
