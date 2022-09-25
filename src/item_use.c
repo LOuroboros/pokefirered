@@ -741,6 +741,11 @@ void BattleUseFunc_PokeBallEtc(u8 taskId)
         Bag_BeginCloseWin0Animation();
         ItemMenu_StartFadeToExitCallback(taskId);
     }
+    else if (FlagGet(FLAG_DISABLE_BALL_THROWS))
+    {
+        static const u8 sText_BallsCannotBeUsed[] = _("Poké Balls cannot be used\nright now!\p");
+        DisplayItemMessageInBag(taskId, FONT_2, sText_BallsCannotBeUsed, ItemMenu_StartFadeToExitCallback);
+    }
     else
     {
         DisplayItemMessageInBag(taskId, FONT_2, gText_BoxFull, Task_ReturnToBagFromContextMenu);

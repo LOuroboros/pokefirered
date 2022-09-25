@@ -3010,6 +3010,12 @@ u8 IsRunningFromBattleImpossible(void)
     else
         holdEffect = ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item);
     gPotentialItemEffectBattler = gActiveBattler;
+    // Cannot run if FLAG_DISABLE_ESCAPING_FROM_BATTLE is set.
+    if (FlagGet(FLAG_DISABLE_ESCAPING_FROM_BATTLE))
+    {
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CANT_ESCAPE;
+        return BATTLE_RUN_FORBIDDEN;
+    }
     if (holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN
      || (gBattleTypeFlags & BATTLE_TYPE_LINK)
      || gBattleMons[gActiveBattler].ability == ABILITY_RUN_AWAY)
@@ -3179,7 +3185,7 @@ static void HandleTurnActionSelectionState(void)
                     }
                     break;
                 case B_ACTION_USE_ITEM:
-                    if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER))
+                    if (FlagGet(FLAG_DISABLE_BATTLE_BAG_ACCESS) || gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER))
                     {
                         gSelectionBattleScripts[gActiveBattler] = BattleScript_ActionSelectionItemsCantBeUsed;
                         gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;

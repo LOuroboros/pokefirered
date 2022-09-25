@@ -1,0 +1,213 @@
+agbcc: warnings being treated as errors
+src/debug.c: In function `Debug_ShowMenu':
+src/debug.c:909: warning: implicit declaration of function `HideMapNamePopUpWindow'
+src/debug.c:910: warning: implicit declaration of function `LoadMessageBoxAndBorderGfx'
+src/debug.c:912: warning: implicit declaration of function `DrawStdWindowFrame'
+src/debug.c: In function `Debug_DestroyMenu_Full':
+src/debug.c:949: warning: implicit declaration of function `ClearStdWindowAndFrame'
+src/debug.c: In function `DebugAction_Util_Warp_SelectWarp':
+src/debug.c:1361: warning: implicit declaration of function `DoWarp'
+src/debug.c: In function `DebugAction_Util_CheckSaveSpace':
+src/debug.c:1386: `gStringVar5' undeclared (first use in this function)
+src/debug.c:1386: (Each undeclared identifier is reported only once
+src/debug.c:1386: for each function it appears in.)
+src/debug.c:1387: `gStringVar6' undeclared (first use in this function)
+src/debug.c:1388: `gStringVar7' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Util_CheckWeekDay':
+src/debug.c:1407: storage size of `rtc' isn't known
+src/debug.c:1412: warning: implicit declaration of function `RtcGetDateTime'
+src/debug.c:1413: warning: implicit declaration of function `ConvertBcdToBinary'
+src/debug.c:1417: warning: implicit declaration of function `GetCurrentDayString'
+src/debug.c:1417: `gLocalTime' undeclared (first use in this function)
+src/debug.c:1417: warning: passing arg 2 of `StringCopy' makes pointer from integer without a cast
+src/debug.c:1421: warning: implicit declaration of function `TEXT_STRING'
+src/debug.c:1421: warning: passing arg 1 of `ShowFieldMessage' makes pointer from integer without a cast
+src/debug.c: In function `DebugAction_Util_WatchCredits':
+src/debug.c:1428: `CB2_StartCreditsSequence' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Util_Trainer_Name':
+src/debug.c:1432: warning: implicit declaration of function `NewGameBirchSpeech_SetDefaultPlayerName'
+src/debug.c: In function `DebugAction_Util_Rival_Name':
+src/debug.c:1437: structure has no member named `rivalName'
+src/debug.c: In function `DebugAction_Util_ChangeCostume':
+src/debug.c:1482: structure has no member named `playerCostume'
+src/debug.c:1484: structure has no member named `playerCostume'
+build/firered/src/debug.i:11261: error: unknown character U+5F
+src/debug.c: In function `DebugTask_ChangeCostume_Execute':
+src/debug.c:1496: warning: implicit declaration of function `SwapPlayersCostume'
+src/debug.c: In function `DebugTask_ChangeCostume_End':
+src/debug.c:1504: warning: implicit declaration of function `FadeInFromBlack'
+src/debug.c: In function `DebugAction_Util_ClearBag':
+src/debug.c:1528: structure has no member named `bagPocket_TMHMOwnedFlags'
+src/debug.c: In function `DebugAction_Util_Weather_SelectId':
+src/debug.c:1656: warning: implicit declaration of function `SetWeather'
+src/debug.c: In function `DebugAction_Flags_FlagsSelect':
+src/debug.c:1703: warning: implicit declaration of function `FlagToggle'
+src/debug.c: In function `DebugAction_Flags_ShinyHueShiftOnOff':
+src/debug.c:2052: `FLAG_DISABLE_SHINY_HUE_SHIFT' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Vars_Select':
+src/debug.c:2162: warning: implicit declaration of function `VarGetIfExist'
+arm-none-eabi-as -mcpu=arm7tdmi --defsym FIRERED=1 --defsym REVISION=0 --defsym ENGLISH=1 --defsym MODERN=0 -o build/firered/src/easy_chat_3.o build/firered/src/easy_chat_3.s
+src/debug.c: In function `DebugAction_Give_Item':
+src/debug.c:2299: warning: implicit declaration of function `AddItemIconSprite'
+src/debug.c: In function `DebugAction_Give_Item_SelectId':
+src/debug.c:2313: `ITEMS_COUNT' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_Egg_SelectId':
+src/debug.c:2536: warning: implicit declaration of function `FreeAndDestroyMonIconSprite'
+src/debug.c: In function `DebugAction_Give_Pokemon_SelectLevel':
+src/debug.c:2753: `MIN_LEVEL' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_Pokemon_Move':
+src/debug.c:3123: `MOVES_COUNT' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_Pokemon_ComplexCreateMon':
+src/debug.c:3278: warning: implicit declaration of function `GetNatureFromPersonality'
+src/debug.c:3309: `MOVES_COUNT' undeclared (first use in this function)
+src/debug.c:3345: warning: implicit declaration of function `SendMonToPC'
+src/debug.c: In function `DebugAction_Give_MaxMoney':
+src/debug.c:3372: `MAX_MONEY' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_MaxBattlePoints':
+src/debug.c:3384: structure has no member named `frontier'
+src/debug.c:3384: `MAX_BATTLE_FRONTIER_POINTS' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_FillPCItemStorage':
+src/debug.c:3413: `ITEMS_COUNT' undeclared (first use in this function)
+src/debug.c:3415: `MAX_PC_ITEM_CAPACITY' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_FillItemsPocket':
+src/debug.c:3426: `ITEMS_COUNT' undeclared (first use in this function)
+src/debug.c:3428: `MAX_BAG_ITEM_CAPACITY' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_FillPokeBallsPocket':
+src/debug.c:3439: `FIRST_BALL' undeclared (first use in this function)
+src/debug.c:3439: `LAST_BALL' undeclared (first use in this function)
+src/debug.c:3441: `MAX_BAG_ITEM_CAPACITY' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_FillTMHMPocket':
+src/debug.c:3454: `MOVE_NONE' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_FillBerriesPocket':
+src/debug.c:3467: `MAX_BERRY_CAPACITY' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Give_FillKeyItemsPocket':
+src/debug.c:3478: `ITEMS_COUNT' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Sound_SE_SelectId':
+src/debug.c:3526: `END_SE' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Sound_MUS':
+src/debug.c:3584: `START_MUS' undeclared (first use in this function)
+src/debug.c: In function `DebugAction_Sound_MUS_SelectId':
+src/debug.c:3604: `END_MUS' undeclared (first use in this function)
+src/debug.c:3610: `START_MUS' undeclared (first use in this function)
+src/debug.c: At top level:
+src/debug.c:4005: syntax error at end of input
+src/debug.c:4005: warning: array `sBGMName_MUS_HEAL' assumed to have one element
+src/debug.c:329: warning: `DebugAction_PresetWarp_PalletTown' used but never defined
+src/debug.c:330: warning: `DebugAction_PresetWarp_ViridianCity' used but never defined
+src/debug.c:331: warning: `DebugAction_PresetWarp_PewterCity' used but never defined
+src/debug.c:332: warning: `DebugAction_PresetWarp_CeruleanCity' used but never defined
+src/debug.c:333: warning: `DebugAction_PresetWarp_VermilionCity' used but never defined
+src/debug.c:334: warning: `DebugAction_PresetWarp_LavenderTown' used but never defined
+src/debug.c:335: warning: `DebugAction_PresetWarp_CeladonCity' used but never defined
+src/debug.c:336: warning: `DebugAction_PresetWarp_FuchsiaCity' used but never defined
+src/debug.c:337: warning: `DebugAction_PresetWarp_SaffronCity' used but never defined
+src/debug.c:338: warning: `DebugAction_PresetWarp_CinnabarIsland' used but never defined
+src/debug.c:339: warning: `DebugAction_PresetWarp_IndigoPlateau' used but never defined
+src/debug.c:340: warning: `DebugAction_PresetWarp_OneIsland' used but never defined
+src/debug.c:341: warning: `DebugAction_PresetWarp_TwoIsland' used but never defined
+src/debug.c:342: warning: `DebugAction_PresetWarp_ThreeIsland' used but never defined
+src/debug.c:343: warning: `DebugAction_PresetWarp_FourIsland' used but never defined
+src/debug.c:344: warning: `DebugAction_PresetWarp_FiveIsland' used but never defined
+src/debug.c:345: warning: `DebugAction_PresetWarp_SixIsland' used but never defined
+src/debug.c:346: warning: `DebugAction_PresetWarp_SevenIsland' used but never defined
+src/debug.c:348: warning: `DebugAction_Badges_AllBadges' used but never defined
+src/debug.c:349: warning: `DebugAction_Badges_First' used but never defined
+src/debug.c:350: warning: `DebugAction_Badges_Second' used but never defined
+src/debug.c:351: warning: `DebugAction_Badges_Third' used but never defined
+src/debug.c:352: warning: `DebugAction_Badges_Fourth' used but never defined
+src/debug.c:353: warning: `DebugAction_Badges_Fifth' used but never defined
+src/debug.c:354: warning: `DebugAction_Badges_Sixth' used but never defined
+src/debug.c:355: warning: `DebugAction_Badges_Seventh' used but never defined
+src/debug.c:356: warning: `DebugAction_Badges_Eighth' used but never defined
+make: *** [Makefile:273: build/firered/src/debug.o] Error 1
+make: *** Waiting for unfinished jobs....
+src/battle_script_commands.c: In function `Cmd_handleballthrow':
+src/battle_script_commands.c:9473: syntax error before `else'
+src/battle_script_commands.c: At top level:
+src/battle_script_commands.c:9479: syntax error before `else'
+agbcc: warnings being treated as errors
+src/battle_script_commands.c:9482: warning: type defaults to `int' in declaration of `MarkBattlerForControllerExec'
+src/battle_script_commands.c:9482: warning: parameter names (without types) in function declaration
+src/battle_script_commands.c:9482: conflicting types for `MarkBattlerForControllerExec'
+include/battle_util.h:65: previous declaration of `MarkBattlerForControllerExec'
+src/battle_script_commands.c:9482: warning: data definition has no type or storage class
+src/battle_script_commands.c:9483: warning: type defaults to `int' in declaration of `gBattlescriptCurrInstr'
+src/battle_script_commands.c:9483: conflicting types for `gBattlescriptCurrInstr'
+include/battle.h:682: previous declaration of `gBattlescriptCurrInstr'
+src/battle_script_commands.c:9483: warning: initialization makes integer from pointer without a cast
+src/battle_script_commands.c:9483: warning: data definition has no type or storage class
+src/battle_script_commands.c:9484: syntax error before `}'
+src/battle_script_commands.c:9488: warning: type defaults to `int' in declaration of `MarkBattlerForControllerExec'
+src/battle_script_commands.c:9488: warning: parameter names (without types) in function declaration
+src/battle_script_commands.c:9488: warning: data definition has no type or storage class
+src/battle_script_commands.c:9489: warning: type defaults to `int' in declaration of `gBattlescriptCurrInstr'
+src/battle_script_commands.c:9489: redefinition of `gBattlescriptCurrInstr'
+src/battle_script_commands.c:9483: `gBattlescriptCurrInstr' previously defined here
+src/battle_script_commands.c:9489: warning: initialization makes integer from pointer without a cast
+src/battle_script_commands.c:9489: warning: data definition has no type or storage class
+src/battle_script_commands.c:9490: syntax error before `}'
+src/battle_script_commands.c:9496: syntax error before `if'
+src/battle_script_commands.c:9549: warning: type defaults to `int' in declaration of `odds'
+src/battle_script_commands.c:9549: `ballMultiplier' undeclared here (not in a function)
+src/battle_script_commands.c:9551: initializer element is not constant
+src/battle_script_commands.c:9551: warning: data definition has no type or storage class
+src/battle_script_commands.c:9553: syntax error before `if'
+src/battle_script_commands.c:9574: warning: type defaults to `int' in declaration of `MarkBattlerForControllerExec'
+src/battle_script_commands.c:9574: warning: parameter names (without types) in function declaration
+src/battle_script_commands.c:9574: warning: data definition has no type or storage class
+src/battle_script_commands.c:9575: warning: type defaults to `int' in declaration of `gBattlescriptCurrInstr'
+src/battle_script_commands.c:9575: redefinition of `gBattlescriptCurrInstr'
+src/battle_script_commands.c:9489: `gBattlescriptCurrInstr' previously defined here
+src/battle_script_commands.c:9575: warning: initialization makes integer from pointer without a cast
+src/battle_script_commands.c:9575: warning: data definition has no type or storage class
+src/battle_script_commands.c:9576: syntax error before `&'
+src/battle_script_commands.c:9576: warning: type defaults to `int' in declaration of `SetMonData'
+src/battle_script_commands.c:9576: conflicting types for `SetMonData'
+include/pokemon.h:392: previous declaration of `SetMonData'
+src/battle_script_commands.c:9576: warning: data definition has no type or storage class
+src/battle_script_commands.c:9587: warning: type defaults to `int' in declaration of `odds'
+src/battle_script_commands.c:9587: redefinition of `odds'
+src/battle_script_commands.c:9549: `odds' previously defined here
+src/battle_script_commands.c:9587: initializer element is not constant
+src/battle_script_commands.c:9587: warning: data definition has no type or storage class
+src/battle_script_commands.c:9588: warning: type defaults to `int' in declaration of `odds'
+src/battle_script_commands.c:9588: redefinition of `odds'
+src/battle_script_commands.c:9587: `odds' previously defined here
+src/battle_script_commands.c:9588: initializer element is not constant
+src/battle_script_commands.c:9588: warning: data definition has no type or storage class
+src/battle_script_commands.c:9590: syntax error before `for'
+src/battle_script_commands.c:9595: warning: type defaults to `int' in declaration of `BtlController_EmitBallThrowAnim'
+src/battle_script_commands.c:9595: warning: parameter names (without types) in function declaration
+src/battle_script_commands.c:9595: conflicting types for `BtlController_EmitBallThrowAnim'
+include/battle_controllers.h:220: previous declaration of `BtlController_EmitBallThrowAnim'
+src/battle_script_commands.c:9595: warning: data definition has no type or storage class
+src/battle_script_commands.c:9596: warning: type defaults to `int' in declaration of `MarkBattlerForControllerExec'
+src/battle_script_commands.c:9596: warning: parameter names (without types) in function declaration
+src/battle_script_commands.c:9596: warning: data definition has no type or storage class
+src/battle_script_commands.c:9598: syntax error before `if'
+src/battle_script_commands.c:9601: syntax error before `&'
+src/battle_script_commands.c:9601: warning: type defaults to `int' in declaration of `SetMonData'
+src/battle_script_commands.c:9601: warning: data definition has no type or storage class
+src/battle_script_commands.c:9611: warning: type defaults to `int' in declaration of `gBattlescriptCurrInstr'
+src/battle_script_commands.c:9611: redefinition of `gBattlescriptCurrInstr'
+src/battle_script_commands.c:9575: `gBattlescriptCurrInstr' previously defined here
+src/battle_script_commands.c:9611: warning: initialization makes integer from pointer without a cast
+src/battle_script_commands.c:9611: warning: data definition has no type or storage class
+src/battle_script_commands.c:9612: syntax error before `}'
+src/battle_script_commands.c: In function `Cmd_trysetcaughtmondexflags':
+src/battle_script_commands.c:9653: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9653: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9653: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9653: subscripted value is neither array nor pointer
+src/battle_script_commands.c: In function `Cmd_trygivecaughtmonnick':
+src/battle_script_commands.c:9853: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9853: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9853: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9853: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9860: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9860: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9860: subscripted value is neither array nor pointer
+src/battle_script_commands.c:9860: subscripted value is neither array nor pointer
+make: *** [Makefile:273: build/firered/src/battle_script_commands.o] Error 1
+arm-none-eabi-as -mcpu=arm7tdmi --defsym FIRERED=1 --defsym REVISION=0 --defsym ENGLISH=1 --defsym MODERN=0 -o build/firered/src/event_object_movement.o build/firered/src/event_object_movement.s
+

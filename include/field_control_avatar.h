@@ -19,6 +19,7 @@ struct FieldInput
     bool8 input_field_1_2:1;
     bool8 input_field_1_3:1;
     u8 dpadDirection;
+    bool8 pressedDebugCombo:1;
 };
 
 extern struct FieldInput gInputToStoreInQuestLogMaybe;

@@ -88,6 +88,9 @@ static const TrainerSeeFunc sTrainerSeeFuncList2[] = {
 bool8 CheckForTrainersWantingBattle(void)
 {
     u8 i;
+
+    if (FlagGet(FLAG_DISABLE_TRAINER_ENCOUNTERS))
+        return FALSE;
     if (sub_8111C2C() == TRUE)
         return FALSE;
 

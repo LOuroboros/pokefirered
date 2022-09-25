@@ -1741,6 +1741,45 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
     CalculateMonStats(mon);
 }
 
+static u32 GenerateShinyPersonality(u32 otId)
+{
+    u32 personality;
+    u16 xored_otId = (otId & 0xFFFF) ^ (otId >> 16); // xored_otId ^ xored_personality <= 7, so xored_personality must be the same as xored_otId with the exception of the last 3 bits
+    u16 personality1 = 0, personality2 = 0;
+    u8 i;
+
+    xored_otId &= ~(7);
+    xored_otId |= (Random() % 8);
+
+    for (i = 0; i < 16; i++)
+    {
+        u16 bit = 1 << i;
+        bool8 set = Random() & 1;
+        if (xored_otId & bit) // bit is 1; 1 ^ X == 0 iff X = ; then personality 1 is 0 and personality2 is 1 or vice versa
+        {
+            if (set)
+                personality1 |= bit;
+            else
+                personality2 |= bit;
+        }
+        else // bit is 0; 0 ^ X == 0 iff X == 0; then both personalities are 0 or 1
+        {
+            if (set)
+            {
+                personality1 |= bit;
+                personality2 |= bit;
+            }
+        }
+    }
+
+    if (Random() & 1)
+        personality = (personality1) | (personality2 << 16);
+    else
+        personality = (personality2) | (personality1 << 16);
+
+    return personality;
+}
+
 void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
 {
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
@@ -1777,6 +1816,16 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+    }
+
+    if (FlagGet(FLAG_FORCE_SHINIES))
+    {
+        do
+        {
+            personality = GenerateShinyPersonality(value);
+            shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
+        } while (shinyValue >= SHINY_ODDS);
+        SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
     }
 
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);

@@ -35,14 +35,14 @@
 #define FLAG_TEMP_1E             0x01E
 #define FLAG_TEMP_1F             0x01F
 
-#define FLAG_0x020               0x020
-#define FLAG_0x021               0x021
-#define FLAG_0x022               0x022
-#define FLAG_0x023               0x023
-#define FLAG_0x024               0x024
-#define FLAG_0x025               0x025
-#define FLAG_0x026               0x026
-#define FLAG_0x027               0x027
+#define FLAG_DISABLE_COLLISIONS           0x020
+#define FLAG_DISABLE_WILD_ENCOUNTERS      0x021
+#define FLAG_DISABLE_TRAINER_ENCOUNTERS   0x022
+#define FLAG_DISABLE_BATTLE_BAG_ACCESS    0x023
+#define FLAG_DISABLE_BALL_THROWS          0x024
+#define FLAG_FORCE_SHINIES                0x025
+#define FLAG_DISABLE_ESCAPING_FROM_BATTLE 0x026
+#define FLAG_DISABLE_EXPERIENCE           0x027
 
 // Hide/show flags
 #define FLAG_HIDE_BULBASAUR_BALL                           0x028

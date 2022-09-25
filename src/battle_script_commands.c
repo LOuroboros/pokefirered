@@ -3130,7 +3130,7 @@ static void Cmd_getexp(void)
               | BATTLE_TYPE_TRAINER_TOWER
               | BATTLE_TYPE_BATTLE_TOWER
               | BATTLE_TYPE_SAFARI
-              | BATTLE_TYPE_EREADER_TRAINER)))
+              | BATTLE_TYPE_EREADER_TRAINER)) || FlagGet(FLAG_DISABLE_EXPERIENCE))
         {
             gBattleScripting.getexpState = 6; // goto last case
         }
@@ -9470,7 +9470,7 @@ static void Cmd_handleballthrow(void)
     gActiveBattler = gBattlerAttacker;
     gBattlerTarget = gBattlerAttacker ^ BIT_SIDE;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_GHOST)
+    else if (gBattleTypeFlags & BATTLE_TYPE_GHOST)
     {
         BtlController_EmitBallThrowAnim(BUFFER_A, BALL_GHOST_DODGE);
         MarkBattlerForControllerExec(gActiveBattler);

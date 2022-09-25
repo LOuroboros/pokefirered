@@ -30,6 +30,7 @@
 #include "constants/event_objects.h"
 #include "constants/maps.h"
 #include "constants/metatile_behaviors.h"
+#include "debug.h"
 
 #define SIGNPOST_POKECENTER 0
 #define SIGNPOST_POKEMART 1
@@ -89,6 +90,7 @@ void FieldClearPlayerInput(struct FieldInput *input)
     input->input_field_1_2 = FALSE;
     input->input_field_1_3 = FALSE;
     input->dpadDirection = 0;
+    input->pressedDebugCombo = FALSE;
 }
 
 void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
@@ -119,6 +121,10 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
                         input->pressedBButton = TRUE;
                     if (newKeys & R_BUTTON)
                         input->pressedRButton = TRUE;
+                    #ifdef DEBUG_MENU_ENABLED
+                        if (heldKeys & R_BUTTON && newKeys & SELECT_BUTTON)
+                            input->pressedDebugCombo = TRUE;
+                    #endif
                 }
             }
         }
@@ -211,6 +217,15 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
 
     if (TryRunOnFrameMapScript() == TRUE)
         return TRUE;
+
+#ifdef DEBUG_MENU_ENABLED
+    if (input->pressedDebugCombo)
+    {
+        PlaySE(SE_WIN_OPEN);
+        Debug_ShowMainMenu();
+        return TRUE;
+    }
+#endif
 
     if (input->tookStep)
     {
@@ -739,6 +754,8 @@ void RestartWildEncounterImmunitySteps(void)
 
 static bool8 CheckStandardWildEncounter(u32 metatileAttributes)
 {
+    if (FlagGet(FLAG_DISABLE_WILD_ENCOUNTERS))
+        return FALSE;
     return TryStandardWildEncounter(metatileAttributes);
 }
 
