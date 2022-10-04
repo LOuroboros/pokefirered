@@ -1342,9 +1342,12 @@ static void Task_OakSpeech34(u8 taskId)
 
     if (tTrainerPicFadeState != 0)
     {
+        static const u8 sText_RivalName[] = _("JAIME");
         OaksSpeechPrintMessage(gOakText_IntroduceRival, sOakSpeechResources->textSpeed);
         sOakSpeechResources->hasPlayerBeenNamed = TRUE;
-        gTasks[taskId].func = Task_OakSpeech35;
+        StringCopy(gSaveBlock1Ptr->rivalName, sText_RivalName);
+        PlaySE(SE_SELECT);
+        gTasks[taskId].func = Task_OakSpeech27;
     }
 }
 
