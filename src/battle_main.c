@@ -2257,7 +2257,7 @@ static void BattleStartClearSetData(void)
 
     gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
     gBattleScripting.monCaught = FALSE;
-
+    gBattleScripting.expOnCatch = TRUE;
 
     gMultiHitCounter = 0;
     gBattleOutcome = 0;
@@ -3861,7 +3861,7 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
     if (!gPaletteFade.active)
     {
         ResetSpriteData();
-        if (gLeveledUpInBattle == 0 || gBattleOutcome != B_OUTCOME_WON)
+        if (gLeveledUpInBattle == 0 || (gBattleOutcome != B_OUTCOME_WON && gBattleOutcome != B_OUTCOME_CAUGHT))
             gBattleMainFunc = ReturnFromBattleToOverworld;
         else
             gBattleMainFunc = TryEvolvePokemon;
