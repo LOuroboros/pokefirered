@@ -14,9 +14,7 @@
 #include "region_map.h"
 #include "strings.h"
 #include "constants/maps.h"
-#include "constants/flags.h"
-#include "constants/trainer_classes.h"
-#include "constants/species.h"
+#include "constants/trainers.h"
 #include "constants/items.h"
 #include "constants/region_map_sections.h"
 
@@ -175,10 +173,10 @@ void SetQuestLogEvent(u16 eventId, const u16 *eventData)
 
     if (eventId == QL_EVENT_DEPARTED && sEventShouldNotRecordSteps == 2)
     {
-        sub_811381C();
+        QL_EnableRecordingSteps();
         return;
     }
-    sub_811381C();
+    QL_EnableRecordingSteps();
     if (gQuestLogState == QL_STATE_PLAYBACK)
         return;
 
@@ -191,7 +189,7 @@ void SetQuestLogEvent(u16 eventId, const u16 *eventData)
     if (TrySetLinkQuestLogEvent(eventId, eventData) == TRUE)
         return;
 
-    if (MenuHelpers_LinkSomething() == TRUE)
+    if (MenuHelpers_IsLinkActive() == TRUE)
         return;
 
     if (InUnionRoom() == TRUE)
@@ -340,17 +338,17 @@ static bool8 ShouldRegisterEvent_HandleBeatStoryTrainer(u16 eventId, const u16 *
     if (eventId == QL_EVENT_DEFEATED_TRAINER)
     {
         u8 trainerClass = gTrainers[*eventData].trainerClass;
-        if (   trainerClass == CLASS_RIVAL
-               || trainerClass == CLASS_RIVAL_2
-               || trainerClass == CLASS_CHAMPION_2
-               || trainerClass == CLASS_BOSS)
+        if (trainerClass == TRAINER_CLASS_RIVAL_EARLY
+         || trainerClass == TRAINER_CLASS_RIVAL_LATE
+         || trainerClass == TRAINER_CLASS_CHAMPION
+         || trainerClass == TRAINER_CLASS_BOSS)
             return FALSE;
         return TRUE;
     }
     return FALSE;
 }
 
-void sub_811381C(void)
+void QL_EnableRecordingSteps(void)
 {
     sEventShouldNotRecordSteps = 0;
 }
@@ -427,7 +425,7 @@ static bool8 TrySetTrainerBattleQuestLogEvent(u16 eventId, const u16 *eventData)
     return TRUE;
 }
 
-void sub_81139BC(void)
+void QuestLogEvents_HandleEndTrainerBattle(void)
 {
     if (sDeferredEvent.id != QL_EVENT_0)
     {
@@ -584,18 +582,16 @@ void sub_8113ABC(const u16 *a0)
 
 bool8 sub_8113AE8(const u16 *a0)
 {
-#ifndef NONMATCHING
-    register const u16 *r0 asm("r0") = a0;
-#else
     const u16 *r0 = a0;
-#endif
 
-    if (r0 == NULL || r0[1] > sQuestLogCursor)
+    if (a0 == NULL) // checks must be separate to match
+        return FALSE;
+    if (r0[1] > sQuestLogCursor)
         return FALSE;
 
-    sQuestLogEventTextBufferCBs[a0[0] & 0xFFF](a0);
-    gUnknown_203B044.id = a0[0];
-    gUnknown_203B044.unk_1 = (a0[0] & 0xF000) >> 12;
+    sQuestLogEventTextBufferCBs[(r0[0] & 0xFFF)](a0);
+    gUnknown_203B044.id = r0[0];
+    gUnknown_203B044.unk_1 = (r0[0] & 0xF000) >> 12;
     if (gUnknown_203B044.unk_1 != 0)
         gUnknown_203B044.unk_2 = 1;
     return TRUE;
@@ -1153,9 +1149,9 @@ static const u16 *BufferQuestLogText_LinkBattledMulti(const u16 *a0)
     memset(gStringVar1, EOS, PLAYER_NAME_LENGTH + 1);
     memset(gStringVar2, EOS, PLAYER_NAME_LENGTH + 1);
     memset(gStringVar3, EOS, PLAYER_NAME_LENGTH + 1);
-    StringCopy7(gStringVar1, (const u8 *)a0 +  5);
-    StringCopy7(gStringVar2, (const u8 *)a0 + 12);
-    StringCopy7(gStringVar3, (const u8 *)a0 + 19);
+    StringCopy_PlayerName(gStringVar1, (const u8 *)a0 +  5);
+    StringCopy_PlayerName(gStringVar2, (const u8 *)a0 + 12);
+    StringCopy_PlayerName(gStringVar3, (const u8 *)a0 + 19);
     BufferLinkPartnersName(gStringVar1);
     BufferLinkPartnersName(gStringVar2);
     BufferLinkPartnersName(gStringVar3);
@@ -1684,9 +1680,9 @@ static const u16 *BufferQuestLogText_DefeatedTrainer(const u16 *eventData)
     GetMapNameGeneric(gStringVar1, r6[0]);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
 
-    if (gTrainers[r5[2]].trainerClass == CLASS_RIVAL
-        || gTrainers[r5[2]].trainerClass == CLASS_RIVAL_2
-        || gTrainers[r5[2]].trainerClass == CLASS_CHAMPION_2)
+    if (gTrainers[r5[2]].trainerClass == TRAINER_CLASS_RIVAL_EARLY
+     || gTrainers[r5[2]].trainerClass == TRAINER_CLASS_RIVAL_LATE
+     || gTrainers[r5[2]].trainerClass == TRAINER_CLASS_CHAMPION)
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL));
     else
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gTrainers[r5[2]].trainerName);

@@ -75,7 +75,7 @@ void CopyItemName(u16 itemId, u8 * dest)
     if (itemId == ITEM_ENIGMA_BERRY)
     {
         StringCopy(dest, GetBerryInfo(ITEM_TO_BERRY(ITEM_ENIGMA_BERRY))->name);
-        StringAppend(dest, gUnknown_84162BD);
+        StringAppend(dest, gText_Berry);
     }
     else
     {
@@ -139,7 +139,7 @@ bool8 CheckBagHasItem(u16 itemId, u16 count)
     return FALSE;
 }
 
-bool8 CheckHasAtLeastOneBerry(void)
+bool8 HasAtLeastOneBerry(void)
 {
     u8 itemId;
     bool8 exists;
@@ -598,7 +598,7 @@ void TrySetObtainedItemQuestLogEvent(u16 itemId)
      || itemId == ITEM_SAPPHIRE
     )
     {
-        if (itemId != ITEM_TOWN_MAP || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PALLET_TOWN_GARYS_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(PALLET_TOWN_GARYS_HOUSE)))
+        if (itemId != ITEM_TOWN_MAP || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PALLET_TOWN_RIVALS_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(PALLET_TOWN_RIVALS_HOUSE)))
         {
             ptr = malloc(sizeof(*ptr));
             ptr->itemId = itemId;
@@ -611,7 +611,7 @@ void TrySetObtainedItemQuestLogEvent(u16 itemId)
 
 u16 SanitizeItemId(u16 itemId)
 {
-    if (itemId >= ITEM_N_A)
+    if (itemId >= ITEMS_COUNT)
         return ITEM_NONE;
     return itemId;
 }
@@ -621,12 +621,13 @@ const u8 * ItemId_GetName(u16 itemId)
     return gItems[SanitizeItemId(itemId)].name;
 }
 
-u16 itemid_get_number(u16 itemId)
+// Unused
+u16 ItemId_GetId(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].itemId;
 }
 
-u16 itemid_get_market_price(u16 itemId)
+u16 ItemId_GetPrice(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].price;
 }
@@ -646,14 +647,15 @@ const u8 * ItemId_GetDescription(u16 itemId)
     return gItems[SanitizeItemId(itemId)].description;
 }
 
-bool8 itemid_is_unique(u16 itemId)
+u8 ItemId_GetImportance(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].importance;
 }
 
-u8 itemid_get_x19(u16 itemId)
+// Unused
+u8 ItemId_GetRegistrability(u16 itemId)
 {
-    return gItems[SanitizeItemId(itemId)].exitsBagOnUse;
+    return gItems[SanitizeItemId(itemId)].registrability;
 }
 
 u8 ItemId_GetPocket(u16 itemId)

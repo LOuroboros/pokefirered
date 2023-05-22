@@ -8,12 +8,11 @@
 #include "fldeff.h"
 #include "party_menu.h"
 #include "field_poison.h"
-#include "constants/species.h"
 #include "constants/battle.h"
 
 static bool32 IsMonValidSpecies(struct Pokemon *pokemon)
 {
-    u16 species = GetMonData(pokemon, MON_DATA_SPECIES2);
+    u16 species = GetMonData(pokemon, MON_DATA_SPECIES_OR_EGG);
     if (species == SPECIES_NONE || species == SPECIES_EGG)
         return FALSE;
     return TRUE;
@@ -34,10 +33,10 @@ static void FaintFromFieldPoison(u8 partyIdx)
 {
     struct Pokemon *pokemon = gPlayerParty + partyIdx;
     u32 status = STATUS1_NONE;
-    AdjustFriendship(pokemon, 8);
+    AdjustFriendship(pokemon, FRIENDSHIP_EVENT_FAINT_OUTSIDE_BATTLE);
     SetMonData(pokemon, MON_DATA_STATUS, &status);
     GetMonData(pokemon, MON_DATA_NICKNAME, gStringVar1);
-    StringGetEnd10(gStringVar1);
+    StringGet_Nickname(gStringVar1);
 }
 
 static bool32 MonFaintedFromPoison(u8 partyIdx)
@@ -63,7 +62,7 @@ static void Task_TryFieldPoisonWhiteOut(u8 taskId)
             {
                 FaintFromFieldPoison(tPartyId);
                 ShowFieldMessage(gText_PkmnFainted3);
-                data[0]++;
+                tState++;
                 return;
             }
         }
@@ -78,7 +77,7 @@ static void Task_TryFieldPoisonWhiteOut(u8 taskId)
             gSpecialVar_Result = TRUE;
         else
             gSpecialVar_Result = FALSE;
-        EnableBothScriptContexts();
+        ScriptContext_Enable();
         DestroyTask(taskId);
         break;
     }
@@ -87,7 +86,7 @@ static void Task_TryFieldPoisonWhiteOut(u8 taskId)
 void TryFieldPoisonWhiteOut(void)
 {
     CreateTask(Task_TryFieldPoisonWhiteOut, 80);
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
 }
 
 s32 DoPoisonFieldEffect(void)

@@ -1,6 +1,6 @@
-EventScript_AfterWhiteOutHeal:: @ 81A8D97
+EventScript_AfterWhiteOutHeal::
 	lockall
-	textcolor 1
+	textcolor NPC_TEXT_COLOR_FEMALE
 	msgbox Text_FirstShouldRestoreMonsHealth
 	call EventScript_PkmnCenterNurse_TakeAndHealPkmn
 	call_if_unset FLAG_DEFEATED_BROCK, EventScript_AfterWhiteOutHealMsgPreBrock
@@ -11,18 +11,20 @@ EventScript_AfterWhiteOutHeal:: @ 81A8D97
 	releaseall
 	end
 
-EventScript_AfterWhiteOutHealMsgPreBrock:: @ 81A8DC6
+EventScript_AfterWhiteOutHealMsgPreBrock::
 	msgbox Text_MonsHealedShouldBuyPotions
 	return
 
-EventScript_AfterWhiteOutHealMsg:: @ 81A8DCF
+EventScript_AfterWhiteOutHealMsg::
 	msgbox Text_MonsHealed
 	return
 
-EventScript_AfterWhiteOutMomHeal:: @ 81A8DD8
+@ LOCALID_MOM set by PalletTown_PlayersHouse_1F
+
+EventScript_AfterWhiteOutMomHeal::
 	lockall
-	textcolor 1
-	applymovement 1, Movement_WalkInPlaceFastestDown
+	textcolor NPC_TEXT_COLOR_FEMALE
+	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox Text_HadQuiteAnExperienceTakeRest
 	call EventScript_OutOfCenterPartyHeal
@@ -31,36 +33,33 @@ EventScript_AfterWhiteOutMomHeal:: @ 81A8DD8
 	releaseall
 	end
 
-EventScript_FieldPoison:: @ 81A8DFD
+EventScript_FieldPoison::
 	lockall
-	textcolor 3
+	textcolor NPC_TEXT_COLOR_NEUTRAL
 	special TryFieldPoisonWhiteOut
 	waitstate
-	compare VAR_RESULT, TRUE
-	goto_if_eq EventScript_FieldWhiteOut
+	goto_if_eq VAR_RESULT, TRUE, EventScript_FieldWhiteOut
 	releaseall
 	end
 
-EventScript_FieldWhiteOut:: @ 81A8E11
-	checkmoney 1, 0
-	compare VAR_RESULT, FALSE
-	goto_if_eq EventScript_FieldWhiteOutNoMoney
-	compare VAR_RESULT, TRUE
-	goto_if_eq EventScript_FieldWhiteOutHasMoney
+EventScript_FieldWhiteOut::
+	checkmoney 1
+	goto_if_eq VAR_RESULT, FALSE, EventScript_FieldWhiteOutNoMoney
+	goto_if_eq VAR_RESULT, TRUE, EventScript_FieldWhiteOutHasMoney
 	end
 
-EventScript_FieldWhiteOutNoMoney:: @ 81A8E2E
+EventScript_FieldWhiteOutNoMoney::
 	msgbox Text_WhitedOut
 	goto EventScript_FieldWhiteOutFade
 	end
 
-EventScript_FieldWhiteOutHasMoney:: @ 81A8E3C
+EventScript_FieldWhiteOutHasMoney::
 	special OverworldWhiteOutGetMoneyLoss
 	msgbox Text_WhitedOutLostMoney
 	goto EventScript_FieldWhiteOutFade
 	end
 
-EventScript_FieldWhiteOutFade:: @ 81A8E4D
+EventScript_FieldWhiteOutFade::
 	special Script_FadeOutMapMusic
 	waitstate
 	fadescreen FADE_TO_BLACK

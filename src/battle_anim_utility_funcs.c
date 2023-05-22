@@ -18,24 +18,24 @@ struct AnimStatsChangeData
 
 static void StartBlendAnimSpriteColor(u8 taskId, u32 selectedPalettes);
 static void AnimTask_BlendSpriteColor_Step2(u8 taskId);
-static void Task_WaitHardwarePaletteFade(u8 taskId);
-static void Task_DoCloneBattlerSpriteWithBlend(u8 taskId);
-static void Task_FinishCloneBattlerSpriteWithBlend(struct Sprite *sprite);
-static void sub_80BAF38(u8 taskId);
-static void sub_80BB0D8(u8 taskId);
-static void sub_80BB2A0(u8 taskId);
-static void sub_80BB4B8(u8 taskId);
-static void sub_80BB6CC(u8 taskId);
-static void sub_80BB790(u32 selectedPalettes, u16 color);
-static void sub_80BB8A4(u8 taskId);
-static void sub_80BBC2C(u8 taskId);
-static void sub_80BC19C(u8 taskId);
+static void AnimTask_HardwarePaletteFade_Step(u8 taskId);
+static void AnimTask_TraceMonBlended_Step(u8 taskId);
+static void AnimMonTrace(struct Sprite *sprite);
+static void AnimTask_DrawFallingWhiteLinesOnAttacker_Step(u8 taskId);
+static void StatsChangeAnimation_Step1(u8 taskId);
+static void StatsChangeAnimation_Step2(u8 taskId);
+static void StatsChangeAnimation_Step3(u8 taskId);
+static void AnimTask_Flash_Step(u8 taskId);
+static void SetPalettesToColor(u32 selectedPalettes, u16 color);
+static void AnimTask_UpdateSlidingBg(u8 taskId);
+static void UpdateMonScrollingBgMask(u8 taskId);
+static void AnimTask_WaitAndRestoreVisibility(u8 taskId);
 
 static EWRAM_DATA struct AnimStatsChangeData *sAnimStatsChangeData = NULL;
 
-static const u16 gUnknown_83E7CC8[] = { RGB(31, 31, 31) };
-const u8 gUnknown_83E7CCA[] = { REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT };
-const u8 gUnknown_83E7CCE[] = { REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT };
+static const u16 sRgbWhite[] = { RGB_WHITE };
+const u8 gBattleAnimRegOffsBgCnt[] = { REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT };
+const u8 gBattleIntroRegOffsBgCnt[] = { REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT };
 
 // gBattleAnimArgs[0] is a bitfield.
 // Bits 0-10 result in the following palettes being selected:
@@ -50,11 +50,11 @@ const u8 gUnknown_83E7CCE[] = { REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET
 //   8: Player battler right
 //   9: Enemy battler left
 //  10: Enemy battler right
-void AnimTask_BlendSelected(u8 taskId)
+void AnimTask_BlendBattleAnimPal(u8 taskId)
 {
-    u32 selectedPalettes = UnpackSelectedBattleAnimPalettes(gBattleAnimArgs[0]);
+    u32 selectedPalettes = UnpackSelectedBattlePalettes(gBattleAnimArgs[0]);
     
-    selectedPalettes |= SelectBattlerSpritePalettes(
+    selectedPalettes |= GetBattleMonSpritePalettesMask(
         (gBattleAnimArgs[0] >>  7) & 1,
         (gBattleAnimArgs[0] >>  8) & 1,
         (gBattleAnimArgs[0] >>  9) & 1,
@@ -72,26 +72,26 @@ void AnimTask_BlendSelected(u8 taskId)
 // 5: Blend all
 // 6: Neither bg nor attacker's partner
 // 7: Neither bg nor target's partner
-void AnimTask_BlendExcept(u8 taskId)
+void AnimTask_BlendBattleAnimPalExclude(u8 taskId)
 {
     u8 battler;
     u32 selectedPalettes;
     u8 animBattlers[2];
 
     animBattlers[1] = 0xFF;
-    selectedPalettes = UnpackSelectedBattleAnimPalettes(1);
+    selectedPalettes = UnpackSelectedBattlePalettes(1);
     switch (gBattleAnimArgs[0])
     {
     case 2:
         selectedPalettes = 0;
         // fall through
-    case 0:
+    case ANIM_ATTACKER:
         animBattlers[0] = gBattleAnimAttacker;
         break;
     case 3:
         selectedPalettes = 0;
         // fall through
-    case 1:
+    case ANIM_TARGET:
         animBattlers[0] = gBattleAnimTarget;
         break;
     case 4:
@@ -122,7 +122,7 @@ void AnimTask_BlendExcept(u8 taskId)
 
 void AnimTask_SetCamouflageBlend(u8 taskId)
 {
-    u32 selectedPalettes = UnpackSelectedBattleAnimPalettes(gBattleAnimArgs[0]);
+    u32 selectedPalettes = UnpackSelectedBattlePalettes(gBattleAnimArgs[0]);
     
     switch (gBattleTerrain)
     {
@@ -217,16 +217,17 @@ void AnimTask_HardwarePaletteFade(u8 taskId)
                              gBattleAnimArgs[2],
                              gBattleAnimArgs[3],
                              gBattleAnimArgs[4]);
-    gTasks[taskId].func = Task_WaitHardwarePaletteFade;
+    gTasks[taskId].func = AnimTask_HardwarePaletteFade_Step;
 }
 
-static void Task_WaitHardwarePaletteFade(u8 taskId)
+static void AnimTask_HardwarePaletteFade_Step(u8 taskId)
 {
     if (!gPaletteFade.active)
         DestroyAnimVisualTask(taskId);
 }
 
-void AnimTask_CloneBattlerSpriteWithBlend(u8 taskId)
+// Used to leave blended traces of a mon, usually to imply speed as in Agility or Aerial Ace
+void AnimTask_TraceMonBlended(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
@@ -236,9 +237,9 @@ void AnimTask_CloneBattlerSpriteWithBlend(u8 taskId)
     task->data[3] = gBattleAnimArgs[2];
     task->data[4] = gBattleAnimArgs[3];
     task->data[5] = 0;
-    task->func = Task_DoCloneBattlerSpriteWithBlend;
+    task->func = AnimTask_TraceMonBlended_Step;
 }
-static void Task_DoCloneBattlerSpriteWithBlend(u8 taskId)
+static void AnimTask_TraceMonBlended_Step(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
@@ -257,7 +258,7 @@ static void Task_DoCloneBattlerSpriteWithBlend(u8 taskId)
                 gSprites[task->data[6]].data[0] = task->data[3];
                 gSprites[task->data[6]].data[1] = taskId;
                 gSprites[task->data[6]].data[2] = 5;
-                gSprites[task->data[6]].callback = Task_FinishCloneBattlerSpriteWithBlend;
+                gSprites[task->data[6]].callback = AnimMonTrace;
                 ++task->data[5];
             }
             --task->data[4];
@@ -270,7 +271,7 @@ static void Task_DoCloneBattlerSpriteWithBlend(u8 taskId)
     }
 }
 
-static void Task_FinishCloneBattlerSpriteWithBlend(struct Sprite *sprite)
+static void AnimMonTrace(struct Sprite *sprite)
 {
     if (sprite->data[0])
     {
@@ -279,11 +280,12 @@ static void Task_FinishCloneBattlerSpriteWithBlend(struct Sprite *sprite)
     else
     {
         --gTasks[sprite->data[1]].data[sprite->data[2]];
-        obj_delete_but_dont_free_vram(sprite);
+        DestroySpriteWithActiveSheet(sprite);
     }
 }
 
-void AnimTask_SetUpCurseBackground(u8 taskId)
+// Only used by Curse for non-Ghost mons
+void AnimTask_DrawFallingWhiteLinesOnAttacker(u8 taskId)
 {
     u16 species;
     s32 newSpriteId;
@@ -330,21 +332,21 @@ void AnimTask_SetUpCurseBackground(u8 taskId)
     else
         species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
     spriteId = GetAnimBattlerSpriteId(ANIM_ATTACKER);
-    newSpriteId = sub_8076E34(gBattleAnimAttacker, spriteId, species);
-    sub_80752A0(&animBgData);
+    newSpriteId = CreateInvisibleSpriteCopy(gBattleAnimAttacker, spriteId, species);
+    GetBattleAnimBg1Data(&animBgData);
     AnimLoadCompressedBgTilemap(animBgData.bgId, gFile_graphics_battle_anims_masks_curse_tilemap);
     if (IsContest())
-        sub_80730C0(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
+        RelocateBattleBgPal(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
     AnimLoadCompressedBgGfx(animBgData.bgId, gFile_graphics_battle_anims_masks_curse_sheet, animBgData.tilesOffset);
-    LoadPalette(gUnknown_83E7CC8, animBgData.paletteId * 16 + 1, 2);
-    gBattle_BG1_X = -gSprites[spriteId].pos1.x + 32;
-    gBattle_BG1_Y = -gSprites[spriteId].pos1.y + 32;
+    LoadPalette(sRgbWhite, animBgData.paletteId * 16 + 1, 2);
+    gBattle_BG1_X = -gSprites[spriteId].x + 32;
+    gBattle_BG1_Y = -gSprites[spriteId].y + 32;
     gTasks[taskId].data[0] = newSpriteId;
     gTasks[taskId].data[6] = var0;
-    gTasks[taskId].func = sub_80BAF38;
+    gTasks[taskId].func = AnimTask_DrawFallingWhiteLinesOnAttacker_Step;
 }
 
-static void sub_80BAF38(u8 taskId)
+static void AnimTask_DrawFallingWhiteLinesOnAttacker_Step(u8 taskId)
 {
     struct BattleAnimBgData animBgData;
     struct Sprite *sprite;
@@ -358,7 +360,7 @@ static void sub_80BAF38(u8 taskId)
         gBattle_BG1_Y += 64;
         if (++gTasks[taskId].data[11] == 4)
         {
-            sub_8073128(0);
+            ResetBattleAnimBg(0);
             gBattle_WIN0H = 0;
             gBattle_WIN0V = 0;
             SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR
@@ -377,8 +379,8 @@ static void sub_80BAF38(u8 taskId)
             sprite = &gSprites[GetAnimBattlerSpriteId(ANIM_ATTACKER)]; // unused
             sprite = &gSprites[gTasks[taskId].data[0]];
             DestroySprite(sprite);
-            sub_80752A0(&animBgData);
-            sub_8075358(animBgData.bgId);
+            GetBattleAnimBg1Data(&animBgData);
+            InitBattleAnimBg(animBgData.bgId);
             if (gTasks[taskId].data[6] == 1)
                 ++gSprites[gBattlerSpriteIds[BATTLE_PARTNER(gBattleAnimAttacker)]].oam.priority;
             gBattle_BG1_Y = 0;
@@ -387,17 +389,17 @@ static void sub_80BAF38(u8 taskId)
     }
 }
 
-void sub_80BB088(u8 taskId)
+void InitStatsChangeAnimation(u8 taskId)
 {
     u8 i;
 
     sAnimStatsChangeData = AllocZeroed(sizeof(struct AnimStatsChangeData));
     for (i = 0; i < 8; ++i)
         sAnimStatsChangeData->data[i] = gBattleAnimArgs[i];
-    gTasks[taskId].func = sub_80BB0D8;
+    gTasks[taskId].func = StatsChangeAnimation_Step1;
 }
 
-static void sub_80BB0D8(u8 taskId)
+static void StatsChangeAnimation_Step1(u8 taskId)
 {
     if (sAnimStatsChangeData->data[2] == 0)
         sAnimStatsChangeData->battler1 = gBattleAnimAttacker;
@@ -436,29 +438,29 @@ static void sub_80BB0D8(u8 taskId)
         sAnimStatsChangeData->species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[sAnimStatsChangeData->battler1]], MON_DATA_SPECIES);
     else
         sAnimStatsChangeData->species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[sAnimStatsChangeData->battler1]], MON_DATA_SPECIES);
-    gTasks[taskId].func = sub_80BB2A0;
+    gTasks[taskId].func = StatsChangeAnimation_Step2;
 }
 
-static void sub_80BB2A0(u8 taskId)
+static void StatsChangeAnimation_Step2(u8 taskId)
 {
     struct BattleAnimBgData animBgData;
     u8 spriteId, newSpriteId = 0;
     u8 battlerSpriteId;
 
     battlerSpriteId = gBattlerSpriteIds[sAnimStatsChangeData->battler1];
-    spriteId = sub_8076E34(sAnimStatsChangeData->battler1, battlerSpriteId, sAnimStatsChangeData->species);
+    spriteId = CreateInvisibleSpriteCopy(sAnimStatsChangeData->battler1, battlerSpriteId, sAnimStatsChangeData->species);
     if (sAnimStatsChangeData->data[3])
     {
         battlerSpriteId = gBattlerSpriteIds[sAnimStatsChangeData->battler2];
-        newSpriteId = sub_8076E34(sAnimStatsChangeData->battler2, battlerSpriteId, sAnimStatsChangeData->species);
+        newSpriteId = CreateInvisibleSpriteCopy(sAnimStatsChangeData->battler2, battlerSpriteId, sAnimStatsChangeData->species);
     }
-    sub_80752A0(&animBgData);
+    GetBattleAnimBg1Data(&animBgData);
     if (sAnimStatsChangeData->data[0] == 0)
         AnimLoadCompressedBgTilemap(animBgData.bgId, gBattleStatMask1_Tilemap);
     else
         AnimLoadCompressedBgTilemap(animBgData.bgId, gBattleStatMask2_Tilemap);
     if (IsContest())
-        sub_80730C0(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
+        RelocateBattleBgPal(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
     AnimLoadCompressedBgGfx(animBgData.bgId, gBattleStatMask_Gfx, animBgData.tilesOffset);
     switch (sAnimStatsChangeData->data[1])
     {
@@ -514,16 +516,17 @@ static void sub_80BB2A0(u8 taskId)
     gTasks[taskId].data[3] = newSpriteId;
     gTasks[taskId].data[6] = sAnimStatsChangeData->higherPriority;
     gTasks[taskId].data[7] = gBattlerSpriteIds[sAnimStatsChangeData->battler2];
-    gTasks[taskId].func = sub_80BB4B8;
+    gTasks[taskId].func = StatsChangeAnimation_Step3;
     if (sAnimStatsChangeData->data[0] == 0)
         PlaySE12WithPanning(SE_M_STAT_INCREASE, BattleAnimAdjustPanning2(SOUND_PAN_ATTACKER));
     else
         PlaySE12WithPanning(SE_M_STAT_DECREASE, BattleAnimAdjustPanning2(SOUND_PAN_ATTACKER));
 }
 
-static void sub_80BB4B8(u8 taskId)
+static void StatsChangeAnimation_Step3(u8 taskId)
 {
     gBattle_BG1_Y += gTasks[taskId].data[1];
+
     switch (gTasks[taskId].data[15])
     {
     case 0:
@@ -548,7 +551,7 @@ static void sub_80BB4B8(u8 taskId)
             SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(gTasks[taskId].data[12], 16 - gTasks[taskId].data[12]));
             if (gTasks[taskId].data[12] == 0)
             {
-                sub_8073128(0);
+                ResetBattleAnimBg(0);
                 ++gTasks[taskId].data[15];
             }
         }
@@ -579,19 +582,19 @@ static void sub_80BB4B8(u8 taskId)
 
 void AnimTask_Flash(u8 taskId)
 {
-    u32 selectedPalettes = SelectBattlerSpritePalettes(1, 1, 1, 1);
+    u32 selectedPalettes = GetBattleMonSpritePalettesMask(1, 1, 1, 1);
 
-    sub_80BB790(selectedPalettes, 0);
+    SetPalettesToColor(selectedPalettes, 0);
     gTasks[taskId].data[14] = selectedPalettes >> 16;
-    selectedPalettes = SelectBattleAnimSpriteAndBgPalettes(1, 0, 0, 0, 0, 0, 0) & 0xFFFF;
-    sub_80BB790(selectedPalettes, 0xFFFF);
+    selectedPalettes = GetBattlePalettesMask(1, 0, 0, 0, 0, 0, 0) & 0xFFFF;
+    SetPalettesToColor(selectedPalettes, 0xFFFF);
     gTasks[taskId].data[15] = selectedPalettes;
     gTasks[taskId].data[0] = 0;
     gTasks[taskId].data[1] = 0;
-    gTasks[taskId].func = sub_80BB6CC;
+    gTasks[taskId].func = AnimTask_Flash_Step;
 }
 
-static void sub_80BB6CC(u8 taskId)
+static void AnimTask_Flash_Step(u8 taskId)
 {
     u16 i;
     struct Task *task = &gTasks[taskId];
@@ -636,7 +639,7 @@ static void sub_80BB6CC(u8 taskId)
     }
 }
 
-static void sub_80BB790(u32 selectedPalettes, u16 color)
+static void SetPalettesToColor(u32 selectedPalettes, u16 color)
 {
     u16 i, curOffset, paletteOffset;
 
@@ -663,8 +666,8 @@ void AnimTask_StartSlidingBg(u8 taskId)
 {
     u8 newTaskId;
 
-    sub_8075458(0);
-    newTaskId = CreateTask(sub_80BB8A4, 5);
+    ToggleBg3Mode(0);
+    newTaskId = CreateTask(AnimTask_UpdateSlidingBg, 5);
     if (gBattleAnimArgs[2] && GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
     {
         gBattleAnimArgs[0] = -gBattleAnimArgs[0];
@@ -677,7 +680,7 @@ void AnimTask_StartSlidingBg(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
-static void sub_80BB8A4(u8 taskId)
+static void AnimTask_UpdateSlidingBg(u8 taskId)
 {
     gTasks[taskId].data[10] += gTasks[taskId].data[1];
     gTasks[taskId].data[11] += gTasks[taskId].data[2];
@@ -689,7 +692,7 @@ static void sub_80BB8A4(u8 taskId)
     {
         gBattle_BG3_X = 0;
         gBattle_BG3_Y = 0;
-        sub_8075458(1);
+        ToggleBg3Mode(1);
         DestroyTask(taskId);
     }
 }
@@ -712,6 +715,7 @@ void AnimTask_GetTargetIsAttackerPartner(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
+// For hiding or subsequently revealing all other battlers
 void AnimTask_SetAllNonAttackersInvisiblity(u8 taskId)
 {
     u16 battler;
@@ -722,7 +726,7 @@ void AnimTask_SetAllNonAttackersInvisiblity(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
-void sub_80BBA20(u8 taskId, s32 unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5, u8 arg6, u8 arg7, const u32 *gfx, const u32 *tilemap, const u32 *palette)
+void StartMonScrollingBgMask(u8 taskId, s32 unused, u16 scrollSpeed, u8 battler1, bool8 includePartner, u8 numFadeSteps, u8 fadeStepDelay, u8 duration, const u32 *gfx, const u32 *tilemap, const u32 *palette)
 {
     u16 species;
     u8 spriteId, newSpriteId = 0;
@@ -730,8 +734,8 @@ void sub_80BBA20(u8 taskId, s32 unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5,
     struct BattleAnimBgData animBgData;
     u8 battler2 = BATTLE_PARTNER(battler1);
 
-    if (IsContest() || (arg4 && !IsBattlerSpriteVisible(battler2)))
-        arg4 = 0;
+    if (IsContest() || (includePartner && !IsBattlerSpriteVisible(battler2)))
+        includePartner = FALSE;
     gBattle_WIN0H = 0;
     gBattle_WIN0V = 0;
     SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR
@@ -752,28 +756,28 @@ void sub_80BBA20(u8 taskId, s32 unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5,
         species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler1]], MON_DATA_SPECIES);
     else
         species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler1]], MON_DATA_SPECIES);
-    spriteId = sub_8076E34(battler1, gBattlerSpriteIds[battler1], species);
-    if (arg4)
-        newSpriteId = sub_8076E34(battler2, gBattlerSpriteIds[battler2], species);
-    sub_80752A0(&animBgData);
+    spriteId = CreateInvisibleSpriteCopy(battler1, gBattlerSpriteIds[battler1], species);
+    if (includePartner)
+        newSpriteId = CreateInvisibleSpriteCopy(battler2, gBattlerSpriteIds[battler2], species);
+    GetBattleAnimBg1Data(&animBgData);
     AnimLoadCompressedBgTilemap(animBgData.bgId, tilemap);
     if (IsContest())
-        sub_80730C0(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
+        RelocateBattleBgPal(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
     AnimLoadCompressedBgGfx(animBgData.bgId, gfx, animBgData.tilesOffset);
     LoadCompressedPalette(palette, animBgData.paletteId * 16, 32);
     gBattle_BG1_X = 0;
     gBattle_BG1_Y = 0;
-    gTasks[taskId].data[1] = arg2;
-    gTasks[taskId].data[4] = arg5;
-    gTasks[taskId].data[5] = arg7;
-    gTasks[taskId].data[6] = arg6;
+    gTasks[taskId].data[1] = scrollSpeed;
+    gTasks[taskId].data[4] = numFadeSteps;
+    gTasks[taskId].data[5] = duration;
+    gTasks[taskId].data[6] = fadeStepDelay;
     gTasks[taskId].data[0] = spriteId;
-    gTasks[taskId].data[2] = arg4;
+    gTasks[taskId].data[2] = includePartner;
     gTasks[taskId].data[3] = newSpriteId;
-    gTasks[taskId].func = sub_80BBC2C;
+    gTasks[taskId].func = UpdateMonScrollingBgMask;
 }
 
-static void sub_80BBC2C(u8 taskId)
+static void UpdateMonScrollingBgMask(u8 taskId)
 {
     gTasks[taskId].data[13] += gTasks[taskId].data[1] < 0 ? -gTasks[taskId].data[1] : gTasks[taskId].data[1];
     if (gTasks[taskId].data[1] < 0)
@@ -805,7 +809,7 @@ static void sub_80BBC2C(u8 taskId)
             SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(gTasks[taskId].data[12], 16 - gTasks[taskId].data[12]));
             if (gTasks[taskId].data[12] == 0)
             {
-                sub_8073128(0);
+                ResetBattleAnimBg(0);
                 gBattle_WIN0H = 0;
                 gBattle_WIN0V = 0;
                 SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR
@@ -839,13 +843,13 @@ void AnimTask_GetBattleTerrain(u8 taskId)
 
 void AnimTask_AllocBackupPalBuffer(u8 taskId)
 {
-    gMonSpritesGfxPtr->field_17C = AllocZeroed(0x2000);
+    gMonSpritesGfxPtr->multiUseBuffer = AllocZeroed(0x2000);
     DestroyAnimVisualTask(taskId);
 }
 
 void AnimTask_FreeBackupPalBuffer(u8 taskId)
 {
-    FREE_AND_SET_NULL(gMonSpritesGfxPtr->field_17C);
+    FREE_AND_SET_NULL(gMonSpritesGfxPtr->multiUseBuffer);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -855,7 +859,7 @@ void AnimTask_CopyPalUnfadedToBackup(u8 taskId)
     s32 paletteIndex = 0;
 
     if (gBattleAnimArgs[0] == 0)
-        for (selectedPalettes = SelectBattleAnimSpriteAndBgPalettes(1, 0, 0, 0, 0, 0, 0);
+        for (selectedPalettes = GetBattlePalettesMask(TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
              (selectedPalettes & 1) == 0;
              ++paletteIndex)
             selectedPalettes >>= 1;
@@ -863,7 +867,7 @@ void AnimTask_CopyPalUnfadedToBackup(u8 taskId)
         paletteIndex = gBattleAnimAttacker + 16;
     else if (gBattleAnimArgs[0] == 2)
         paletteIndex = gBattleAnimTarget + 16;
-    memcpy(&gMonSpritesGfxPtr->field_17C[gBattleAnimArgs[1] * 16], &gPlttBufferUnfaded[paletteIndex * 16], 32);
+    memcpy(&gMonSpritesGfxPtr->multiUseBuffer[gBattleAnimArgs[1] * 16], &gPlttBufferUnfaded[paletteIndex * 16], 32);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -873,7 +877,7 @@ void AnimTask_CopyPalUnfadedFromBackup(u8 taskId)
     s32 paletteIndex = 0;
 
     if (gBattleAnimArgs[0] == 0)
-        for (selectedPalettes = SelectBattleAnimSpriteAndBgPalettes(1, 0, 0, 0, 0, 0, 0);
+        for (selectedPalettes = GetBattlePalettesMask(TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
              (selectedPalettes & 1) == 0;
              ++paletteIndex)
             selectedPalettes >>= 1;
@@ -881,7 +885,7 @@ void AnimTask_CopyPalUnfadedFromBackup(u8 taskId)
         paletteIndex = gBattleAnimAttacker + 16;
     else if (gBattleAnimArgs[0] == 2)
         paletteIndex = gBattleAnimTarget + 16;
-    memcpy(&gPlttBufferUnfaded[paletteIndex * 16], &gMonSpritesGfxPtr->field_17C[gBattleAnimArgs[1] * 16], 32);
+    memcpy(&gPlttBufferUnfaded[paletteIndex * 16], &gMonSpritesGfxPtr->multiUseBuffer[gBattleAnimArgs[1] * 16], 32);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -891,7 +895,7 @@ void AnimTask_CopyPalFadedToUnfaded(u8 taskId)
     s32 paletteIndex = 0;
 
     if (gBattleAnimArgs[0] == 0)
-        for (selectedPalettes = SelectBattleAnimSpriteAndBgPalettes(1, 0, 0, 0, 0, 0, 0);
+        for (selectedPalettes = GetBattlePalettesMask(TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
              (selectedPalettes & 1) == 0;
              ++paletteIndex)
             selectedPalettes >>= 1;
@@ -906,9 +910,9 @@ void AnimTask_CopyPalFadedToUnfaded(u8 taskId)
 void AnimTask_IsContest(u8 taskId)
 {
     if (IsContest())
-        gBattleAnimArgs[7] = 1;
+        gBattleAnimArgs[ARG_RET_ID] = TRUE;
     else
-        gBattleAnimArgs[7] = 0;
+        gBattleAnimArgs[ARG_RET_ID] = FALSE;
     DestroyAnimVisualTask(taskId);
 }
 
@@ -922,9 +926,9 @@ void AnimTask_SetAnimAttackerAndTargetForEffectTgt(u8 taskId)
 void AnimTask_IsTargetSameSide(u8 taskId)
 {
     if (GetBattlerSide(gBattleAnimAttacker) == GetBattlerSide(gBattleAnimTarget))
-        gBattleAnimArgs[7] = 1;
+        gBattleAnimArgs[ARG_RET_ID] = TRUE;
     else
-        gBattleAnimArgs[7] = 0;
+        gBattleAnimArgs[ARG_RET_ID] = FALSE;
     DestroyAnimVisualTask(taskId);
 }
 
@@ -951,12 +955,12 @@ void AnimTask_SetAttackerInvisibleWaitForSignal(u8 taskId)
     {
         gTasks[taskId].data[0] = gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].invisible;
         gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].invisible = 1;
-        gTasks[taskId].func = sub_80BC19C;
+        gTasks[taskId].func = AnimTask_WaitAndRestoreVisibility;
         --gAnimVisualTaskCount;
     }
 }
 
-static void sub_80BC19C(u8 taskId)
+static void AnimTask_WaitAndRestoreVisibility(u8 taskId)
 {
     if (gBattleAnimArgs[7] == 0x1000)
     {

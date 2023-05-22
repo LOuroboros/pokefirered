@@ -1,41 +1,40 @@
 .equ LOCALID_DAYCARE_MAN, 1
 .equ LOCALID_RIVAL, 10
 
-FourIsland_MapScripts:: @ 8167CAE
+FourIsland_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FourIsland_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, FourIsland_OnFrame
 	.byte 0
 
-FourIsland_OnTransition:: @ 8167CB9
+FourIsland_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_FOUR_ISLAND
-	compare VAR_MAP_SCENE_FOUR_ISLAND, 0
-	call_if_eq FourIsland_EventScript_ShowRival
+	call_if_eq VAR_MAP_SCENE_FOUR_ISLAND, 0, FourIsland_EventScript_ShowRival
 	call FourIsland_EventScript_TrySetDayCareManPos
 	end
 
-FourIsland_EventScript_ShowRival:: @ 8167CCD
+FourIsland_EventScript_ShowRival::
 	clearflag FLAG_HIDE_FOUR_ISLAND_RIVAL
 	return
 
-FourIsland_EventScript_TrySetDayCareManPos:: @ 8167CD1
+FourIsland_EventScript_TrySetDayCareManPos::
 	goto_if_unset FLAG_PENDING_DAYCARE_EGG, FourIsland_EventScript_EndSetDayCareManPos
 	setobjectxyperm LOCALID_DAYCARE_MAN, 16, 14
-FourIsland_EventScript_EndSetDayCareManPos:: @ 8167CE1
+FourIsland_EventScript_EndSetDayCareManPos::
 	return
 
-FourIsland_OnFrame:: @ 8167CE2
+FourIsland_OnFrame::
 	map_script_2 VAR_MAP_SCENE_FOUR_ISLAND, 0, FourIsland_EventScript_RivalScene
 	.2byte 0
 
-FourIsland_EventScript_RivalScene:: @ 8167CEC
+FourIsland_EventScript_RivalScene::
 	lockall
-	textcolor 0
-	applymovement LOCALID_RIVAL, Movement_WalkInPlaceFastestDown
+	textcolor NPC_TEXT_COLOR_MALE
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	playbgm MUS_ENCOUNTER_RIVAL, 0
-	applymovement LOCALID_RIVAL, Movement_ExclamationMark
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_RIVAL, Movement_Delay48
+	applymovement LOCALID_RIVAL, Common_Movement_Delay48
 	waitmovement 0
 	delay 25
 	applymovement LOCALID_RIVAL, FourIsland_Movement_RivalApproach
@@ -53,64 +52,58 @@ FourIsland_EventScript_RivalScene:: @ 8167CEC
 	releaseall
 	end
 
-FourIsland_Movement_RivalApproach:: @ 8167D49
+FourIsland_Movement_RivalApproach::
 	walk_right
 	walk_right
 	walk_down
 	walk_down
 	step_end
 
-FourIsland_Movement_RivalExit:: @ 8167D4E
+FourIsland_Movement_RivalExit::
 	delay_16
 	delay_4
 	walk_down
 	step_end
 
-FourIsland_Movement_PlayerWatchRivalExit:: @ 8167D52
+FourIsland_Movement_PlayerWatchRivalExit::
 	walk_left
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	step_end
 
-FourIsland_EventScript_DaycareMan:: @ 8167D55
+FourIsland_EventScript_DaycareMan::
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
 	lock
 	faceplayer
 	special GetDaycareMonNicknames
 	specialvar VAR_RESULT, GetDaycareState
-	compare VAR_RESULT, DAYCARE_EGG_WAITING
-	goto_if_eq FourIsland_EventScript_DaycareEggWaiting
-	compare VAR_RESULT, DAYCARE_ONE_MON
-	goto_if_eq FourIsland_EventScript_CheckOnOneMon
-	compare VAR_RESULT, DAYCARE_TWO_MONS
-	goto_if_eq FourIsland_EventScript_CheckOnTwoMons
+	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, FourIsland_EventScript_DaycareEggWaiting
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, FourIsland_EventScript_CheckOnOneMon
+	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, FourIsland_EventScript_CheckOnTwoMons
 	msgbox DayCare_Text_ImDaycareManSpeakToMyWife
 	release
 	end
 
-FourIsland_EventScript_DaycareEggWaiting:: @ 8167D9B
+FourIsland_EventScript_DaycareEggWaiting::
 	msgbox DayCare_Text_DoYouWantEgg, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq FourIsland_EventScript_DaycareAcceptEgg
+	goto_if_eq VAR_RESULT, YES, FourIsland_EventScript_DaycareAcceptEgg
 	msgbox DayCare_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq FourIsland_EventScript_DaycareAcceptEgg
+	goto_if_eq VAR_RESULT, YES, FourIsland_EventScript_DaycareAcceptEgg
 	msgbox DayCare_Text_IllKeepIt
 	clearflag FLAG_PENDING_DAYCARE_EGG
 	special RejectEggFromDayCare
 	release
 	end
 
-FourIsland_EventScript_DaycareAcceptEgg:: @ 8167DD1
+FourIsland_EventScript_DaycareAcceptEgg::
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
-	compare VAR_RESULT, PARTY_SIZE
-	goto_if_ne FourIsland_EventScript_DaycareReceivedEgg
+	goto_if_ne VAR_RESULT, PARTY_SIZE, FourIsland_EventScript_DaycareReceivedEgg
 	msgbox DayCare_Text_YouHaveNoRoomForIt
 	release
 	end
 
-FourIsland_EventScript_DaycareReceivedEgg:: @ 8167DEB
-	textcolor 3
+FourIsland_EventScript_DaycareReceivedEgg::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
 	message DayCare_Text_ReceivedEgg
 	call EventScript_RestorePrevTextColor
 	playfanfare MUS_LEVEL_UP
@@ -122,13 +115,13 @@ FourIsland_EventScript_DaycareReceivedEgg:: @ 8167DEB
 	release
 	end
 
-FourIsland_EventScript_CheckOnOneMon:: @ 8167E0C
+FourIsland_EventScript_CheckOnOneMon::
 	special GetDaycareMonNicknames
 	msgbox DayCare_Text_YourMonIsDoingFine
 	release
 	end
 
-FourIsland_EventScript_CheckOnTwoMons:: @ 8167E19
+FourIsland_EventScript_CheckOnTwoMons::
 	special GetDaycareMonNicknames
 	msgbox DayCare_Text_YourMonsAreDoingFine
 	special SetDaycareCompatibilityString
@@ -138,7 +131,7 @@ FourIsland_EventScript_CheckOnTwoMons:: @ 8167E19
 	release
 	end
 
-FourIsland_EventScript_OldWoman:: @ 8167E2E
+FourIsland_EventScript_OldWoman::
 	lock
 	faceplayer
 	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, FourIsland_EventScript_OldWomanLoreleiLeft
@@ -146,13 +139,13 @@ FourIsland_EventScript_OldWoman:: @ 8167E2E
 	release
 	end
 
-FourIsland_EventScript_OldWomanLoreleiLeft:: @ 8167E43
+FourIsland_EventScript_OldWomanLoreleiLeft::
 	famechecker FAMECHECKER_LORELEI, 5
 	msgbox FourIsland_Text_LoreleiMetLaprasAsChild
 	release
 	end
 
-FourIsland_EventScript_LittleGirl:: @ 8167E5A
+FourIsland_EventScript_LittleGirl::
 	lock
 	faceplayer
 	famechecker FAMECHECKER_LORELEI, 4
@@ -160,14 +153,14 @@ FourIsland_EventScript_LittleGirl:: @ 8167E5A
 	release
 	end
 
-FourIsland_EventScript_FatMan:: @ 8167E73
+FourIsland_EventScript_FatMan::
 	msgbox FourIsland_Text_MadeSlushieUsingIcefallCaveIce, MSGBOX_NPC
 	end
 
-FourIsland_EventScript_IslandSign:: @ 8167E7C
+FourIsland_EventScript_IslandSign::
 	msgbox FourIsland_Text_IslandSign, MSGBOX_SIGN
 	end
 
-FourIsland_EventScript_LoreleisHouseSign:: @ 8167E85
+FourIsland_EventScript_LoreleisHouseSign::
 	msgbox FourIsland_Text_LoreleisHouse, MSGBOX_SIGN
 	end

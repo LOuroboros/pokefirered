@@ -10,7 +10,7 @@
 bool32 sIsInSaveFailedScreen;
 
 static EWRAM_DATA u16 sSaveType = SAVE_NORMAL;
-static EWRAM_DATA u16 unused_203AB4E = 0;
+static EWRAM_DATA u16 sUnused = 0;
 static EWRAM_DATA u8 sSaveFailedScreenState = 0;
 
 static void BlankPalettes(void);
@@ -40,7 +40,7 @@ bool32 RunSaveFailedScreen(void)
     case 0:
         if (!sIsInSaveFailedScreen)
             return FALSE;
-        m4aMPlayVolumeControl(&gMPlayInfo_BGM, 0xFFFF, 128);
+        m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 128);
         SaveCallbacks();
         sSaveFailedScreenState = 1;
         break;
@@ -59,7 +59,7 @@ bool32 RunSaveFailedScreen(void)
         break;
     case 3:
         ClearMapBuffer();
-        PrintTextOnSaveFailedScreen(gText_SaveFailedScreen_CheckingBackupMemory);
+        PrintTextOnSaveFailedScreen(gText_SaveFailedCheckingBackup);
         UpdateMapBufferWithText();
         sSaveFailedScreenState = 4;
         break;
@@ -74,13 +74,13 @@ bool32 RunSaveFailedScreen(void)
     case 5:
         if (TryWipeDamagedSectors() == TRUE)
         {
-            gSaveSucceeded = SAVE_STATUS_OK;
-            PrintTextOnSaveFailedScreen(gText_SaveFailedScreen_SaveCompleted);
+            gSaveAttemptStatus = SAVE_STATUS_OK;
+            PrintTextOnSaveFailedScreen(gText_SaveCompletePressA);
         }
         else
         {
-            gSaveSucceeded = SAVE_STATUS_ERROR;
-            PrintTextOnSaveFailedScreen(gText_SaveFailedScreen_BackupMemoryDamaged);
+            gSaveAttemptStatus = SAVE_STATUS_ERROR;
+            PrintTextOnSaveFailedScreen(gText_BackupMemoryDamaged);
         }
         sSaveFailedScreenState = 6;
         break;
@@ -95,7 +95,7 @@ bool32 RunSaveFailedScreen(void)
         sSaveFailedScreenState = 8;
         break;
     case 8:
-        m4aMPlayVolumeControl(&gMPlayInfo_BGM, 0xFFFF, 256);
+        m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 256);
         RestoreMapTextColors();
         RestoreGPURegs();
         RestoreCallbacks();
@@ -153,7 +153,7 @@ static void ClearMapBuffer(void)
 
 static void PrintTextOnSaveFailedScreen(const u8 *str)
 {
-    GenerateFontHalfRowLookupTable(TEXT_COLOR_DARK_GREY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GREY);
+    GenerateFontHalfRowLookupTable(TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
     CpuFill16(PIXEL_FILL(1) | (PIXEL_FILL(1) << 8), gDecompressionBuffer + 0x20, 0x2300);
     HelpSystemRenderText(2, gDecompressionBuffer + 0x20, str, 2, 2, 28, 10);
     RequestDmaCopyFromCharBuffer();

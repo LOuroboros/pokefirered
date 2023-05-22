@@ -1,26 +1,26 @@
-SevenIsland_SevaultCanyon_House_MapScripts:: @ 8172182
+.set LOCALID_BALDING_MAN, 1
+
+SevenIsland_SevaultCanyon_House_MapScripts::
 	.byte 0
 
-SevenIsland_SevaultCanyon_House_EventScript_BaldingMan:: @ 8172183
+SevenIsland_SevaultCanyon_House_EventScript_BaldingMan::
 	lock
 	goto_if_set FLAG_TEMP_2, SevenIsland_SevaultCanyon_House_EventScript_AlreadyDanced
 	playbgm MUS_SCHOOL, 0
-	applymovement 1, SevenIsland_SevaultCanyon_House_Movement_ChanseyDance
+	applymovement LOCALID_BALDING_MAN, SevenIsland_SevaultCanyon_House_Movement_ChanseyDance
 	waitmovement 0
 	fadedefaultbgm
 	delay 30
-	applymovement 1, Movement_FacePlayer
+	applymovement LOCALID_BALDING_MAN, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SevenIsland_SevaultCanyon_House_Text_ChanseyDanceJoinIn
-	textcolor 3
+	textcolor NPC_TEXT_COLOR_NEUTRAL
 	msgbox SevenIsland_SevaultCanyon_House_Text_WouldYouLikeToDance, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SevenIsland_SevaultCanyon_House_EventScript_DeclineDance
+	goto_if_eq VAR_RESULT, NO, SevenIsland_SevaultCanyon_House_EventScript_DeclineDance
 	msgbox SevenIsland_SevaultCanyon_House_Text_DancedChanseyDance
 	closemessage
 	call EventScript_RestorePrevTextColor
-	compare VAR_FACING, DIR_SOUTH
-	call_if_ne SevenIsland_SevaultCanyon_House_EventScript_PlayerFaceDown
+	call_if_ne VAR_FACING, DIR_SOUTH, SevenIsland_SevaultCanyon_House_EventScript_PlayerFaceDown
 	delay 30
 	playbgm MUS_SCHOOL, 0
 	applymovement OBJ_EVENT_ID_PLAYER, SevenIsland_SevaultCanyon_House_Movement_ChanseyDance
@@ -33,25 +33,25 @@ SevenIsland_SevaultCanyon_House_EventScript_BaldingMan:: @ 8172183
 	release
 	end
 
-SevenIsland_SevaultCanyon_House_EventScript_PlayerFaceDown:: @ 8172206
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestDown
+SevenIsland_SevaultCanyon_House_EventScript_PlayerFaceDown::
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	return
 
-SevenIsland_SevaultCanyon_House_EventScript_AlreadyDanced:: @ 8172211
-	applymovement 1, Movement_FacePlayer
+SevenIsland_SevaultCanyon_House_EventScript_AlreadyDanced::
+	applymovement LOCALID_BALDING_MAN, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SevenIsland_SevaultCanyon_House_Text_ChanseyDanceJoinIn
 	release
 	end
 
-SevenIsland_SevaultCanyon_House_EventScript_DeclineDance:: @ 8172225
-	textcolor 0
+SevenIsland_SevaultCanyon_House_EventScript_DeclineDance::
+	textcolor NPC_TEXT_COLOR_MALE
 	msgbox SevenIsland_SevaultCanyon_House_Text_ComeOnDance
 	release
 	end
 
-SevenIsland_SevaultCanyon_House_Movement_ChanseyDance:: @ 8172231
+SevenIsland_SevaultCanyon_House_Movement_ChanseyDance::
 	walk_in_place_down
 	delay_16
 	walk_in_place_down
@@ -60,21 +60,21 @@ SevenIsland_SevaultCanyon_House_Movement_ChanseyDance:: @ 8172231
 	delay_16
 	walk_in_place_down
 	delay_16
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	delay_4
-	walk_in_place_fastest_up
+	walk_in_place_faster_up
 	delay_4
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	delay_4
-	walk_in_place_fastest_down
+	walk_in_place_faster_down
 	delay_4
 	step_end
 
-SevenIsland_SevaultCanyon_House_EventScript_Chansey:: @ 8172242
+SevenIsland_SevaultCanyon_House_EventScript_Chansey::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_CHANSEY, 0
+	playmoncry SPECIES_CHANSEY, CRY_MODE_NORMAL
 	msgbox SevenIsland_SevaultCanyon_House_Text_Chansey
 	waitmoncry
 	release

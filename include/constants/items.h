@@ -372,7 +372,7 @@
 #define ITEM_TM19_GIGA_DRAIN ITEM_TM19
 #define ITEM_TM20_SAFEGUARD ITEM_TM20
 #define ITEM_TM21_FRUSTRATION ITEM_TM21
-#define ITEM_TM22_SOLARBEAM ITEM_TM22
+#define ITEM_TM22_SOLAR_BEAM ITEM_TM22
 #define ITEM_TM23_IRON_TAIL ITEM_TM23
 #define ITEM_TM24_THUNDERBOLT ITEM_TM24
 #define ITEM_TM25_THUNDER ITEM_TM25
@@ -438,18 +438,20 @@
 #define ITEM_RUBY 373
 #define ITEM_SAPPHIRE 374
 
-#define ITEM_N_A 375
-
-// Emerald
-#define ITEM_MAGMA_EMBLEM 375
-#define ITEM_OLD_SEA_MAP 376
+#define ITEMS_COUNT 375
 
 #define FIRST_BERRY_INDEX ITEM_CHERI_BERRY
 #define LAST_BERRY_INDEX ITEM_ENIGMA_BERRY
 #define ITEM_TO_BERRY(itemId)(((itemId - FIRST_BERRY_INDEX) + 1))
+#define MAIL_NONE 0xFF
 
 #define NUM_TECHNICAL_MACHINES 50
 #define NUM_HIDDEN_MACHINES     8
+
+// Secondary IDs for rods
+#define OLD_ROD   0
+#define GOOD_ROD  1
+#define SUPER_ROD 2
 
 // Check if the item is one that can be used on a Pokemon.
 #define IS_POKEMON_ITEM(item) ((item) >= ITEM_POTION && (item) <= ITEM_0B2)

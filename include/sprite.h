@@ -4,7 +4,11 @@
 #include "global.h"
 
 #define MAX_SPRITES 64
-#define SPRITE_INVALID_TAG 0xFFFF
+#define SPRITE_NONE 0xFF
+#define TAG_NONE 0xFFFF
+
+// Given to SetSpriteMatrixAnchor to skip anchoring one of the coords.
+#define NO_ANCHOR 0x800
 
 struct SpriteSheet
 {
@@ -197,8 +201,8 @@ struct Sprite
     /*0x18*/ const struct SubspriteTable *subspriteTables;
     /*0x1C*/ SpriteCallback callback;
 
-    /*0x20*/ struct Coords16 pos1;
-    /*0x24*/ struct Coords16 pos2;
+    /*0x20*/ s16 x, y;
+    /*0x24*/ s16 x2, y2;
     /*0x28*/ s8 centerToCornerVecX;
     /*0x29*/ s8 centerToCornerVecY;
 
@@ -227,7 +231,7 @@ struct Sprite
              u16 animEnded:1;           //0x10
              u16 affineAnimEnded:1;     //0x20
              u16 usingSheet:1;          //0x40
-             u16 flags_f:1;             //0x80
+             u16 anchored:1;            //0x80
 
     /*0x40*/ u16 sheetTileStart;
 
@@ -275,7 +279,6 @@ void FreeSpriteTiles(struct Sprite *sprite);
 void FreeSpritePalette(struct Sprite *sprite);
 void FreeSpriteOamMatrix(struct Sprite *sprite);
 void DestroySpriteAndFreeResources(struct Sprite *sprite);
-void sub_800142C(u32 a1, u32 a2, u16 *a3, u16 a4, u32 a5);
 void AnimateSprite(struct Sprite *sprite);
 void StartSpriteAnim(struct Sprite *sprite, u8 animNum);
 void StartSpriteAnimIfDifferent(struct Sprite *sprite, u8 animNum);
@@ -293,8 +296,6 @@ u16 LoadSpriteSheet(const struct SpriteSheet *sheet);
 void LoadSpriteSheets(const struct SpriteSheet *sheets);
 u16 AllocTilesForSpriteSheet(struct SpriteSheet *sheet);
 void AllocTilesForSpriteSheets(struct SpriteSheet *sheets);
-void LoadTilesForSpriteSheet(const struct SpriteSheet *sheet);
-void LoadTilesForSpriteSheets(struct SpriteSheet *sheets);
 void FreeSpriteTilesByTag(u16 tag);
 void FreeSpriteTileRanges(void);
 u16 GetSpriteTileStartByTag(u16 tag);
@@ -316,9 +317,8 @@ void CopyFromSprites(u8 *dest);
 u8 SpriteTileAllocBitmapOp(u16 bit, u8 op);
 void ClearSpriteCopyRequests(void);
 void ResetAffineAnimData(void);
-void sub_8007FFC(struct Sprite* sprite, s16 a2, s16 a3);
-void sub_80075C0(struct Sprite *sprite);
+void FreeSpriteTilesIfNotUsingSheet(struct Sprite *sprite);
 s16 AllocSpriteTiles(u16 tileCount);
-void obj_pos2_update_enable(struct Sprite* sprite, s16 xmod, s16 ymod);
+void SetSpriteMatrixAnchor(struct Sprite* sprite, s16 xmod, s16 ymod);
 
 #endif //GUARD_SPRITE_H

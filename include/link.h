@@ -7,6 +7,7 @@
 #define MAX_RFU_PLAYERS 5
 #define CMD_LENGTH 8
 #define QUEUE_CAPACITY 50
+#define OVERWORLD_RECV_QUEUE_MAX 3
 #define BLOCK_BUFFER_SIZE 0x100
 
 #define LINK_SLAVE 0
@@ -50,40 +51,75 @@
 #define EXTRACT_LINK_ERRORS(status) \
 (((status) & LINK_STAT_ERRORS) >> LINK_STAT_ERRORS_SHIFT)
 
-#define LINKCMD_SEND_LINK_TYPE 0x2222
-#define LINKCMD_0x2FFE             0x2FFE
-#define LINKCMD_SEND_HELD_KEYS     0x4444
-#define LINKCMD_0x5555             0x5555
-#define LINKCMD_0x5566             0x5566
-#define LINKCMD_0x5FFF             0x5FFF
-#define LINKCMD_0x6666             0x6666
-#define LINKCMD_0x7777             0x7777
-#define LINKCMD_CONT_BLOCK         0x8888
-#define LINKCMD_0xAAAA             0xAAAA
-#define LINKCMD_0xAAAB             0xAAAB
-#define LINKCMD_INIT_BLOCK         0xBBBB
-#define LINKCMD_SEND_HELD_KEYS_2   0xCAFE
-#define LINKCMD_0xCCCC             0xCCCC
+#define LINKCMD_BLENDER_STOP            0x1111
+#define LINKCMD_SEND_LINK_TYPE          0x2222
+#define LINKCMD_BLENDER_SCORE_MISS      0x2345
+#define LINKCMD_READY_EXIT_STANDBY      0x2FFE
+#define LINKCMD_SEND_PACKET             0x2FFF
+#define LINKCMD_BLENDER_SEND_KEYS       0x4444
+#define LINKCMD_BLENDER_SCORE_BEST      0x4523
+#define LINKCMD_BLENDER_SCORE_GOOD      0x5432
+#define LINKCMD_DUMMY_1                 0x5555
+#define LINKCMD_DUMMY_2                 0x5566
+#define LINKCMD_READY_CLOSE_LINK        0x5FFF
+#define LINKCMD_SEND_EMPTY              0x6666
+#define LINKCMD_SEND_0xEE               0x7777
+#define LINKCMD_BLENDER_PLAY_AGAIN      0x7779
+#define LINKCMD_COUNTDOWN               0x7FFF
+#define LINKCMD_CONT_BLOCK              0x8888
+#define LINKCMD_BLENDER_NO_BERRIES      0x9999
+#define LINKCMD_BLENDER_NO_PBLOCK_SPACE 0xAAAA
+#define LINKCMD_SEND_ITEM               0xAAAB
+#define LINKCMD_READY_TO_TRADE          0xAABB
+#define LINKCMD_READY_FINISH_TRADE      0xABCD
+#define LINKCMD_INIT_BLOCK              0xBBBB
+#define LINKCMD_READY_CANCEL_TRADE      0xBBCC
+#define LINKCMD_SEND_HELD_KEYS          0xCAFE
+#define LINKCMD_SEND_BLOCK_REQ          0xCCCC
+#define LINKCMD_START_TRADE             0xCCDD
+#define LINKCMD_CONFIRM_FINISH_TRADE    0xDCBA
+#define LINKCMD_SET_MONS_TO_TRADE       0xDDDD
+#define LINKCMD_PLAYER_CANCEL_TRADE     0xDDEE
+#define LINKCMD_REQUEST_CANCEL          0xEEAA
+#define LINKCMD_BOTH_CANCEL_TRADE       0xEEBB
+#define LINKCMD_PARTNER_CANCEL_TRADE    0xEECC
+#define LINKCMD_NONE                    0xEFFF
 
-#define LINKTYPE_0x1111              0x1111  // trade
-#define LINKTYPE_0x1122              0x1122  // trade
-#define LINKTYPE_0x1133              0x1133  // trade
-#define LINKTYPE_0x1144              0x1144  // trade
+#define LINKTYPE_TRADE               0x1111
+#define LINKTYPE_TRADE_CONNECTING    0x1122
+#define LINKTYPE_TRADE_SETUP         0x1133
+#define LINKTYPE_TRADE_DISCONNECTED  0x1144
 #define LINKTYPE_BATTLE              0x2211
-#define LINKTYPE_0x2222              0x2222  // unused battle?
+#define LINKTYPE_UNUSED_BATTLE       0x2222 // Unused, inferred from gap
 #define LINKTYPE_SINGLE_BATTLE       0x2233
 #define LINKTYPE_DOUBLE_BATTLE       0x2244
 #define LINKTYPE_MULTI_BATTLE        0x2255
 #define LINKTYPE_BATTLE_TOWER_50     0x2266
 #define LINKTYPE_BATTLE_TOWER_OPEN   0x2277
 #define LINKTYPE_BATTLE_TOWER        0x2288
-#define LINKTYPE_0x3311              0x3311
-#define LINKTYPE_0x3322              0x3322
-#define LINKTYPE_BERRY_BLENDER_SETUP              0x4411
-#define LINKTYPE_CONTEST_GMODE              0x6601
+#define LINKTYPE_RECORD_MIX_BEFORE   0x3311
+#define LINKTYPE_RECORD_MIX_AFTER    0x3322
+#define LINKTYPE_BERRY_BLENDER_SETUP 0x4411
+#define LINKTYPE_BERRY_BLENDER       0x4422
+#define LINKTYPE_MYSTERY_EVENT       0x5501
+#define LINKTYPE_EREADER_FRLG        0x5502
+#define LINKTYPE_EREADER_EM          0x5503
+#define LINKTYPE_CONTEST_GMODE       0x6601
+#define LINKTYPE_CONTEST_EMODE       0x6602
 
-#define MASTER_HANDSHAKE 0x8FFF
-#define SLAVE_HANDSHAKE  0xB9A0
+enum {
+    BLOCK_REQ_SIZE_NONE, // Identical to 200
+    BLOCK_REQ_SIZE_200,
+    BLOCK_REQ_SIZE_100,
+    BLOCK_REQ_SIZE_220,
+    BLOCK_REQ_SIZE_40,
+};
+
+#define MASTER_HANDSHAKE  0x8FFF
+#define SLAVE_HANDSHAKE   0xB9A0
+#define EREADER_HANDSHAKE 0xCCD0
+
+#define IsSendCmdComplete()    (gSendCmd[0] == 0)
 
 enum
 {
@@ -99,11 +135,10 @@ enum
     EXCHANGE_NOT_STARTED,
     EXCHANGE_COMPLETE,
     EXCHANGE_TIMED_OUT,
-    EXCHANGE_IN_PROGRESS,
-    EXCHANGE_STAT_4,
-    EXCHANGE_STAT_5,
-    EXCHANGE_STAT_6,
-    EXCHANGE_STAT_7
+    EXCHANGE_DIFF_SELECTIONS,
+    EXCHANGE_PLAYER_NOT_READY,
+    EXCHANGE_PARTNER_NOT_READY,
+    EXCHANGE_WRONG_NUM_PLAYERS,
 };
 
 enum
@@ -125,7 +160,10 @@ struct LinkPlayer
     /* 0x00 */ u16 version;
     /* 0x02 */ u16 lp_field_2;
     /* 0x04 */ u32 trainerId;
-    /* 0x08 */ u8 name[11];
+    /* 0x08 */ u8 name[PLAYER_NAME_LENGTH + 1];
+    /* 0x10 */ u8 progressFlags; // (& 0x0F) is hasNationalDex, (& 0xF0) is hasClearedGame
+    /* 0x11 */ u8 neverRead;
+    /* 0x12 */ u8 progressFlagsCopy;
     /* 0x13 */ u8 gender;
     /* 0x14 */ u32 linkType;
     /* 0x18 */ u16 id; // battle bank in battles
@@ -184,7 +222,7 @@ struct Link
 
 struct BlockRequest
 {
-    void * address;
+    void *address;
     u32 size;
 };
 
@@ -212,8 +250,6 @@ void Task_DestroySelf(u8);
 void OpenLink(void);
 void CloseLink(void);
 u16 LinkMain2(const u16 *);
-void sub_8007B14(void);
-bool32 sub_8007B24(void);
 void ClearLinkCallback(void);
 void ClearLinkCallback_2(void);
 u8 GetLinkPlayerCount(void);
@@ -222,10 +258,8 @@ u8 GetLinkPlayerDataExchangeStatusTimed(int lower, int higher);
 bool8 IsLinkPlayerDataExchangeComplete(void);
 u32 GetLinkPlayerTrainerId(u8);
 void ResetLinkPlayers(void);
-void sub_8007E24(void);
-void sub_8007E4C(void);
 u8 GetMultiplayerId(void);
-u8 bitmask_all_link_players_but_self(void);
+u8 BitmaskAllOtherLinkPlayers(void);
 bool8 SendBlock(u8, const void *, u16);
 u8 GetBlockReceivedStatus(void);
 void ResetBlockReceivedFlags(void);
@@ -241,53 +275,42 @@ void SetSuppressLinkErrorMessage(bool8);
 bool8 HasLinkErrorOccurred(void);
 void ResetSerial(void);
 u32 LinkMain1(u8 *, u16 *, u16[MAX_RFU_PLAYERS][CMD_LENGTH]);
-void RFUVSync(void);
+void RfuVSync(void);
 void Timer3Intr(void);
 void SerialCB(void);
 u8 GetLinkPlayerCount(void);
 bool32 InUnionRoom(void);
 
-void sub_800E0E8(void);
-bool8 sub_800A520(void);
-bool8 sub_8010500(void);
-void sub_800DFB4(u8, u8);
-void PrepareSendLinkCmd2FFE_or_RfuCmd6600(void);
+void SetLinkStandbyCallback(void);
 void SetWirelessCommType1(void);
-void sub_8009734(void);
-void sub_800A620(void);
-void LinkRfu_DestroyIdleTask(void);
-u8 sub_800ABAC(void);
-u8 sub_800ABBC(void);
-void Link_TryStartSend5FFF(void);
+void SetCloseLinkCallback(void);
 void OpenLink(void);
 bool8 IsLinkMaster(void);
 void CheckShouldAdvanceLinkState(void);
-void Link_StartSend5FFFwithParam(u16 a0);
-void sub_80098D8(void);
+void SetCloseLinkCallbackAndType(u16 type);
 void CloseLink(void);
 bool8 IsLinkTaskFinished(void);
-bool32 sub_800B270(void);
+bool32 IsLinkRecvQueueAtOverworldMax(void);
 void ResetSerial(void);
-void sub_8054A28(void);
 void SetWirelessCommType1(void);
 void LoadWirelessStatusIndicatorSpriteGfx(void);
 void CreateWirelessStatusIndicatorSprite(u8, u8);
-void sub_8009FE8(void);
+void StartSendingKeysToLink(void);
 void ClearLinkCallback_2(void);
-void LinkRfu_SetRfuFuncToSend6600(void);
-void IntlConvertLinkPlayerName(struct LinkPlayer * linkPlayer);
+void Rfu_SetLinkStandbyCallback(void);
+void ConvertLinkPlayerName(struct LinkPlayer * linkPlayer);
 bool8 IsWirelessAdapterConnected(void);
-bool8 Link_PrepareCmd0xCCCC_Rfu0xA100(u8 blockRequestType);
+bool8 SendBlockRequest(u8 blockRequestType);
 void LinkVSync(void);
 bool8 HandleLinkConnection(void);
-void PrepareLocalLinkPlayerBlock(void);
+void LocalLinkPlayerToBlock(void);
 void LinkPlayerFromBlock(u32 who);
-void SetLinkErrorFromRfu(u32 status, u8 lastSendQueueCount, u8 lastRecvQueueCount, u8 unk_06);
-u8 sub_800A8D4(void);
-void sub_800AA24(void);
-void sub_800A900(u8 a0);
-u8 sub_800A8A4(void);
-void sub_800A9A4(void);
+void SetLinkErrorFromRfu(u32 status, u8 lastSendQueueCount, u8 lastRecvQueueCount, u8 isConnectionError);
+u8 GetLinkPlayerCountAsBitFlags(void);
+void ResetLinkPlayerCount(void);
+void SaveLinkPlayers(u8 numPlayers);
+u8 GetSavedLinkPlayerCountAsBitFlags(void);
+void CheckLinkPlayersMatchSaved(void);
 void SetLocalLinkPlayerId(u8 playerId);
 bool32 IsSendingKeysToLink(void);
 u32 GetLinkRecvQueueLength(void);

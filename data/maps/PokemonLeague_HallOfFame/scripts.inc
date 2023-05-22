@@ -1,33 +1,35 @@
-PokemonLeague_HallOfFame_MapScripts:: @ 8162D4C
+.set LOCALID_PROF_OAK, 1
+
+PokemonLeague_HallOfFame_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_HallOfFame_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_HallOfFame_OnWarp
 	.byte 0
 
-PokemonLeague_HallOfFame_OnWarp:: @ 8162D57
+PokemonLeague_HallOfFame_OnWarp::
 	map_script_2 VAR_TEMP_1, 0, PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth
 	.2byte 0
 
-PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth:: @ 8162D61
+PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
 
-PokemonLeague_HallOfFame_OnFrame:: @ 8162D66
+PokemonLeague_HallOfFame_OnFrame::
 	map_script_2 VAR_TEMP_1, 0, PokemonLeague_HallOfFame_EventScript_EnterRoom
 	.2byte 0
 
-PokemonLeague_HallOfFame_EventScript_EnterRoom:: @ 8162D70
+PokemonLeague_HallOfFame_EventScript_EnterRoom::
 	lockall
-	textcolor 0
+	textcolor NPC_TEXT_COLOR_MALE
 	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_HallOfFame_Movement_EnterRoom
 	waitmovement 0
-	applymovement 1, Movement_WalkInPlaceFastestLeft
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	delay 18
 	msgbox PokemonLeague_HallOfFame_Text_OakCongratulations
 	closemessage
-	applymovement 1, Movement_WalkInPlaceFastestUp
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	delay 20
 	dofieldeffect FLDEFF_HALL_OF_FAME_RECORD
@@ -42,7 +44,7 @@ PokemonLeague_HallOfFame_EventScript_EnterRoom:: @ 8162D70
 	releaseall
 	end
 
-PokemonLeague_HallOfFame_Movement_EnterRoom:: @ 8162DCD
+PokemonLeague_HallOfFame_Movement_EnterRoom::
 	walk_up
 	walk_up
 	walk_up

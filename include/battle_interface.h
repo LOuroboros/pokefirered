@@ -25,25 +25,31 @@ enum
     HP_BAR_FULL,
 };
 
-#define TAG_HEALTHBOX_PLAYER1_TILE      0xD6FF
-#define TAG_HEALTHBOX_PLAYER2_TILE      0xD700
-#define TAG_HEALTHBOX_OPPONENT1_TILE    0xD701
-#define TAG_HEALTHBOX_OPPONENT2_TILE    0xD702
+#define TAG_HEALTHBOX_PLAYER1_TILE              55039
+#define TAG_HEALTHBOX_PLAYER2_TILE              55040
+#define TAG_HEALTHBOX_OPPONENT1_TILE            55041
+#define TAG_HEALTHBOX_OPPONENT2_TILE            55042
 
-#define TAG_HEALTHBAR_PLAYER1_TILE      0xD704
-#define TAG_HEALTHBAR_OPPONENT1_TILE    0xD705
-#define TAG_HEALTHBAR_PLAYER2_TILE      0xD706
-#define TAG_HEALTHBAR_OPPONENT2_TILE    0xD707
+#define TAG_HEALTHBAR_PLAYER1_TILE              55044
+#define TAG_HEALTHBAR_OPPONENT1_TILE            55045
+#define TAG_HEALTHBAR_PLAYER2_TILE              55046
+#define TAG_HEALTHBAR_OPPONENT2_TILE            55047
 
-#define TAG_HEALTHBOX_SAFARI_TILE       0xD70B
+#define TAG_HEALTHBOX_PALS_1                    55049
+#define TAG_HEALTHBOX_PALS_2                    55050
+#define TAG_HEALTHBOX_SAFARI_TILE               55051
+#define TAG_PARTY_SUMMARY_BAR_PLAYER_TILE       55052
+#define TAG_PARTY_SUMMARY_BAR_OPPONENT_TILE     55053
 
-#define TAG_STATUS_SUMMARY_BAR_TILE     0xD70C
-#define TAG_STATUS_SUMMARY_BALLS_TILE   0xD714
+#define TAG_PARTY_SUMMARY_BAR_PLAYER_PAL        55056
+#define TAG_PARTY_SUMMARY_BAR_OPPONENT_PAL      55057
+#define TAG_PARTY_SUMMARY_BALL_PLAYER_PAL       55058
+#define TAG_PARTY_SUMMARY_BALL_OPPONENT_PAL     55059
+#define TAG_PARTY_SUMMARY_BALL_PLAYER_TILE      55060
+#define TAG_PARTY_SUMMARY_BALL_OPPONENT_TILE    55061
 
-#define TAG_HEALTHBOX_PAL               0xD6FF
-#define TAG_HEALTHBAR_PAL               0xD704
-#define TAG_STATUS_SUMMARY_BAR_PAL      0xD710
-#define TAG_STATUS_SUMMARY_BALLS_PAL    0xD712
+#define TAG_HEALTHBOX_PAL                       TAG_HEALTHBOX_PLAYER1_TILE
+#define TAG_HEALTHBAR_PAL                       TAG_HEALTHBAR_PLAYER1_TILE
 
 enum
 {
@@ -73,7 +79,7 @@ void UpdateOamPriorityInAllHealthboxes(u8 priority);
 void InitBattlerHealthboxCoords(u8 battlerId);
 void UpdateHpTextInHealthbox(u8 healthboxSpriteId, s16 value, u8 maxOrCurrent);
 void SwapHpBarsWithHpText(void);
-u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, u8 arg2, bool8 isBattleStart);
+u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, u8 isSwitchingMons, bool8 isBattleStart);
 void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elementId);
 u8 GetScaledHPFraction(s16 hp, s16 maxhp, u8 scale);
 u8 GetHPBarLevel(s16 hp, s16 maxhp);

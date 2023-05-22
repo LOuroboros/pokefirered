@@ -33,7 +33,7 @@ struct BgConfig2
     u32 basePalette:4;
     u32 unk_3:18;
 
-    void* tilemap;
+    void *tilemap;
     u32 bg_x;
     u32 bg_y;
 };
@@ -181,7 +181,7 @@ u8 LoadBgVram(u8 bg, const void *src, u16 size, u16 destOffset, u8 mode)
 
         offset = destOffset + offset;
 
-        cursor = RequestDma3Copy(src, (void*)(offset + BG_VRAM), size, DMA3_16BIT);
+        cursor = RequestDma3Copy(src, (void *)(offset + BG_VRAM), size, DMA3_16BIT);
 
         if (cursor == -1)
         {
@@ -418,7 +418,7 @@ void InitBgFromTemplate(const struct BgTemplate *template)
     }
 }
 
-u16 LoadBgTiles(u8 bg, const void* src, u16 size, u16 destOffset)
+u16 LoadBgTiles(u8 bg, const void *src, u16 size, u16 destOffset)
 {
     u16 tileOffset;
     u8 cursor;
@@ -473,7 +473,7 @@ u16 Unused_LoadBgPalette(u8 bg, const void *src, u16 size, u16 destOffset)
     if (IsInvalidBg32(bg) == FALSE)
     {
         paletteOffset = (sGpuBgConfigs2[bg].basePalette * 0x20) + (destOffset * 2);
-        cursor = RequestDma3Copy(src, (void*)(paletteOffset + BG_PLTT), size, DMA3_16BIT);
+        cursor = RequestDma3Copy(src, (void *)(paletteOffset + BG_PLTT), size, DMA3_16BIT);
 
         if (cursor == -1)
         {
@@ -600,58 +600,58 @@ u32 ChangeBgX(u8 bg, u32 value, u8 op)
 
     switch (op)
     {
-        case 0:
-        default:
-            sGpuBgConfigs2[bg].bg_x = value;
-            break;
-        case 1:
-            sGpuBgConfigs2[bg].bg_x += value;
-            break;
-        case 2:
-            sGpuBgConfigs2[bg].bg_x -= value;
-            break;
+    case BG_COORD_SET:
+    default:
+        sGpuBgConfigs2[bg].bg_x = value;
+        break;
+    case BG_COORD_ADD:
+        sGpuBgConfigs2[bg].bg_x += value;
+        break;
+    case BG_COORD_SUB:
+        sGpuBgConfigs2[bg].bg_x -= value;
+        break;
     }
 
     mode = GetBgMode();
 
     switch (bg)
     {
-        case 0:
-            temp1 = sGpuBgConfigs2[0].bg_x >> 0x8;
-            SetGpuReg(REG_OFFSET_BG0HOFS, temp1);
-            break;
-        case 1:
-            temp1 = sGpuBgConfigs2[1].bg_x >> 0x8;
-            SetGpuReg(REG_OFFSET_BG1HOFS, temp1);
-            break;
-        case 2:
-            if (mode == 0)
-            {
-                temp1 = sGpuBgConfigs2[2].bg_x >> 0x8;
-                SetGpuReg(REG_OFFSET_BG2HOFS, temp1);
-            }
-            else
-            {
-                temp1 = sGpuBgConfigs2[2].bg_x >> 0x10;
-                temp2 = sGpuBgConfigs2[2].bg_x & 0xFFFF;
-                SetGpuReg(REG_OFFSET_BG2X_H, temp1);
-                SetGpuReg(REG_OFFSET_BG2X_L, temp2);
-            }
-            break;
-        case 3:
-            if (mode == 0)
-            {
-                temp1 = sGpuBgConfigs2[3].bg_x >> 0x8;
-                SetGpuReg(REG_OFFSET_BG3HOFS, temp1);
-            }
-            else if (mode == 2)
-            {
-                temp1 = sGpuBgConfigs2[3].bg_x >> 0x10;
-                temp2 = sGpuBgConfigs2[3].bg_x & 0xFFFF;
-                SetGpuReg(REG_OFFSET_BG3X_H, temp1);
-                SetGpuReg(REG_OFFSET_BG3X_L, temp2);
-            }
-            break;
+    case 0:
+        temp1 = sGpuBgConfigs2[0].bg_x >> 0x8;
+        SetGpuReg(REG_OFFSET_BG0HOFS, temp1);
+        break;
+    case 1:
+        temp1 = sGpuBgConfigs2[1].bg_x >> 0x8;
+        SetGpuReg(REG_OFFSET_BG1HOFS, temp1);
+        break;
+    case 2:
+        if (mode == 0)
+        {
+            temp1 = sGpuBgConfigs2[2].bg_x >> 0x8;
+            SetGpuReg(REG_OFFSET_BG2HOFS, temp1);
+        }
+        else
+        {
+            temp1 = sGpuBgConfigs2[2].bg_x >> 0x10;
+            temp2 = sGpuBgConfigs2[2].bg_x & 0xFFFF;
+            SetGpuReg(REG_OFFSET_BG2X_H, temp1);
+            SetGpuReg(REG_OFFSET_BG2X_L, temp2);
+        }
+        break;
+    case 3:
+        if (mode == 0)
+        {
+            temp1 = sGpuBgConfigs2[3].bg_x >> 0x8;
+            SetGpuReg(REG_OFFSET_BG3HOFS, temp1);
+        }
+        else if (mode == 2)
+        {
+            temp1 = sGpuBgConfigs2[3].bg_x >> 0x10;
+            temp2 = sGpuBgConfigs2[3].bg_x & 0xFFFF;
+            SetGpuReg(REG_OFFSET_BG3X_H, temp1);
+            SetGpuReg(REG_OFFSET_BG3X_L, temp2);
+        }
+        break;
     }
 
     return sGpuBgConfigs2[bg].bg_x;
@@ -679,58 +679,58 @@ u32 ChangeBgY(u8 bg, u32 value, u8 op)
 
     switch (op)
     {
-        case 0:
-        default:
-            sGpuBgConfigs2[bg].bg_y = value;
-            break;
-        case 1:
-            sGpuBgConfigs2[bg].bg_y += value;
-            break;
-        case 2:
-            sGpuBgConfigs2[bg].bg_y -= value;
-            break;
+    case BG_COORD_SET:
+    default:
+        sGpuBgConfigs2[bg].bg_y = value;
+        break;
+    case BG_COORD_ADD:
+        sGpuBgConfigs2[bg].bg_y += value;
+        break;
+    case BG_COORD_SUB:
+        sGpuBgConfigs2[bg].bg_y -= value;
+        break;
     }
 
     mode = GetBgMode();
 
     switch (bg)
     {
-        case 0:
-            temp1 = sGpuBgConfigs2[0].bg_y >> 0x8;
-            SetGpuReg(REG_OFFSET_BG0VOFS, temp1);
-            break;
-        case 1:
-            temp1 = sGpuBgConfigs2[1].bg_y >> 0x8;
-            SetGpuReg(REG_OFFSET_BG1VOFS, temp1);
-            break;
-        case 2:
-            if (mode == 0)
-            {
-                temp1 = sGpuBgConfigs2[2].bg_y >> 0x8;
-                SetGpuReg(REG_OFFSET_BG2VOFS, temp1);
-            }
-            else
-            {
-                temp1 = sGpuBgConfigs2[2].bg_y >> 0x10;
-                temp2 = sGpuBgConfigs2[2].bg_y & 0xFFFF;
-                SetGpuReg(REG_OFFSET_BG2Y_H, temp1);
-                SetGpuReg(REG_OFFSET_BG2Y_L, temp2);
-            }
-            break;
-        case 3:
-            if (mode == 0)
-            {
-                temp1 = sGpuBgConfigs2[3].bg_y >> 0x8;
-                SetGpuReg(REG_OFFSET_BG3VOFS, temp1);
-            }
-            else if (mode == 2)
-            {
-                temp1 = sGpuBgConfigs2[3].bg_y >> 0x10;
-                temp2 = sGpuBgConfigs2[3].bg_y & 0xFFFF;
-                SetGpuReg(REG_OFFSET_BG3Y_H, temp1);
-                SetGpuReg(REG_OFFSET_BG3Y_L, temp2);
-            }
-            break;
+    case 0:
+        temp1 = sGpuBgConfigs2[0].bg_y >> 0x8;
+        SetGpuReg(REG_OFFSET_BG0VOFS, temp1);
+        break;
+    case 1:
+        temp1 = sGpuBgConfigs2[1].bg_y >> 0x8;
+        SetGpuReg(REG_OFFSET_BG1VOFS, temp1);
+        break;
+    case 2:
+        if (mode == 0)
+        {
+            temp1 = sGpuBgConfigs2[2].bg_y >> 0x8;
+            SetGpuReg(REG_OFFSET_BG2VOFS, temp1);
+        }
+        else
+        {
+            temp1 = sGpuBgConfigs2[2].bg_y >> 0x10;
+            temp2 = sGpuBgConfigs2[2].bg_y & 0xFFFF;
+            SetGpuReg(REG_OFFSET_BG2Y_H, temp1);
+            SetGpuReg(REG_OFFSET_BG2Y_L, temp2);
+        }
+        break;
+    case 3:
+        if (mode == 0)
+        {
+            temp1 = sGpuBgConfigs2[3].bg_y >> 0x8;
+            SetGpuReg(REG_OFFSET_BG3VOFS, temp1);
+        }
+        else if (mode == 2)
+        {
+            temp1 = sGpuBgConfigs2[3].bg_y >> 0x10;
+            temp2 = sGpuBgConfigs2[3].bg_y & 0xFFFF;
+            SetGpuReg(REG_OFFSET_BG3Y_H, temp1);
+            SetGpuReg(REG_OFFSET_BG3Y_L, temp2);
+        }
+        break;
     }
 
     return sGpuBgConfigs2[bg].bg_y;
@@ -820,7 +820,7 @@ void UnsetBgTilemapBuffer(u8 bg)
     }
 }
 
-void* GetBgTilemapBuffer(u8 bg)
+void *GetBgTilemapBuffer(u8 bg)
 {
     if (IsInvalidBg32(bg) != FALSE)
         return NULL;
@@ -866,7 +866,7 @@ void CopyBgTilemapBufferToVram(u8 bg)
     }
 }
 
-void CopyToBgTilemapBufferRect(u8 bg, const void* src, u8 destX, u8 destY, u8 width, u8 height)
+void CopyToBgTilemapBufferRect(u8 bg, const void *src, u8 destX, u8 destY, u8 width, u8 height)
 {
     u16 destX16;
     u16 destY16;
@@ -883,7 +883,7 @@ void CopyToBgTilemapBufferRect(u8 bg, const void* src, u8 destX, u8 destY, u8 wi
                 {
                     for (destX16 = destX; destX16 < (destX + width); destX16++)
                     {
-                        ((u16*)sGpuBgConfigs2[bg].tilemap)[((destY16 * 0x20) + destX16)] = *(srcCopy)++;
+                        ((u16 *)sGpuBgConfigs2[bg].tilemap)[((destY16 * 0x20) + destX16)] = *(srcCopy)++;
                     }
                 }
                 break;
@@ -896,7 +896,7 @@ void CopyToBgTilemapBufferRect(u8 bg, const void* src, u8 destX, u8 destY, u8 wi
                 {
                     for (destX16 = destX; destX16 < (destX + width); destX16++)
                     {
-                        ((u8*)sGpuBgConfigs2[bg].tilemap)[((destY16 * mode) + destX16)] = *(srcCopy)++;
+                        ((u8 *)sGpuBgConfigs2[bg].tilemap)[((destY16 * mode) + destX16)] = *(srcCopy)++;
                     }
                 }
                 break;
@@ -910,7 +910,7 @@ void CopyToBgTilemapBufferRect_ChangePalette(u8 bg, const void *src, u8 destX, u
     CopyRectToBgTilemapBufferRect(bg, src, 0, 0, rectWidth, rectHeight, destX, destY, rectWidth, rectHeight, palette, 0, 0);
 }
 
-void CopyRectToBgTilemapBufferRect(u8 bg, const void *src, u8 srcX, u8 srcY, u8 srcWidth, u8 unused, u8 srcHeight, u8 destX, u8 destY, u8 rectWidth, u8 rectHeight, s16 palette1, s16 tileOffset)
+void CopyRectToBgTilemapBufferRect(u8 bg, const void *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight, u8 destX, u8 destY, u8 rectWidth, u8 rectHeight, u8 palette1, s16 tileOffset, s16 palette2)
 {
     u16 screenWidth, screenHeight, screenSize;
     u16 var;
@@ -926,28 +926,28 @@ void CopyRectToBgTilemapBufferRect(u8 bg, const void *src, u8 srcX, u8 srcY, u8 
         {
         case 0:
             srcPtr = src + ((srcY * srcWidth) + srcX) * 2;
-            for (i = destX; i < (destX + rectWidth); i++)
+            for (i = destY; i < (destY + rectHeight); i++)
             {
-                for (j = srcHeight; j < (srcHeight + destY); j++)
+                for (j = destX; j < (destX + rectWidth); j++)
                 {
                     u16 index = GetTileMapIndexFromCoords(j, i, screenSize, screenWidth, screenHeight);
-                    CopyTileMapEntry(srcPtr, sGpuBgConfigs2[bg].tilemap + (index * 2), rectHeight, palette1, tileOffset);
+                    CopyTileMapEntry(srcPtr, sGpuBgConfigs2[bg].tilemap + (index * 2), palette1, tileOffset, palette2);
                     srcPtr += 2;
                 }
-                srcPtr += (srcWidth - destY) * 2;
+                srcPtr += (srcWidth - rectWidth) * 2;
             }
             break;
         case 1:
             srcPtr = src + ((srcY * srcWidth) + srcX);
             var = GetBgMetricAffineMode(bg, 0x1);
-            for (i = destX; i < (destX + rectWidth); i++)
+            for (i = destY; i < (destY + rectHeight); i++)
             {
-                for (j = srcHeight; j < (srcHeight + destY); j++)
+                for (j = destX; j < (destX + rectWidth); j++)
                 {
-                    *(u8*)(sGpuBgConfigs2[bg].tilemap + ((var * i) + j)) = *(u8*)(srcPtr) + palette1;
+                    *(u8 *)(sGpuBgConfigs2[bg].tilemap + ((var * i) + j)) = *(u8 *)(srcPtr) + tileOffset;
                     srcPtr++;
                 }
-                srcPtr += (srcWidth - destY);
+                srcPtr += (srcWidth - rectWidth);
             }
             break;
         }
@@ -969,7 +969,7 @@ void FillBgTilemapBufferRect_Palette0(u8 bg, u16 tileNum, u8 x, u8 y, u8 width, 
                 {
                     for (x16 = x; x16 < (x + width); x16++)
                     {
-                        ((u16*)sGpuBgConfigs2[bg].tilemap)[((y16 * 0x20) + x16)] = tileNum;
+                        ((u16 *)sGpuBgConfigs2[bg].tilemap)[((y16 * 0x20) + x16)] = tileNum;
                     }
                 }
                 break;
@@ -979,7 +979,7 @@ void FillBgTilemapBufferRect_Palette0(u8 bg, u16 tileNum, u8 x, u8 y, u8 width, 
                 {
                     for (x16 = x; x16 < (x + width); x16++)
                     {
-                        ((u8*)sGpuBgConfigs2[bg].tilemap)[((y16 * mode) + x16)] = tileNum;
+                        ((u8 *)sGpuBgConfigs2[bg].tilemap)[((y16 * mode) + x16)] = tileNum;
                     }
                 }
                 break;
@@ -1014,7 +1014,7 @@ void WriteSequenceToBgTilemapBuffer(u8 bg, u16 firstTileNum, u8 x, u8 y, u8 widt
                 {
                     for (x16 = x; x16 < (x + width); x16++)
                     {
-                        CopyTileMapEntry(&firstTileNum, &((u16*)sGpuBgConfigs2[bg].tilemap)[(u16)GetTileMapIndexFromCoords(x16, y16, attribute, mode, mode2)], paletteSlot, 0, 0);
+                        CopyTileMapEntry(&firstTileNum, &((u16 *)sGpuBgConfigs2[bg].tilemap)[(u16)GetTileMapIndexFromCoords(x16, y16, attribute, mode, mode2)], paletteSlot, 0, 0);
                         firstTileNum = (firstTileNum & 0xFC00) + ((firstTileNum + tileNumDelta) & 0x3FF);
                     }
                 }
@@ -1025,7 +1025,7 @@ void WriteSequenceToBgTilemapBuffer(u8 bg, u16 firstTileNum, u8 x, u8 y, u8 widt
                 {
                     for (x16 = x; x16 < (x + width); x16++)
                     {
-                        ((u8*)sGpuBgConfigs2[bg].tilemap)[(y16 * mode3) + x16] = firstTileNum;
+                        ((u8 *)sGpuBgConfigs2[bg].tilemap)[(y16 * mode3) + x16] = firstTileNum;
                         firstTileNum = (firstTileNum & 0xFC00) + ((firstTileNum + tileNumDelta) & 0x3FF);
                     }
                 }
@@ -1207,7 +1207,7 @@ bool32 IsInvalidBg32(u8 bg)
 
 bool32 IsTileMapOutsideWram(u8 bg)
 {
-    if (sGpuBgConfigs2[bg].tilemap > (void*)IWRAM_END)
+    if (sGpuBgConfigs2[bg].tilemap > (void *)IWRAM_END)
         return TRUE;
     if (sGpuBgConfigs2[bg].tilemap == 0x0)
         return TRUE;

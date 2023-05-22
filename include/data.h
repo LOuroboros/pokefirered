@@ -2,7 +2,6 @@
 #define GUARD_DATA_H
 
 #include "global.h"
-#include "constants/species.h"
 
 #define SPECIES_SHINY_TAG 500
 #define TRAINER_ENCOUNTER_MUSIC(trainer)((gTrainers[trainer].encounterMusic_gender & 0x7F))
@@ -15,12 +14,12 @@ struct MonCoords
     u8 y_offset;
 };
 
+#define MON_COORDS_SIZE(width, height)(DIV_ROUND_UP(width, 8) << 4 | DIV_ROUND_UP(height, 8))
+#define GET_MON_COORDS_WIDTH(size)((size >> 4) * 8)
+#define GET_MON_COORDS_HEIGHT(size)((size & 0xF) * 8)
+
 extern const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1];
-extern const u8 gMoveNames[][13];
-extern const u16 gUnknown_8251CB8[];
-extern const u16 gUnknown_8251FEE[];
-extern const u16 gUnknown_8252324[];
-extern const u16 gUnknown_82539D4[];
+extern const u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
 
 extern const u8 gTrainerClassNames[][13];
 
@@ -28,11 +27,12 @@ extern const struct MonCoords gMonFrontPicCoords[];
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
 extern const struct MonCoords gMonBackPicCoords[];
 extern const struct CompressedSpriteSheet gMonBackPicTable[];
-extern struct CompressedSpritePalette gMonPaletteTable[];
+extern const struct CompressedSpritePalette gMonPaletteTable[];
 extern const struct CompressedSpritePalette gMonShinyPaletteTable[];
 extern const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[];
 extern const struct MonCoords gTrainerFrontPicCoords[];
 extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
+extern const struct CompressedSpriteSheet gTrainerBackPicTable[];
 extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
 extern const union AnimCmd *const *const gTrainerBackAnimsPtrTable[];
 extern const struct MonCoords gTrainerBackPicCoords[];
@@ -46,15 +46,13 @@ extern const u8 gEnemyMonElevation[NUM_SPECIES];
 extern const u8 *const gBattleAnims_General[];
 extern const u8 *const gBattleAnims_Special[];
 
-extern const struct OamData gUnknown_824F010;
-extern const struct OamData gUnknown_824F018;
-extern const union AnimCmd *const gSpriteAnimTable_82349BC[];
-extern const union AffineAnimCmd *const gSpriteAffineAnimTable_82348C8[];
-extern const union AffineAnimCmd *const gSpriteAffineAnimTable_8234944[];
-extern const struct SpriteFrameImage gUnknown_8234698[];
-extern const struct SpriteFrameImage gUnknown_82346B8[];
-extern const struct SpriteFrameImage gUnknown_82346D8[];
-extern const struct SpriteFrameImage gUnknown_82346F8[];
+extern const union AnimCmd *const gAnims_MonPic[];
+extern const union AffineAnimCmd *const gAffineAnims_BattleSpritePlayerSide[];
+extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteOpponentSide[];
+extern const struct SpriteFrameImage gBattlerPicTable_PlayerLeft[];
+extern const struct SpriteFrameImage gBattlerPicTable_OpponentLeft[];
+extern const struct SpriteFrameImage gBattlerPicTable_PlayerRight[];
+extern const struct SpriteFrameImage gBattlerPicTable_OpponentRight[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Red[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Leaf[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Pokedude[];

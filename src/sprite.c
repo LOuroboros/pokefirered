@@ -5,23 +5,26 @@
 
 #define OAM_MATRIX_COUNT 32
 
+#define sAnchorX data[6]
+#define sAnchorY data[7]
+
 #define SET_SPRITE_TILE_RANGE(index, start, count) \
 {                                                  \
     sSpriteTileRanges[index * 2] = start;          \
     (sSpriteTileRanges + 1)[index * 2] = count;    \
 }
 
-#define ALLOC_SPRITE_TILE(n)                             \
-{                                                        \
-    gSpriteTileAllocBitmap[(n) / 8] |= (1 << ((n) % 8)); \
-}
-
-#define FREE_SPRITE_TILE(n)                               \
+#define ALLOC_SPRITE_TILE(n)                              \
 {                                                         \
-    gSpriteTileAllocBitmap[(n) / 8] &= ~(1 << ((n) % 8)); \
+    gSpriteTileAllocBitmap[(n) >> 3] |= (1 << ((n) & 7)); \
 }
 
-#define SPRITE_TILE_IS_ALLOCATED(n) ((gSpriteTileAllocBitmap[(n) / 8] >> ((n) % 8)) & 1)
+#define FREE_SPRITE_TILE(n)                                \
+{                                                          \
+    gSpriteTileAllocBitmap[(n) >> 3] &= ~(1 << ((n) & 7)); \
+}
+
+#define SPRITE_TILE_IS_ALLOCATED(n) ((gSpriteTileAllocBitmap[(n) >> 3] >> ((n) & 7)) & 1)
 
 
 struct SpriteCopyRequest
@@ -83,7 +86,7 @@ static void ApplyAffineAnimFrame(u8 matrixNum, struct AffineAnimFrameCmd *frameC
 static u8 IndexOfSpriteTileTag(u16 tag);
 static void AllocSpriteTileRange(u16 tag, u16 start, u16 count);
 static void DoLoadSpritePalette(const u16 *src, u16 paletteOffset);
-static void obj_update_pos2(struct Sprite* sprite, s32 a1, s32 a2);
+static void UpdateSpriteMatrixAnchorPos(struct Sprite* sprite, s32 a1, s32 a2);
 
 typedef void (*AnimFunc)(struct Sprite *);
 typedef void (*AnimCmdFunc)(struct Sprite *);
@@ -161,41 +164,11 @@ static const struct Sprite sDummySprite =
 {
     .oam = DUMMY_OAM_DATA,
     .anims = gDummySpriteAnimTable,
-    .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .template = &gDummySpriteTemplate,
-    .subspriteTables = NULL,
     .callback = SpriteCallbackDummy,
-    .pos1 = { 304, 160 },
-    .pos2 = {   0,   0 },
-    .centerToCornerVecX = 0,
-    .centerToCornerVecY = 0,
-    .animNum = 0,
-    .animCmdIndex = 0,
-    .animDelayCounter = 0,
-    .animPaused = 0,
-    .affineAnimPaused = 0,
-    .animLoopCounter = 0,
-    .data = {0, 0, 0, 0, 0, 0, 0},
-    .inUse = 0,
-    .coordOffsetEnabled = 0,
-    .invisible = 0,
-    .flags_3 = 0,
-    .flags_4 = 0,
-    .flags_5 = 0,
-    .flags_6 = 0,
-    .flags_7 = 0,
-    .hFlip = 0,
-    .vFlip = 0,
-    .animBeginning = 0,
-    .affineAnimBeginning = 0,
-    .animEnded = 0,
-    .affineAnimEnded = 0,
-    .usingSheet = 0,
-    .flags_f = 0,
-    .sheetTileStart = 0,
-    .subspriteTableNum = 0,
-    .subspriteMode = 0,
+    .x = DISPLAY_WIDTH + 64,
+    .y = DISPLAY_HEIGHT,
     .subpriority = 0xFF
 };
 
@@ -212,7 +185,7 @@ const union AffineAnimCmd * const gDummySpriteAffineAnimTable[] = { &sDummyAffin
 const struct SpriteTemplate gDummySpriteTemplate =
 {
     .tileTag = 0,
-    .paletteTag = 0xFFFF,
+    .paletteTag = TAG_NONE,
     .oam = &gDummyOamData,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
@@ -369,13 +342,13 @@ void UpdateOamCoords(void)
         {
             if (sprite->coordOffsetEnabled)
             {
-                sprite->oam.x = sprite->pos1.x + sprite->pos2.x + sprite->centerToCornerVecX + gSpriteCoordOffsetX;
-                sprite->oam.y = sprite->pos1.y + sprite->pos2.y + sprite->centerToCornerVecY + gSpriteCoordOffsetY;
+                sprite->oam.x = sprite->x + sprite->x2 + sprite->centerToCornerVecX + gSpriteCoordOffsetX;
+                sprite->oam.y = sprite->y + sprite->y2 + sprite->centerToCornerVecY + gSpriteCoordOffsetY;
             }
             else
             {
-                sprite->oam.x = sprite->pos1.x + sprite->pos2.x + sprite->centerToCornerVecX;
-                sprite->oam.y = sprite->pos1.y + sprite->pos2.y + sprite->centerToCornerVecY;
+                sprite->oam.x = sprite->x + sprite->x2 + sprite->centerToCornerVecX;
+                sprite->oam.y = sprite->y + sprite->y2 + sprite->centerToCornerVecY;
             }
         }
     }
@@ -573,8 +546,8 @@ u8 CreateSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y,
     sprite->affineAnims = template->affineAnims;
     sprite->template = template;
     sprite->callback = template->callback;
-    sprite->pos1.x = x;
-    sprite->pos1.y = y;
+    sprite->x = x;
+    sprite->y = y;
 
     CalcCenterToCornerVec(sprite, sprite->oam.shape, sprite->oam.size, sprite->oam.affineMode);
 
@@ -782,17 +755,17 @@ u8 SpriteTileAllocBitmapOp(u16 bit, u8 op)
     u8 val = bit % 8;
     u8 retVal = 0;
 
-    if (op == 0)
+    if (op == 0) // clear
     {
         val = ~(1 << val);
         gSpriteTileAllocBitmap[index] &= val;
     }
-    else if (op == 1)
+    else if (op == 1) // set
     {
         val = (1 << val);
         gSpriteTileAllocBitmap[index] |= val;
     }
-    else
+    else // check
     {
         retVal = 1 << shift;
         retVal &= gSpriteTileAllocBitmap[index];
@@ -801,7 +774,7 @@ u8 SpriteTileAllocBitmapOp(u16 bit, u8 op)
     return retVal;
 }
 
-void sub_80075C0(struct Sprite *sprite)
+void FreeSpriteTilesIfNotUsingSheet(struct Sprite *sprite)
 {
     if (!sprite->usingSheet)
     {
@@ -809,7 +782,7 @@ void sub_80075C0(struct Sprite *sprite)
         int end = (sprite->images[0].size / TILE_SIZE_4BPP) + sprite->oam.tileNum;
 
         for (i = sprite->oam.tileNum; i < end; i++)
-            gSpriteTileAllocBitmap[i >> 3] &= ~(1 << (i & 7));
+            FREE_SPRITE_TILE(i);
     }
 }
 
@@ -1099,8 +1072,8 @@ void BeginAffineAnim(struct Sprite *sprite)
         sprite->affineAnimEnded = FALSE;
         ApplyAffineAnimFrame(matrixNum, &frameCmd);
         sAffineAnimStates[matrixNum].delayCounter = frameCmd.duration;
-        if (sprite->flags_f)
-            obj_update_pos2(sprite, sprite->data[6], sprite->data[7]);
+        if (sprite->anchored)
+            UpdateSpriteMatrixAnchorPos(sprite, sprite->sAnchorX, sprite->sAnchorY);
     }
 }
 
@@ -1125,8 +1098,8 @@ void ContinueAffineAnim(struct Sprite *sprite)
                 funcIndex = type - 32765;
             sAffineAnimCmdFuncs[funcIndex](matrixNum, sprite);
         }
-        if (sprite->flags_f)
-            obj_update_pos2(sprite, sprite->data[6], sprite->data[7]);
+        if (sprite->anchored)
+            UpdateSpriteMatrixAnchorPos(sprite, sprite->sAnchorX, sprite->sAnchorY);
     }
 }
 
@@ -1220,14 +1193,14 @@ u8 GetSpriteMatrixNum(struct Sprite *sprite)
     return matrixNum;
 }
 
-void obj_pos2_update_enable(struct Sprite* sprite, s16 xmod, s16 ymod)
+void SetSpriteMatrixAnchor(struct Sprite* sprite, s16 x, s16 y)
 {
-    sprite->data[6] = xmod;
-    sprite->data[7] = ymod;
-    sprite->flags_f = 1;
+    sprite->sAnchorX = x;
+    sprite->sAnchorY = y;
+    sprite->anchored = TRUE;
 }
 
-static s32 affine_get_new_pos2(s32 baseDim, s32 xformed, s32 modifier)
+static s32 GetAnchorCoord(s32 baseDim, s32 xformed, s32 modifier)
 {
     s32 subResult, shiftResult;
 
@@ -1239,24 +1212,24 @@ static s32 affine_get_new_pos2(s32 baseDim, s32 xformed, s32 modifier)
     return modifier - ((u32)(modifier * xformed) / (u32)(baseDim) + shiftResult);
 }
 
-static void obj_update_pos2(struct Sprite *sprite, s32 xmod, s32 ymod)
+static void UpdateSpriteMatrixAnchorPos(struct Sprite *sprite, s32 x, s32 y)
 {
     s32 dim, baseDim, xFormed;
 
     u32 matrixNum = sprite->oam.matrixNum;
-    if (xmod != 0x800)
+    if (x != NO_ANCHOR)
     {
         dim = sOamDimensionsCopy[sprite->oam.shape][sprite->oam.size][0];
         baseDim = dim << 8;
         xFormed = (dim << 16) / gOamMatrices[matrixNum].a;
-        sprite->pos2.x = affine_get_new_pos2(baseDim, xFormed, xmod);
+        sprite->x2 = GetAnchorCoord(baseDim, xFormed, x);
     }
-    if (ymod != 0x800)
+    if (y != NO_ANCHOR)
     {
         dim = sOamDimensionsCopy[sprite->oam.shape][sprite->oam.size][1];
         baseDim = dim << 8;
         xFormed = (dim << 16) / gOamMatrices[matrixNum].d;
-        sprite->pos2.y = affine_get_new_pos2(baseDim, xFormed, ymod);
+        sprite->y2 = GetAnchorCoord(baseDim, xFormed, y);
     }
 }
 
@@ -1333,7 +1306,7 @@ void ApplyAffineAnimFrameRelativeAndUpdateMatrix(u8 matrixNum, struct AffineAnim
 s16 ConvertScaleParam(s16 scale)
 {
     s32 val = 0x10000;
-    return val / scale;
+    return SAFE_DIV(val, scale);
 }
 
 void GetAffineAnimFrame(u8 matrixNum, struct Sprite *sprite, struct AffineAnimFrameCmd *frameCmd)

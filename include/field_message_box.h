@@ -3,12 +3,18 @@
 
 #include "global.h"
 
+enum {
+    FIELD_MESSAGE_BOX_HIDDEN,
+    FIELD_MESSAGE_BOX_UNUSED,
+    FIELD_MESSAGE_BOX_NORMAL,
+    FIELD_MESSAGE_BOX_AUTO_SCROLL,
+};
+
 bool8 ShowFieldMessage(const u8 *message);
-bool8 sub_8098238(const u8 *message);
 bool8 ShowFieldAutoScrollMessage(const u8 *message);
 void HideFieldMessageBox(void);
 bool8 IsFieldMessageBoxHidden(void);
-bool8 textbox_any_visible(void);
-void sub_8069348(void);
+u8 GetFieldMessageBoxType(void);
+void InitFieldMessageBox(void);
 
 #endif // GUARD_FIELD_MESSAGE_BOX_H

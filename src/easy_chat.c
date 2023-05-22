@@ -4,15 +4,13 @@
 #include "easy_chat.h"
 #include "event_data.h"
 #include "field_message_box.h"
-#include "mevent.h"
+#include "mystery_gift.h"
 #include "menu.h"
 #include "mail.h"
 #include "pokedex.h"
 #include "random.h"
 #include "strings.h"
 #include "constants/easy_chat.h"
-#include "constants/flags.h"
-#include "constants/species.h"
 
 struct Unk203A120
 {
@@ -461,19 +459,24 @@ void InitEasyChatPhrases(void)
             gSaveBlock1Ptr->mail[i].words[j] = EC_WORD_UNDEFINED;
     }
 
+#ifndef UBFIX
     // BUG: This is supposed to clear 64 bits, but this loop is clearing 64 bytes.
     // However, this bug has no resulting effect on gameplay because only the
     // Mauville old man data is corrupted, which is initialized directly after
     // this function is called when starting a new game.
     for (i = 0; i < 64; i++)
         gSaveBlock1Ptr->additionalPhrases[i] = 0;
+#else
+    for (i = 0; i < NELEMS(gSaveBlock1Ptr->additionalPhrases); i++)
+        gSaveBlock1Ptr->additionalPhrases[i] = 0;
+#endif
 }
 
-void EC_ResetMEventProfileMaybe(void)
+void InitQuestionnaireWords(void)
 {
     s32 i;
-    u16 *ptr = GetMEventProfileECWordsMaybe();
-    for (i = 0; i < 4; i++)
+    u16 *ptr = GetQuestionnaireWordsPtr();
+    for (i = 0; i < NUM_QUESTIONNAIRE_WORDS; i++)
         ptr[i] = EC_WORD_UNDEFINED;
 }
 
@@ -529,7 +532,8 @@ u8 GetSelectedGroupByIndex(u8 index)
         return sEasyChatSelectionData->groups[index];
 }
 
-static u8 *unref_sub_80BDF6C(u8 *dest, u8 groupId, u16 totalChars)
+// Unused
+static u8 *BufferEasyChatWordGroupName(u8 *dest, u8 groupId, u16 totalChars)
 {
     u16 i;
     u8 *str = StringCopy(dest, sEasyChatGroupNamePointers[groupId]);
@@ -706,7 +710,7 @@ static bool8 UnlockedECMonOrMove(u16 wordIndex, u8 groupId)
 static bool32 EC_IsDeoxys(u16 species)
 {
     u32 i;
-    for (i = 0; i < ARRAY_COUNT(sDeoxysValue); i++)
+    for (i = 0; i < NELEMS(sDeoxysValue); i++)
     {
         if (sDeoxysValue[i] == species)
             return TRUE;

@@ -572,12 +572,12 @@ const u32 gMonShinyPalette_Magneton[] = INCBIN_U32("graphics/pokemon/magneton/sh
 const u8 gMonIcon_Magneton[] = INCBIN_U8("graphics/pokemon/magneton/icon.4bpp");
 const u8 gMonFootprint_Magneton[] = INCBIN_U8("graphics/pokemon/magneton/footprint.1bpp");
 
-const u32 gMonFrontPic_Farfetchd[] = INCBIN_U32("graphics/pokemon/farfetch_d/front.4bpp.lz");
-const u32 gMonPalette_Farfetchd[] = INCBIN_U32("graphics/pokemon/farfetch_d/normal.gbapal.lz");
-const u32 gMonBackPic_Farfetchd[] = INCBIN_U32("graphics/pokemon/farfetch_d/back.4bpp.lz");
-const u32 gMonShinyPalette_Farfetchd[] = INCBIN_U32("graphics/pokemon/farfetch_d/shiny.gbapal.lz");
-const u8 gMonIcon_Farfetchd[] = INCBIN_U8("graphics/pokemon/farfetch_d/icon.4bpp");
-const u8 gMonFootprint_Farfetchd[] = INCBIN_U8("graphics/pokemon/farfetch_d/footprint.1bpp");
+const u32 gMonFrontPic_Farfetchd[] = INCBIN_U32("graphics/pokemon/farfetchd/front.4bpp.lz");
+const u32 gMonPalette_Farfetchd[] = INCBIN_U32("graphics/pokemon/farfetchd/normal.gbapal.lz");
+const u32 gMonBackPic_Farfetchd[] = INCBIN_U32("graphics/pokemon/farfetchd/back.4bpp.lz");
+const u32 gMonShinyPalette_Farfetchd[] = INCBIN_U32("graphics/pokemon/farfetchd/shiny.gbapal.lz");
+const u8 gMonIcon_Farfetchd[] = INCBIN_U8("graphics/pokemon/farfetchd/icon.4bpp");
+const u8 gMonFootprint_Farfetchd[] = INCBIN_U8("graphics/pokemon/farfetchd/footprint.1bpp");
 
 const u32 gMonFrontPic_Doduo[] = INCBIN_U32("graphics/pokemon/doduo/front.4bpp.lz");
 const u32 gMonPalette_Doduo[] = INCBIN_U32("graphics/pokemon/doduo/normal.gbapal.lz");
@@ -1658,7 +1658,7 @@ const u32 gMonShinyPalette_Hitmontop[] = INCBIN_U32("graphics/pokemon/hitmontop/
 const u8 gMonIcon_Hitmontop[] = INCBIN_U8("graphics/pokemon/hitmontop/icon.4bpp");
 
 // This might be undefined memory garbage. Its all 00s except for 1 0F. Its also not referenced.
-const u32 gUndefined_8DD1E90[] = INCBIN_U32("data/garbage_8DD2290.bin");
+const u32 gUnusedGarbage[] = INCBIN_U32("graphics/pokemon/hitmontop/unused_garbage.bin");
 
 const u8 gMonFootprint_Hitmontop[] = INCBIN_U8("graphics/pokemon/hitmontop/footprint.1bpp");
 

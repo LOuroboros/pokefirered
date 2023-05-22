@@ -67,9 +67,12 @@ IntrFunc gIntrTable[INTR_COUNT];
 bool8 gLinkVSyncDisabled;
 u32 IntrMain_Buffer[0x200];
 u8 gPcmDmaCounter;
-u8 gUnknown_3003578;
-u8 gUnknown_3003D80;
-u8 gUnknown_3003D84;
+
+// These variables are not defined in RS or Emerald, and are never read.
+// They were likely used to debug the audio engine and VCount interrupt.
+u8 sVcountAfterSound;
+u8 sVcountAtIntr;
+u8 sVcountBeforeSound;
 
 static IntrFunc * const sTimerIntrFunc = gIntrTable + 0x7;
 
@@ -140,7 +143,13 @@ void AgbMain()
 
     SetNotInSaveFailedScreen();
 
+#ifndef NDEBUG
+#if (LOG_HANDLER == LOG_HANDLER_MGBA_PRINT)
+    (void) MgbaOpen();
+#elif (LOG_HANDLER == LOG_HANDLER_AGB_PRINT)
     AGBPrintInit();
+#endif
+#endif
 
 #if REVISION == 1
     if (gFlashMemoryPresent != TRUE)
@@ -200,7 +209,7 @@ static void InitMainCallbacks(void)
     gMain.vblankCounter1 = 0;
     gMain.vblankCounter2 = 0;
     gMain.callback1 = NULL;
-    SetMainCallback2(c2_copyright_1);
+    SetMainCallback2(CB2_InitCopyrightScreenAfterBootup);
     gSaveBlock2Ptr = &gSaveBlock2;
     gSaveBlock1Ptr = &gSaveBlock1;
     gSaveBlock2.encryptionKey = 0;
@@ -352,7 +361,7 @@ extern void ProcessDma3Requests(void);
 static void VBlankIntr(void)
 {
     if (gWirelessCommType)
-        RFUVSync();
+        RfuVSync();
     else if (!gLinkVSyncDisabled)
         LinkVSync();
 
@@ -369,11 +378,15 @@ static void VBlankIntr(void)
 
     gPcmDmaCounter = gSoundInfo.pcmDmaCounter;
 
-    gUnknown_3003D84 = REG_VCOUNT;
+#ifndef NDEBUG
+    sVcountBeforeSound = REG_VCOUNT;
+#endif
     m4aSoundMain();
-    gUnknown_3003578 = REG_VCOUNT;
+#ifndef NDEBUG
+    sVcountAfterSound = REG_VCOUNT;
+#endif
 
-    sub_800DD28();
+    TryReceiveLinkBattleData();
     Random();
     UpdateWirelessStatusIndicatorSprite();
 
@@ -398,7 +411,9 @@ static void HBlankIntr(void)
 
 static void VCountIntr(void)
 {
-    gUnknown_3003D80 = REG_VCOUNT;
+#ifndef NDEBUG
+    sVcountAtIntr = REG_VCOUNT;
+#endif
     m4aSoundVSync();
     INTR_CHECK |= INTR_FLAG_VCOUNT;
     gMain.intrCheck |= INTR_FLAG_VCOUNT;

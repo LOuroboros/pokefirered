@@ -9,7 +9,6 @@
 #include "pokedex.h"
 #include "script_pokemon_util.h"
 #include "constants/items.h"
-#include "constants/species.h"
 #include "constants/pokemon.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
@@ -110,7 +109,7 @@ static bool8 CheckPartyMonHasHeldItem(u16 item)
 
     for(i = 0; i < PARTY_SIZE; i++)
     {
-        u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
+        u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
         if (species != SPECIES_NONE && species != SPECIES_EGG && GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM) == item)
             return TRUE;
     }
@@ -154,7 +153,7 @@ void ChooseHalfPartyForBattle(void)
 {
     gMain.savedCallback = CB2_ReturnFromChooseHalfParty;
 //    VarSet(VAR_FRONTIER_FACILITY, FACILITY_MULTI_OR_EREADER);
-    InitChooseHalfPartyForBattle(0);
+    InitChooseMonsForBattle(CHOOSE_MONS_FOR_CABLE_CLUB_BATTLE);
 }
 
 static void CB2_ReturnFromChooseHalfParty(void)
@@ -175,7 +174,7 @@ static void CB2_ReturnFromChooseHalfParty(void)
 void ChooseBattleTowerPlayerParty(void)
 {
     gMain.savedCallback = CB2_ReturnFromChooseBattleTowerParty;
-    InitChooseHalfPartyForBattle(1);
+    InitChooseMonsForBattle(CHOOSE_MONS_FOR_BATTLE_TOWER);
 }
 
 static void CB2_ReturnFromChooseBattleTowerParty(void)

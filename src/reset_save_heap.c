@@ -6,7 +6,7 @@
 #include "new_game.h"
 #include "overworld.h"
 
-void ResetSaveHeap(void)
+void ReloadSave(void)
 {
     u16 imeBackup = REG_IME;
     
@@ -18,7 +18,7 @@ void ResetSaveHeap(void)
     SetSaveBlocksPointers();
     ResetMenuAndMonGlobals();
     Save_ResetSaveCounters();
-    Save_LoadGameData(SAVE_NORMAL);
+    LoadGameSave(SAVE_NORMAL);
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_INVALID)
         Sav2_ClearSetDefault();
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);

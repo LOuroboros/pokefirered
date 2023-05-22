@@ -1,164 +1,164 @@
-gOtherText_NewName:: @ 81C574F
+gOtherText_NewName::
     .string "NEW NAME$"
 
-gNameChoice_Green:: @ 81C5758
+gNameChoice_Green::
     .string "GREEN$"
 
-gNameChoice_Red:: @ 81C575E
+gNameChoice_Red::
     .string "RED$"
 
-gNameChoice_Leaf:: @ 81C5762
+gNameChoice_Leaf::
     .string "LEAF$"
 
-gNameChoice_Fire:: @ 81C5767
+gNameChoice_Fire::
     .string "FIRE$"
 
-gNameChoice_Gary:: @ 81C576C
+gNameChoice_Gary::
     .string "GARY$"
 
-gNameChoice_Kaz:: @ 81C5771
+gNameChoice_Kaz::
     .string "KAZ$"
 
-gNameChoice_Toru:: @ 81C5775
+gNameChoice_Toru::
     .string "TORU$"
 
-gNameChoice_Ash:: @ 81C577A
+gNameChoice_Ash::
     .string "ASH$"
 
-gNameChoice_Kene:: @ 81C577E
+gNameChoice_Kene::
     .string "KENE$"
 
-gNameChoice_Geki:: @ 81C5783
+gNameChoice_Geki::
     .string "GEKI$"
 
-gNameChoice_Jak:: @ 81C5788
+gNameChoice_Jak::
     .string "JAK$"
 
-gNameChoice_Janne:: @ 81C578C
+gNameChoice_Janne::
     .string "JANNE$"
 
-gNameChoice_Jonn:: @ 81C5792
+gNameChoice_Jonn::
     .string "JONN$"
 
-gNameChoice_Kamon:: @ 81C5797
+gNameChoice_Kamon::
     .string "KAMON$"
 
-gNameChoice_Karl:: @ 81C579D
+gNameChoice_Karl::
     .string "KARL$"
 
-gNameChoice_Taylor:: @ 81C57A2
+gNameChoice_Taylor::
     .string "TAYLOR$"
 
-gNameChoice_Oscar:: @ 81C57A9
+gNameChoice_Oscar::
     .string "OSCAR$"
 
-gNameChoice_Hiro:: @ 81C57AF
+gNameChoice_Hiro::
     .string "HIRO$"
 
-gNameChoice_Max:: @ 81C57B4
+gNameChoice_Max::
     .string "MAX$"
 
-gNameChoice_Jon:: @ 81C57B8
+gNameChoice_Jon::
     .string "JON$"
 
-gNameChoice_Ralph:: @ 81C57BC
+gNameChoice_Ralph::
     .string "RALPH$"
 
-gNameChoice_Kay:: @ 81C57C2
+gNameChoice_Kay::
     .string "KAY$"
 
-gNameChoice_Tosh:: @ 81C57C6
+gNameChoice_Tosh::
     .string "TOSH$"
 
-gNameChoice_Roak:: @ 81C57CB
+gNameChoice_Roak::
     .string "ROAK$"
 
-gNameChoice_Omi:: @ 81C57D0
+gNameChoice_Omi::
     .string "OMI$"
 
-gNameChoice_Jodi:: @ 81C57D4
+gNameChoice_Jodi::
     .string "JODI$"
 
-gNameChoice_Amanda:: @ 81C57D9
+gNameChoice_Amanda::
     .string "AMANDA$"
 
-gNameChoice_Hillary:: @ 81C57E0
+gNameChoice_Hillary::
     .string "HILLARY$"
 
-gNameChoice_Makey:: @ 81C57E8
+gNameChoice_Makey::
     .string "MAKEY$"
 
-gNameChoice_Michi:: @ 81C57EE
+gNameChoice_Michi::
     .string "MICHI$"
 
-gNameChoice_Paula:: @ 81C57F4
+gNameChoice_Paula::
     .string "PAULA$"
 
-gNameChoice_June:: @ 81C57FA
+gNameChoice_June::
     .string "JUNE$"
 
-gNameChoice_Cassie:: @ 81C57FF
+gNameChoice_Cassie::
     .string "CASSIE$"
 
-gNameChoice_Rey:: @ 81C5806
+gNameChoice_Rey::
     .string "REY$"
 
-gNameChoice_Seda:: @ 81C580A
+gNameChoice_Seda::
     .string "SEDA$"
 
-gNameChoice_Kiko:: @ 81C580F
+gNameChoice_Kiko::
     .string "KIKO$"
 
-gNameChoice_Mina:: @ 81C5814
+gNameChoice_Mina::
     .string "MINA$"
 
-gNameChoice_Norie:: @ 81C5819
+gNameChoice_Norie::
     .string "NORIE$"
 
-gNameChoice_Sai:: @ 81C581F
+gNameChoice_Sai::
     .string "SAI$"
 
-gNameChoice_Momo:: @ 81C5823
+gNameChoice_Momo::
     .string "MOMO$"
 
-gNameChoice_Suzi:: @ 81C5828
+gNameChoice_Suzi::
     .string "SUZI$"
 
-gNewGame_HelpDocs1:: @ 81C582D
+gControlsGuide_Text_Intro::
     .string "The various buttons will be explained in\n"
     .string "the order of their importance.$"
 
-gNewGame_HelpDocs2:: @ 81C5875
+gControlsGuide_Text_DPad::
     .string "Moves the main character.\n"
     .string "Also used to choose various data\n"
     .string "headings.$"
 
-gNewGame_HelpDocs3:: @ 81C58BA
+gControlsGuide_Text_AButton::
     .string "Used to confirm a choice, check\n"
     .string "things, chat, and scroll text.$"
 
-gNewGame_HelpDocs4:: @ 81C58F9
+gControlsGuide_Text_BButton::
     .string "Used to exit, cancel a choice,\n"
     .string "and cancel a mode.$"
 
-gNewGame_HelpDocs5:: @ 81C592B
+gControlsGuide_Text_StartButton::
     .string "Press this button to open the\n"
     .string "MENU.$"
 
-gNewGame_HelpDocs6:: @ 81C594F
+gControlsGuide_Text_SelectButton::
     .string "Used to shift items and to use\n"
     .string "a registered item.$"
 
-gNewGame_HelpDocs7:: @ 81C5981
+gControlsGuide_Text_LRButtons::
     .string "If you need help playing the\n"
     .string "game, or on how to do things,\n"
     .string "press the L or R Button.$"
 
-gOakText_AskPlayerGender:: @ 81C59D5
+gOakSpeech_Text_AskPlayerGender::
     .string "Now tell me. Are you a boy?\n"
     .string "Or are you a girl?$"
 
-gNewGameAdventureIntro1::
+gPikachuIntro_Text_Page1::
     .string "In the world which you are about to\n"
     .string "enter, you will embark on a grand\n"
     .string "adventure with you as the hero.\n"
@@ -168,7 +168,7 @@ gNewGameAdventureIntro1::
     .string "or caves. Gather information and\n"
     .string "hints from every source.$"
 
-gNewGameAdventureIntro2::
+gPikachuIntro_Text_Page2::
     .string "New paths will open to you by helping\n"
     .string "people in need, overcoming challenges,\n"
     .string "and solving mysteries.\n"
@@ -177,7 +177,7 @@ gNewGameAdventureIntro2::
     .string "others and attacked by wild creatures.\n"
     .string "Be brave and keep pushing on.$"
 
-gNewGameAdventureIntro3::
+gPikachuIntro_Text_Page3::
     .string "Through your adventure, we hope\n"
     .string "that you will interact with all sorts\n"
     .string "of people and achieve personal growth.\n"
@@ -186,49 +186,58 @@ gNewGameAdventureIntro3::
     .string "Press the A Button, and let your\n"
     .string "adventure begin!$"
 
-gOakText_WelcomeToTheWorld:: @ 81C5C78
+gOakSpeech_Text_WelcomeToTheWorld::
     .string "Hello, there!\n"
-    .string "Glad to meet you!\pWelcome to the world of POKéMON!\pMy name is OAK.\pPeople affectionately refer to me\n"
+    .string "Glad to meet you!\p"
+    .string "Welcome to the world of POKéMON!\p"
+    .string "My name is OAK.\p"
+    .string "People affectionately refer to me\n"
     .string "as the POKéMON PROFESSOR.\p$"
 
-gOakText_WorldInhabited1:: @ 81C5D06
+gOakSpeech_Text_ThisWorld::
     .string "This world…$"
 
-gOakText_WorldInhabited2:: @ 81C5D12
+gOakSpeech_Text_IsInhabitedFarAndWide::
     .string "…is inhabited far and wide by\n"
     .string "creatures called POKéMON.\p$"
 
-gOakText_PetsBattlingStudy:: @ 81C5D4B
+gOakSpeech_Text_IStudyPokemon::
     .string "For some people, POKéMON are pets.\n"
-    .string "Others use them for battling.\pAs for myself…\pI study POKéMON as a profession.\p$"
+    .string "Others use them for battling.\p"
+    .string "As for myself…\p"
+    .string "I study POKéMON as a profession.\p$"
 
-gOakText_TellMeALittleAboutYourself:: @ 81C5DBD
+gOakSpeech_Text_TellMeALittleAboutYourself::
     .string "But first, tell me a little about\n"
     .string "yourself.\p$"
 
-gOakText_AskPlayerName:: @ 81C5DEA
+gOakSpeech_Text_YourNameWhatIsIt::
     .string "Let's begin with your name.\n"
     .string "What is it?\p$"
 
-gOakText_FinalizePlayerName:: @ 81C5E13
+gOakSpeech_Text_SoYourNameIsPlayer::
     .string "Right…\n"
     .string "So your name is {PLAYER}.$"
 
-gOakText_IntroduceRival:: @ 81C5E2E
-    .string "This is my grandson.\pHe's been your rival since you both\n"
-    .string "were babies.\p…Erm, what was his name now?$"
+gOakSpeech_Text_WhatWasHisName::
+    .string "This is my grandson.\p"
+    .string "He's been your rival since you both\n"
+    .string "were babies.\p"
+    .string "…Erm, what was his name now?$"
 
-gOakText_AskRivalName:: @ 81C5E91
+gOakSpeech_Text_YourRivalsNameWhatWasIt::
     .string "Your rival's name, what was it now?$"
 
-gOakText_ConfirmRivalName:: @ 81C5EB5
+gOakSpeech_Text_ConfirmRivalName::
     .string "…Er, was it {RIVAL}?$"
 
-gOakText_RememberRivalName:: @ 81C5EC5
+gOakSpeech_Text_RememberRivalsName::
     .string "That's right! I remember now!\n"
     .string "His name is {RIVAL}!\p$"
 
-gOakText_LegendAboutToUnfold:: @ 81C5EF4
-    .string "{PLAYER}!\pYour very own POKéMON legend is\n"
-    .string "about to unfold!\pA world of dreams and adventures\n"
+gOakSpeech_Text_LetsGo::
+    .string "{PLAYER}!\p"
+    .string "Your very own POKéMON legend is\n"
+    .string "about to unfold!\p"
+    .string "A world of dreams and adventures\n"
     .string "with POKéMON awaits! Let's go!$"

@@ -1,139 +1,132 @@
-SSAnne_2F_Corridor_MapScripts:: @ 81608DE
+.set LOCALID_RIVAL, 1
+
+SSAnne_2F_Corridor_MapScripts::
 	.byte 0
 
-SSAnne_2F_Corridor_EventScript_RivalTriggerLeft:: @ 81608DF
+SSAnne_2F_Corridor_EventScript_RivalTriggerLeft::
 	lockall
 	setvar VAR_TEMP_1, 0
 	goto SSAnne_2F_Corridor_EventScript_RivalTrigger
 	end
 
-SSAnne_2F_Corridor_EventScript_RivalTriggerMid:: @ 81608EB
+SSAnne_2F_Corridor_EventScript_RivalTriggerMid::
 	lockall
 	setvar VAR_TEMP_1, 1
 	goto SSAnne_2F_Corridor_EventScript_RivalTrigger
 	end
 
-SSAnne_2F_Corridor_EventScript_RivalTriggerRight:: @ 81608F7
+SSAnne_2F_Corridor_EventScript_RivalTriggerRight::
 	lockall
 	setvar VAR_TEMP_1, 2
 	goto SSAnne_2F_Corridor_EventScript_RivalTrigger
 	end
 
-SSAnne_2F_Corridor_EventScript_RivalTrigger:: @ 8160903
-	textcolor 0
+SSAnne_2F_Corridor_EventScript_RivalTrigger::
+	textcolor NPC_TEXT_COLOR_MALE
 	playse SE_EXIT
 	delay 5
 	playbgm MUS_ENCOUNTER_RIVAL, 0
-	addobject 1
+	addobject LOCALID_RIVAL
 	delay 10
-	applymovement 1, Movement_WalkInPlaceFastestDown
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	delay 20
-	compare VAR_TEMP_1, 0
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalApproachLeft
-	compare VAR_TEMP_1, 1
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalApproachMid
-	compare VAR_TEMP_1, 2
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalApproachRight
+	call_if_eq VAR_TEMP_1, 0, SSAnne_2F_Corridor_EventScript_RivalApproachLeft
+	call_if_eq VAR_TEMP_1, 1, SSAnne_2F_Corridor_EventScript_RivalApproachMid
+	call_if_eq VAR_TEMP_1, 2, SSAnne_2F_Corridor_EventScript_RivalApproachRight
 	msgbox SSAnne_2F_Corridor_Text_RivalIntro
-	setvar VAR_LAST_TALKED, 1
-	compare VAR_STARTER_MON, 2
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalSquirtle
-	compare VAR_STARTER_MON, 1
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalBulbasaur
-	compare VAR_STARTER_MON, 0
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalCharmander
+	setvar VAR_LAST_TALKED, LOCALID_RIVAL
+	call_if_eq VAR_STARTER_MON, 2, SSAnne_2F_Corridor_EventScript_RivalSquirtle
+	call_if_eq VAR_STARTER_MON, 1, SSAnne_2F_Corridor_EventScript_RivalBulbasaur
+	call_if_eq VAR_STARTER_MON, 0, SSAnne_2F_Corridor_EventScript_RivalCharmander
 	msgbox SSAnne_2F_Corridor_Text_RivalPostBattle
 	closemessage
 	delay 10
 	playbgm MUS_RIVAL_EXIT, 0
-	compare VAR_TEMP_1, 0
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalExitLeft
-	compare VAR_TEMP_1, 1
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalExitMid
-	compare VAR_TEMP_1, 2
-	call_if_eq SSAnne_2F_Corridor_EventScript_RivalExitRight
+	call_if_eq VAR_TEMP_1, 0, SSAnne_2F_Corridor_EventScript_RivalExitLeft
+	call_if_eq VAR_TEMP_1, 1, SSAnne_2F_Corridor_EventScript_RivalExitMid
+	call_if_eq VAR_TEMP_1, 2, SSAnne_2F_Corridor_EventScript_RivalExitRight
 	fadedefaultbgm
-	removeobject 1
+	removeobject LOCALID_RIVAL
 	setvar VAR_MAP_SCENE_S_S_ANNE_2F_CORRIDOR, 1
 	releaseall
 	end
 
-SSAnne_2F_Corridor_EventScript_RivalApproachLeft:: @ 81609AD
-	applymovement 1, SSAnne_2F_Corridor_Movement_RivalApproachLeft
+SSAnne_2F_Corridor_EventScript_RivalApproachLeft::
+	applymovement LOCALID_RIVAL, SSAnne_2F_Corridor_Movement_RivalApproachLeft
 	waitmovement 0
 	return
 
-SSAnne_2F_Corridor_EventScript_RivalApproachMid:: @ 81609B8
-	applymovement 1, SSAnne_2F_Corridor_Movement_RivalApproachMid
+SSAnne_2F_Corridor_EventScript_RivalApproachMid::
+	applymovement LOCALID_RIVAL, SSAnne_2F_Corridor_Movement_RivalApproachMid
 	applymovement OBJ_EVENT_ID_PLAYER, SSAnne_2F_Corridor_Movement_PlayerFaceRivalMid
 	waitmovement 0
 	return
 
-SSAnne_2F_Corridor_EventScript_RivalApproachRight:: @ 81609CA
+SSAnne_2F_Corridor_EventScript_RivalApproachRight::
 	applymovement OBJ_EVENT_ID_PLAYER, SSAnne_2F_Corridor_Movement_PlayerFaceRivalRight
-	applymovement 1, SSAnne_2F_Corridor_Movement_RivalApproachRight
+	applymovement LOCALID_RIVAL, SSAnne_2F_Corridor_Movement_RivalApproachRight
 	waitmovement 0
 	return
 
-SSAnne_2F_Corridor_EventScript_RivalSquirtle:: @ 81609DC
+SSAnne_2F_Corridor_EventScript_RivalSquirtle::
 	trainerbattle_no_intro TRAINER_RIVAL_SS_ANNE_SQUIRTLE, SSAnne_2F_Corridor_Text_RivalDefeat
 	return
 
-SSAnne_2F_Corridor_EventScript_RivalBulbasaur:: @ 81609E7
+SSAnne_2F_Corridor_EventScript_RivalBulbasaur::
 	trainerbattle_no_intro TRAINER_RIVAL_SS_ANNE_BULBASAUR, SSAnne_2F_Corridor_Text_RivalDefeat
 	return
 
-SSAnne_2F_Corridor_EventScript_RivalCharmander:: @ 81609F2
+SSAnne_2F_Corridor_EventScript_RivalCharmander::
 	trainerbattle_no_intro TRAINER_RIVAL_SS_ANNE_CHARMANDER, SSAnne_2F_Corridor_Text_RivalDefeat
 	return
 
-SSAnne_2F_Corridor_EventScript_RivalExitLeft:: @ 81609FD
-	applymovement 1, SSAnne_2F_Corridor_Movement_RivalExitLeft
+SSAnne_2F_Corridor_EventScript_RivalExitLeft::
+	applymovement LOCALID_RIVAL, SSAnne_2F_Corridor_Movement_RivalExitLeft
 	waitmovement 0
 	return
 
-SSAnne_2F_Corridor_EventScript_RivalExitMid:: @ 8160A08
-	applymovement 1, SSAnne_2F_Corridor_Movement_RivalExitMid
+SSAnne_2F_Corridor_EventScript_RivalExitMid::
+	applymovement LOCALID_RIVAL, SSAnne_2F_Corridor_Movement_RivalExitMid
 	waitmovement 0
 	return
 
-SSAnne_2F_Corridor_EventScript_RivalExitRight:: @ 8160A13
-	applymovement 1, SSAnne_2F_Corridor_Movement_RivalExitRight
+SSAnne_2F_Corridor_EventScript_RivalExitRight::
+	applymovement LOCALID_RIVAL, SSAnne_2F_Corridor_Movement_RivalExitRight
 	waitmovement 0
 	return
 
-SSAnne_2F_Corridor_Movement_PlayerFaceRivalRight:: @ 8160A1E
+SSAnne_2F_Corridor_Movement_PlayerFaceRivalRight::
 	delay_16
 	delay_16
 	delay_16
 	delay_16
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
-SSAnne_2F_Corridor_Movement_PlayerFaceRivalMid:: @ 8160A24
+SSAnne_2F_Corridor_Movement_PlayerFaceRivalMid::
 	delay_16
 	delay_16
 	delay_16
 	delay_16
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
-SSAnne_2F_Corridor_Movement_RivalApproachLeft:: @ 8160A2A
+SSAnne_2F_Corridor_Movement_RivalApproachLeft::
 	walk_down
 	walk_down
 	walk_down
 	step_end
 
-SSAnne_2F_Corridor_Movement_RivalApproachMid:: @ 8160A2E
+SSAnne_2F_Corridor_Movement_RivalApproachMid::
 	walk_down
 	walk_down
 	walk_down
 	walk_down
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	step_end
 
-SSAnne_2F_Corridor_Movement_RivalApproachRight:: @ 8160A34
+SSAnne_2F_Corridor_Movement_RivalApproachRight::
 	walk_down
 	walk_down
 	walk_down
@@ -142,7 +135,7 @@ SSAnne_2F_Corridor_Movement_RivalApproachRight:: @ 8160A34
 	delay_4
 	step_end
 
-SSAnne_2F_Corridor_Movement_RivalExitLeft:: @ 8160A3B
+SSAnne_2F_Corridor_Movement_RivalExitLeft::
 	walk_right
 	walk_down
 	walk_down
@@ -153,7 +146,7 @@ SSAnne_2F_Corridor_Movement_RivalExitLeft:: @ 8160A3B
 	walk_down
 	step_end
 
-SSAnne_2F_Corridor_Movement_RivalExitMid:: @ 8160A44
+SSAnne_2F_Corridor_Movement_RivalExitMid::
 	walk_down
 	walk_down
 	walk_down
@@ -163,7 +156,7 @@ SSAnne_2F_Corridor_Movement_RivalExitMid:: @ 8160A44
 	walk_down
 	step_end
 
-SSAnne_2F_Corridor_Movement_RivalExitRight:: @ 8160A4C
+SSAnne_2F_Corridor_Movement_RivalExitRight::
 	walk_down
 	walk_down
 	walk_down
@@ -173,6 +166,6 @@ SSAnne_2F_Corridor_Movement_RivalExitRight:: @ 8160A4C
 	walk_down
 	step_end
 
-SSAnne_2F_Corridor_EventScript_Sailor:: @ 8160A54
+SSAnne_2F_Corridor_EventScript_Sailor::
 	msgbox SSAnne_2F_Corridor_Text_ThisShipIsLuxuryLiner, MSGBOX_NPC
 	end

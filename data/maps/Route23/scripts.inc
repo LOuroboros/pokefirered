@@ -1,8 +1,16 @@
-Route23_MapScripts:: @ 81684EB
+.set LOCALID_CASCADE_BADGE_GUARD, 1
+.set LOCALID_THUNDER_BADGE_GUARD, 2
+.set LOCALID_RAINBOW_BADGE_GUARD, 3
+.set LOCALID_SOUL_BADGE_GUARD,    4
+.set LOCALID_MARSH_BADGE_GUARD,   5
+.set LOCALID_VOLCANO_BADGE_GUARD, 6
+.set LOCALID_EARTH_BADGE_GUARD,   7
+
+Route23_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route23_OnTransition
 	.byte 0
 
-Route23_OnTransition:: @ 81684F1
+Route23_OnTransition::
 	clearflag FLAG_HIDE_VICTORY_ROAD_3F_BOULDER
 	setflag FLAG_HIDE_VICTORY_ROAD_2F_BOULDER
 	setvar VAR_MAP_SCENE_VICTORY_ROAD_1F, 0
@@ -11,118 +19,118 @@ Route23_OnTransition:: @ 81684F1
 	setvar VAR_MAP_SCENE_VICTORY_ROAD_3F, 0
 	end
 
-Route23_EventScript_CascadeBadgeGuard:: @ 816850C
+Route23_EventScript_CascadeBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 2
-	getstdstring 0, STDSTRING_CASCADE_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_ThunderBadgeGuard:: @ 816851D
+Route23_EventScript_ThunderBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 3
-	getstdstring 0, STDSTRING_THUNDER_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_RainbowBadgeGuard:: @ 816852E
+Route23_EventScript_RainbowBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 4
-	getstdstring 0, STDSTRING_RAINBOW_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_SoulBadgeGuard:: @ 816853F
+Route23_EventScript_SoulBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 5
-	getstdstring 0, STDSTRING_SOUL_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_MarshBadgeGuard:: @ 8168550
+Route23_EventScript_MarshBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 6
-	getstdstring 0, STDSTRING_MARSH_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_VolcanoBadgeGuard:: @ 8168561
+Route23_EventScript_VolcanoBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 7
-	getstdstring 0, STDSTRING_VOLCANO_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_EarthBadgeGuard:: @ 8168572
+Route23_EventScript_EarthBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 8
-	getstdstring 0, STDSTRING_EARTH_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_CascadeBadgeGuardTrigger:: @ 8168583
+Route23_EventScript_CascadeBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 2
-	setvar VAR_0x8009, 1
-	getstdstring 0, STDSTRING_CASCADE_BADGE
+	setvar VAR_0x8009, LOCALID_CASCADE_BADGE_GUARD
+	bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_ThunderBadgeGuardTrigger:: @ 8168598
+Route23_EventScript_ThunderBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 3
-	setvar VAR_0x8009, 2
-	getstdstring 0, STDSTRING_THUNDER_BADGE
+	setvar VAR_0x8009, LOCALID_THUNDER_BADGE_GUARD
+	bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_RainbowBadgeGuardTrigger:: @ 81685AD
+Route23_EventScript_RainbowBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 4
-	setvar VAR_0x8009, 3
-	getstdstring 0, STDSTRING_RAINBOW_BADGE
+	setvar VAR_0x8009, LOCALID_RAINBOW_BADGE_GUARD
+	bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_SoulBadgeGuardTrigger:: @ 81685C2
+Route23_EventScript_SoulBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 5
-	setvar VAR_0x8009, 4
-	getstdstring 0, STDSTRING_SOUL_BADGE
+	setvar VAR_0x8009, LOCALID_SOUL_BADGE_GUARD
+	bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_MarshBadgeGuardTrigger:: @ 81685D7
+Route23_EventScript_MarshBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 6
-	setvar VAR_0x8009, 5
-	getstdstring 0, STDSTRING_MARSH_BADGE
+	setvar VAR_0x8009, LOCALID_MARSH_BADGE_GUARD
+	bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_VolcanoBadgeGuardTrigger:: @ 81685EC
+Route23_EventScript_VolcanoBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 7
-	setvar VAR_0x8009, 6
-	getstdstring 0, STDSTRING_VOLCANO_BADGE
+	setvar VAR_0x8009, LOCALID_VOLCANO_BADGE_GUARD
+	bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_EarthBadgeGuardTrigger:: @ 8168601
+Route23_EventScript_EarthBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 8
-	setvar VAR_0x8009, 7
-	getstdstring 0, STDSTRING_EARTH_BADGE
+	setvar VAR_0x8009, LOCALID_EARTH_BADGE_GUARD
+	bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_VictoryRoadGateSign:: @ 8168616
+Route23_EventScript_VictoryRoadGateSign::
 	msgbox Route23_Text_VictoryRoadGateSign, MSGBOX_SIGN
 	end

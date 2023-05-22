@@ -12,10 +12,8 @@
 #include "script.h"
 #include "task.h"
 #include "constants/field_tasks.h"
-#include "constants/flags.h"
 #include "constants/metatile_labels.h"
 #include "constants/songs.h"
-#include "constants/vars.h"
 
 // TODO: Metatile IDs in this file
 
@@ -59,7 +57,7 @@ static void Task_RunTimeBasedEvents(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (!ScriptContext2_IsEnabled())
+    if (!ArePlayerFieldControlsLocked())
     {
         if (!QL_IS_PLAYBACK_STATE)
         {
@@ -235,7 +233,7 @@ static void AshGrassPerStepCallback(u8 taskId)
     {
         data[1] = x;
         data[2] = y;
-        if (MetatileBehavior_ReturnFalse_4((u8)MapGridGetMetatileBehaviorAt(x, y)))
+        if (MetatileBehavior_IsAshGrass((u8)MapGridGetMetatileBehaviorAt(x, y)))
         {
             if (MapGridGetMetatileIdAt(x, y) == 0x20a)
                 StartAshFieldEffect(x, y, 0x212, 4);
@@ -269,7 +267,7 @@ static void CrackedFloorPerStepCallback(u8 taskId)
     {
         data[2] = x;
         data[3] = y;
-        if (MetatileBehavior_ReturnFalse_13(behavior))
+        if (MetatileBehavior_IsCrackedFloor(behavior))
         {
             if (GetPlayerSpeed() != 4)
                 VarSet(VAR_ICE_STEP_COUNT, 0);
@@ -290,7 +288,8 @@ static void CrackedFloorPerStepCallback(u8 taskId)
     }
 }
 
-static void sub_806ED38(void)
+// Unused
+static void SetHasPokedexAndPokemon(void)
 {
     FlagSet(FLAG_SYS_POKEDEX_GET);
     FlagSet(FLAG_SYS_POKEMON_GET);

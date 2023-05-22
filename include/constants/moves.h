@@ -357,9 +357,10 @@
 #define MOVE_DOOM_DESIRE 353
 #define MOVE_PSYCHO_BOOST 354
 
-#define LAST_MOVE_INDEX     MOVE_PSYCHO_BOOST
-
 #define MOVES_COUNT 355
+
+// Used for checks for moves affected by Disable, Mimic, etc.
+#define MOVE_UNAVAILABLE 0xFFFF
 
 #define MOVETUTOR_MEGA_PUNCH    0
 #define MOVETUTOR_SWORDS_DANCE  1

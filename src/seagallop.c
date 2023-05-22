@@ -18,7 +18,7 @@
 
 #define PALTAG_FERRY_WAKE 3000
 
-static EWRAM_DATA void * sBg3TilemapBuffer = NULL;
+static EWRAM_DATA void *sBg3TilemapBuffer = NULL;
 
 static void CB2_SetUpSeagallopScene(void);
 static void VBlankCB_SeaGallop(void);
@@ -34,9 +34,9 @@ static void ResetBGPos(void);
 static void LoadFerrySpriteResources(void);
 static void FreeFerrySpriteResources(void);
 static void CreateFerrySprite(void);
-static void SpriteCB_Ferry(struct Sprite * sprite);
+static void SpriteCB_Ferry(struct Sprite *sprite);
 static void CreateWakeSprite(s16 x);
-static void SpriteCB_Wake(struct Sprite * sprite);
+static void SpriteCB_Wake(struct Sprite *sprite);
 static bool8 GetDirectionOfTravel(void);
 
 static const u16 sWaterTiles[] = INCBIN_U16("graphics/seagallop/water.4bpp");
@@ -212,7 +212,7 @@ static void CB2_SetUpSeagallopScene(void)
             CopyToBgTilemapBufferRect(3, sWaterTilemap_WB, 0, 0, 32, 32);
         }
         LoadPalette(sWaterPal, 0x40, 0x20);
-        LoadPalette(stdpal_get(2), 0xF0, 0x20);
+        LoadPalette(GetTextWindowPalette(2), 0xF0, 0x20);
         gMain.state++;
         break;
     case 4:
@@ -226,11 +226,11 @@ static void CB2_SetUpSeagallopScene(void)
         break;
     case 5:
         LoadFerrySpriteResources();
-        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
+        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
         gMain.state++;
         break;
     case 6:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         gMain.state++;
         break;
     case 7:
@@ -284,7 +284,7 @@ static void ScrollBG(void)
 
 static void Task_Seagallop_1(u8 taskId)
 {
-    struct Task * task = &gTasks[taskId];
+    struct Task *task = &gTasks[taskId];
 
     ScrollBG();
     if (++task->data[1] == 140)
@@ -328,7 +328,7 @@ static void Task_Seagallop_3(void)
 
 static void ResetGPU(void)
 {
-    void * dest = (void *) VRAM;
+    void *dest = (void *) VRAM;
     DmaClearLarge16(3, dest, VRAM_SIZE, 0x1000);
 
     DmaClear32(3, (void *)OAM, OAM_SIZE);
@@ -405,21 +405,21 @@ static void CreateFerrySprite(void)
     }
     else
     {
-        gSprites[spriteId].pos1.x = 240;
+        gSprites[spriteId].x = 240;
         gSprites[spriteId].data[0] *= -1;
     }
 }
 
-static void SpriteCB_Ferry(struct Sprite * sprite)
+static void SpriteCB_Ferry(struct Sprite *sprite)
 {
     sprite->data[1] += sprite->data[0];
-    sprite->pos2.x = sprite->data[1] >> 4;
+    sprite->x2 = sprite->data[1] >> 4;
     if (sprite->data[2] % 5 == 0)
     {
-        CreateWakeSprite(sprite->pos1.x + sprite->pos2.x);
+        CreateWakeSprite(sprite->x + sprite->x2);
     }
     sprite->data[2]++;
-    if ((u16)(300 + sprite->pos2.x) > 600)
+    if ((u16)(300 + sprite->x2) > 600)
     {
         DestroySprite(sprite);
     }
@@ -437,7 +437,7 @@ static void CreateWakeSprite(s16 x)
     }
 }
 
-static void SpriteCB_Wake(struct Sprite * sprite)
+static void SpriteCB_Wake(struct Sprite *sprite)
 {
     if (sprite->animEnded)
     {

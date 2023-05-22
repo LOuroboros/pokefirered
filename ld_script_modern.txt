@@ -14,7 +14,7 @@ SECTIONS {
         *(ewram_data);
 
         . = 0x40000;
-}
+    }
 
     . = 0x3000000;
 
@@ -29,6 +29,7 @@ SECTIONS {
         /* COMMON starts at 0x30022A8 */
         *(COMMON);
         end = .;
+        __end__ = .;
         . = 0x8000;
     }
 
@@ -37,7 +38,10 @@ SECTIONS {
     .text :
     ALIGN(4)
     {
-        asm/crt0.o(.text);
+        src/rom_header.o(.text*);
+        src/rom_header_gf.o(.text.*);
+        src/crt0.o(.text);
+        src/main.o(.text);
         *(.text*);
     } =0
 

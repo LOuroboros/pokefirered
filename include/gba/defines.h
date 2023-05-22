@@ -51,8 +51,9 @@
 #define BG_SCREEN_ADDR(n) (void *)(BG_VRAM + (BG_SCREEN_SIZE * (n)))
 #define BG_TILE_ADDR(n)   (void *)(BG_VRAM + (0x80 * (n)))
 
-#define BG_TILE_H_FLIP(n) (0x400 + (n))
-#define BG_TILE_V_FLIP(n) (0x800 + (n))
+#define BG_TILE_H_FLIP(n)   (0x400 + (n))
+#define BG_TILE_V_FLIP(n)   (0x800 + (n))
+#define BG_TILE_H_V_FLIP(n) (0xC00 + (n))
 
 // text-mode BG
 #define OBJ_VRAM0      (void *)(VRAM + 0x10000)
@@ -78,20 +79,7 @@
 
 #define TOTAL_OBJ_TILE_COUNT 1024
 
-#define RGB(r, g, b) ((r) | ((g) << 5) | ((b) << 10))
-#define RGB2(r, g, b) (((b) << 10) | ((g) << 5) | (r))
-#define _RGB(r, g, b) ((((b) & 0x1F) << 10) + (((g) & 0x1F) << 5) + ((r) & 0x1F))
-
-#define RGB_BLACK RGB(0, 0, 0)
-#define RGB_WHITE RGB(31, 31, 31)
-#define RGB_RED RGB(31, 0, 0)
-#define RGB_GREEN RGB(0, 31, 0)
-#define RGB_BLUE RGB(0, 0, 31)
-#define RGB_YELLOW RGB(31, 31, 0)
-#define RGB_MAGENTA RGB(31, 0, 31)
-#define RGB_CYAN RGB(0, 31, 31)
-#define RGB_WHITEALPHA (RGB_WHITE | 0x8000)
-
+// Some functions are strictly inline asm
 #define NAKED __attribute__((naked))
 #define UNUSED __attribute__((unused))
 

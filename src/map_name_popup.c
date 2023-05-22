@@ -6,7 +6,6 @@
 #include "quest_log.h"
 #include "region_map.h"
 #include "strings.h"
-#include "constants/flags.h"
 
 static void Task_MapNamePopup(u8 taskId);
 static u16 MapNamePopupCreateWindow(bool32 palIntoFadedBuffer);
@@ -49,7 +48,7 @@ void ShowMapNamePopup(bool32 palIntoFadedBuffer)
 
 static void Task_MapNamePopup(u8 taskId)
 {
-    struct Task * task = &gTasks[taskId];
+    struct Task *task = &gTasks[taskId];
     switch (task->tState)
     {
     case 0:
@@ -173,17 +172,17 @@ static u16 MapNamePopupCreateWindow(bool32 palintoFadedBuffer)
     windowId = AddWindow(&windowTemplate);
     if (palintoFadedBuffer)
     {
-        LoadPalette(stdpal_get(3), 0xd0, 0x20);
+        LoadPalette(GetTextWindowPalette(3), 0xd0, 0x20);
     }
     else
     {
-        CpuCopy16(stdpal_get(3), &gPlttBufferUnfaded[0xd0], 0x20);
+        CpuCopy16(GetTextWindowPalette(3), &gPlttBufferUnfaded[0xd0], 0x20);
     }
-    sub_814FF6C(windowId, r6);
+    LoadStdWindowTiles(windowId, r6);
     DrawTextBorderOuter(windowId, r6, 0xD);
     PutWindowTilemap(windowId);
     MapNamePopupPrintMapNameOnWindow(windowId);
-    CopyWindowToVram(windowId, COPYWIN_BOTH);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
     return windowId;
 }
 
@@ -198,9 +197,9 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
         ptr = MapNamePopupAppendFloorNum(ptr, gMapHeader.floorNum);
         maxWidth = gMapHeader.floorNum != 0x7F ? 152 : 176;
     }
-    xpos = (maxWidth - GetStringWidth(2, mapName, -1)) / 2;
+    xpos = (maxWidth - GetStringWidth(FONT_NORMAL, mapName, -1)) / 2;
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    AddTextPrinterParameterized(windowId, 2, mapName, xpos, 2, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(windowId, FONT_NORMAL, mapName, xpos, 2, TEXT_SKIP_DRAW, NULL);
 }
 
 static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)

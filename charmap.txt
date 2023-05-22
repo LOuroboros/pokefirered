@@ -44,6 +44,7 @@ SUPER_ER    = 2C
 '+'         = 2E
 LV          = 34
 '='         = 35
+';'         = 36
 '¿'         = 51
 '¡'         = 52
 PK          = 53
@@ -59,6 +60,10 @@ UP_ARROW    = 79
 DOWN_ARROW  = 7A
 LEFT_ARROW  = 7B
 RIGHT_ARROW = 7C
+SUPER_E     = 84
+'<'         = 85
+'>'         = 86
+SUPER_RE    = A0
 '0'         = A1
 '1'         = A2
 '2'         = A3
@@ -73,10 +78,12 @@ RIGHT_ARROW = 7C
 '?'         = AC
 '.'         = AD
 '-'         = AE
+'·'         = AF
 '…'         = B0
 '“'         = B1
 '”'         = B2
 '‘'         = B3
+'’'         = B4
 '\''        = B4
 '♂'         = B5
 '♀'         = B6
@@ -318,12 +325,7 @@ TALL_PLUS   = FC 0C FB
 '？' = AC
 '。' = AD
 'ー' = AE
-'·' = AF
 '‥' = B0
-
-DYNAMIC = F7
-KEYGFX = F8
-EXTRA = F9
 
 STRING = FD
 
@@ -401,19 +403,15 @@ B_ATK_PREFIX2 = FD 2A
 B_DEF_PREFIX2 = FD 2B
 B_ATK_PREFIX3 = FD 2C
 B_DEF_PREFIX3 = FD 2D
-B_TRAINER2_CLASS = FD 2E
-B_TRAINER2_NAME = FD 2F
-B_TRAINER2_LOSE_TEXT = FD 30
-B_TRAINER2_WIN_TEXT = FD 31
-B_PARTNER_CLASS = FD 32
-B_PARTNER_NAME = FD 33
-B_BUFF3 = FD 34
+B_TRAINER2_LOSE_TEXT = FD 2E
+B_TRAINER2_WIN_TEXT = FD 2F
+B_BUFF3 = FD 30
 
 @ indicates the end of a town/city name (before " TOWN" or " CITY")
 NAME_END = FC 00
 
 @ special 0xF7 character
-SPECIAL_F7  =   F7
+DYNAMIC  =   F7
 
 @ more text functions
 
@@ -422,49 +420,55 @@ HIGHLIGHT = FC 02 @ same as fc 01
 SHADOW = FC 03 @ same as fc 01
 COLOR_HIGHLIGHT_SHADOW = FC 04 @ takes 3 bytes
 PALETTE = FC 05 @ used in credits
-SIZE = FC 06 @ note that anything other than "SMALL" is invalid
-RESET_SIZE = FC 07
+FONT = FC 06 @ Given a font id, or use font constants below instead
+RESET_FONT = FC 07
 PAUSE = FC 08 @ manually print the wait byte after this, havent mapped them
 PAUSE_UNTIL_PRESS = FC 09
 WAIT_SE = FC 0A
 PLAY_BGM = FC 0B
 ESCAPE = FC 0C
-SHIFT_TEXT = FC 0D @ shift rightward by 1-byte arg
-SHIFT_DOWN = FC 0E @ shift downward by 1-byte arg
+SHIFT_RIGHT = FC 0D
+SHIFT_DOWN = FC 0E
 FILL_WINDOW = FC 0F
 PLAY_SE = FC 10
 CLEAR = FC 11
 SKIP = FC 12
 CLEAR_TO = FC 13
-SPACING = FC 14
+MIN_LETTER_SPACING = FC 14
 JPN = FC 15
 ENG = FC 16
 PAUSE_MUSIC = FC 17
 RESUME_MUSIC = FC 18
 
-@ font sizes
+@ fonts
 
-SMALL = FC 06 00
-BIG   = FC 06 04
+FONT_SMALL = FC 06 00
+FONT_NORMAL_COPY_1 = FC 06 01
+FONT_NORMAL = FC 06 02
+FONT_NORMAL_COPY_2 = FC 06 03
+FONT_MALE = FC 06 04
+FONT_FEMALE = FC 06 05
 
 @ colors
 
 TRANSPARENT = 00
-DARK_GREY = 01
-RED = 02
-GREEN = 03
-BLUE = 04
-YELLOW = 05
-CYAN = 06
-MAGENTA = 07
-LIGHT_GRAY = 08
-BLACK = 09
-BLACK2 = 0A @ duplicate of black?
-SILVER = 0B
-WHITE = 0C
-SKY_BLUE = 0D
-LIGHT_BLUE = 0E
-WHITE2 = 0F @ duplicate of white?
+WHITE = 01
+DARK_GRAY = 02
+LIGHT_GRAY = 03
+RED = 04
+LIGHT_RED = 05
+GREEN = 06
+LIGHT_GREEN = 07
+BLUE = 08
+LIGHT_BLUE = 09
+@ these next colors can be set to anything arbitrary at runtime
+@ usually though they'll have the textbox border colors as described below
+DYNAMIC_COLOR1 = 0A @ white
+DYNAMIC_COLOR2 = 0B @ white with a tinge of green
+DYNAMIC_COLOR3 = 0C @ white 2
+DYNAMIC_COLOR4 = 0D @ aquamarine
+DYNAMIC_COLOR5 = 0E @ blue-green
+DYNAMIC_COLOR6 = 0F @ cerulean
 
 @ sound
 

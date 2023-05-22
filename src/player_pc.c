@@ -37,7 +37,7 @@ static EWRAM_DATA const u8 *sItemOrder = NULL;
 static EWRAM_DATA u8 sTopMenuItemCount = 0;
 EWRAM_DATA struct PlayerPCItemPageStruct gPlayerPcMenuManager = {};
 
-#define SELECTED_MAIL (gSaveBlock1Ptr->mail[PC_MAIL_NUM(gPlayerPcMenuManager.itemsAbove) + gPlayerPcMenuManager.cursorPos])
+#define SELECTED_MAIL (gSaveBlock1Ptr->mail[PC_MAIL_NUM(gPlayerPcMenuManager.cursorPos) + gPlayerPcMenuManager.itemsAbove])
 
 static void Task_DrawPlayerPcTopMenu(u8 taskId);
 static void Task_TopMenuHandleInput(u8 taskId);
@@ -88,8 +88,8 @@ static const struct MenuAction sMenuActions_TopMenu[] = {
     {gText_TurnOff, Task_PlayerPcTurnOff}
 };
 
-static const u8 gUnknown_8402200[] = { 0, 1, 2 };
-static const u8 gUnknown_8402203[] = { 0, 1, 2 };
+static const u8 sItemOrder_BedroomPC[] = { 0, 1, 2 };
+static const u8 sItemOrder_PlayerPC[] = { 0, 1, 2 };
 
 static const struct MenuAction sMenuActions_ItemPc[] = {
     {gText_WithdrawItem2, Task_PlayerPcWithdrawItem},
@@ -154,10 +154,10 @@ void BedroomPC(void)
 
     gPlayerPcMenuManager.notInRoom = FALSE;
     BackupHelpContext();
-    sItemOrder = gUnknown_8402200;
+    sItemOrder = sItemOrder_BedroomPC;
     sTopMenuItemCount = 3;
     taskId = CreateTask(TaskDummy, 0);
-    DisplayItemMessageOnField(taskId, 2, gText_WhatWouldYouLikeToDo, Task_DrawPlayerPcTopMenu);
+    DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_WhatWouldYouLikeToDo, Task_DrawPlayerPcTopMenu);
 }
 
 void PlayerPC(void)
@@ -166,10 +166,10 @@ void PlayerPC(void)
 
     gPlayerPcMenuManager.notInRoom = TRUE;
     BackupHelpContext();
-    sItemOrder = gUnknown_8402203;
+    sItemOrder = sItemOrder_PlayerPC;
     sTopMenuItemCount = 3;
     taskId = CreateTask(TaskDummy, 0);
-    DisplayItemMessageOnField(taskId, 2, gText_WhatWouldYouLikeToDo, Task_DrawPlayerPcTopMenu);
+    DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_WhatWouldYouLikeToDo, Task_DrawPlayerPcTopMenu);
 }
 
 static void Task_DrawPlayerPcTopMenu(u8 taskId)
@@ -180,8 +180,8 @@ static void Task_DrawPlayerPcTopMenu(u8 taskId)
     else
         tWindowId = AddWindow(&sWindowTemplate_TopMenu_4Items);
     SetStdWindowBorderStyle(tWindowId, 0);
-    AddItemMenuActionTextPrinters(tWindowId, 2, GetMenuCursorDimensionByFont(2, 0), 2, GetFontAttribute(2, FONTATTR_LETTER_SPACING), 16, sTopMenuItemCount, sMenuActions_TopMenu, sItemOrder);
-    Menu_InitCursor(tWindowId, 2, 0, 2, 16, sTopMenuItemCount, 0);
+    AddItemMenuActionTextPrinters(tWindowId, FONT_NORMAL, GetMenuCursorDimensionByFont(FONT_NORMAL, 0), 2, GetFontAttribute(FONT_NORMAL, FONTATTR_LETTER_SPACING), 16, sTopMenuItemCount, sMenuActions_TopMenu, sItemOrder);
+    Menu_InitCursor(tWindowId, FONT_NORMAL, 0, 2, 16, sTopMenuItemCount, 0);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = Task_TopMenuHandleInput;
 }
@@ -215,7 +215,7 @@ static void Task_TopMenuHandleInput(u8 taskId)
 static void Task_ReturnToTopMenu(u8 taskId)
 {
     RestoreHelpContext();
-    DisplayItemMessageOnField(taskId, 2, gText_WhatWouldYouLikeToDo, Task_DrawPlayerPcTopMenu);
+    DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_WhatWouldYouLikeToDo, Task_DrawPlayerPcTopMenu);
 }
 
 static void Task_PlayerPcItemStorage(u8 taskId)
@@ -229,12 +229,12 @@ static void Task_PlayerPcMailbox(u8 taskId)
     gPlayerPcMenuManager.count = CountPCMail();
     if (gPlayerPcMenuManager.count == 0)
     {
-        DisplayItemMessageOnField(taskId, 2, gText_TheresNoMailHere, Task_ReturnToTopMenu);
+        DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_TheresNoMailHere, Task_ReturnToTopMenu);
     }
     else
     {
-        gPlayerPcMenuManager.cursorPos = 0;
         gPlayerPcMenuManager.itemsAbove = 0;
+        gPlayerPcMenuManager.cursorPos = 0;
         PCMailCompaction();
         Task_SetPageItemVars(taskId);
         if (gPlayerPcMenuManager.notInRoom == FALSE)
@@ -249,7 +249,7 @@ static void Task_PlayerPcMailbox(u8 taskId)
         }
         else
         {
-            DisplayItemMessageOnField(taskId, 2, gText_TheresNoMailHere, Task_ReturnToTopMenu);
+            DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_TheresNoMailHere, Task_ReturnToTopMenu);
         }
     }
 }
@@ -257,9 +257,9 @@ static void Task_PlayerPcMailbox(u8 taskId)
 static void Task_PlayerPcTurnOff(u8 taskId)
 {
     if (gPlayerPcMenuManager.notInRoom == FALSE)
-        ScriptContext1_SetupScript(EventScript_PalletTown_PlayersHouse_2F_ShutDownPC);
+        ScriptContext_SetupScript(EventScript_PalletTown_PlayersHouse_2F_ShutDownPC);
     else
-        EnableBothScriptContexts();
+        ScriptContext_Enable();
     DestroyTask(taskId);
 }
 
@@ -272,8 +272,8 @@ static void Task_CreateItemStorageSubmenu(u8 taskId, u8 cursorPos)
         SetHelpContext(HELPCONTEXT_PLAYERS_PC_ITEMS);
     tWindowId = AddWindow(&sWindowTemplate_ItemStorageSubmenu);
     SetStdWindowBorderStyle(tWindowId, FALSE);
-    PrintTextArray(tWindowId, 2, GetMenuCursorDimensionByFont(2, 0), 2, 16, 3, sMenuActions_ItemPc);
-    Menu_InitCursor(tWindowId, 2, 0, 2, 16, 3, cursorPos);
+    PrintTextArray(tWindowId, FONT_NORMAL, GetMenuCursorDimensionByFont(FONT_NORMAL, 0), 2, 16, 3, sMenuActions_ItemPc);
+    Menu_InitCursor(tWindowId, FONT_NORMAL, 0, 2, 16, 3, cursorPos);
     ScheduleBgCopyTilemapToVram(0);
     PrintStringOnWindow0WithDialogueFrame(sItemStorageActionDescriptionPtrs[cursorPos]);
 }
@@ -281,7 +281,7 @@ static void Task_CreateItemStorageSubmenu(u8 taskId, u8 cursorPos)
 static void PrintStringOnWindow0WithDialogueFrame(const u8 *str)
 {
     DrawDialogueFrame(0, FALSE);
-    AddTextPrinterParameterized(0, 2, str, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(0, FONT_NORMAL, str, 0, 1, 0, NULL);
 }
 
 static void Task_TopMenu_ItemStorageSubmenu_HandleInput(u8 taskId)
@@ -364,7 +364,7 @@ static void Task_PlayerPcWithdrawItem(u8 taskId)
         ClearStdWindowAndFrameToTransparent(tWindowId, FALSE);
         ClearWindowTilemap(tWindowId);
         RemoveWindow(tWindowId);
-        DisplayItemMessageOnField(taskId, 2, gText_ThereAreNoItems, Task_PlayerPcItemStorage);
+        DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_ThereAreNoItems, Task_PlayerPcItemStorage);
     }
 }
 
@@ -442,7 +442,7 @@ static void PCMailCompaction(void)
         {
             if (gSaveBlock1Ptr->mail[i].itemId == ITEM_NONE)
             {
-                struct MailStruct mail = gSaveBlock1Ptr->mail[i];
+                struct Mail mail = gSaveBlock1Ptr->mail[i];
                 gSaveBlock1Ptr->mail[i] = gSaveBlock1Ptr->mail[j];
                 gSaveBlock1Ptr->mail[j] = mail;
             }
@@ -453,9 +453,9 @@ static void PCMailCompaction(void)
 static void Task_DrawMailboxPcMenu(u8 taskId)
 {
     u8 windowId = MailboxPC_GetAddWindow(0);
-    s32 width = GetStringWidth(2, gText_Mailbox, 0);
+    s32 width = GetStringWidth(FONT_NORMAL, gText_Mailbox, 0);
     MailboxPC_GetAddWindow(1);
-    AddTextPrinterParameterized(windowId, 2, gText_Mailbox, (80 - width) / 2, 2, 0, NULL);
+    AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_Mailbox, (80 - width) / 2, 2, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].tListMenuTaskId = MailboxPC_InitListMenu(&gPlayerPcMenuManager);
     MailboxPC_AddScrollIndicatorArrows(&gPlayerPcMenuManager);
@@ -468,7 +468,7 @@ static void Task_MailboxPcHandleInput(u8 taskId)
     if (!gPaletteFade.active)
     {
         input = ListMenu_ProcessInput(tListMenuTaskId);
-        ListMenuGetScrollAndRow(tListMenuTaskId, &gPlayerPcMenuManager.itemsAbove, &gPlayerPcMenuManager.cursorPos);
+        ListMenuGetScrollAndRow(tListMenuTaskId, &gPlayerPcMenuManager.cursorPos, &gPlayerPcMenuManager.itemsAbove);
         switch (input)
         {
         case -1:
@@ -482,7 +482,7 @@ static void Task_MailboxPcHandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             MailboxPC_RemoveWindow(0);
             MailboxPC_RemoveWindow(1);
-            DestroyListMenuTask(tListMenuTaskId, &gPlayerPcMenuManager.itemsAbove, &gPlayerPcMenuManager.cursorPos);
+            DestroyListMenuTask(tListMenuTaskId, &gPlayerPcMenuManager.cursorPos, &gPlayerPcMenuManager.itemsAbove);
             ScheduleBgCopyTilemapToVram(0);
             RemoveScrollIndicatorArrowPair(gPlayerPcMenuManager.scrollIndicatorId);
             gTasks[taskId].func = Task_PrintWhatToDoWithSelectedMail;
@@ -512,7 +512,7 @@ static void Task_PrintWhatToDoWithSelectedMail(u8 taskId)
         ConvertInternationalString(gStringVar1, LANGUAGE_JAPANESE);
     }
     StringExpandPlaceholders(gStringVar4, gText_WhatWouldYouLikeToDoWithPlayersMail);
-    DisplayItemMessageOnField(taskId, 2, gStringVar4, Task_DrawMailSubmenu);
+    DisplayItemMessageOnField(taskId, FONT_NORMAL, gStringVar4, Task_DrawMailSubmenu);
 }
 
 static void Task_DestroyMailboxPcViewAndCancel(u8 taskId)
@@ -529,8 +529,8 @@ static void Task_DestroyMailboxPcViewAndCancel(u8 taskId)
 static void Task_DrawMailSubmenu(u8 taskId)
 {
     u8 windowId = MailboxPC_GetAddWindow(2);
-    PrintTextArray(windowId, 2, GetMenuCursorDimensionByFont(2, 0), 2, 16, 4, sMenuActions_MailSubmenu);
-    Menu_InitCursor(windowId, 2, 0, 2, 16, 4, 0);
+    PrintTextArray(windowId, FONT_NORMAL, GetMenuCursorDimensionByFont(FONT_NORMAL, 0), 2, 16, 4, sMenuActions_MailSubmenu);
+    Menu_InitCursor(windowId, FONT_NORMAL, 0, 2, 16, 4, 0);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = Task_MailSubmenuHandleInput;
 }
@@ -600,7 +600,7 @@ static void CB2_SetCbToReturnToMailbox(void)
 
 static void Task_PlayerPcMoveMailToBag(u8 taskId)
 {
-    DisplayItemMessageOnField(taskId, 2, gText_MessageWillBeLost, Task_DrawYesNoMenuToConfirmMoveToBag);
+    DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_MessageWillBeLost, Task_DrawYesNoMenuToConfirmMoveToBag);
 }
 
 static void Task_DrawYesNoMenuToConfirmMoveToBag(u8 taskId)
@@ -629,21 +629,21 @@ static void Task_MoveToBagYesNoMenuHandleInput(u8 taskId)
 
 static void Task_TryPutMailInBag_DestroyMsgIfSuccessful(u8 taskId)
 {
-    struct MailStruct * mail = &SELECTED_MAIL;
+    struct Mail * mail = &SELECTED_MAIL;
     if (!AddBagItem(mail->itemId, 1))
     {
-        DisplayItemMessageOnField(taskId, 2, gText_BagIsFull, Task_PlayerPcExitMailSubmenu);
+        DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_BagIsFull, Task_PlayerPcExitMailSubmenu);
     }
     else
     {
-        DisplayItemMessageOnField(taskId, 2, gText_MailReturnedToBagMessageErased, Task_PlayerPcExitMailSubmenu);
+        DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_MailReturnedToBagMessageErased, Task_PlayerPcExitMailSubmenu);
         ClearMailStruct(mail);
         PCMailCompaction();
         gPlayerPcMenuManager.count--;
-        if (gPlayerPcMenuManager.count < gPlayerPcMenuManager.pageItems + gPlayerPcMenuManager.itemsAbove)
+        if (gPlayerPcMenuManager.count < gPlayerPcMenuManager.pageItems + gPlayerPcMenuManager.cursorPos)
         {
-            if (gPlayerPcMenuManager.itemsAbove != 0)
-                gPlayerPcMenuManager.itemsAbove--;
+            if (gPlayerPcMenuManager.cursorPos != 0)
+                gPlayerPcMenuManager.cursorPos--;
         }
         Task_SetPageItemVars(taskId);
     }
@@ -692,10 +692,10 @@ static void CB2_ReturnToMailboxPc_UpdateScrollVariables(void)
     PCMailCompaction();
     if (count != gPlayerPcMenuManager.count)
     {
-        if (gPlayerPcMenuManager.count < gPlayerPcMenuManager.pageItems + gPlayerPcMenuManager.itemsAbove)
+        if (gPlayerPcMenuManager.count < gPlayerPcMenuManager.pageItems + gPlayerPcMenuManager.cursorPos)
         {
-            if (gPlayerPcMenuManager.itemsAbove != 0)
-                gPlayerPcMenuManager.itemsAbove--;
+            if (gPlayerPcMenuManager.cursorPos != 0)
+                gPlayerPcMenuManager.cursorPos--;
         }
     }
     Task_SetPageItemVars(taskId);
@@ -715,7 +715,7 @@ void Mailbox_ReturnToMailListAfterDeposit(void)
 
 static void Task_Error_NoPokemon(u8 taskId)
 {
-    DisplayItemMessageOnField(taskId, 2, gText_ThereIsNoPokemon, Task_PlayerPcExitMailSubmenu);
+    DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_ThereIsNoPokemon, Task_PlayerPcExitMailSubmenu);
 }
 
 static void Task_RedrawPlayerPcMailboxAndSetUpInputHandler(u8 taskId)

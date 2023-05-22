@@ -3,135 +3,127 @@
 
 .equ SHOWN_REQUESTED_MON, FLAG_TEMP_2
 
-FiveIsland_ResortGorgeous_House_MapScripts:: @ 8171EBD
+FiveIsland_ResortGorgeous_House_MapScripts::
 	.byte 0
 
-FiveIsland_ResortGorgeous_House_EventScript_Selphy:: @ 8171EBE
+FiveIsland_ResortGorgeous_House_EventScript_Selphy::
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
 	lock
 	faceplayer
 	goto_if_set SHOWN_REQUESTED_MON, FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest
-	compare VAR_RESORT_GORGEOUS_REQUESTED_MON, 0xFFFF
-	goto_if_eq FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong
-	compare VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE
-	goto_if_ne FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon
+	goto_if_eq VAR_RESORT_GORGEOUS_REQUESTED_MON, 0xFFFF, FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong
+	goto_if_ne VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE, FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon
 	msgbox FiveIsland_ResortGorgeous_House_Text_PleaseHearMyWish
 	goto FiveIsland_ResortGorgeous_House_EventScript_RequestMon
 	end
 
-FiveIsland_ResortGorgeous_House_EventScript_RequestMon:: @ 8171EFE
+FiveIsland_ResortGorgeous_House_EventScript_RequestMon::
 	special SampleResortGorgeousMonAndReward
 	msgbox FiveIsland_ResortGorgeous_House_Text_WishToSeeMonPlease
 	release
 	end
 
-FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong:: @ 8171F0B
+FiveIsland_ResortGorgeous_House_EventScript_RequestTookTooLong::
 	msgbox FiveIsland_ResortGorgeous_House_Text_OhImTiredOfWaiting
 	goto FiveIsland_ResortGorgeous_House_EventScript_RequestMon
 	end
 
-FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon:: @ 8171F19
+FiveIsland_ResortGorgeous_House_EventScript_CheckForRequestedMon::
 	copyvar VAR_0x8004, VAR_RESORT_GORGEOUS_REQUESTED_MON
 	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
-	compare VAR_RESULT, TRUE
-	goto_if_eq FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon
+	goto_if_eq VAR_RESULT, TRUE, FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon
 	goto FiveIsland_ResortGorgeous_House_EventScript_RequestMon
 	end
 
-FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon:: @ 8171F34
+FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon::
 	special SampleResortGorgeousMonAndReward
 	msgbox FiveIsland_ResortGorgeous_House_Text_MonYouCaughtForMeThankYou
 	addobject LOCALID_BUTLER
 	applymovement LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerEnter
 	waitmovement 0
-	textcolor 0
+	textcolor NPC_TEXT_COLOR_MALE
 	msgbox FiveIsland_ResortGorgeous_House_Text_ButlerYesMyLady
-	applymovement LOCALID_SELPHY, Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_SELPHY, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
-	textcolor 1
+	textcolor NPC_TEXT_COLOR_FEMALE
 	msgbox FiveIsland_ResortGorgeous_House_Text_SelphyGiveTokenOfAppreciation
-	textcolor 0
+	textcolor NPC_TEXT_COLOR_MALE
 	msgbox FiveIsland_ResortGorgeous_House_Text_ButlerIShallDoAsYouBid
 	closemessage
-	compare VAR_FACING, DIR_NORTH
-	call_if_eq FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth
-	compare VAR_FACING, DIR_SOUTH
-	call_if_eq FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth
-	compare VAR_FACING, DIR_EAST
-	call_if_eq FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast
-	compare VAR_FACING, DIR_WEST
-	call_if_eq FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest
-	moveobjectoffscreen LOCALID_BUTLER
+	call_if_eq VAR_FACING, DIR_NORTH, FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth
+	call_if_eq VAR_FACING, DIR_SOUTH, FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth
+	call_if_eq VAR_FACING, DIR_EAST, FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast
+	call_if_eq VAR_FACING, DIR_WEST, FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest
+	copyobjectxytoperm LOCALID_BUTLER
 	msgbox FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks
 	giveitem VAR_RESORT_GORGEOUS_REWARD
-	compare VAR_RESULT, FALSE
-	goto_if_eq FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward
+	goto_if_eq VAR_RESULT, FALSE, FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward
 	setflag SHOWN_REQUESTED_MON
 	setvar VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE
 	release
 	end
 
-FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth:: @ 8171FCD
-	applymovement LOCALID_SELPHY, Movement_WalkInPlaceFastestDown
+FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth::
+	applymovement LOCALID_SELPHY, Common_Movement_WalkInPlaceFasterDown
 	applymovement LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth
 	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
 	return
 
-FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth:: @ 8171FE9
+FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerSouth::
 	applymovement LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth
 	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	return
 
-FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast:: @ 8171FFE
-	applymovement LOCALID_SELPHY, Movement_WalkInPlaceFastestLeft
+FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerEast::
+	applymovement LOCALID_SELPHY, Common_Movement_WalkInPlaceFasterLeft
 	applymovement LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast
 	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	return
 
-FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest:: @ 817201A
+FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest::
 	applymovement LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerWest
 	waitmovement 0
 	return
 
-FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward:: @ 8172025
-	textcolor 0
+FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward::
+	textcolor NPC_TEXT_COLOR_MALE
 	msgbox FiveIsland_ResortGorgeous_House_Text_ButlerBagAppearsToBeFull
-	textcolor 1
+	textcolor NPC_TEXT_COLOR_FEMALE
 	msgbox FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing
 	setflag SHOWN_REQUESTED_MON
 	setvar VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE
 	release
 	end
 
-FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest:: @ 8172043
+FiveIsland_ResortGorgeous_House_EventScript_JustFulfilledRequest::
 	msgbox FiveIsland_ResortGorgeous_House_Text_SelphyWishYouBestOfLuck
 	release
 	end
 
-FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth:: @ 817204D
+FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth::
 	walk_left
 	walk_left
 	walk_left
 	walk_down
 	walk_down
 	walk_down
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	step_end
 
-FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth:: @ 8172055
+FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth::
 	walk_left
 	walk_left
-	walk_in_place_fastest_down
+	walk_in_place_faster_down
 	step_end
 
-FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast:: @ 8172059
+FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast::
 	walk_left
 	walk_left
 	walk_left
@@ -140,15 +132,15 @@ FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast:: @ 8172059
 
 @ Very odd. If the player is talking to Selphy facing West, then the player has clipped through the table
 @ In this case rather than approach the player the Butler walks up, which clips the Butler into a wall
-FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerWest:: @ 817205E
+FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerWest::
 	walk_up
 	step_end
 
-FiveIsland_ResortGorgeous_House_Movement_ButlerEnter:: @ 8172060
+FiveIsland_ResortGorgeous_House_Movement_ButlerEnter::
 	walk_in_place_down
 	step_end
 
 @ Addressed as "Sebastian" but speaks only as "Butler"
-FiveIsland_ResortGorgeous_House_EventScript_Butler:: @ 8172062
+FiveIsland_ResortGorgeous_House_EventScript_Butler::
 	msgbox FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun, MSGBOX_NPC
 	end

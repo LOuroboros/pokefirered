@@ -64,9 +64,9 @@ static const u8 sTilesPerImage[4][4] =
     }
 };
 
-const u16 gUnknown_8479668[] = INCBIN_U16("graphics/misc/unk_8479688.gbapal");
-const u32 gUnknown_8479688[] = INCBIN_U32("graphics/misc/unk_8479688.4bpp.lz");
-const u32 gUnknown_8479748[] = INCBIN_U32("graphics/misc/unk_8479748.4bpp.lz");
+const u16 gMinigameDigits_Pal[] = INCBIN_U16("graphics/misc/minigame_digits.gbapal");
+const u32 gMinigameDigits_Gfx[] = INCBIN_U32("graphics/misc/minigame_digits.4bpp.lz");
+static const u32 sUnusedMinigameDigits_Gfx[] = INCBIN_U32("graphics/misc/minigame_digits_unused.4bpp.lz");
 
 // code
 bool32 DigitObjUtil_Init(u32 count)
@@ -74,7 +74,7 @@ bool32 DigitObjUtil_Init(u32 count)
     u32 i;
 
     if (sOamWork != NULL)
-        DigitObjUtil_Teardown();
+        DigitObjUtil_Free();
 
     sOamWork = Alloc(sizeof(*sOamWork));
     if (sOamWork == NULL)
@@ -97,7 +97,7 @@ bool32 DigitObjUtil_Init(u32 count)
     return TRUE;
 }
 
-void DigitObjUtil_Teardown(void)
+void DigitObjUtil_Free(void)
 {
     if (sOamWork != NULL)
     {
